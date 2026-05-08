@@ -1,235 +1,247 @@
-"use client";
+'use client';
 
-import { useState } from "react";
-import Image from "next/image";
+import Link from 'next/link';
+import { Facebook, Linkedin, Instagram, Youtube, Phone, Mail, Menu, X, ChevronDown } from 'lucide-react';
+import Image from 'next/image';
+import { useState, useEffect } from 'react';
 
-const NAV_LINKS = [
-  { label: "Home", href: "/", hasDropdown: false },
+const LOGO = "https://res.cloudinary.com/de4cnpfm1/image/upload/v1778247941/LOGO-_OCS_eamyrc.jpg";
 
+const NAV_ITEMS = [
+  { name: 'HOME', path: '/' },
   {
-    label: "About Us",
-    href: "/about",
-    hasDropdown: true,
-    dropdownItems: [
-      { label: "Company Overview", href: "/about/company-overview" },
-      { label: "Mission & Vision", href: "/about/mission-vision" },
-      { label: "Management Team", href: "/about/management-team" },
-    ],
+    name: 'ABOUT US',
+    path: '#',
+    dropdown: [
+      { name: 'Achievement', path: '/achievements' },
+      { name: 'External Visit', path: '/external-visit' },
+      { name: 'Organizational Chart', path: '/organizational-chart' }
+    ]
   },
-
-  { label: "Accrediation", href: "/accrediation", hasDropdown: false },
-  { label: "Facilities", href: "/facilities", hasDropdown: false },
-  { label: "Profile", href: "/profile", hasDropdown: false },
-
+  { name: 'ACCREDIATION', path: '/accreditation' },
+  { name: 'FACILITIES', path: '/facilities' },
+  { name: 'PROFILES', path: '/profiles' },
   {
-    label: "Infrastructure",
-    href: "/infrastructure",
-    hasDropdown: true,
-    dropdownItems: [
-      { label: "Laboratory Setup", href: "/infrastructure/laboratory-setup" },
-      { label: "Testing Equipment", href: "/infrastructure/testing-equipment" },
-      { label: "Quality Systems", href: "/infrastructure/quality-systems" },
-    ],
+    name: 'INFRASTRUCTURE',
+    path: '#',
+    dropdown: [
+      { name: 'Mechanical Lab Testing Instrument', path: '/infrastructure/mechanical' },
+      { name: 'Chemical Lab Testing Instrument', path: '/infrastructure/chemical' },
+      { name: 'Civil Lab Testing Instrument', path: '/infrastructure/civil' },
+      { name: 'Non-Destructive Testing', path: '/infrastructure/ndt' }
+    ]
   },
-
   {
-    label: "Our Branch",
-    href: "/our-branch",
-    hasDropdown: true,
-    dropdownItems: [
-      { label: "Kolkata", href: "/our-branch/kolkata" },
-      { label: "Howrah", href: "/our-branch/howrah" },
-      { label: "Durgapur", href: "/our-branch/durgapur" },
-    ],
+    name: 'OUR BRANCH',
+    path: '#',
+    dropdown: [
+      { name: 'Kolkata Branch 1', path: '/our-branch/kolkata-1' },
+      { name: 'Kolkata Branch 2', path: '/our-branch/kolkata-2' },
+      { name: 'Siliguri', path: '/our-branch/siliguri' },
+      { name: 'Ranchi', path: '/our-branch/ranchi' },
+      { name: 'Odisha', path: '/our-branch/odisha' },
+      { name: 'Sample Collection Center', path: '#' }
+    ]
   },
-
-  {
-    label: "Lab Tour",
-    href: "/lab-tour",
-    hasDropdown: true,
-    dropdownItems: [
-      { label: "Photo Gallery", href: "/lab-tour/photo-gallery" },
-      { label: "Video Tour", href: "/lab-tour/video-tour" },
-      { label: "Virtual Walkthrough", href: "/lab-tour/virtual-walkthrough" },
-    ],
-  },
-
-  { label: "Our Client", href: "/our-client", hasDropdown: false },
-  { label: "Gallery", href: "/gallery", hasDropdown: false },
-  { label: "Contact Us", href: "/contact", hasDropdown: false },
+  { name: 'LAB TOUR', path: '/lab-tour' },
+  { name: 'OUR CLIENTS', path: '/our-clients' },
+  { name: 'CONTACT US', path: '#contact' },
+  { name: 'CAREER', path: '/career' },
 ];
-const SEALS = [
-  { src: "/seal-tc-11935.png", alt: "Accreditation Seal TC-11935" },
-  { src: "/seal-tc-13401.png", alt: "Accreditation Seal TC-13401" },
-  { src: "/seal-tc-1645.png", alt: "Accreditation Seal TC-1645" },
-  { src: "/seal-tc-17671.png", alt: "Accreditation Seal TC-17671" },
-  { src: "/seal-nabl.png", alt: "NABL Accreditation Seal" },
+const NABL_BADGES = [
+  { id: 'TC-11935', url: 'https://res.cloudinary.com/de4cnpfm1/image/upload/v1778245989/TC11935_tsqh9z.webp' },
+  { id: 'TC-13401', url: 'https://res.cloudinary.com/de4cnpfm1/image/upload/v1778245987/TC13401_axis5q.webp' },
+  { id: 'TC-15509', url: 'https://res.cloudinary.com/de4cnpfm1/image/upload/v1778245987/TC15509_dx2lua.webp' },
+  { id: 'TC-16480', url: 'https://res.cloudinary.com/de4cnpfm1/image/upload/v1778245989/TC16480_kmsows.webp' },
+  { id: 'TC-17671', url: 'https://res.cloudinary.com/de4cnpfm1/image/upload/v1778245989/TC17671_ghwfuo.webp' },
 ];
-
 export default function Navbar() {
-  const [menuOpen, setMenuOpen] = useState(false);
+  const [openMobileMenu, setOpenMobileMenu] = useState<string | null>(null);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+
+  // Close mobile menu when screen resizes to desktop
+  useEffect(() => {
+    const handleResize = () => {
+      if (window.innerWidth >= 1024) {
+        setIsMobileMenuOpen(false);
+      }
+    };
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
 
   return (
-    <div className="w-full font-sans">
-      {/* Top bar */}
-      <div className="bg-[#1e2d78] flex items-center justify-between px-4 sm:px-6 md:px-10 py-4">
-        <span className="text-white text-[12px] sm:text-[14px] md:text-[15px] font-bold tracking-wide">
-          Working Hours: 9:30am To 6:00pm
-        </span>
-
-        <a
-          href="/contact"
-          className="bg-[#f7941d] hover:bg-[#d97c0a] text-white text-[12px] sm:text-[13px] font-bold px-4 sm:px-6 md:px-7 py-1.5 sm:py-2 rounded-full transition-colors duration-200 whitespace-nowrap"
-        >
-          Contact Us
-        </a>
-      </div>
-
-      {/* Middle row */}
-      <div className="bg-white border-b border-[#dde0ec] flex items-center justify-between px-4 sm:px-6 md:px-10 py-6 gap-4">
-        {/* Left logo + name, both images */}
-        <a href="/" className="flex items-center gap-3 shrink-0 min-w-0">
-          <Image
-            src="/LOGO-OCS.jpeg"
-            alt="OmegaLab logo"
-            width={70}
-            height={70}
-            priority
-            className="h-[52px] sm:h-[60px] md:h-[70px] w-auto object-contain shrink-0"
-          />
-
-          <Image
-            src="/omega-brand-name.png"
-            alt="OmegaLab Testing Services Private Limited"
-            width={220}
-            height={52}
-            priority
-            className="hidden sm:block h-[34px] md:h-[52px] w-auto object-contain"
-          />
-        </a>
-
-        {/* Right 5 images, no overlap */}
-        <div className="flex items-center justify-end gap-2 sm:gap-3 flex-wrap">
-          {SEALS.map((seal) => (
-            <div
-              key={seal.alt}
-              className="shrink-0 rounded-full overflow-hidden border border-[#c8ccd8] bg-white"
-            >
-              <Image
-                src={seal.src}
-                alt={seal.alt}
-                width={68}
-                height={68}
-                className="h-[42px] w-[42px] sm:h-[52px] sm:w-[52px] md:h-[68px] md:w-[68px] object-contain rounded-full"
-              />
+    <>
+      <header className="w-full font-sans flex flex-col relative z-[1000] bg-[#1E1B5C] transition-all">
+        {/* Top Utility Bar */}
+        <div className="w-full bg-[#0e0b30] text-white pt-2 pb-1.5 md:py-1.5 px-4 md:px-8 flex flex-col md:flex-row justify-between items-center text-[10px] md:text-xs relative z-[1001]">
+          <div className="flex items-center gap-3 mb-2 md:mb-0">
+            <span className="text-white/80 font-bold uppercase tracking-wider">Follow Us:</span>
+            <div className="flex gap-2">
+              <Link href="#" className="w-6 h-6 rounded-full bg-[#1877F2] flex items-center justify-center hover:opacity-80 transition-opacity"><Facebook size={12} fill="currentColor" /></Link>
+              <Link href="#" className="w-6 h-6 rounded-full bg-[#E4405F] flex items-center justify-center hover:opacity-80 transition-opacity"><Instagram size={12} /></Link>
+              <Link href="#" className="w-6 h-6 rounded-full bg-[#0A66C2] flex items-center justify-center hover:opacity-80 transition-opacity"><Linkedin size={12} fill="currentColor" /></Link>
+              <Link href="#" className="w-6 h-6 rounded-full bg-[#FF0000] flex items-center justify-center hover:opacity-80 transition-opacity"><Youtube size={12} fill="currentColor" /></Link>
             </div>
-          ))}
+          </div>
+          <div className="flex flex-wrap justify-center items-center gap-4 md:gap-6">
+            <div className="flex items-center gap-1.5 text-[#c14d9b] font-medium">
+              <Phone size={14} className="text-[#c14d9b]" fill="currentColor" />
+              <span className="text-[#e0e0e0]">033 2497 1903</span>
+            </div>
+            <div className="flex items-center gap-1.5 font-medium">
+              <Mail size={14} className="text-[#a8a8a8]" fill="currentColor" />
+              <span className="text-[#e0e0e0]">omegalabinfo98@gmail.com</span>
+            </div>
+            <Link href="#contact" className="bg-[#FF6700] hover:bg-orange-600 text-white font-black h-7 px-5 rounded-full flex items-center justify-center uppercase text-[10px] md:text-[11px] tracking-wider transition-colors shadow-sm ml-2">
+              Contact Us
+            </Link>
+          </div>
         </div>
-      </div>
+      </header>
 
-      {/* Bottom nav */}
-      <nav className="bg-[#1e2d78]" aria-label="Main navigation">
-        {/* Desktop */}
-        <div className="hidden lg:flex items-center justify-center flex-wrap px-5 py-5">
-          {NAV_LINKS.map((link) => (
-            <div key={link.label} className="relative group">
-              <a
-                href={link.href}
-                className="flex items-center gap-1 text-white text-[13.5px] font-medium px-3 py-3.5 hover:text-[#ff6700] transition-colors duration-150 whitespace-nowrap"
+      {/* Main Header Section */}
+      <div className="w-full sticky top-0 z-[1000] shadow-2xl bg-[#1E1B5C] transition-all font-sans">
+        {/* Main Logo & Info Bar */}
+        <div className="bg-[#1E1B5C] py-4 md:py-6 px-4 md:px-8 flex items-center relative">
+          <div className="flex flex-1 items-center gap-4 lg:gap-6 mr-4 lg:mr-10">
+            <Link href="/" className="shrink-0 flex items-center">
+              <div className="w-[45px] h-[45px] md:w-[65px] md:h-[65px] xl:w-[80px] xl:h-[80px] bg-white rounded-2xl shadow-lg shrink-0 overflow-hidden relative">
+                <Image
+                  src={LOGO}
+                  alt="Omega Lab Logo"
+                  fill
+                  className="object-contain p-1"
+                />
+              </div>
+            </Link>
+            <div className="text-left w-full max-w-[700px] xl:max-w-none flex items-center">
+              <h1 className="text-white font-oswald font-bold text-[16px] sm:text-[18px] md:text-[22px] lg:text-[20px] xl:text-[30px] uppercase tracking-wide leading-[1.2] drop-shadow-md">
+                OMEGALAB TESTING SERVICES PRIVATE<br className="hidden sm:block" /> LIMITED
+              </h1>
+            </div>
+          </div>
+
+          <div className="hidden lg:flex gap-2 xl:gap-4 items-center shrink-0">
+            {NABL_BADGES.map((badge) => (
+              <div
+                key={badge.id}
+                className="w-[50px] h-[50px] lg:w-[60px] lg:h-[60px] xl:w-[70px] xl:h-[70px] shrink-0 bg-white rounded-full flex flex-col items-center justify-center border-[3px] border-[#FF6700] shadow-md relative overflow-hidden"
               >
-                {link.label}
-                {link.hasDropdown && (
-                  <svg
-                    className="w-[9px] h-[9px] mt-[1px] transition-transform duration-200 group-hover:rotate-180"
-                    viewBox="0 0 10 7"
-                    fill="currentColor"
-                    aria-hidden="true"
-                  >
-                    <path d="M5 7L0 0h10z" />
-                  </svg>
-                )}
-              </a>
-
-              {link.hasDropdown && link.dropdownItems && (
-                <div className="absolute left-0 top-full pt-2 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50">
-                  <div className="min-w-[220px] overflow-hidden rounded-md bg-white shadow-lg border border-gray-200">
-                    {link.dropdownItems.map((item) => (
-                      <a
-                        key={item.label}
-                        href={item.href}
-                        className="block px-4 py-3 text-[13px] font-medium text-[#1e2d78] hover:bg-gray-50 hover:text-[#ff6700] transition-colors"
-                      >
-                        {item.label}
-                      </a>
-                    ))}
+                <div className="text-[5px] xl:text-[7px] font-bold text-black uppercase text-center flex flex-col items-center mt-[2px] xl:mt-[3px]">
+                  <div className="flex items-center justify-center mb-0.5 relative">
+                    <Image
+                      src={badge.url}
+                      alt={`NABL ${badge.id}`}
+                      width={40}
+                      height={40}
+                      className="object-contain lg:w-[40px] lg:h-[40px]"
+                    />
                   </div>
                 </div>
-              )}
-            </div>
-          ))}
-        </div>
+                <span className="text-black text-[7px] lg:text-[8px] xl:text-[9px] font-bold font-sans tracking-tight mb-1">
+                  {badge.id}
+                </span>
+              </div>
+            ))}
+          </div>
 
-        {/* Mobile */}
-        <div className="lg:hidden flex items-center justify-between px-5 py-3">
-          <span className="text-white text-sm font-semibold">Menu</span>
-
+          {/* Mobile Menu Button  */}
           <button
-            onClick={() => setMenuOpen((v) => !v)}
-            aria-expanded={menuOpen}
-            aria-label={menuOpen ? "Close menu" : "Open menu"}
-            className="p-1.5 rounded-md text-white hover:bg-white/10 transition-colors"
+            className="lg:hidden text-white p-2 hover:bg-white/10 rounded-md transition-colors shrink-0 ml-auto"
+            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+            aria-label="Toggle Navigation"
           >
-            {menuOpen ? (
-              <svg
-                width="24"
-                height="24"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="2"
-                viewBox="0 0 24 24"
-              >
-                <path strokeLinecap="round" d="M6 18L18 6M6 6l12 12" />
-              </svg>
-            ) : (
-              <svg
-                width="24"
-                height="24"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="2"
-                viewBox="0 0 24 24"
-              >
-                <path strokeLinecap="round" d="M4 6h16M4 12h16M4 18h16" />
-              </svg>
-            )}
+            {isMobileMenuOpen ? <X size={32} /> : <Menu size={32} />}
           </button>
         </div>
 
-        {menuOpen && (
-          <div className="lg:hidden flex flex-col border-t border-white/20 pb-2">
-            {NAV_LINKS.map((link) => (
-              <a
-                key={link.label}
-                href={link.href}
-                onClick={() => setMenuOpen(false)}
-                className="flex items-center justify-between text-white text-sm font-medium px-5 py-3 hover:bg-white/10 hover:text-[#ff6700] transition-colors"
-              >
-                {link.label}
-                {link.hasDropdown && (
-                  <svg
-                    className="w-2.5 h-2.5 opacity-70"
-                    viewBox="0 0 10 10"
-                    fill="currentColor"
-                    aria-hidden="true"
-                  >
-                    <path d="M3 1l5 4-5 4V1z" />
-                  </svg>
-                )}
-              </a>
-            ))}
+        {/* Navigation Links Bar (Desktop) */}
+        <nav className="bg-[#1E1B5C] border-t-[3px] border-[#FF6700] hidden lg:block shadow-[0_4px_6px_-1px_rgba(0,0,0,0.3)]">
+          <div className="px-2 md:px-4 lg:px-6 xl:px-8 flex justify-center lg:justify-between items-center max-w-[1920px] mx-auto w-full">
+            <ul className="flex justify-center w-full text-[10px] lg:text-[11px] xl:text-[12px] 2xl:text-[13px] font-bold text-white/80 font-sans min-h-[50px] gap-0">
+              {NAV_ITEMS.map((item) => (
+                <li key={item.name} className="h-[50px] relative group shrink-0">
+                  {item.dropdown ? (
+                    <>
+                      <div className="px-2 lg:px-2.5 xl:px-3 2xl:px-4 h-full flex items-center hover:text-white transition-colors uppercase gap-0.5 xl:gap-1 whitespace-nowrap cursor-pointer">
+                        {item.name} <ChevronDown size={14} className="opacity-70 group-hover:opacity-100 transition-opacity" strokeWidth={3} />
+                      </div>
+                      <div className="absolute top-full left-0 bg-[#1E1B5C] shadow-xl border-t-[3px] border-[#FF6700] min-w-[250px] opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 py-3 rounded-b-md z-50">
+                        {item.dropdown.map((subItem) => (
+                          <Link
+                            key={subItem.name}
+                            href={subItem.path}
+                            className="block px-5 py-2.5 text-white/70 hover:text-white hover:bg-white/5 uppercase text-[12px] font-bold tracking-wide transition-all border-b border-white/5 last:border-0"
+                          >
+                            {subItem.name}
+                          </Link>
+                        ))}
+                      </div>
+                    </>
+                  ) : (
+                    <Link
+                      href={item.path}
+                      className="px-2 lg:px-2.5 xl:px-3 2xl:px-4 h-full flex items-center hover:text-white transition-colors uppercase whitespace-nowrap"
+                    >
+                      {item.name}
+                    </Link>
+                  )}
+                </li>
+              ))}
+            </ul>
           </div>
-        )}
-      </nav>
-    </div>
+        </nav>
+
+        {/* Mobile Navigation Drawer */}
+        <div
+          className={`lg:hidden absolute top-full left-0 w-full bg-[#1E1B5C] shadow-2xl flex flex-col transition-all duration-300 ease-in-out origin-top z-[998] overflow-hidden ${isMobileMenuOpen ? 'max-h-[85vh] border-t-[3px] border-[#FF6700]' : 'max-h-0 border-t-0'
+            }`}
+        >
+          <div className="h-auto max-h-[85vh] overflow-y-auto">
+            <ul className="flex flex-col text-white font-sans p-2">
+              {NAV_ITEMS.map((item) => (
+                <li key={item.name} className="border-b border-white/10 last:border-0 relative">
+                  {item.dropdown ? (
+                    <div className="flex flex-col">
+                      <button
+                        className="py-4 px-4 text-left font-bold uppercase text-[12px] flex items-center justify-between w-full hover:bg-white/5 transition-colors"
+                        onClick={() => setOpenMobileMenu(openMobileMenu === item.name ? null : item.name)}
+                      >
+                        {item.name}
+                        <ChevronDown size={18} className={`transition-transform duration-300 ${openMobileMenu === item.name ? 'rotate-180 text-[#FF6700]' : 'text-white/60'}`} />
+                      </button>
+
+                      <div className={`overflow-hidden transition-all duration-300 ease-in-out bg-[#110f3c] ${openMobileMenu === item.name ? 'max-h-[500px] opacity-100' : 'max-h-0 opacity-0'}`}>
+                        <div className="p-2 py-3 flex flex-col">
+                          {item.dropdown.map((subItem) => (
+                            <Link
+                              key={subItem.name}
+                              href={subItem.path}
+                              className="text-white/70 hover:text-white hover:bg-white/10 pl-8 pr-4 py-3 text-[11px] uppercase font-semibold block transition-colors border-b border-white/5 last:border-0"
+                              onClick={() => setIsMobileMenuOpen(false)}
+                            >
+                              {subItem.name}
+                            </Link>
+                          ))}
+                        </div>
+                      </div>
+                    </div>
+                  ) : (
+                    <Link
+                      href={item.path}
+                      className="block py-4 px-4 hover:bg-white/5 hover:text-white transition-colors font-bold text-white/90 uppercase text-[12px]"
+                      onClick={() => setIsMobileMenuOpen(false)}
+                    >
+                      {item.name}
+                    </Link>
+                  )}
+                </li>
+              ))}
+            </ul>
+          </div>
+        </div>
+      </div>
+    </>
   );
 }
