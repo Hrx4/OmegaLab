@@ -1,6 +1,7 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import HeroSlider from './HeroSlider';
+import IndiaBranchMap from './IndiaBranchMap';
 
 export default function HomeSections() {
   return (
@@ -137,6 +138,9 @@ export default function HomeSections() {
           ))}
         </div>
       </section>
+
+      {/* 5.5 Interactive India Branch Map */}
+      <IndiaBranchMap />
 
       {/* 6. Testing Services */}
       <section className="py-12 md:py-20 px-4 md:px-12 max-w-[1300px] mx-auto w-full">
