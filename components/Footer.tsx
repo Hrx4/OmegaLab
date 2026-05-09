@@ -16,6 +16,8 @@ const RESOURCE_LINKS = [
   { name: "Contact Us", path: "/contact" },
 ];
 
+const LOGO = "https://res.cloudinary.com/de4cnpfm1/image/upload/v1778247941/LOGO-_OCS_eamyrc.jpg";
+
 const LABS_LEFT = [
   { name: "Kolkata\nLab-1", maps: "#" },
   { name: "Kolkata\nLab-2", maps: "#" },
@@ -106,10 +108,15 @@ export default function Footer() {
             {/* Column 1 */}
             <div className="min-w-0">
               <div className="mb-5 flex items-center gap-3 min-w-0">
-                <div className="flex h-[60px] w-[60px] sm:h-[68px] sm:w-[68px] items-center justify-center rounded-full border-2 border-white/20 bg-white text-[#1E1B5C] text-[28px] sm:text-3xl font-bold shrink-0">
-                  Ω
+                <div className="w-[40px] h-[40px] md:w-[55px] md:h-[55px] xl:w-[68px] xl:h-[68px] bg-white rounded-2xl shadow-lg shrink-0 overflow-hidden flex items-center justify-center">
+                  <Image
+                    src={LOGO}
+                    alt="Omega Lab Logo"
+                    width={30}
+                    height={30}
+                    className="object-contain md:w-[44px] md:h-[44px] xl:w-[56px] xl:h-[56px]"
+                  />
                 </div>
-
                 <div className="min-w-0 leading-tight overflow-hidden">
                   <div className="text-[20px] sm:text-[24px] font-extrabold tracking-tight text-white break-words sm:truncate">
                     OMEGA<span className="text-[#63B7F6]">LAB</span>

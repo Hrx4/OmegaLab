@@ -20,7 +20,7 @@ const LAB_DATA = [
     cert: "TC-11935",
     address: "256A, M. G. Road, Purbasan, Thakurpukur, Kolkata - 700 063",
     certText: "ISO/IEC 17025 Accredited Testing Laboratory by NABL vide Certificate number",
-    certImage: "https://images.unsplash.com/photo-1606857521015-7f9fcf423740?auto=format&fit=crop&w=600&q=80",
+    certImage: "https://res.cloudinary.com/de4cnpfm1/image/upload/v1778247809/KOLKATA1_i1fhgi.jpg",
     scopeText: "Access the complete scope of our NABL accreditation, including detailed parameters, testing methods, and applicable standards.",
     pdfLink: "#"
   },
@@ -30,7 +30,7 @@ const LAB_DATA = [
     cert: "TC-13401",
     address: "996, M. G. Road, Purbasan, Thakurpukur, Kolkata - 700 063",
     certText: "ISO/IEC 17025 Accredited Testing Laboratory by NABL vide Certificate number",
-    certImage: "https://images.unsplash.com/photo-1606857521015-7f9fcf423740?auto=format&fit=crop&w=600&q=80",
+    certImage: "https://res.cloudinary.com/de4cnpfm1/image/upload/v1778247810/KOLKATA2_wsg4cn.jpg",
     scopeText: "Access the complete scope of our NABL accreditation, including detailed parameters, testing methods, and applicable standards.",
     pdfLink: "#"
   },
@@ -40,7 +40,7 @@ const LAB_DATA = [
     cert: "TC-15509",
     address: "1052/A, Narmada Bagan, Ward No. 46, Siliguri, Darjeeling - 734003",
     certText: "ISO/IEC 17025 Accredited Testing Laboratory by NABL vide Certificate number",
-    certImage: "https://images.unsplash.com/photo-1606857521015-7f9fcf423740?auto=format&fit=crop&w=600&q=80",
+    certImage: "https://res.cloudinary.com/de4cnpfm1/image/upload/v1778247807/SILIGURI_vqovah.jpg",
     scopeText: "Access the complete scope of our NABL accreditation, including detailed parameters, testing methods, and applicable standards.",
     pdfLink: "#"
   },
@@ -50,7 +50,7 @@ const LAB_DATA = [
     cert: "TC-16480",
     address: "2085/B, Ward No. 19/4, Bariatu Basti Hill View Road, Bariatu, Ranchi, Jharkhand",
     certText: "ISO/IEC 17025 Accredited Testing Laboratory by NABL vide Certificate number",
-    certImage: "https://images.unsplash.com/photo-1606857521015-7f9fcf423740?auto=format&fit=crop&w=600&q=80",
+    certImage: "https://res.cloudinary.com/de4cnpfm1/image/upload/v1778247807/RANCHI_za9xun.jpg",
     scopeText: "Access the complete scope of our NABL accreditation, including detailed parameters, testing methods, and applicable standards.",
     pdfLink: "#"
   },
@@ -60,7 +60,7 @@ const LAB_DATA = [
     cert: "TC-17671",
     address: "Plot no. 891/1572 ,Uttarasasana, Kousalyaganga, Pubasasan , P.S. Pipli, Dist.-Puri, Odisha,PIN-751002.",
     certText: "ISO/IEC 17025 Accredited Testing Laboratory by NABL vide Certificate number",
-    certImage: "https://images.unsplash.com/photo-1606857521015-7f9fcf423740?auto=format&fit=crop&w=600&q=80",
+    certImage: "https://res.cloudinary.com/de4cnpfm1/image/upload/v1778247807/ODISHA_x2opxm.jpg",
     scopeText: "Access the complete scope of our NABL accreditation, including detailed parameters, testing methods, and applicable standards.",
     pdfLink: "#"
   }
