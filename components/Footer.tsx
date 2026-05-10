@@ -1,113 +1,53 @@
 "use client";
 
-import Image from "next/image";
 import Link from "next/link";
+import {
+  Facebook,
+  Linkedin,
+  Instagram,
+  Twitter,
+  Youtube,
+  MapPin,
+  Mail,
+  Phone,
+  ChevronRight,
+  Send,
+  ArrowRight,
+} from "lucide-react";
+import Image from "next/image";
 import { useState, useEffect } from "react";
-import { motion, AnimatePresence } from "framer-motion";
-import branchesData from "../data/branches.json";
+import { motion, AnimatePresence } from "motion/react";
 
-const TEAM_PICS = [
-  "https://res.cloudinary.com/de4cnpfm1/image/upload/v1778339110/T3_lly4po.jpg",
-  "https://res.cloudinary.com/de4cnpfm1/image/upload/v1778339110/T4_jsaj7y.jpg",
-  "https://res.cloudinary.com/de4cnpfm1/image/upload/v1778339109/T2_ptxc7g.jpg",
-  "https://res.cloudinary.com/de4cnpfm1/image/upload/v1778339108/T1_pfcuu9.jpg",
-];
-
-const RESOURCE_LINKS = [
-  { name: "Home", path: "/" },
-  { name: "About Us", path: "/about" },
-  { name: "Accrediation", path: "/accrediation" },
-  { name: "Facilities", path: "/facilities" },
-  { name: "Profile", path: "/profile" },
-  { name: "Infrastructure", path: "/infrastructure" },
-  { name: "Our Branch", path: "/our-branch" },
-  { name: "Lab Tour", path: "/lab-tour" },
-  { name: "Our Client", path: "/our-client" },
-  { name: "Contact Us", path: "/contact" },
+const LOCATIONS = [
+  {
+    name: "Kolkata Lab-1",
+    type: "HO & Central Lab",
+    link: "https://maps.app.goo.gl/eMGgb9J1VZSSbaBK8",
+  },
+  {
+    name: "Kolkata Lab-2",
+    type: "Accredited Lab",
+    link: "https://maps.app.goo.gl/eMGgb9J1VZSSbaBK8",
+  },
+  {
+    name: "Siliguri Lab",
+    type: "Accredited Lab",
+    link: "http://google.com/maps/place/OMEGALAB+TESTING+SERVICES+PRIVATE+limited/@26.7504515,88.417294,17z/data=!3m1!4b1!4m6!3m5!1s0x39e44132283a6a41:0xfef4e2e3d4224f5d!8m2!3d26.7504515!4d88.417294!16s%2Fg%2F11vcw99x0r!18m1!1e1?entry=ttu&g_ep=EgoyMDI2MDUwNi4wIKXMDSoASAFQAw%3D%3D",
+  },
+  {
+    name: "Ranchi Lab",
+    type: "Accredited Lab",
+    link: "https://www.google.com/maps/place/Omegalab+Testing+Services+Pvt.+Ltd/@23.3979966,85.3516901,17z/data=!3m1!4b1!4m6!3m5!1s0x39f4e100695836a9:0xbdb80bb1c90a4526!8m2!3d23.3979966!4d85.3516901!16s%2Fg%2F11w3fffslk!18m1!1e1?entry=ttu&g_ep=EgoyMDI2MDUwNi4wIKXMDSoASAFQAw%3D%3D",
+  },
+  {
+    name: "Odisha Lab",
+    type: "Accredited Lab",
+    link: "https://www.google.com/maps/place/OMEGALAB+TESTING+SERVICES+PVT.LTD./@20.1967379,85.8539767,17z/data=!3m1!4b1!4m6!3m5!1s0x3a19a1006376e599:0x20539cbf7a5c464d!8m2!3d20.1967379!4d85.8539767!16s%2Fg%2F11yhjkbrl9!18m1!1e1?entry=ttu&g_ep=EgoyMDI2MDUwNi4wIKXMDSoASAFQAw%3D%3D",
+  },
 ];
 
 const LOGO =
   "https://res.cloudinary.com/de4cnpfm1/image/upload/v1778247941/LOGO-_OCS_eamyrc.jpg";
-
-const LABS_LEFT = [
-  {
-    name: "Kolkata\nLab-1",
-    iframemaps:
-      "https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d29497.216140629127!2d88.3171!3d22.460921!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a027af369b75e1f%3A0xbbe493a0716b324a!2sOmegalabTesting%20Services%20Pvt.%20Ltd.!5e0!3m2!1sen!2sus!4v1778321533839!5m2!1sen!2sus",
-    maps: "https://maps.app.goo.gl/eMGgb9J1VZSSbaBK8",
-  },
-  {
-    name: "Kolkata\nLab-2",
-    iframemaps:
-      "https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d29497.216140629127!2d88.3171!3d22.460921!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a027af369b75e1f%3A0xbbe493a0716b324a!2sOmegalabTesting%20Services%20Pvt.%20Ltd.!5e0!3m2!1sen!2sus!4v1778321533839!5m2!1sen!2sus",
-    maps: "https://maps.app.goo.gl/eMGgb9J1VZSSbaBK8",
-  },
-  {
-    name: "Siliguri\nLab",
-    iframemaps:
-      "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3562.809596710921!2d88.417294!3d26.7504515!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39e44132283a6a41%3A0xfef4e2e3d4224f5d!2sOMEGALAB%20TESTING%20SERVICES%20PRIVATE%20limited!5e0!3m2!1sen!2sin!4v1778397386760!5m2!1sen!2sin",
-    maps: "http://google.com/maps/place/OMEGALAB+TESTING+SERVICES+PRIVATE+limited/@26.7504515,88.417294,17z/data=!3m1!4b1!4m6!3m5!1s0x39e44132283a6a41:0xfef4e2e3d4224f5d!8m2!3d26.7504515!4d88.417294!16s%2Fg%2F11vcw99x0r!18m1!1e1?entry=ttu&g_ep=EgoyMDI2MDUwNi4wIKXMDSoASAFQAw%3D%3D",
-  },
-];
-
-const LABS_RIGHT = [
-  {
-    name: "Ranchi\nLab",
-    iframemaps:
-      "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3661.729622081228!2d85.3516901!3d23.397996600000003!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39f4e100695836a9%3A0xbdb80bb1c90a4526!2sOmegalab%20Testing%20Services%20Pvt.%20Ltd!5e0!3m2!1sen!2sin!4v1778397469647!5m2!1sen!2sin",
-    maps: "https://www.google.com/maps/place/Omegalab+Testing+Services+Pvt.+Ltd/@23.3979966,85.3516901,17z/data=!3m1!4b1!4m6!3m5!1s0x39f4e100695836a9:0xbdb80bb1c90a4526!8m2!3d23.3979966!4d85.3516901!16s%2Fg%2F11w3fffslk!18m1!1e1?entry=ttu&g_ep=EgoyMDI2MDUwNi4wIKXMDSoASAFQAw%3D%3D",
-  },
-  {
-    name: "Odisha\nLab",
-    iframemaps:
-      "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3744.4950868494725!2d85.8539767!3d20.196737900000002!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a19a1006376e599%3A0x20539cbf7a5c464d!2sOMEGALAB%20TESTING%20SERVICES%20PVT.LTD.!5e0!3m2!1sen!2sin!4v1778397506248!5m2!1sen!2sin",
-    maps: "https://www.google.com/maps/place/OMEGALAB+TESTING+SERVICES+PVT.LTD./@20.1967379,85.8539767,17z/data=!3m1!4b1!4m6!3m5!1s0x3a19a1006376e599:0x20539cbf7a5c464d!8m2!3d20.1967379!4d85.8539767!16s%2Fg%2F11yhjkbrl9!18m1!1e1?entry=ttu&g_ep=EgoyMDI2MDUwNi4wIKXMDSoASAFQAw%3D%3D",
-  },
-];
-
-const SOCIAL = [
-  {
-    label: "Facebook",
-    icon: (
-      <img
-        src="https://cdn-icons-png.flaticon.com/128/145/145802.png"
-        alt="Facebook"
-        className="w-full h-full object-contain hover:scale-110 transition-transform duration-300"
-      />
-    ),
-  },
-  {
-    label: "LinkedIn",
-    icon: (
-      <img
-        src="https://cdn-icons-png.flaticon.com/128/145/145807.png"
-        alt="LinkedIn"
-        className="w-full h-full object-contain hover:scale-110 transition-transform duration-300"
-      />
-    ),
-  },
-  {
-    label: "Instagram",
-    icon: (
-      <img
-        src="https://cdn-icons-png.flaticon.com/128/1409/1409946.png"
-        alt="Instagram"
-        className="w-full h-full object-contain hover:scale-110 transition-transform duration-300"
-      />
-    ),
-  },
-  {
-    label: "YouTube",
-    icon: (
-      <img
-        src="https://cdn-icons-png.flaticon.com/128/1384/1384060.png"
-        alt="YouTube"
-        className="w-full h-full object-contain hover:scale-110 transition-transform duration-300"
-      />
-    ),
-  },
-];
-
 const NABL_BADGES = [
   {
     id: "TC-11935",
@@ -136,199 +76,345 @@ const NABL_BADGES = [
   },
 ];
 
-function MapCard({
-  name,
-  maps,
-  iframemaps,
-}: {
-  name: string;
-  maps: string;
-  iframemaps: string;
-}) {
-  const [line1, line2] = name.split("\n");
-
-  return (
-    <div className="flex w-full lg:w-[270px] max-w-full overflow-hidden rounded-sm border border-white/20 bg-white">
-      <div className="w-[86px] shrink-0 border-r border-slate-200 bg-[#f5f7fb] px-3 py-4 text-center text-[12px] font-bold leading-tight text-[#1e1b5c]">
-        {line1}
-        <br />
-        {line2}
-      </div>
-
-      <div className="relative min-h-[120px] w-full overflow-hidden rounded-lg">
-        <iframe
-          className="absolute inset-0 h-full w-full"
-          loading="lazy"
-          referrerPolicy="no-referrer-when-downgrade"
-          src={iframemaps}
-        />
-
-        <a
-          href={maps}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="absolute inset-0 z-10"
-        >
-          <div className="absolute left-2 top-2 rounded-sm bg-white px-2 py-1 text-[11px] font-semibold text-[#4285F4] shadow">
-            Maps ↗
-          </div>
-        </a>
-      </div>
-    </div>
-  );
-}
+const TEAM_IMAGES = [
+  "https://res.cloudinary.com/de4cnpfm1/image/upload/v1778339110/T3_lly4po.jpg",
+  "https://res.cloudinary.com/de4cnpfm1/image/upload/v1778339110/T4_jsaj7y.jpg",
+  "https://res.cloudinary.com/de4cnpfm1/image/upload/v1778339109/T2_ptxc7g.jpg",
+  "https://res.cloudinary.com/de4cnpfm1/image/upload/v1778339108/T1_pfcuu9.jpg",
+];
 
 export default function Footer() {
-  const [currentIndex, setCurrentIndex] = useState(0);
+  const [currentSlide, setCurrentSlide] = useState(0);
 
   useEffect(() => {
     const timer = setInterval(() => {
-      setCurrentIndex((prev) => (prev + 1) % TEAM_PICS.length);
-    }, 4000);
+      setCurrentSlide((prev) => (prev + 1) % TEAM_IMAGES.length);
+    }, 3000);
     return () => clearInterval(timer);
   }, []);
 
   return (
-    <footer className="mt-16 sm:mt-20 lg:mt-24 bg-[#1E1B5C] border-t-[3px] border-[#FF6700] overflow-x-hidden">
-      <div className="mx-auto max-w-[1120px] px-4 sm:px-6 lg:px-6">
-        {/* Newsletter */}
-        <div className="pt-6 sm:pt-8 lg:pt-10">
-          <div className="w-full rounded-[14px] sm:rounded-[16px] border-2 border-white bg-[#EEF4FF] px-4 py-5 shadow-[0_12px_30px_rgba(0,0,0,0.18)] sm:px-6 sm:py-7 md:px-8 lg:px-16 lg:py-10">
-            <div className="flex flex-col gap-6 md:gap-8 lg:flex-row lg:items-center lg:justify-between">
-              <div className="w-full max-w-[560px] min-w-0">
-                <h3 className="mb-3 sm:mb-4 text-[22px] sm:text-[24px] font-extrabold leading-tight text-[#1E1B5C] break-words">
-                  Stay Updated with OmegaLab
-                </h3>
-                <p className="mb-4 sm:mb-5 text-[14px] sm:text-[15px] leading-7 sm:leading-8 text-[#1E1B5C]/80 break-words">
-                  Subscribe to receive the latest updates on testing standards,
-                  industry insights, and service innovations.
-                </p>
-                <p className="text-[13px] sm:text-[14px] font-medium text-[#FF6700] break-words">
-                  We respect your privacy. No spam—only relevant updates.
-                </p>
-              </div>
+    <footer className="relative mt-0 bg-[#0e0b30] font-montserrat overflow-hidden">
+      {/* Abstract Animated Ambient Light Background */}
+      <div className="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none z-[-1]">
+        <motion.div
+          animate={{ x: [-50, 50, -50], y: [-20, 20, -20] }}
+          transition={{ duration: 10, repeat: Infinity, ease: "linear" }}
+          className="absolute -top-[20%] -right-[10%] w-[50%] h-[50%] rounded-full bg-[#1E1B5C]/80 blur-[120px]"
+        ></motion.div>
+        <motion.div
+          animate={{ x: [30, -30, 30], y: [30, -30, 30] }}
+          transition={{ duration: 15, repeat: Infinity, ease: "linear" }}
+          className="absolute top-[50%] -left-[10%] w-[40%] h-[40%] rounded-full bg-[#FF6700]/10 blur-[100px]"
+        ></motion.div>
+        <motion.div
+          animate={{ opacity: [0.1, 0.3, 0.1] }}
+          transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
+          className="absolute bottom-[20%] right-[20%] w-[20%] h-[20%] rounded-full bg-[#1E1B5C]/60 blur-[80px]"
+        ></motion.div>
+      </div>
 
-              <div className="w-full max-w-full sm:max-w-[360px] lg:max-w-[310px] min-w-0 shrink-0 rounded-[14px] sm:rounded-[16px] border-[3px] border-[#3b3e77] p-3 bg-[#EEF4FF]">
-                <form className="flex flex-col gap-3 sm:gap-4">
-                  <input
-                    type="text"
-                    placeholder="First Name"
-                    className="w-full min-w-0 h-[44px] rounded-[12px] sm:rounded-[14px] border border-slate-400 bg-white px-4 text-[14px] text-[#1E1B5C] outline-none"
-                  />
-                  <input
-                    type="email"
-                    placeholder="Email ID"
-                    className="w-full min-w-0 h-[44px] rounded-[12px] sm:rounded-[14px] border border-slate-400 bg-white px-4 text-[14px] text-[#1E1B5C] outline-none"
-                  />
-                  <button
-                    type="submit"
-                    className="w-full h-[42px] sm:h-[40px] rounded-[12px] sm:rounded-[14px] bg-[#1E1B5C] text-[13px] sm:text-[14px] font-bold tracking-wide text-white transition-colors hover:bg-[#FF6700]"
-                  >
-                    SUBSCRIBE
-                  </button>
-                </form>
+      {/* Main Footer Content */}
+      <div className="pt-20 lg:pt-24 pb-12 px-6 lg:px-8 relative z-10 border-t-4 border-[#FF6700]">
+        {/* Subtle SVG Pattern Overlay */}
+        <div
+          className="absolute inset-0 opacity-[0.03] pointer-events-none mix-blend-screen"
+          style={{
+            backgroundImage:
+              "url(\"data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='1'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E\")",
+          }}
+        ></div>
+
+        <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 lg:gap-8">
+          {/* Column 1: Brand & About */}
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, ease: "easeOut" }}
+            className="flex flex-col gap-6 lg:gap-8 lg:col-span-2 xl:col-span-1 border-b lg:border-b-0 border-white/10 pb-8 lg:pb-0"
+          >
+            <div className="flex flex-col border-b border-white/20 pb-8 relative group">
+              <div>
+                <div className="mb-5 flex items-center gap-3 min-w-0">
+                  <div className="w-[40px] h-[40px] md:w-[55px] md:h-[55px] xl:w-[68px] xl:h-[68px] bg-white rounded-2xl shadow-lg shrink-0 overflow-hidden flex items-center justify-center">
+                    <Image
+                      src={LOGO}
+                      alt="Omega Lab Logo"
+                      width={56}
+                      height={56}
+                      className="object-contain w-[30px] h-[30px] md:w-[44px] md:h-[44px] xl:w-[56px] xl:h-[56px]"
+                    />
+                  </div>
+                  <div className="min-w-0 leading-tight overflow-hidden">
+                    <div className="text-[20px] sm:text-[24px] font-extrabold tracking-tight text-white break-words sm:truncate">
+                      OMEGA<span className="text-[#63B7F6]">LAB</span>
+                    </div>
+                    <div className="text-[9px] sm:text-[10px] uppercase tracking-wide text-white/75 leading-tight break-words">
+                      Testing Services Private Limited
+                    </div>
+                  </div>
+                </div>
+                <div className="mb-6 flex flex-wrap ">
+                  {NABL_BADGES.map((item, index) => (
+                    <a
+                      href={item.link}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      key={item.id}
+                      className="flex h-[44px] w-[44px] items-center justify-center text-[10px] text-white/50 shrink-0"
+                    >
+                      <img
+                        src={item.url}
+                        alt={`NABL Badge ${item.id}`}
+                        className="w-full h-full object-contain"
+                      />
+                    </a>
+                  ))}
+                </div>
               </div>
             </div>
-          </div>
-        </div>
 
-        {/* Main footer */}
-        <div className="pb-8 pt-10 sm:pt-12 lg:pt-14">
-          <div className="grid grid-cols-1 gap-10 sm:gap-12 md:grid-cols-2 lg:grid-cols-[260px_160px_270px_270px] lg:gap-8">
-            {/* Column 1 */}
-            <div className="min-w-0">
-              <div className="mb-5 flex items-center gap-3 min-w-0">
-                <div className="w-[40px] h-[40px] md:w-[55px] md:h-[55px] xl:w-[68px] xl:h-[68px] bg-white rounded-2xl shadow-lg shrink-0 overflow-hidden flex items-center justify-center">
-                  <Image
-                    src={LOGO}
-                    alt="Omega Lab Logo"
-                    width={56}
-                    height={56}
-                    className="object-contain w-[30px] h-[30px] md:w-[44px] md:h-[44px] xl:w-[56px] xl:h-[56px]"
-                  />
-                </div>
-                <div className="min-w-0 leading-tight overflow-hidden">
-                  <div className="text-[20px] sm:text-[24px] font-extrabold tracking-tight text-white break-words sm:truncate">
-                    OMEGA<span className="text-[#63B7F6]">LAB</span>
-                  </div>
-                  <div className="text-[9px] sm:text-[10px] uppercase tracking-wide text-white/75 leading-tight break-words">
-                    Testing Services Private Limited
-                  </div>
-                </div>
-              </div>
-
-              <div className="mb-6 flex flex-wrap ">
-                {NABL_BADGES.map((item, index) => (
-                  <a
-                    href={item.link}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    key={item.id}
-                    className="flex h-[44px] w-[44px] items-center justify-center text-[10px] text-white/50 shrink-0"
-                  >
-                    <img
-                      src={item.url}
-                      alt={`NABL Badge ${item.id}`}
-                      className="w-full h-full object-contain"
-                    />
-                  </a>
-                ))}
-              </div>
-
-              <div className="mb-5 border-b border-white/20" />
-
-              <h4 className="mb-4 text-[18px] font-bold text-white">
+            <div className="flex flex-col gap-4 mt-2 mb-4">
+              <h4 className="text-white font-oswald text-xl lg:text-2xl font-bold tracking-wide">
                 Follow Us
               </h4>
-
-              <div className="mb-8 flex flex-wrap gap-3">
-                {SOCIAL.map((item) => (
-                  <a
-                    key={item.label}
-                    href="#"
-                    className={`flex h-[36px] w-[36px] shrink-0 items-center justify-center rounded-full text-white bg-transparent`}
-                  >
-                    {item.icon}
-                  </a>
-                ))}
+              <div className="flex gap-3">
+                {[
+                  { icon: Facebook, href: "#" },
+                  { icon: Twitter, href: "#" },
+                  { icon: Linkedin, href: "#" },
+                  { icon: Instagram, href: "#" },
+                  { icon: Youtube, href: "#" },
+                ].map((social, i) => {
+                  const Icon = social.icon;
+                  return (
+                    <motion.a
+                      whileHover={{ scale: 1.1, translateY: -2 }}
+                      whileTap={{ scale: 0.9 }}
+                      key={i}
+                      href={social.href}
+                      className="w-11 h-11 rounded-full bg-gradient-to-br from-white/10 to-white/5 border border-white/10 flex items-center justify-center text-white/70 hover:from-[#FF6700] hover:to-orange-600 hover:text-white hover:border-[#FF6700] transition-all duration-300 shadow-lg"
+                    >
+                      <Icon size={20} />
+                    </motion.a>
+                  );
+                })}
               </div>
+            </div>
 
-              <div className="relative h-[120px] w-full max-w-[260px] overflow-hidden rounded-sm bg-slate-500/40 group">
+            {/* Newsletter Mini Block */}
+            <motion.div
+              initial={{ opacity: 0, y: 10 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.3 }}
+              className="mt-auto bg-white/[0.03] rounded-2xl p-5 border border-white/[0.08] relative overflow-hidden group shadow-lg"
+            >
+              <div className="absolute top-0 right-0 w-32 h-32 bg-[#FF6700]/10 rounded-full blur-2xl -translate-y-1/2 translate-x-1/4 group-hover:bg-[#FF6700]/20 transition-colors duration-500"></div>
+              <h4 className="text-white text-sm font-bold mb-2 flex items-center gap-2 relative z-10">
+                <Mail size={14} className="text-[#FF6700]" /> Stay updated
+              </h4>
+              <p className="text-white/50 text-xs mb-3 leading-relaxed relative z-10">
+                Get the latest testing standards and industry insights.
+              </p>
+              <form
+                className="flex gap-2 relative z-10"
+                onSubmit={(e) => e.preventDefault()}
+              >
+                <input
+                  type="email"
+                  placeholder="Email Address"
+                  className="w-full bg-white/5 border border-white/10 rounded-lg px-3 py-2 text-xs text-white placeholder:text-white/30 focus:outline-none focus:border-[#FF6700] transition-colors"
+                  required
+                />
+                <motion.button
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                  type="submit"
+                  className="bg-[#FF6700] hover:bg-orange-600 text-white px-3 rounded-lg transition-colors flex items-center justify-center"
+                >
+                  <Send size={14} />
+                </motion.button>
+              </form>
+            </motion.div>
+          </motion.div>
+
+          {/* Column 2: Quick Links */}
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, delay: 0.1, ease: "easeOut" }}
+            className="flex flex-col sm:ml-3"
+          >
+            <h4 className="text-white font-oswald text-xl font-bold mb-6 relative inline-block pb-3 after:content-[''] after:absolute after:bottom-0 after:left-0 after:w-10 after:h-1 after:bg-[#FF6700] after:rounded-full">
+              Resource Links
+            </h4>
+            <div className="grid grid-cols-2 gap-x-4 gap-y-3">
+              {[
+                { name: "Home", path: "/" },
+                { name: "About Us", path: "/achievements" },
+                { name: "Accreditation", path: "/accreditation" },
+                { name: "Facilities", path: "/facilities" },
+                { name: "Profiles", path: "/profiles" },
+                { name: "Infrastructure", path: "/infrastructure/mechanical" },
+                { name: "Our Branch", path: "/our-branch/kolkata-1" },
+                { name: "Lab Tour", path: "/lab-tour" },
+                { name: "Clients", path: "/our-clients" },
+                { name: "Career", path: "/career" },
+              ].map((link, idx) => (
+                <Link
+                  key={link.name}
+                  href={link.path}
+                  className="text-white/60 hover:text-white hover:font-medium text-[13px] flex items-center gap-1.5 transition-all group py-1 relative"
+                >
+                  <div className="w-1.5 h-1.5 rounded-full bg-[#FF6700] opacity-0 group-hover:opacity-100 transition-all duration-300 scale-0 group-hover:scale-100"></div>
+                  <span className="-ml-3 group-hover:ml-0 transition-all duration-300">
+                    {link.name}
+                  </span>
+                </Link>
+              ))}
+            </div>
+          </motion.div>
+
+          {/* Column 3: Our Presence */}
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, delay: 0.2, ease: "easeOut" }}
+            className="flex flex-col"
+          >
+            <h4 className="text-white font-oswald text-xl font-bold mb-6 relative inline-block pb-3 after:content-[''] after:absolute after:bottom-0 after:left-0 after:w-10 after:h-1 after:bg-[#FF6700] after:rounded-full">
+              Our Presence
+            </h4>
+            <ul className="flex flex-col gap-4">
+              {LOCATIONS.map((loc, idx) => (
+                <li key={idx} className="flex flex-col group cursor-pointer">
+                  <a
+                    href={loc.link}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center justify-between"
+                  >
+                    <span className="text-[#eff6ff] font-semibold text-[14px] group-hover:text-[#FF6700] transition-colors flex items-center gap-2">
+                      {loc.name}
+                      <ArrowRight
+                        size={12}
+                        className="opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all text-[#FF6700]"
+                      />
+                    </span>
+                    <div className="w-6 h-6 rounded-full bg-white/5 flex items-center justify-center group-hover:bg-[#FF6700] transition-colors shadow-sm">
+                      <MapPin
+                        size={12}
+                        className="text-white/60 group-hover:text-white transition-colors"
+                      />
+                    </div>
+                  </a>
+                  <span className="text-white/40 text-[11px] uppercase tracking-wider">
+                    {loc.type}
+                  </span>
+                  {idx !== LOCATIONS.length - 1 && (
+                    <div className="w-full h-px bg-gradient-to-r from-white/10 to-transparent mt-3"></div>
+                  )}
+                </li>
+              ))}
+            </ul>
+          </motion.div>
+
+          {/* Column 4: Contact & Gallery */}
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, delay: 0.3, ease: "easeOut" }}
+            className="flex flex-col gap-8"
+          >
+            {/* Contact Info */}
+            <div className="flex flex-col gap-5">
+              <h4 className="text-white font-oswald text-xl font-bold mb-1 relative inline-block pb-3 after:content-[''] after:absolute after:bottom-0 after:left-0 after:w-10 after:h-1 after:bg-[#FF6700] after:rounded-full">
+                Contact Us
+              </h4>
+
+              <a
+                href="mailto:omegalabinfo98@gmail.com"
+                className="flex items-start gap-4 group"
+              >
+                <div className="w-10 h-10 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center shrink-0 group-hover:bg-gradient-to-br group-hover:from-[#FF6700] group-hover:to-orange-500 group-hover:border-transparent transition-all duration-300 shadow-sm relative overflow-hidden">
+                  <Mail
+                    size={18}
+                    className="text-[#FF6700] group-hover:text-white transition-colors relative z-10"
+                  />
+                  <div className="absolute inset-0 bg-[#FF6700] scale-0 group-hover:scale-150 rounded-xl transition-transform duration-500 ease-out z-0"></div>
+                </div>
+                <div className="flex flex-col pt-0.5">
+                  <span className="text-white/40 text-[10px] font-bold uppercase tracking-widest mb-1">
+                    General Inquiries
+                  </span>
+                  <span className="text-white/90 text-[13px] font-medium group-hover:text-[#FF6700] transition-colors">
+                    omegalabinfo98@gmail.com
+                  </span>
+                </div>
+              </a>
+
+              <div className="flex items-start gap-4 group cursor-pointer">
+                <div className="w-10 h-10 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center shrink-0 group-hover:bg-gradient-to-br group-hover:from-[#FF6700] group-hover:to-orange-500 group-hover:border-transparent transition-all duration-300 shadow-sm relative overflow-hidden">
+                  <Phone
+                    size={18}
+                    className="text-[#FF6700] group-hover:text-white transition-colors relative z-10"
+                  />
+                  <div className="absolute inset-0 bg-[#FF6700] scale-0 group-hover:scale-150 rounded-xl transition-transform duration-500 ease-out z-0"></div>
+                </div>
+                <div className="flex flex-col pt-0.5">
+                  <span className="text-white/40 text-[10px] font-bold uppercase tracking-widest mb-1">
+                    Corporate Office
+                  </span>
+                  <span className="text-white/90 text-[13px] font-medium group-hover:text-[#FF6700] transition-colors">
+                    Available on Request
+                  </span>
+                </div>
+              </div>
+            </div>
+
+            {/* Dynamic Team Slider */}
+            <div className="flex flex-col mt-2">
+              <span className="text-white font-oswald text-xs font-bold mb-3 tracking-widest uppercase flex items-center gap-2">
+                <span className="w-2 h-2 rounded-full bg-[#FF6700] animate-pulse"></span>
+                Inside The Lab
+              </span>
+
+              <div className="relative w-full aspect-[16/10] rounded-xl overflow-hidden group shadow-lg border border-white/5">
                 <AnimatePresence mode="wait">
                   <motion.div
-                    key={currentIndex}
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
+                    key={currentSlide}
+                    initial={{ opacity: 0, scale: 1.1 }}
+                    animate={{ opacity: 1, scale: 1 }}
                     exit={{ opacity: 0 }}
-                    transition={{ duration: 0.5 }}
+                    transition={{ duration: 0.6 }}
                     className="absolute inset-0"
                   >
                     <Image
-                      src={TEAM_PICS[currentIndex]}
-                      alt={`Team Photo ${currentIndex + 1}`}
+                      src={TEAM_IMAGES[currentSlide]}
+                      alt={`Team Slide ${currentSlide + 1}`}
                       fill
                       className="object-cover"
+                      unoptimized
                     />
+                    <div className="absolute inset-0 bg-gradient-to-t from-[#0e0b30]/90 via-[#0e0b30]/30 to-transparent"></div>
                   </motion.div>
                 </AnimatePresence>
 
-                {/* Overlay Text */}
-                <div className="absolute top-0 left-0 w-full bg-gradient-to-b from-black/60 to-transparent px-3 py-2 z-10 pointer-events-none">
-                  <span className="text-white text-[11px] font-bold uppercase tracking-wider shadow-sm">
-                    Team Pics
-                  </span>
-                </div>
-
-                {/* Dotted Progress */}
-                <div className="absolute bottom-2 left-0 w-full flex justify-center gap-1.5 z-10">
-                  {TEAM_PICS.map((_, idx) => (
+                {/* Slider Dots */}
+                <div className="absolute bottom-3 left-1/2 -translate-x-1/2 flex items-center gap-2 z-20">
+                  {TEAM_IMAGES.map((_, idx) => (
                     <button
                       key={idx}
-                      onClick={() => setCurrentIndex(idx)}
+                      onClick={() => setCurrentSlide(idx)}
                       className={`h-1.5 rounded-full transition-all duration-300 ${
-                        idx === currentIndex
-                          ? "w-4 bg-[#FF6700]"
-                          : "w-1.5 bg-white/60 hover:bg-white/90"
+                        idx === currentSlide
+                          ? "w-6 bg-[#FF6700]"
+                          : "w-1.5 bg-white/40 hover:bg-white/80"
                       }`}
                       aria-label={`Go to slide ${idx + 1}`}
                     />
@@ -336,99 +422,33 @@ export default function Footer() {
                 </div>
               </div>
             </div>
-
-            {/* Column 2 */}
-            <div className="min-w-0">
-              <h4 className="mb-5 inline-block border-b-2 border-[#FF6700] pb-2 text-[16px] font-bold text-white">
-                Resource Links
-              </h4>
-
-              <ul className="space-y-3 sm:space-y-4">
-                {RESOURCE_LINKS.map((link) => (
-                  <li key={link.name} className="min-w-0">
-                    <Link
-                      href={link.path}
-                      className="flex min-w-0 items-start gap-3 text-[14px] text-white/75 transition-colors hover:text-[#FF6700]"
-                    >
-                      <span className="shrink-0 text-[#d9d9d9]">→</span>
-                      <span className="break-words">{link.name}</span>
-                    </Link>
-                  </li>
-                ))}
-              </ul>
-            </div>
-
-            {/* Column 3 */}
-            <div className="min-w-0">
-              <h4 className="mb-5 text-[16px] font-bold text-white">
-                Our Presence
-              </h4>
-              <div className="space-y-5">
-                {LABS_LEFT.map((lab) => (
-                  <div key={lab.name} className="min-w-0">
-                    <MapCard
-                      name={lab.name}
-                      iframemaps={lab.iframemaps}
-                      maps={lab.maps}
-                    />
-                    <div className="mt-4 border-b border-white/20" />
-                  </div>
-                ))}
-              </div>
-            </div>
-
-            {/* Column 4 */}
-            <div className="min-w-0">
-              <h4 className="mb-5 text-[16px] font-bold text-white">
-                Our Presence
-              </h4>
-              <div className="space-y-5">
-                {LABS_RIGHT.map((lab) => (
-                  <div key={lab.name} className="min-w-0">
-                    <MapCard
-                      name={lab.name}
-                      iframemaps={lab.iframemaps}
-                      maps={lab.maps}
-                    />
-                    <div className="mt-4 border-b border-white/20" />
-                  </div>
-                ))}
-              </div>
-
-              <div className="mt-8 min-w-0">
-                <h4 className="mb-4 text-[16px] font-bold text-white">
-                  Contact Info
-                </h4>
-                <div className="flex min-w-0 items-start gap-3 sm:items-center">
-                  <div className="flex h-[42px] w-[42px] shrink-0 items-center justify-center rounded-full bg-transparent">
-                    <img
-                      src="https://cdn-icons-png.flaticon.com/128/9068/9068642.png"
-                      alt="Email"
-                      className="w-full h-full object-contain hover:scale-110 transition-transform duration-300"
-                    />
-                  </div>
-                  <div className="min-w-0">
-                    <div className="text-[15px] font-semibold text-white">
-                      Email Us
-                    </div>
-                    <div className="break-all text-[13px] text-white/60">
-                      omegalabinfo98@gmail.com
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          {/* Bottom bar */}
-          <div className="mt-10 flex flex-col items-center justify-between gap-3 border-t border-white/10 pt-5 text-center text-[11px] text-white/40 md:flex-row md:text-left">
-            <p className="break-words">
-              © 2026 Omegalab Testing Services Private Limited. All Rights
-              Reserved.
-            </p>
-            <p>Design By addwins.in</p>
-          </div>
+          </motion.div>
         </div>
+
+        {/* Bottom bar */}
+        <motion.div
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true }}
+          transition={{ duration: 1, delay: 0.5 }}
+          className="max-w-7xl mx-auto mt-16 pt-8 border-t border-white/10 flex flex-col md:flex-row justify-between items-center gap-4 relative"
+        >
+          <p className="text-white/40 text-[12px] font-medium tracking-wide">
+            © {new Date().getFullYear()} Omegalab Testing Services. All Rights
+            Reserved.
+          </p>
+          <div className="flex items-center gap-1.5 text-white/40 text-[12px] font-medium tracking-wider">
+            <span>CRAFTED BY</span>
+            <a
+              href="https://addwins.in"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-white hover:text-[#FF6700] font-bold transition-colors"
+            >
+              ADDWINS
+            </a>
+          </div>
+        </motion.div>
       </div>
     </footer>
   );

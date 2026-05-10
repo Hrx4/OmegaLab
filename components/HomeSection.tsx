@@ -5,6 +5,8 @@ import HeroSlider from "./HeroSlider";
 import IndiaBranchMap from "./IndiaBranchMap";
 import CLIENT_DATA from "../data/clients.json";
 import { useState } from "react";
+import { useInView } from "react-intersection-observer";
+import CountUp from "react-countup";
 
 const ABOUT_DATA = {
   ceoImage:
@@ -154,6 +156,34 @@ export default function HomeSections() {
 
 const [activeFilter, setActiveFilter] = useState("All Materials");
 
+const { ref, inView } = useInView({
+    triggerOnce: true,
+    threshold: 0.3,
+  });
+
+  const stats = [
+    {
+      value: 25,
+      suffix: "+",
+      label: "Years of Service",
+    },
+    {
+      value: 900,
+      suffix: "+",
+      label: "NABL Test Parameters",
+    },
+    {
+      value: 5,
+      suffix: "",
+      label: "Accredited Labs",
+    },
+    {
+      value: 120,
+      suffix: "+",
+      label: "Team Members",
+    },
+  ];
+
   const filteredMaterials =
     activeFilter === "All Materials"
       ? materials
@@ -168,40 +198,28 @@ const [activeFilter, setActiveFilter] = useState("All Materials");
       <HeroSlider />
 
       {/* 2. Stats Section */}
-      <section className="bg-[#1E1B5C] py-8 md:py-14 px-4">
+      <section className="bg-[#1E1B5C] py-8 md:py-14 px-4"       ref={ref}
+>
         <div className="max-w-6xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
-          <div>
+           {stats.map((item, index) => (
+          <div key={index}>
             <div className="text-[28px] md:text-[42px] font-black text-[#FF6700] mb-1 font-oswald">
-              25+
+              
+              {inView && (
+                <CountUp
+                  end={item.value}
+                  duration={2.5}
+                  suffix={item.suffix}
+                />
+              )}
+
             </div>
+
             <div className="text-[10px] uppercase tracking-[1.5px] text-white/60 font-semibold">
-              Years of Service
+              {item.label}
             </div>
           </div>
-          <div>
-            <div className="text-[28px] md:text-[42px] font-black text-[#FF6700] mb-1 font-oswald">
-              900+
-            </div>
-            <div className="text-[10px] uppercase tracking-[1.5px] text-white/60 font-semibold">
-              NABL Test Parameters
-            </div>
-          </div>
-          <div>
-            <div className="text-[28px] md:text-[42px] font-black text-[#FF6700] mb-1 font-oswald">
-              5
-            </div>
-            <div className="text-[10px] uppercase tracking-[1.5px] text-white/60 font-semibold">
-              Accredited Labs
-            </div>
-          </div>
-          <div>
-            <div className="text-[28px] md:text-[42px] font-black text-[#FF6700] mb-1 font-oswald">
-              120+
-            </div>
-            <div className="text-[10px] uppercase tracking-[1.5px] text-white/60 font-semibold">
-              Team Members
-            </div>
-          </div>
+        ))}
         </div>
       </section>
 
