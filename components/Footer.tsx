@@ -19,14 +19,16 @@ const RESOURCE_LINKS = [
 const LOGO = "https://res.cloudinary.com/de4cnpfm1/image/upload/v1778247941/LOGO-_OCS_eamyrc.jpg";
 
 const LABS_LEFT = [
-  { name: "Kolkata\nLab-1", maps: "#" },
-  { name: "Kolkata\nLab-2", maps: "#" },
-  { name: "Siliguri\nLab", maps: "#" },
+  { name: "Kolkata\nLab-1", iframemaps: "https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d29497.216140629127!2d88.3171!3d22.460921!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a027af369b75e1f%3A0xbbe493a0716b324a!2sOmegalabTesting%20Services%20Pvt.%20Ltd.!5e0!3m2!1sen!2sus!4v1778321533839!5m2!1sen!2sus" 
+    , maps:"https://maps.app.goo.gl/eMGgb9J1VZSSbaBK8"
+  },
+  { name: "Kolkata\nLab-2", iframemaps: "#", maps: "#" },
+  { name: "Siliguri\nLab", iframemaps: "#", maps: "#" },
 ];
 
 const LABS_RIGHT = [
-  { name: "Ranchi\nLab", maps: "#" },
-  { name: "Odisha\nLab", maps: "#" },
+  { name: "Ranchi\nLab", iframemaps: "#", maps: "#" },
+  { name: "Odisha\nLab", iframemaps: "#", maps: "#" },
 ];
 
 const SOCIAL = [
@@ -37,7 +39,7 @@ const SOCIAL = [
   { label: "YouTube", text: "▶", bg: "bg-[#FF0000]" },
 ];
 
-function MapCard({ name, maps }: { name: string; maps: string }) {
+function MapCard({ name, maps , iframemaps }: { name: string; maps: string; iframemaps: string }) {
   const [line1, line2] = name.split("\n");
 
   return (
@@ -48,11 +50,25 @@ function MapCard({ name, maps }: { name: string; maps: string }) {
         {line2}
       </div>
 
-      <div className="relative flex min-h-[74px] flex-1 items-start justify-start bg-slate-200">
-        <div className="absolute left-2 top-2 rounded-sm bg-white px-2 py-1 text-[11px] font-semibold text-[#4285F4] shadow">
-          Maps ↗
-        </div>
-      </div>
+        <div className="relative min-h-[120px] w-full overflow-hidden rounded-lg">
+  <iframe
+    className="absolute inset-0 h-full w-full"
+    loading="lazy"
+    referrerPolicy="no-referrer-when-downgrade"
+    src={iframemaps}
+  />
+
+  <a
+    href={maps}
+    target="_blank"
+    rel="noopener noreferrer"
+    className="absolute inset-0 z-10"
+  >
+    <div className="absolute left-2 top-2 rounded-sm bg-white px-2 py-1 text-[11px] font-semibold text-[#4285F4] shadow">
+      Maps ↗
+    </div>
+  </a>
+</div>
     </div>
   );
 }
@@ -188,7 +204,7 @@ export default function Footer() {
               <div className="space-y-5">
                 {LABS_LEFT.map((lab) => (
                   <div key={lab.name} className="min-w-0">
-                    <MapCard name={lab.name} maps={lab.maps} />
+                    <MapCard name={lab.name} iframemaps={lab.iframemaps} maps={lab.maps} />
                     <div className="mt-4 border-b border-white/20" />
                   </div>
                 ))}
@@ -201,7 +217,7 @@ export default function Footer() {
               <div className="space-y-5">
                 {LABS_RIGHT.map((lab) => (
                   <div key={lab.name} className="min-w-0">
-                    <MapCard name={lab.name} maps={lab.maps} />
+                    <MapCard name={lab.name} iframemaps={lab.iframemaps} maps={lab.maps} />
                     <div className="mt-4 border-b border-white/20" />
                   </div>
                 ))}
