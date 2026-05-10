@@ -1,9 +1,16 @@
 'use client';
 
 import Link from 'next/link';
-import { Facebook, Linkedin, Instagram, Youtube, Phone, Mail, Menu, X, ChevronDown } from 'lucide-react';
+import { Phone, Mail, Menu, X, ChevronDown } from 'lucide-react';
 import Image from 'next/image';
 import { useState, useEffect } from 'react';
+
+const ICONS = {
+  Facebook: <img src="https://cdn-icons-png.flaticon.com/128/145/145802.png" alt="Facebook" className="w-full h-full object-contain hover:scale-110 transition-transform duration-300" />,
+  Instagram: <img src="https://cdn-icons-png.flaticon.com/128/1409/1409946.png" alt="Instagram" className="w-full h-full object-contain hover:scale-110 transition-transform duration-300" />,
+  LinkedIn: <img src="https://cdn-icons-png.flaticon.com/128/145/145807.png" alt="LinkedIn" className="w-full h-full object-contain hover:scale-110 transition-transform duration-300" />,
+  YouTube: <img src="https://cdn-icons-png.flaticon.com/128/1384/1384060.png" alt="YouTube" className="w-full h-full object-contain hover:scale-110 transition-transform duration-300" />,
+};
 
 const LOGO = "https://res.cloudinary.com/de4cnpfm1/image/upload/v1778247941/LOGO-_OCS_eamyrc.jpg";
 
@@ -78,10 +85,10 @@ export default function Navbar() {
           <div className="flex items-center gap-3 mb-2 md:mb-0">
             <span className="text-white/80 font-bold uppercase tracking-wider">Follow Us:</span>
             <div className="flex gap-2">
-              <Link href="#" className="w-6 h-6 rounded-full bg-[#1877F2] flex items-center justify-center hover:opacity-80 transition-opacity"><Facebook size={12} fill="currentColor" /></Link>
-              <Link href="#" className="w-6 h-6 rounded-full bg-[#E4405F] flex items-center justify-center hover:opacity-80 transition-opacity"><Instagram size={12} /></Link>
-              <Link href="#" className="w-6 h-6 rounded-full bg-[#0A66C2] flex items-center justify-center hover:opacity-80 transition-opacity"><Linkedin size={12} fill="currentColor" /></Link>
-              <Link href="#" className="w-6 h-6 rounded-full bg-[#FF0000] flex items-center justify-center hover:opacity-80 transition-opacity"><Youtube size={12} fill="currentColor" /></Link>
+              <Link href="#" className="w-6 h-6 flex items-center justify-center hover:opacity-80 transition-opacity">{ICONS.Facebook}</Link>
+              <Link href="#" className="w-6 h-6 flex items-center justify-center hover:opacity-80 transition-opacity">{ICONS.Instagram}</Link>
+              <Link href="#" className="w-6 h-6 flex items-center justify-center hover:opacity-80 transition-opacity">{ICONS.LinkedIn}</Link>
+              <Link href="#" className="w-6 h-6 flex items-center justify-center hover:opacity-80 transition-opacity">{ICONS.YouTube}</Link>
             </div>
           </div>
           <div className="flex flex-wrap justify-center items-center gap-4 md:gap-6">
@@ -90,7 +97,7 @@ export default function Navbar() {
               <span className="text-[#e0e0e0]">033 2497 1903</span>
             </div>
             <div className="flex items-center gap-1.5 font-medium">
-              <Mail size={14} className="text-[#a8a8a8]" fill="currentColor" />
+              <img src="https://cdn-icons-png.flaticon.com/128/9068/9068642.png" alt="Email" className="w-4 h-4 object-contain" />
               <span className="text-[#e0e0e0]">omegalabinfo98@gmail.com</span>
             </div>
             <Link href="#contact" className="bg-[#FF6700] hover:bg-orange-600 text-white font-black h-7 px-5 rounded-full flex items-center justify-center uppercase text-[10px] md:text-[11px] tracking-wider transition-colors shadow-sm ml-2">
