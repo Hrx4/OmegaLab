@@ -77,10 +77,10 @@ const NABL_BADGES = [
 ];
 
 const TEAM_IMAGES = [
-  "https://res.cloudinary.com/de4cnpfm1/image/upload/v1778339110/T3_lly4po.jpg",
-  "https://res.cloudinary.com/de4cnpfm1/image/upload/v1778339110/T4_jsaj7y.jpg",
-  "https://res.cloudinary.com/de4cnpfm1/image/upload/v1778339109/T2_ptxc7g.jpg",
-  "https://res.cloudinary.com/de4cnpfm1/image/upload/v1778339108/T1_pfcuu9.jpg",
+  "https://res.cloudinary.com/de4cnpfm1/image/upload/v1778429502/L1_k8dmuy.jpg",
+  "https://res.cloudinary.com/de4cnpfm1/image/upload/v1778429502/L2_ldt8um.jpg",
+  "https://res.cloudinary.com/de4cnpfm1/image/upload/v1778429500/L3_ubsvjm.jpg",
+  "https://res.cloudinary.com/de4cnpfm1/image/upload/v1778429501/L4_iodkki.jpg",
 ];
 
 export default function Footer() {

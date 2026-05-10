@@ -22,7 +22,7 @@ const LAB_DATA = [
     certText: "ISO/IEC 17025 Accredited Testing Laboratory by NABL vide Certificate number",
     certImage: "https://res.cloudinary.com/de4cnpfm1/image/upload/v1778247809/KOLKATA1_i1fhgi.jpg",
     scopeText: "Access the complete scope of our NABL accreditation, including detailed parameters, testing methods, and applicable standards.",
-    pdfLink: "#"
+    pdfLink: "https://nabl7t.s3.ap-south-1.amazonaws.com/NablCertificate/Scope-128039-TC-11935-1770380307.pdf"
   },
   {
     id: "kolkata-2",
@@ -32,7 +32,7 @@ const LAB_DATA = [
     certText: "ISO/IEC 17025 Accredited Testing Laboratory by NABL vide Certificate number",
     certImage: "https://res.cloudinary.com/de4cnpfm1/image/upload/v1778247810/KOLKATA2_wsg4cn.jpg",
     scopeText: "Access the complete scope of our NABL accreditation, including detailed parameters, testing methods, and applicable standards.",
-    pdfLink: "#"
+    pdfLink: "https://nabl7t.s3.ap-south-1.amazonaws.com/NablCertificate/Scope-259631-TC-13401-1775295806.pdf"
   },
   {
     id: "siliguri",
@@ -42,7 +42,7 @@ const LAB_DATA = [
     certText: "ISO/IEC 17025 Accredited Testing Laboratory by NABL vide Certificate number",
     certImage: "https://res.cloudinary.com/de4cnpfm1/image/upload/v1778247807/SILIGURI_vqovah.jpg",
     scopeText: "Access the complete scope of our NABL accreditation, including detailed parameters, testing methods, and applicable standards.",
-    pdfLink: "#"
+    pdfLink: "https://nabl7t.s3.ap-south-1.amazonaws.com/NablCertificate/Scope-109624-TC-15509-1739864381.pdf"
   },
   {
     id: "ranchi",
@@ -52,7 +52,7 @@ const LAB_DATA = [
     certText: "ISO/IEC 17025 Accredited Testing Laboratory by NABL vide Certificate number",
     certImage: "https://res.cloudinary.com/de4cnpfm1/image/upload/v1778247807/RANCHI_za9xun.jpg",
     scopeText: "Access the complete scope of our NABL accreditation, including detailed parameters, testing methods, and applicable standards.",
-    pdfLink: "#"
+    pdfLink: "https://nabl7t.s3.ap-south-1.amazonaws.com/NablCertificate/Scope-119719-TC-16480-1753322384.pdf"
   },
   {
     id: "odhisha",
@@ -62,7 +62,7 @@ const LAB_DATA = [
     certText: "ISO/IEC 17025 Accredited Testing Laboratory by NABL vide Certificate number",
     certImage: "https://res.cloudinary.com/de4cnpfm1/image/upload/v1778247807/ODISHA_x2opxm.jpg",
     scopeText: "Access the complete scope of our NABL accreditation, including detailed parameters, testing methods, and applicable standards.",
-    pdfLink: "#"
+    pdfLink: "https://nabl7t.s3.ap-south-1.amazonaws.com/NablCertificate/Scope-119620-TC-17671-1773220269.pdf"
   }
 ];
 
@@ -273,7 +273,7 @@ export default function AccreditationPage() {
                       >
                         <div className="pt-3 pb-2 text-[14px] text-slate-700 leading-relaxed pr-4 flex flex-col gap-3">
                           <p>{lab.scopeText}</p>
-                          <a href={lab.pdfLink} className="text-[#1E1B5C] font-bold border-b border-[#1E1B5C] hover:text-[#FF6700] hover:border-[#FF6700] transition-colors inline-block w-fit pb-0.5">
+                          <a href={lab.pdfLink} target="_blank" rel="noopener noreferrer" className="text-[#1E1B5C] font-bold border-b border-[#1E1B5C] hover:text-[#FF6700] hover:border-[#FF6700] transition-colors inline-block w-fit pb-0.5">
                             [Download Scope PDF]
                           </a>
                         </div>
