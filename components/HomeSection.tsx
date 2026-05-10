@@ -2,6 +2,12 @@ import Image from 'next/image';
 import Link from 'next/link';
 import HeroSlider from './HeroSlider';
 import IndiaBranchMap from './IndiaBranchMap';
+import CLIENT_DATA from '../data/clients.json';
+
+const ABOUT_DATA = {
+  ceoImage: "https://res.cloudinary.com/de4cnpfm1/image/upload/v1778390956/Untitleddesign10_9jl5t_485_g1ogkl.jpg",
+  ceoImageAlt: "Mr. A.K. Das - CEO and Founder of Omegalab Testing Services Pvt Ltd",
+};
 
 export default function HomeSections() {
   return (
@@ -42,8 +48,8 @@ export default function HomeSections() {
 
         <div className="grid grid-cols-1 lg:grid-cols-[1fr_1.3fr] gap-10 md:gap-16 items-start">
           <div className="relative">
-            <div className="w-full aspect-[4/3] rounded-2xl bg-slate-300 overflow-hidden relative shadow-lg">
-              <Image src="https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&w=800&q=80" alt="CEO" fill className="object-cover" unoptimized />
+            <div className="w-full aspect-[4/4.5] md:aspect-square rounded-2xl bg-slate-300 overflow-hidden relative shadow-lg">
+              <Image src={ABOUT_DATA.ceoImage} alt={ABOUT_DATA.ceoImageAlt} fill className="object-cover" />
             </div>
             <div className="absolute -bottom-4 -right-4 bg-[#FF6700] text-white p-4 md:p-6 rounded-xl font-black text-[24px] md:text-[36px] leading-none shadow-[0_8px_24px_rgba(255,103,0,0.3)]">
               1999
@@ -251,7 +257,7 @@ export default function HomeSections() {
              100% { transform: translateX(-50%); }
            }
            .animate-marquee {
-             animation: marquee 30s linear infinite;
+             animation: marquee 50s linear infinite;
              display: flex;
              width: max-content;
            }
@@ -272,35 +278,23 @@ export default function HomeSections() {
           <div className="absolute right-0 top-0 bottom-0 w-16 md:w-32 bg-gradient-to-l from-white to-transparent z-10 pointer-events-none"></div>
 
           <div className="animate-marquee flex gap-6 md:gap-12 px-6">
-            {[
-              { name: "Apex Builders", color: "text-blue-600", shape: "M12 2L2 22h20L12 2z" },
-              { name: "NeoCorp", color: "text-indigo-600", shape: "M12 22C6.48 22 2 17.52 2 12S6.48 2 12 2s10 4.48 10 10-4.48 10-10 10zm-1-11v6h2v-6h-2zm0-4v2h2V7h-2z" },
-              { name: "Stellvia India", color: "text-emerald-500", shape: "M21 16v-2l-8-5V3.5c0-.83-.67-1.5-1.5-1.5S10 2.67 10 3.5V9l-8 5v2l8-2.5V19l-2 1.5V22l3.5-1 3.5 1v-1.5L13 19v-5.5l8 2.5z" },
-              { name: "Prime Steels", color: "text-orange-500", shape: "M3 3h18v18H3z" },
-              { name: "Nexus Infra", color: "text-rose-500", shape: "M12 2L1 21h22L12 2zm0 3.83L19.17 19H4.83L12 5.83z" },
-              { name: "Vortex Labs", color: "text-violet-500", shape: "M4 10v7h3v-7H4zm6 0v7h3v-7h-3zM2 22h19v-3H2v3zm14-12v7h3v-7h-3zm-4.5-9L2 6v2h19V6l-9.5-5z" },
-              { name: "BuildTech", color: "text-cyan-600", shape: "M21 3H3v18h18V3zm-2 16H5V5h14v14z" },
-              { name: "Global Cement", color: "text-slate-700", shape: "M12 2L2 12h3v8h6v-6h2v6h6v-8h3L12 2z" },
-              // Duplicate set for seamless looping
-              { name: "Apex Builders", color: "text-blue-600", shape: "M12 2L2 22h20L12 2z" },
-              { name: "NeoCorp", color: "text-indigo-600", shape: "M12 22C6.48 22 2 17.52 2 12S6.48 2 12 2s10 4.48 10 10-4.48 10-10 10zm-1-11v6h2v-6h-2zm0-4v2h2V7h-2z" },
-              { name: "Stellvia India", color: "text-emerald-500", shape: "M21 16v-2l-8-5V3.5c0-.83-.67-1.5-1.5-1.5S10 2.67 10 3.5V9l-8 5v2l8-2.5V19l-2 1.5V22l3.5-1 3.5 1v-1.5L13 19v-5.5l8 2.5z" },
-              { name: "Prime Steels", color: "text-orange-500", shape: "M3 3h18v18H3z" },
-              { name: "Nexus Infra", color: "text-rose-500", shape: "M12 2L1 21h22L12 2zm0 3.83L19.17 19H4.83L12 5.83z" },
-              { name: "Vortex Labs", color: "text-violet-500", shape: "M4 10v7h3v-7H4zm6 0v7h3v-7h-3zM2 22h19v-3H2v3zm14-12v7h3v-7h-3zm-4.5-9L2 6v2h19V6l-9.5-5z" },
-              { name: "BuildTech", color: "text-cyan-600", shape: "M21 3H3v18h18V3zm-2 16H5V5h14v14z" },
-              { name: "Global Cement", color: "text-slate-700", shape: "M12 2L2 12h3v8h6v-6h2v6h6v-8h3L12 2z" },
-            ].map((logo, index) => (
+            {[...CLIENT_DATA, ...CLIENT_DATA].map((client, index) => (
               <div
                 key={index}
-                className="w-[180px] md:w-[220px] aspect-[3/2] border border-slate-100 bg-slate-50 flex items-center justify-center rounded-xl p-6 hover:shadow-lg transition-all group overflow-hidden relative cursor-pointer shrink-0"
+                className="w-[180px] md:w-[220px] aspect-[3/2] border border-slate-100 bg-slate-50 flex items-center justify-center rounded-xl p-4 md:p-6 hover:shadow-lg transition-all group overflow-hidden relative cursor-pointer shrink-0"
               >
-                <div className="absolute inset-0 bg-[#FF6700]/0 group-hover:bg-[#FF6700]/5 transition-colors"></div>
-                <div className="flex flex-col items-center justify-center gap-3 relative z-10 grayscale opacity-60 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-300 group-hover:-translate-y-1">
-                  <svg className={`w-10 h-10 md:w-12 md:h-12 ${logo.color}`} viewBox="0 0 24 24" fill="currentColor">
-                    <path d={logo.shape}></path>
-                  </svg>
-                  <span className="font-bold text-[12px] md:text-[14px] tracking-wider text-[#1E1B5C] uppercase text-center">{logo.name}</span>
+                <div className="absolute inset-0 bg-[#FF6700]/0 group-hover:bg-[#FF6700]/5 transition-colors z-0"></div>
+                <div className="flex flex-col items-center justify-center gap-3 relative z-10 transition-all duration-300 group-hover:-translate-y-2 group-hover:scale-105 w-full h-full">
+                  <div className="relative w-full h-12 md:h-16 flex items-center justify-center">
+                    <Image
+                      src={client.logo}
+                      alt={client.alt}
+                      fill
+                      className="object-contain"
+                      sizes="(max-width: 768px) 180px, 220px"
+                    />
+                  </div>
+                  <span className="font-bold text-[11px] md:text-[13px] tracking-wider text-[#1E1B5C] uppercase text-center">{client.name}</span>
                 </div>
               </div>
             ))}
