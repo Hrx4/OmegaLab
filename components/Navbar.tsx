@@ -258,15 +258,19 @@ export default function Navbar() {
                 >
                   {item.dropdown ? (
                     <>
-                      <div className="px-2 lg:px-2.5 xl:px-3 2xl:px-4 h-full flex items-center hover:text-white transition-colors uppercase gap-0.5 xl:gap-1 whitespace-nowrap cursor-pointer">
-                        {item.name}{" "}
+                      <button
+                        type="button"
+                        className="px-2 lg:px-2.5 xl:px-3 2xl:px-4 h-full flex items-center hover:text-white transition-colors uppercase gap-0.5 xl:gap-1 whitespace-nowrap cursor-pointer"
+                      >
+                        {item.name}
                         <ChevronDown
                           size={14}
                           className="opacity-70 group-hover:opacity-100 transition-opacity"
                           strokeWidth={3}
                         />
-                      </div>
-                      <div className="absolute top-full left-0 bg-[#1E1B5C] shadow-xl border-t-[3px] border-[#FF6700] min-w-[250px] opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 py-3 rounded-b-md z-50">
+                      </button>
+
+                      <div className="absolute top-full left-0 bg-[#1E1B5C] shadow-xl border-t-[3px] border-[#FF6700] min-w-[250px] opacity-0 invisible group-hover:opacity-100 group-hover:visible group-focus-within:opacity-100 group-focus-within:visible transition-all duration-200 py-3 rounded-b-md z-50">
                         {item.dropdown.map((subItem) => (
                           <Link
                             key={subItem.name}
