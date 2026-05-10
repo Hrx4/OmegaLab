@@ -4,6 +4,7 @@ import Link from 'next/link';
 import { Phone, Mail, Menu, X, ChevronDown } from 'lucide-react';
 import Image from 'next/image';
 import { useState, useEffect } from 'react';
+import branchesData from '../data/branches.json';
 
 const ICONS = {
   Facebook: <img src="https://cdn-icons-png.flaticon.com/128/145/145802.png" alt="Facebook" className="w-full h-full object-contain hover:scale-110 transition-transform duration-300" />,
@@ -41,14 +42,10 @@ const NAV_ITEMS = [
   {
     name: 'OUR BRANCH',
     path: '#',
-    dropdown: [
-      { name: 'Kolkata Branch 1', path: '/our-branch/kolkata-1' },
-      { name: 'Kolkata Branch 2', path: '/our-branch/kolkata-2' },
-      { name: 'Siliguri', path: '/our-branch/siliguri' },
-      { name: 'Ranchi', path: '/our-branch/ranchi' },
-      { name: 'Odisha', path: '/our-branch/odisha' },
-      { name: 'Sample Collection Center', path: '#' }
-    ]
+    dropdown: branchesData.map(branch => ({
+      name: branch.name,
+      path: branch.pathOverride || `/our-branch/${branch.id}`
+    }))
   },
   { name: 'LAB TOUR', path: '/lab-tour' },
   { name: 'OUR CLIENTS', path: '/our-clients' },

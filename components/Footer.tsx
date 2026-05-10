@@ -4,6 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import branchesData from "../data/branches.json";
 
 const TEAM_PICS = [
   "https://res.cloudinary.com/de4cnpfm1/image/upload/v1778339110/T3_lly4po.jpg",
@@ -27,16 +28,9 @@ const RESOURCE_LINKS = [
 
 const LOGO = "https://res.cloudinary.com/de4cnpfm1/image/upload/v1778247941/LOGO-_OCS_eamyrc.jpg";
 
-const LABS_LEFT = [
-  { name: "Kolkata\nLab-1", maps: "#" },
-  { name: "Kolkata\nLab-2", maps: "#" },
-  { name: "Siliguri\nLab", maps: "#" },
-];
-
-const LABS_RIGHT = [
-  { name: "Ranchi\nLab", maps: "#" },
-  { name: "Odisha\nLab", maps: "#" },
-];
+const mainLabs = branchesData.filter(b => b.isMainLab);
+const LABS_LEFT = mainLabs.slice(0, 3).map(b => ({ name: b.footerName, maps: b.mapUrl }));
+const LABS_RIGHT = mainLabs.slice(3).map(b => ({ name: b.footerName, maps: b.mapUrl }));
 
 const SOCIAL = [
   { label: "Facebook", icon: <img src="https://cdn-icons-png.flaticon.com/128/145/145802.png" alt="Facebook" className="w-full h-full object-contain hover:scale-110 transition-transform duration-300" /> },
