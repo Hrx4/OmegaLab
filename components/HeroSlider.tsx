@@ -15,22 +15,53 @@ const LOGO = "https://res.cloudinary.com/de4cnpfm1/image/upload/v1778247941/LOGO
 
 const slides = [
   {
-    image: "https://res.cloudinary.com/de4cnpfm1/image/upload/v1778247809/KOLKATA1_i1fhg.jpg",
+    image: "https://res.cloudinary.com/de4cnpfm1/image/upload/v1778425833/1_zujbnq.jpg",
     badge: "NABL Accredited Since 2012",
     title: "25+ Years of Testing Excellence",
-    description: "Eastern & North Eastern India's most trusted material testing laboratory...",
+    description:
+      "Eastern & North Eastern India's most trusted material testing laboratory.",
   },
   {
-    image: "https://res.cloudinary.com/de4cnpfm1/image/upload/v1778247807/SILIGURI_vqovh.jpg",
-    badge: "Advanced Analytics",
-    title: "Precision & Quality Assurance",
-    description: "Equipped with state-of-the-art analytical instruments providing accurate testing services.",
+    image: "https://res.cloudinary.com/de4cnpfm1/image/upload/v1778425835/2_fru1ln.jpg",
+    badge: "900+ Test Parameters",
+    title: "Advanced Testing Standards",
+    description:
+      "Comprehensive testing as per IS, ISO, ASTM, APHA, ASME, BS, EN & MoRTH standards.",
   },
   {
-    image: "https://res.cloudinary.com/de4cnpfm1/image/upload/v1778247807/RANCHI_za9xn.jpg",
-    badge: "NABL Accredited",
-    title: "Trusted Material Testing Partners",
-    description: "Serving diverse industries with reliable building material testing since 1999.",
+    image: "https://res.cloudinary.com/de4cnpfm1/image/upload/v1778425832/3_ttoqqo.jpg",
+    badge: "5 Accredited Laboratories",
+    title: "Expanding Across India",
+    description:
+      "Kolkata Lab 1, Kolkata Lab 2, Siliguri, Odisha & Ranchi labs serving industries nationwide.",
+  },
+  {
+    image: "https://res.cloudinary.com/de4cnpfm1/image/upload/v1778425834/4_dkvlyv.jpg",
+    badge: "Ferrous & Non-Ferrous Testing",
+    title: "Mechanical & Chemical Analysis",
+    description:
+      "Comprehensive testing facility for ferrous and non-ferrous materials with precision equipment.",
+  },
+  {
+    image: "https://res.cloudinary.com/de4cnpfm1/image/upload/v1778425834/5_dtjanz.jpg",
+    badge: "Construction Material Testing",
+    title: "Concrete, Cement & Fly Ash",
+    description:
+      "Mechanical, chemical & NDT testing facilities including concrete design mix analysis.",
+  },
+  {
+    image: "https://res.cloudinary.com/de4cnpfm1/image/upload/v1778425832/6_whqpbj.jpg",
+    badge: "Water & Chemical Testing",
+    title: "Advanced NDT Facilities",
+    description:
+      "Rebound Hammer, USPV, Ultrasonic & DP testing for accurate structural assessment.",
+  },
+  {
+    image: "https://res.cloudinary.com/de4cnpfm1/image/upload/v1778425833/7_ullpak.jpg",
+    badge: "Trusted Testing Facility",
+    title: "Hundreds of Successful Projects",
+    description:
+      "100+ technical professionals including M.Sc, B.Sc, B.Tech & Diploma experts since 1999.",
   },
 ];
 
@@ -71,14 +102,17 @@ export default function HeroSlider() {
               referrerPolicy="no-referrer"
             />
           </div>
-          <div className="absolute inset-0 flex flex-col items-center justify-center text-center px-12 md:px-20">
-            <span className="inline-block bg-[#FF6700]/15 border border-[#FF6700] text-[#FF6700] text-[10px] md:text-[13px] font-bold px-5 py-1.5 rounded-full mb-4 uppercase tracking-[0.5px]">
+          {/* Dark Overlay for Text Contrast */}
+          <div className="absolute inset-0 bg-black/40 md:bg-black/30 bg-gradient-to-b from-black/60 via-transparent to-black/60"></div>
+          
+          <div className="absolute inset-0 flex flex-col items-center justify-center text-center px-12 md:px-20 z-10">
+            <span className="inline-block bg-[#FF6700]/15 border border-[#FF6700] text-[#FF6700] text-[10px] md:text-[13px] font-bold px-5 py-1.5 rounded-full mb-4 uppercase tracking-[0.5px] drop-shadow-md">
               {slide.badge}
             </span>
-            <h1 className="text-[22px] md:text-[52px] font-black text-white leading-[1.15] mb-3 max-w-[800px] font-oswald tracking-tight">
+            <h1 className="text-[22px] md:text-[52px] font-black text-white leading-[1.15] mb-3 max-w-[800px] font-oswald tracking-tight drop-shadow-xl">
               {slide.title}
             </h1>
-            <p className="text-[13px] md:text-[18px] text-white/75 font-normal mb-6 max-w-[600px]">
+            <p className="text-[13px] md:text-[18px] text-white/90 font-normal mb-6 max-w-[600px] drop-shadow-lg">
               {slide.description}
             </p>
           </div>

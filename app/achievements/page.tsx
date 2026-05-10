@@ -2,8 +2,15 @@
 
 import Image from 'next/image';
 import { motion, useScroll, useTransform } from 'motion/react';
-import { useRef } from 'react';
+import { useRef, useState, useEffect } from 'react';
 import { Award, Target, Trophy, MapPin, CheckCircle, Crown, Star, ArrowRight } from 'lucide-react';
+
+const TEAM_IMAGES = [
+  "https://res.cloudinary.com/de4cnpfm1/image/upload/v1778339110/T3_lly4po.jpg",
+  "https://res.cloudinary.com/de4cnpfm1/image/upload/v1778339110/T4_jsaj7y.jpg",
+  "https://res.cloudinary.com/de4cnpfm1/image/upload/v1778339109/T2_ptxc7g.jpg",
+  "https://res.cloudinary.com/de4cnpfm1/image/upload/v1778339108/T1_pfcuu9.jpg",
+];
 
 const MILESTONES = [
   {
@@ -59,6 +66,18 @@ export default function AchievementsPage() {
 
   const lineHeight = useTransform(scrollYProgress, [0, 1], ["0%", "100%"]);
 
+  const [currentSlide, setCurrentSlide] = useState(0);
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setCurrentSlide((prev) => (prev + 1) % TEAM_IMAGES.length);
+    }, 5000);
+    return () => clearInterval(timer);
+  }, []);
+
+  const nextSlide = () => setCurrentSlide((prev) => (prev + 1) % TEAM_IMAGES.length);
+  const prevSlide = () => setCurrentSlide((prev) => (prev - 1 + TEAM_IMAGES.length) % TEAM_IMAGES.length);
+
   return (
     <div className="w-full bg-[#EFF6FF] min-h-screen pb-24 font-montserrat">
       {/* Top section - matching the original image structure slightly inside a container */}
@@ -103,32 +122,48 @@ export default function AchievementsPage() {
             initial={{ opacity: 0, x: 30 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.6, delay: 0.4 }}
-            className="relative rounded-2xl overflow-hidden shadow-2xl h-[300px] md:h-[450px] group border-4 border-white"
+            className="relative rounded-2xl overflow-hidden shadow-2xl h-[300px] md:h-[450px] group border-4 border-white bg-slate-900"
           >
-            <Image
-              src="https://images.unsplash.com/photo-1574169208507-84376144848b?auto=format&fit=crop&w=1000&q=80"
-              alt="Team Achievement"
-              fill
-              className="object-cover group-hover:scale-105 transition-transform duration-700"
-              unoptimized
-            />
+            {TEAM_IMAGES.map((img, idx) => (
+              <div 
+                key={idx} 
+                className={`absolute inset-0 transition-opacity duration-1000 ${idx === currentSlide ? 'opacity-100 z-10' : 'opacity-0 z-0'}`}
+              >
+                <Image
+                  src={img}
+                  alt={`Team Achievement ${idx + 1}`}
+                  fill
+                  className="object-cover group-hover:scale-105 transition-transform duration-700"
+                  unoptimized
+                />
+              </div>
+            ))}
 
-            {/* Slider Controls Placeholder */}
-            <button className="absolute left-4 top-1/2 -translate-y-1/2 w-10 h-10 bg-black/40 text-white rounded-full flex items-center justify-center hover:bg-[#FF6700] transition-colors z-20 backdrop-blur-sm">
+            {/* Slider Controls */}
+            <button 
+              onClick={prevSlide}
+              className="absolute left-4 top-1/2 -translate-y-1/2 w-10 h-10 bg-black/40 text-white rounded-full flex items-center justify-center hover:bg-[#FF6700] transition-colors z-20 backdrop-blur-sm"
+            >
               ❮
             </button>
-            <button className="absolute right-4 top-1/2 -translate-y-1/2 w-10 h-10 bg-black/40 text-white rounded-full flex items-center justify-center hover:bg-[#FF6700] transition-colors z-20 backdrop-blur-sm">
+            <button 
+              onClick={nextSlide}
+              className="absolute right-4 top-1/2 -translate-y-1/2 w-10 h-10 bg-black/40 text-white rounded-full flex items-center justify-center hover:bg-[#FF6700] transition-colors z-20 backdrop-blur-sm"
+            >
               ❯
             </button>
 
             {/* Caption and dots overlay */}
-            <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-[#1E1B5C]/90 via-[#1E1B5C]/50 to-transparent pt-16 pb-6 text-center z-10">
-              <p className="text-white font-bold mb-3 uppercase tracking-wider text-sm md:text-base font-oswald">Omegalab: where quality meets reliability</p>
+            <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-[#1E1B5C]/90 via-[#1E1B5C]/50 to-transparent pt-16 pb-6 text-center z-20">
+              <p className="text-white font-bold mb-3 uppercase tracking-wider text-sm md:text-base font-oswald drop-shadow-md">Omegalab: where quality meets reliability</p>
               <div className="flex justify-center gap-2">
-                <div className="w-2.5 h-2.5 rounded-full bg-[#FF6700] cursor-pointer" />
-                <div className="w-2.5 h-2.5 rounded-full border-2 border-white/70 cursor-pointer hover:bg-white/50 transition-colors" />
-                <div className="w-2.5 h-2.5 rounded-full border-2 border-white/70 cursor-pointer hover:bg-white/50 transition-colors" />
-                <div className="w-2.5 h-2.5 rounded-full border-2 border-white/70 cursor-pointer hover:bg-white/50 transition-colors" />
+                {TEAM_IMAGES.map((_, idx) => (
+                  <div 
+                    key={idx}
+                    onClick={() => setCurrentSlide(idx)}
+                    className={`w-2.5 h-2.5 rounded-full cursor-pointer transition-colors ${idx === currentSlide ? 'bg-[#FF6700]' : 'border-2 border-white/70 hover:bg-white/50'}`}
+                  />
+                ))}
               </div>
             </div>
           </motion.div>

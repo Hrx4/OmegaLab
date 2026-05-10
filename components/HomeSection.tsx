@@ -10,7 +10,7 @@ import CountUp from "react-countup";
 
 const ABOUT_DATA = {
   ceoImage:
-    "https://res.cloudinary.com/de4cnpfm1/image/upload/v1778390956/Untitleddesign10_9jl5t_485_g1ogkl.jpg",
+    "https://res.cloudinary.com/de4cnpfm1/image/upload/v1778426371/CEO_PIC_jdtmrp.jpg",
   ceoImageAlt:
     "Mr. A.K. Das - CEO and Founder of Omegalab Testing Services Pvt Ltd",
 };
@@ -305,8 +305,14 @@ const { ref, inView } = useInView({
       </section>
 
       {/* 4. Accreditation Strip */}
-      <section className="bg-white py-12 md:py-16 px-4 md:px-12">
-        <div className="max-w-[1200px] mx-auto flex flex-wrap justify-center gap-6">
+      <section className="relative bg-slate-50 py-16 md:py-24 px-4 md:px-12 overflow-hidden border-y border-slate-200">
+        {/* Decorative background blurs */}
+        <div className="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none z-0">
+          <div className="absolute -top-[30%] -left-[10%] w-[60%] h-[60%] rounded-full bg-[#FF6700]/[0.04] blur-[100px]"></div>
+          <div className="absolute -bottom-[30%] -right-[10%] w-[60%] h-[60%] rounded-full bg-[#1E1B5C]/[0.04] blur-[100px]"></div>
+        </div>
+
+        <div className="max-w-[1300px] mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-5 md:gap-8 relative z-10">
           {[
             {
               icon: "🏛️",
@@ -334,12 +340,29 @@ const { ref, inView } = useInView({
               sub: "9 Offices & Centers",
             },
           ].map((item, idx) => (
-            <div key={idx} className="text-center p-5 min-w-[180px] flex-1">
-              <div className="text-[32px] mb-2">{item.icon}</div>
-              <div className="text-[13px] font-extrabold text-[#1E1B5C] uppercase">
+            <div 
+              key={idx} 
+              className="bg-white border border-slate-200 shadow-[0_8px_30px_rgba(0,0,0,0.08)] hover:shadow-[0_20px_40px_rgba(30,27,92,0.12)] hover:-translate-y-2 transition-all duration-500 ease-out rounded-3xl p-6 md:p-8 relative group flex flex-col items-center justify-center text-center z-10"
+            >
+              <div className="absolute inset-0 bg-gradient-to-br from-white via-white to-slate-50/50 rounded-3xl -z-10"></div>
+              
+              {/* Icon Container with glowing effect */}
+              <div className="relative w-16 h-16 md:w-20 md:h-20 mb-6 mt-2">
+                <div className="absolute inset-0 bg-[#FF6700]/20 rounded-full blur-xl scale-0 group-hover:scale-150 transition-transform duration-700 ease-out z-0"></div>
+                <div className="relative z-10 w-full h-full bg-gradient-to-br from-[#EFF6FF] to-white border border-blue-50 group-hover:border-[#FF6700]/30 shadow-sm group-hover:shadow-md rounded-2xl flex items-center justify-center text-[28px] md:text-[32px] transition-all duration-500 transform group-hover:-rotate-6 group-hover:scale-110">
+                  <span className="drop-shadow-sm">{item.icon}</span>
+                </div>
+              </div>
+              
+              {/* Typography */}
+              <div className="text-[14px] md:text-[16px] font-black text-[#1E1B5C] uppercase mb-3 font-oswald tracking-wide leading-tight group-hover:text-[#FF6700] transition-colors duration-300">
                 {item.title}
               </div>
-              <div className="text-[11px] text-[#1E1B5C]/50 mt-1 max-w-[200px] mx-auto">
+
+              {/* Dynamic Expanding Divider */}
+              <div className="w-8 h-1 bg-[#1E1B5C]/10 group-hover:bg-[#FF6700] group-hover:w-16 rounded-full mb-3.5 transition-all duration-500 ease-out"></div>
+
+              <div className="text-[11px] md:text-[12px] font-medium text-slate-500 max-w-[200px] mx-auto leading-relaxed group-hover:text-[#1E1B5C]/80 transition-colors duration-300">
                 {item.sub}
               </div>
             </div>
