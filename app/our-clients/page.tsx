@@ -2,6 +2,8 @@
 
 import { motion } from 'motion/react';
 import { Star, Quote, Building2, ShieldCheck, Factory } from 'lucide-react';
+import Image from 'next/image';
+import CLIENT_DATA from '../../data/clients.json';
 
 const CLIENT_CATEGORIES = [
   { name: 'Construction & Civil', icon: Building2 },
@@ -9,25 +11,7 @@ const CLIENT_CATEGORIES = [
   { name: 'Government & Defense', icon: ShieldCheck },
 ];
 
-const CLIENTS = Array.from({ length: 12 }).map((_, i) => ({
-  id: i,
-  name: `Corporate Client ${i + 1}`,
-  logoType: i % 3,
-  // Placeholder logic for images
-  imageUrl: `https://images.unsplash.com/photo-${1560000000000 + i * 10000}?auto=format&fit=crop&w=200&q=80`
-}));
 
-// Real-looking dummy logos just using creative text/shapes
-const LOGOS = [
-  { name: "Apex Builders", color: "text-blue-600", shape: "M12 2L2 22h20L12 2z" },
-  { name: "NeoCorp", color: "text-indigo-600", shape: "M12 22C6.48 22 2 17.52 2 12S6.48 2 12 2s10 4.48 10 10-4.48 10-10 10zm-1-11v6h2v-6h-2zm0-4v2h2V7h-2z" },
-  { name: "Stellvia India", color: "text-emerald-500", shape: "M21 16v-2l-8-5V3.5c0-.83-.67-1.5-1.5-1.5S10 2.67 10 3.5V9l-8 5v2l8-2.5V19l-2 1.5V22l3.5-1 3.5 1v-1.5L13 19v-5.5l8 2.5z" },
-  { name: "Prime Steels", color: "text-orange-500", shape: "M3 3h18v18H3z" },
-  { name: "Nexus Infra", color: "text-rose-500", shape: "M12 2L1 21h22L12 2zm0 3.83L19.17 19H4.83L12 5.83z" },
-  { name: "Vortex Labs", color: "text-violet-500", shape: "M4 10v7h3v-7H4zm6 0v7h3v-7h-3zM2 22h19v-3H2v3zm14-12v7h3v-7h-3zm-4.5-9L2 6v2h19V6l-9.5-5z" },
-  { name: "BuildTech", color: "text-cyan-600", shape: "M21 3H3v18h18V3zm-2 16H5V5h14v14z" },
-  { name: "Global Cement", color: "text-slate-700", shape: "M12 2L2 12h3v8h6v-6h2v6h6v-8h3L12 2z" },
-];
 
 const TESTIMONIALS = [
   {
@@ -97,28 +81,31 @@ export default function OurClientsPage() {
           <h2 className="text-center font-oswald font-bold text-2xl text-[#1E1B5C] uppercase tracking-widest mb-10">Trusted By The Best</h2>
 
           {/* Client Brand Logos Grid */}
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-8 mb-8">
-            {LOGOS.map((logo, index) => (
+          <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-4 md:gap-8 mb-8">
+            {CLIENT_DATA.map((client, index) => (
               <motion.div
                 key={index}
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ duration: 0.4, delay: index * 0.1 }}
-                className="aspect-[3/2] border border-slate-100 bg-slate-50 flex items-center justify-center rounded-xl p-6 hover:shadow-lg transition-all group overflow-hidden relative cursor-pointer"
+                transition={{ duration: 0.4, delay: (index % 10) * 0.1 }}
+                className="aspect-[3/2] border border-slate-100 bg-slate-50 flex items-center justify-center rounded-xl p-4 hover:shadow-lg transition-all group overflow-hidden relative cursor-pointer"
               >
-                <div className="absolute inset-0 bg-[#FF6700]/0 group-hover:bg-[#FF6700]/5 transition-colors"></div>
-                <div className="flex flex-col items-center gap-3 relative z-10 grayscale opacity-60 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-300 group-hover:-translate-y-1">
-                  <svg className={`w-10 h-10 ${logo.color}`} viewBox="0 0 24 24" fill="currentColor">
-                    <path d={logo.shape}></path>
-                  </svg>
-                  <span className="font-bold text-[13px] tracking-wider text-[#1E1B5C] uppercase">{logo.name}</span>
+                <div className="absolute inset-0 bg-[#FF6700]/0 group-hover:bg-[#FF6700]/5 transition-colors z-0"></div>
+                <div className="flex flex-col items-center justify-center gap-3 relative z-10 transition-all duration-300 group-hover:-translate-y-2 group-hover:scale-105 w-full h-full">
+                  <div className="relative w-full h-16 md:h-20 flex items-center justify-center">
+                    <Image
+                      src={client.logo}
+                      alt={client.alt}
+                      fill
+                      className="object-contain"
+                      sizes="(max-width: 768px) 50vw, (max-width: 1200px) 25vw, 20vw"
+                    />
+                  </div>
+                  <span className="font-bold text-[11px] md:text-[13px] tracking-wider text-[#1E1B5C] uppercase text-center">{client.name}</span>
                 </div>
               </motion.div>
             ))}
-          </div>
-          <div className="text-center text-sm text-slate-500 italic mt-6">
-            * Names and logos shown are placeholders. You can easily replace these with your actual client images.
           </div>
         </div>
       </div>

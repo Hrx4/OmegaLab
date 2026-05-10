@@ -2,6 +2,16 @@
 
 import Image from "next/image";
 import Link from "next/link";
+import { useState, useEffect } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import branchesData from "../data/branches.json";
+
+const TEAM_PICS = [
+  "https://res.cloudinary.com/de4cnpfm1/image/upload/v1778339110/T3_lly4po.jpg",
+  "https://res.cloudinary.com/de4cnpfm1/image/upload/v1778339110/T4_jsaj7y.jpg",
+  "https://res.cloudinary.com/de4cnpfm1/image/upload/v1778339109/T2_ptxc7g.jpg",
+  "https://res.cloudinary.com/de4cnpfm1/image/upload/v1778339108/T1_pfcuu9.jpg"
+];
 
 const RESOURCE_LINKS = [
   { name: "Home", path: "/" },
@@ -32,11 +42,10 @@ const LABS_RIGHT = [
 ];
 
 const SOCIAL = [
-  { label: "Facebook", text: "f", bg: "bg-[#3B5998]" },
-  { label: "LinkedIn", text: "in", bg: "bg-[#0077B5]" },
-  { label: "Instagram", text: "ig", bg: "bg-gradient-to-br from-[#f09433] via-[#dc2743] to-[#833ab4]" },
-  { label: "Google", text: "G", bg: "bg-[#F4B400]" },
-  { label: "YouTube", text: "▶", bg: "bg-[#FF0000]" },
+  { label: "Facebook", icon: <img src="https://cdn-icons-png.flaticon.com/128/145/145802.png" alt="Facebook" className="w-full h-full object-contain hover:scale-110 transition-transform duration-300" /> },
+  { label: "LinkedIn", icon: <img src="https://cdn-icons-png.flaticon.com/128/145/145807.png" alt="LinkedIn" className="w-full h-full object-contain hover:scale-110 transition-transform duration-300" /> },
+  { label: "Instagram", icon: <img src="https://cdn-icons-png.flaticon.com/128/1409/1409946.png" alt="Instagram" className="w-full h-full object-contain hover:scale-110 transition-transform duration-300" /> },
+  { label: "YouTube", icon: <img src="https://cdn-icons-png.flaticon.com/128/1384/1384060.png" alt="YouTube" className="w-full h-full object-contain hover:scale-110 transition-transform duration-300" /> },
 ];
 
 function MapCard({ name, maps , iframemaps }: { name: string; maps: string; iframemaps: string }) {
@@ -74,6 +83,15 @@ function MapCard({ name, maps , iframemaps }: { name: string; maps: string; ifra
 }
 
 export default function Footer() {
+  const [currentIndex, setCurrentIndex] = useState(0);
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setCurrentIndex((prev) => (prev + 1) % TEAM_PICS.length);
+    }, 4000);
+    return () => clearInterval(timer);
+  }, []);
+
   return (
     <footer className="mt-16 sm:mt-20 lg:mt-24 bg-[#1E1B5C] border-t-[3px] border-[#FF6700] overflow-x-hidden">
       <div className="mx-auto max-w-[1120px] px-4 sm:px-6 lg:px-6">
@@ -163,16 +181,49 @@ export default function Footer() {
                   <a
                     key={item.label}
                     href="#"
-                    className={`flex h-[36px] w-[36px] shrink-0 items-center justify-center rounded-full text-[14px] font-bold text-white ${item.bg}`}
+                    className={`flex h-[36px] w-[36px] shrink-0 items-center justify-center rounded-full text-white bg-transparent`}
                   >
-                    {item.text}
+                    {item.icon}
                   </a>
                 ))}
               </div>
 
-              <div className="h-[120px] w-full max-w-[260px] overflow-hidden rounded-sm bg-slate-500/40">
-                <div className="flex h-full items-center justify-center px-3 text-center text-[11px] text-white/60">
-                  Team Photo
+              <div className="relative h-[120px] w-full max-w-[260px] overflow-hidden rounded-sm bg-slate-500/40 group">
+                <AnimatePresence mode="wait">
+                  <motion.div
+                    key={currentIndex}
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    exit={{ opacity: 0 }}
+                    transition={{ duration: 0.5 }}
+                    className="absolute inset-0"
+                  >
+                    <Image
+                      src={TEAM_PICS[currentIndex]}
+                      alt={`Team Photo ${currentIndex + 1}`}
+                      fill
+                      className="object-cover"
+                    />
+                  </motion.div>
+                </AnimatePresence>
+                
+                {/* Overlay Text */}
+                <div className="absolute top-0 left-0 w-full bg-gradient-to-b from-black/60 to-transparent px-3 py-2 z-10 pointer-events-none">
+                  <span className="text-white text-[11px] font-bold uppercase tracking-wider shadow-sm">Team Pics</span>
+                </div>
+
+                {/* Dotted Progress */}
+                <div className="absolute bottom-2 left-0 w-full flex justify-center gap-1.5 z-10">
+                  {TEAM_PICS.map((_, idx) => (
+                    <button
+                      key={idx}
+                      onClick={() => setCurrentIndex(idx)}
+                      className={`h-1.5 rounded-full transition-all duration-300 ${
+                        idx === currentIndex ? "w-4 bg-[#FF6700]" : "w-1.5 bg-white/60 hover:bg-white/90"
+                      }`}
+                      aria-label={`Go to slide ${idx + 1}`}
+                    />
+                  ))}
                 </div>
               </div>
             </div>
@@ -226,8 +277,8 @@ export default function Footer() {
               <div className="mt-8 min-w-0">
                 <h4 className="mb-4 text-[16px] font-bold text-white">Contact Info</h4>
                 <div className="flex min-w-0 items-start gap-3 sm:items-center">
-                  <div className="flex h-[42px] w-[42px] shrink-0 items-center justify-center rounded-full bg-[#FF4B4B] text-white">
-                    ✉
+                  <div className="flex h-[42px] w-[42px] shrink-0 items-center justify-center rounded-full bg-transparent">
+                    <img src="https://cdn-icons-png.flaticon.com/128/9068/9068642.png" alt="Email" className="w-full h-full object-contain hover:scale-110 transition-transform duration-300" />
                   </div>
                   <div className="min-w-0">
                     <div className="text-[15px] font-semibold text-white">Email Us</div>
