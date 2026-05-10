@@ -1,8 +1,10 @@
+'use client';
 import Image from "next/image";
 import Link from "next/link";
 import HeroSlider from "./HeroSlider";
 import IndiaBranchMap from "./IndiaBranchMap";
 import CLIENT_DATA from "../data/clients.json";
+import { useState } from "react";
 
 const ABOUT_DATA = {
   ceoImage:
@@ -11,7 +13,155 @@ const ABOUT_DATA = {
     "Mr. A.K. Das - CEO and Founder of Omegalab Testing Services Pvt Ltd",
 };
 
+
+
+const filters = [
+    "All Materials",
+    "Metals & Steel",
+    "Cement & Concrete",
+    "Geotextiles",
+    "NDT Services",
+    "Plastic",
+    "Water",
+  ];
+
+  const materials = [
+    {
+      icon: "🔩",
+      name: "Reinforcement Steel (TMT/HSD)",
+      category: ["Metals & Steel"],
+    },
+    {
+      icon: "🏗️",
+      name: "Structural Steel",
+      category: ["Metals & Steel"],
+    },
+    {
+      icon: "🔧",
+      name: "Fasteners/Nuts/Bolts/Washers",
+      category: ["Metals & Steel"],
+    },
+    {
+      icon: "🪢",
+      name: "HT Strand & Wire",
+      category: ["Metals & Steel"],
+    },
+    {
+      icon: "⚙️",
+      name: "Welded Coupons & Joints",
+      category: ["Metals & Steel"],
+    },
+    {
+      icon: "🥇",
+      name: "Non-Ferrous Metals",
+      category: ["Metals & Steel"],
+    },
+    {
+      icon: "🧱",
+      name: "Cement (OPC/PPC/PSC)",
+      category: ["Cement & Concrete"],
+    },
+    {
+      icon: "💨",
+      name: "Fly Ash & Micro Silica",
+      category: ["Cement & Concrete"],
+    },
+    {
+      icon: "🪨",
+      name: "Aggregates & Sand",
+      category: ["Cement & Concrete"],
+    },
+    {
+      icon: "🏛️",
+      name: "Concrete & Design Mix",
+      category: ["Cement & Concrete"],
+    },
+    {
+      icon: "🧱",
+      name: "All Kinds of Bricks",
+      category: ["Cement & Concrete"],
+    },
+    {
+      icon: "⛰️",
+      name: "Natural Building Stones",
+      category: ["Cement & Concrete"],
+    },
+    {
+      icon: "🧊",
+      name: "AAC Blocks",
+      category: ["Cement & Concrete"],
+    },
+    {
+      icon: "🔲",
+      name: "Ceramic & Vitrified Tiles",
+      category: ["Cement & Concrete"],
+    },
+    {
+      icon: "🧵",
+      name: "Geotextile",
+      category: ["Geotextiles"],
+    },
+    {
+      icon: "🔳",
+      name: "Geogrid",
+      category: ["Geotextiles"],
+    },
+    {
+      icon: "🟫",
+      name: "Geocell",
+      category: ["Geotextiles"],
+    },
+    {
+      icon: "🛡️",
+      name: "Geomembrane",
+      category: ["Geotextiles"],
+    },
+    {
+      icon: "🌍",
+      name: "Soil Testing",
+      category: ["NDT Services"],
+    },
+    {
+      icon: "🔨",
+      name: "Rebound Hammer Test",
+      category: ["NDT Services"],
+    },
+    {
+      icon: "📡",
+      name: "Ultrasonic Pulse Velocity (USPV)",
+      category: ["NDT Services"],
+    },
+    {
+      icon: "🔊",
+      name: "Ultrasonic for Metals & Welds",
+      category: ["NDT Services", "Metals & Steel"],
+    },
+    {
+      icon: "💧",
+      name: "Dye Penetrant (DP) Test",
+      category: ["NDT Services"],
+    },
+    {
+      icon: "🔵",
+      name: "PVC/UPVC/HDPE/CPVC Pipes",
+      category: ["Plastic", "Water"],
+    },
+  ];
+
+  
+
 export default function HomeSections() {
+
+const [activeFilter, setActiveFilter] = useState("All Materials");
+
+  const filteredMaterials =
+    activeFilter === "All Materials"
+      ? materials
+      : materials.filter((item) =>
+          item.category.includes(activeFilter)
+        );
+
+
   return (
     <div className="flex flex-col w-full">
       {/* 1. Hero Section */}
@@ -303,64 +453,40 @@ export default function HomeSections() {
         </div>
 
         <div className="flex flex-wrap justify-center gap-2 mb-8">
-          {[
-            "All Materials",
-            "Metals & Steel",
-            "Cement & Concrete",
-            "Geotextiles",
-            "NDT Services",
-            "Plastic",
-            "Water",
-          ].map((tab, idx) => (
-            <button
-              key={tab}
-              className={`px-5 py-2.5 rounded-full border-2 text-[12px] font-bold cursor-pointer transition-all ${idx === 0 ? "bg-[#FF6700] border-[#FF6700] text-white" : "bg-transparent border-[#1E1B5C]/15 text-[#1E1B5C] hover:bg-[#FF6700] hover:text-white hover:border-[#FF6700]"}`}
-            >
-              {tab}
-            </button>
-          ))}
-        </div>
+        {filters.map((tab) => (
+          <button
+            key={tab}
+            onClick={() => setActiveFilter(tab)}
+            className={`px-5 py-2.5 rounded-full border-2 text-[12px] font-bold cursor-pointer transition-all ${
+              activeFilter === tab
+                ? "bg-[#FF6700] border-[#FF6700] text-white"
+                : "bg-transparent border-[#1E1B5C]/15 text-[#1E1B5C] hover:bg-[#FF6700] hover:text-white hover:border-[#FF6700]"
+            }`}
+          >
+            {tab}
+          </button>
+        ))}
+      </div>
+
+      
 
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-          {[
-            { icon: "🔩", name: "Reinforcement Steel (TMT/HSD)" },
-            { icon: "🏗️", name: "Structural Steel" },
-            { icon: "🔧", name: "Fasteners/Nuts/Bolts/Washers" },
-            { icon: "🪢", name: "HT Strand & Wire" },
-            { icon: "⚙️", name: "Welded Coupons & Joints" },
-            { icon: "🥇", name: "Non-Ferrous Metals" },
-            { icon: "🧱", name: "Cement (OPC/PPC/PSC)" },
-            { icon: "💨", name: "Fly Ash & Micro Silica" },
-            { icon: "🪨", name: "Aggregates & Sand" },
-            { icon: "🏛️", name: "Concrete & Design Mix" },
-            { icon: "🧱", name: "All Kinds of Bricks" },
-            { icon: "⛰️", name: "Natural Building Stones" },
-            { icon: "🧊", name: "AAC Blocks" },
-            { icon: "🔲", name: "Ceramic & Vitrified Tiles" },
-            { icon: "🧵", name: "Geotextile" },
-            { icon: "🔳", name: "Geogrid" },
-            { icon: "🟫", name: "Geocell" },
-            { icon: "🛡️", name: "Geomembrane" },
-            { icon: "🌍", name: "Soil Testing" },
-            { icon: "🔨", name: "Rebound Hammer Test" },
-            { icon: "📡", name: "Ultrasonic Pulse Velocity (USPV)" },
-            { icon: "🔊", name: "Ultrasonic for Metals & Welds" },
-            { icon: "💧", name: "Dye Penetrant (DP) Test" },
-            { icon: "🔵", name: "PVC/UPVC/HDPE/CPVC Pipes" },
-          ].map((svc, idx) => (
-            <div
-              key={idx}
-              className="bg-white rounded-xl p-4 flex items-center gap-3 border-2 border-transparent hover:border-[#FF6700] hover:-translate-y-1 hover:shadow-[0_8px_20px_rgba(0,0,0,0.06)] transition-all cursor-pointer"
-            >
-              <div className="w-11 h-11 bg-[#EFF6FF] rounded-lg flex items-center justify-center text-[20px] shrink-0">
-                {svc.icon}
-              </div>
-              <div className="text-[13px] font-bold text-[#1E1B5C]">
-                {svc.name}
-              </div>
+        {filteredMaterials.map((svc, idx) => (
+          <div
+            key={idx}
+            className="bg-white rounded-xl p-4 flex items-center gap-3 border-2 border-transparent hover:border-[#FF6700] hover:-translate-y-1 hover:shadow-[0_8px_20px_rgba(0,0,0,0.06)] transition-all cursor-pointer"
+          >
+            <div className="w-11 h-11 bg-[#EFF6FF] rounded-lg flex items-center justify-center text-[20px] shrink-0">
+              {svc.icon}
             </div>
-          ))}
-        </div>
+
+            <div className="text-[13px] font-bold text-[#1E1B5C]">
+              {svc.name}
+            </div>
+          </div>
+        ))}
+      </div>
+
       </section>
 
       {/* 7. Centers Section */}
