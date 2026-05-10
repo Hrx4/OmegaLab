@@ -1,0 +1,26 @@
+[
+  {
+    "id": "medinipur",
+    "name": "MEDINIPUR",
+    "address": "C/O-Suvendu Sen, Tantigeria Town Colony, Post-Vidyasagar University, (Near - Tantigeria Rail Gate), PS- Kotuali, Dist: PaschimMedinipur, Pin-721102",
+    "image": "https://res.cloudinary.com/de4cnpfm1/image/upload/v1778393315/Medinipur_lcgkjf.webp"
+  },
+  {
+    "id": "haldia",
+    "name": "HALDIA",
+    "address": "Ganganarayan Appartment, Durgachak, Uttarpally (Near Primary School), Haldia,Purba-Medinipur , W.B, Pin -721602.",
+    "image": "https://res.cloudinary.com/de4cnpfm1/image/upload/v1778393315/Haldia_zpr1ef.webp"
+  },
+  {
+    "id": "agartala",
+    "name": "AGARTALA",
+    "address": "C/O- Dhirendra Chandra Das, East Side of Central Jail, P.O-Dhaleswar, P.S-East Agartala, Dist-West Agartala, Pin -799007.",
+    "image": "https://res.cloudinary.com/de4cnpfm1/image/upload/v1778393315/Agartala_vottke.webp"
+  },
+  {
+    "id": "shilong",
+    "name": "SHILONG",
+    "address": "Doyantis LyngdohWard No. : 23,House No. 390, Kenchs Trace Road, Shillong – 793004 (Meghalaya)",
+    "image": "https://res.cloudinary.com/de4cnpfm1/image/upload/v1778393319/Shilong_ffolvz.png"
+  }
+]

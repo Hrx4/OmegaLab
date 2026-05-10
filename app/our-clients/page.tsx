@@ -1,50 +1,32 @@
-'use client';
+"use client";
 
-import { motion } from 'motion/react';
-import { Star, Quote, Building2, ShieldCheck, Factory } from 'lucide-react';
+import { motion } from "motion/react";
+import { Star, Quote, Building2, ShieldCheck, Factory } from "lucide-react";
+import Image from "next/image";
+import CLIENT_DATA from "../../data/clients.json";
 
 const CLIENT_CATEGORIES = [
-  { name: 'Construction & Civil', icon: Building2 },
-  { name: 'Manufacturing', icon: Factory },
-  { name: 'Government & Defense', icon: ShieldCheck },
-];
-
-const CLIENTS = Array.from({ length: 12 }).map((_, i) => ({
-  id: i,
-  name: `Corporate Client ${i + 1}`,
-  logoType: i % 3,
-  // Placeholder logic for images
-  imageUrl: `https://images.unsplash.com/photo-${1560000000000 + i * 10000}?auto=format&fit=crop&w=200&q=80`
-}));
-
-// Real-looking dummy logos just using creative text/shapes
-const LOGOS = [
-  { name: "Apex Builders", color: "text-blue-600", shape: "M12 2L2 22h20L12 2z" },
-  { name: "NeoCorp", color: "text-indigo-600", shape: "M12 22C6.48 22 2 17.52 2 12S6.48 2 12 2s10 4.48 10 10-4.48 10-10 10zm-1-11v6h2v-6h-2zm0-4v2h2V7h-2z" },
-  { name: "Stellvia India", color: "text-emerald-500", shape: "M21 16v-2l-8-5V3.5c0-.83-.67-1.5-1.5-1.5S10 2.67 10 3.5V9l-8 5v2l8-2.5V19l-2 1.5V22l3.5-1 3.5 1v-1.5L13 19v-5.5l8 2.5z" },
-  { name: "Prime Steels", color: "text-orange-500", shape: "M3 3h18v18H3z" },
-  { name: "Nexus Infra", color: "text-rose-500", shape: "M12 2L1 21h22L12 2zm0 3.83L19.17 19H4.83L12 5.83z" },
-  { name: "Vortex Labs", color: "text-violet-500", shape: "M4 10v7h3v-7H4zm6 0v7h3v-7h-3zM2 22h19v-3H2v3zm14-12v7h3v-7h-3zm-4.5-9L2 6v2h19V6l-9.5-5z" },
-  { name: "BuildTech", color: "text-cyan-600", shape: "M21 3H3v18h18V3zm-2 16H5V5h14v14z" },
-  { name: "Global Cement", color: "text-slate-700", shape: "M12 2L2 12h3v8h6v-6h2v6h6v-8h3L12 2z" },
+  { name: "Construction & Civil", icon: Building2 },
+  { name: "Manufacturing", icon: Factory },
+  { name: "Government & Defense", icon: ShieldCheck },
 ];
 
 const TESTIMONIALS = [
   {
     name: "Rajesh Kumar",
     role: "Chief Engineer, Apex Infrastructure",
-    text: "Omegalab's precision in civil material testing has been a cornerstone for our major highway projects. Their NABL accreditation and prompt reporting give us immense confidence."
+    text: "Omegalab's precision in civil material testing has been a cornerstone for our major highway projects. Their NABL accreditation and prompt reporting give us immense confidence.",
   },
   {
     name: "Dr. Ananya Singh",
     role: "QA Head, BioChem Industries",
-    text: "We rely heavily on their chemical analysis division. The optical emission spectroscopy results are always accurate, and their team is highly responsive to urgent testing needs."
+    text: "We rely heavily on their chemical analysis division. The optical emission spectroscopy results are always accurate, and their team is highly responsive to urgent testing needs.",
   },
   {
     name: "Manoj Agarwal",
     role: "Production Manager, SteelTech Ltd.",
-    text: "For mechanical testing, particularly tensile and impact properties, Omegalab is our go-to partner. Their expertise ensures our products meet international standards."
-  }
+    text: "For mechanical testing, particularly tensile and impact properties, Omegalab is our go-to partner. Their expertise ensures our products meet international standards.",
+  },
 ];
 
 export default function OurClientsPage() {
@@ -72,7 +54,8 @@ export default function OurClientsPage() {
             transition={{ duration: 0.6, delay: 0.2 }}
             className="text-white/80 font-medium tracking-widest uppercase text-sm md:text-base max-w-2xl"
           >
-            Trusted by industry leaders and large-scale enterprises across India for uncompromising quality and precise testing.
+            Trusted by industry leaders and large-scale enterprises across India
+            for uncompromising quality and precise testing.
           </motion.p>
         </div>
       </div>
@@ -81,44 +64,64 @@ export default function OurClientsPage() {
         <div className="bg-white rounded-2xl shadow-xl overflow-hidden border-t-4 border-[#FF6700] p-6 lg:p-12">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 text-center border-b border-slate-100 pb-12 mb-12">
             <div>
-              <div className="text-[#FF6700] font-black text-[40px] md:text-[56px] font-oswald leading-none mb-2">500+</div>
-              <div className="text-[#1E1B5C] font-bold uppercase tracking-wider text-sm">Enterprise Clients</div>
+              <div className="text-[#FF6700] font-black text-[40px] md:text-[56px] font-oswald leading-none mb-2">
+                500+
+              </div>
+              <div className="text-[#1E1B5C] font-bold uppercase tracking-wider text-sm">
+                Enterprise Clients
+              </div>
             </div>
             <div className="md:border-l md:border-r border-slate-100">
-              <div className="text-[#FF6700] font-black text-[40px] md:text-[56px] font-oswald leading-none mb-2">15+</div>
-              <div className="text-[#1E1B5C] font-bold uppercase tracking-wider text-sm">Years of Trust</div>
+              <div className="text-[#FF6700] font-black text-[40px] md:text-[56px] font-oswald leading-none mb-2">
+                15+
+              </div>
+              <div className="text-[#1E1B5C] font-bold uppercase tracking-wider text-sm">
+                Years of Trust
+              </div>
             </div>
             <div>
-              <div className="text-[#FF6700] font-black text-[40px] md:text-[56px] font-oswald leading-none mb-2">10M+</div>
-              <div className="text-[#1E1B5C] font-bold uppercase tracking-wider text-sm">Samples Tested</div>
+              <div className="text-[#FF6700] font-black text-[40px] md:text-[56px] font-oswald leading-none mb-2">
+                10M+
+              </div>
+              <div className="text-[#1E1B5C] font-bold uppercase tracking-wider text-sm">
+                Samples Tested
+              </div>
             </div>
           </div>
 
-          <h2 className="text-center font-oswald font-bold text-2xl text-[#1E1B5C] uppercase tracking-widest mb-10">Trusted By The Best</h2>
+          <h2 className="text-center font-oswald font-bold text-2xl text-[#1E1B5C] uppercase tracking-widest mb-10">
+            Trusted By The Best
+          </h2>
 
           {/* Client Brand Logos Grid */}
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-8 mb-8">
-            {LOGOS.map((logo, index) => (
+          <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-4 md:gap-8 mb-8">
+            {CLIENT_DATA.map((client, index) => (
               <motion.div
                 key={index}
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ duration: 0.4, delay: index * 0.1 }}
-                className="aspect-[3/2] border border-slate-100 bg-slate-50 flex items-center justify-center rounded-xl p-6 hover:shadow-lg transition-all group overflow-hidden relative cursor-pointer"
+                transition={{ duration: 0.4, delay: (index % 10) * 0.1 }}
+                className="min-h-[170px] border border-slate-100 bg-slate-50 flex items-center justify-center rounded-xl p-4 hover:shadow-lg transition-all group relative cursor-pointer"
               >
-                <div className="absolute inset-0 bg-[#FF6700]/0 group-hover:bg-[#FF6700]/5 transition-colors"></div>
-                <div className="flex flex-col items-center gap-3 relative z-10 grayscale opacity-60 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-300 group-hover:-translate-y-1">
-                  <svg className={`w-10 h-10 ${logo.color}`} viewBox="0 0 24 24" fill="currentColor">
-                    <path d={logo.shape}></path>
-                  </svg>
-                  <span className="font-bold text-[13px] tracking-wider text-[#1E1B5C] uppercase">{logo.name}</span>
+                <div className="absolute inset-0 bg-[#FF6700]/0 group-hover:bg-[#FF6700]/5 transition-colors z-0"></div>
+                <div className="flex flex-col items-center justify-center gap-3 relative z-10 transition-all duration-300 group-hover:-translate-y-2 group-hover:scale-105 w-full h-full">
+                  <div className="relative w-full h-16 md:h-20 flex items-center justify-center shrink-0">
+                    <Image
+                      src={client.logo}
+                      alt={client.alt}
+                      fill
+                      className="object-contain"
+                      sizes="(max-width: 768px) 50vw, (max-width: 1200px) 25vw, 20vw"
+                    />
+                  </div>
+                  <span className="font-bold text-[11px] md:text-[13px] tracking-wider text-[#1E1B5C] uppercase text-center break-words">
+                    {" "}
+                    {client.name}
+                  </span>
                 </div>
               </motion.div>
             ))}
-          </div>
-          <div className="text-center text-sm text-slate-500 italic mt-6">
-            * Names and logos shown are placeholders. You can easily replace these with your actual client images.
           </div>
         </div>
       </div>
@@ -126,7 +129,9 @@ export default function OurClientsPage() {
       {/* Sectors Served */}
       <div className="max-w-[1300px] mx-auto px-4 md:px-12 mb-24">
         <div className="text-center mb-12">
-          <h2 className="text-[#1E1B5C] font-oswald font-black text-[28px] md:text-[40px] uppercase mb-4">Sectors We <span className="text-[#FF6700]">Serve</span></h2>
+          <h2 className="text-[#1E1B5C] font-oswald font-black text-[28px] md:text-[40px] uppercase mb-4">
+            Sectors We <span className="text-[#FF6700]">Serve</span>
+          </h2>
           <div className="w-20 h-1 bg-[#1E1B5C] mx-auto"></div>
         </div>
 
@@ -143,8 +148,13 @@ export default function OurClientsPage() {
               <div className="w-20 h-20 bg-[#EFF6FF] text-[#1E1B5C] rounded-full flex items-center justify-center mx-auto mb-6 group-hover:bg-[#FF6700] group-hover:text-white transition-colors duration-300">
                 <cat.icon size={36} />
               </div>
-              <h3 className="font-bold font-oswald text-[22px] text-[#1E1B5C] uppercase mb-3">{cat.name}</h3>
-              <p className="text-slate-600 text-sm leading-relaxed">Delivering uncompromising accuracy and adherence to national and international standards for the {cat.name.toLowerCase()} sector.</p>
+              <h3 className="font-bold font-oswald text-[22px] text-[#1E1B5C] uppercase mb-3">
+                {cat.name}
+              </h3>
+              <p className="text-slate-600 text-sm leading-relaxed">
+                Delivering uncompromising accuracy and adherence to national and
+                international standards for the {cat.name.toLowerCase()} sector.
+              </p>
             </motion.div>
           ))}
         </div>
@@ -181,7 +191,12 @@ export default function OurClientsPage() {
               >
                 <div className="flex gap-1 mb-8">
                   {[1, 2, 3, 4, 5].map((star) => (
-                    <Star key={star} size={18} className="text-[#FF6700]" fill="currentColor" />
+                    <Star
+                      key={star}
+                      size={18}
+                      className="text-[#FF6700]"
+                      fill="currentColor"
+                    />
                   ))}
                 </div>
                 <p className="text-slate-300 leading-[1.8] text-[15px] italic mb-8 flex-grow">
@@ -192,8 +207,12 @@ export default function OurClientsPage() {
                     {testimonial.name.charAt(0)}
                   </div>
                   <div>
-                    <h4 className="text-white font-bold text-base font-oswald tracking-wider">{testimonial.name}</h4>
-                    <span className="text-[#FF6700] font-medium tracking-wide text-xs uppercase">{testimonial.role}</span>
+                    <h4 className="text-white font-bold text-base font-oswald tracking-wider">
+                      {testimonial.name}
+                    </h4>
+                    <span className="text-[#FF6700] font-medium tracking-wide text-xs uppercase">
+                      {testimonial.role}
+                    </span>
                   </div>
                 </div>
               </motion.div>
@@ -204,4 +223,3 @@ export default function OurClientsPage() {
     </div>
   );
 }
-

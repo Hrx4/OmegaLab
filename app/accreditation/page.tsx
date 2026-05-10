@@ -134,8 +134,8 @@ export default function AccreditationPage() {
 
           {/* Big NABL Logo Slider */}
           <div className="flex flex-col items-center justify-center w-full max-w-[400px] mx-auto">
-            <div className="relative w-full aspect-square rounded-full border border-slate-200 p-2 shadow-lg group">
-              <div className="w-full h-full rounded-full overflow-hidden relative">
+            <div className="relative w-full aspect-square  border border-slate-200 p-2 shadow-lg group rounded-full ">
+              <div className=" w-full h-full overflow-hidden relative rounded-full">
                 <AnimatePresence mode="wait">
                   <motion.div
                     key={currentSlide}
@@ -149,13 +149,13 @@ export default function AccreditationPage() {
                       src={BIG_BADGES[currentSlide].image}
                       alt={`NABL Accreditation ${BIG_BADGES[currentSlide].tc}`}
                       fill
-                      className="object-cover"
+                      className="object-contain scale-90 "
                     />
-                    <div className="absolute bottom-[10%] inset-x-0 text-center">
+                    {/* <div className="absolute bottom-[10%] inset-x-0 text-center">
                       <span className="bg-white/80 backdrop-blur px-4 py-1.5 rounded-full font-bold text-lg text-[#1E1B5C] uppercase tracking-wider inline-block">
                         {BIG_BADGES[currentSlide].tc}
                       </span>
-                    </div>
+                    </div> */}
                   </motion.div>
                 </AnimatePresence>
               </div>

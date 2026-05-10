@@ -1,0 +1,75 @@
+[
+  {
+    "id": "kolkata-1",
+    "name": "Kolkata Branch 1",
+    "footerName": "Kolkata\nLab-1",
+    "accreditation": "NABL ACCREDITED LAB (TC-11935)",
+    "address": "256A, M. G. Road, Purbasan, Thakurpukur, Kolkata - 700 063",
+    "mapUrl": "#",
+    "posterImage": "https://res.cloudinary.com/de4cnpfm1/image/upload/v1778393317/kol1_lgshjq.png",
+    "seoTitle": "Kolkata Branch 1 | OmegaLab Testing Services",
+    "seoDescription": "Visit OmegaLab Kolkata Branch 1 for precise material testing with NABL accreditation.",
+    "isMainLab": true
+  },
+  {
+    "id": "kolkata-2",
+    "name": "Kolkata Branch 2",
+    "footerName": "Kolkata\nLab-2",
+    "accreditation": "NABL ACCREDITED LAB",
+    "address": "Kolkata - Address Pending",
+    "mapUrl": "#",
+    "posterImage": "https://res.cloudinary.com/de4cnpfm1/image/upload/v1778393317/kol2_ex04n6.png",
+    "seoTitle": "Kolkata Branch 2 | OmegaLab Testing Services",
+    "seoDescription": "Visit OmegaLab Kolkata Branch 2 for precise material testing.",
+    "isMainLab": true
+  },
+  {
+    "id": "siliguri",
+    "name": "Siliguri",
+    "footerName": "Siliguri\nLab",
+    "accreditation": "NABL ACCREDITED LAB",
+    "address": "Siliguri - Address Pending",
+    "mapUrl": "#",
+    "posterImage": "https://res.cloudinary.com/de4cnpfm1/image/upload/v1778393317/siliguri_cizhjr.webp",
+    "seoTitle": "Siliguri Branch | OmegaLab Testing Services",
+    "seoDescription": "Visit OmegaLab Siliguri Branch for precise material testing.",
+    "isMainLab": true
+  },
+  {
+    "id": "ranchi",
+    "name": "Ranchi",
+    "footerName": "Ranchi\nLab",
+    "accreditation": "NABL ACCREDITED LAB",
+    "address": "Ranchi - Address Pending",
+    "mapUrl": "#",
+    "posterImage": "https://res.cloudinary.com/de4cnpfm1/image/upload/v1778393316/ranchi_iylw5b.png",
+    "seoTitle": "Ranchi Branch | OmegaLab Testing Services",
+    "seoDescription": "Visit OmegaLab Ranchi Branch for precise material testing.",
+    "isMainLab": true
+  },
+  {
+    "id": "odisha",
+    "name": "Odisha",
+    "footerName": "Odisha\nLab",
+    "accreditation": "NABL ACCREDITED LAB",
+    "address": "Odisha - Address Pending",
+    "mapUrl": "#",
+    "posterImage": "https://res.cloudinary.com/de4cnpfm1/image/upload/v1778393315/Bhubaneswar_fszh8g.webp",
+    "seoTitle": "Odisha Branch | OmegaLab Testing Services",
+    "seoDescription": "Visit OmegaLab Odisha Branch for precise material testing.",
+    "isMainLab": true
+  },
+  {
+    "id": "sample-collection-center",
+    "name": "Sample Collection Center",
+    "footerName": "",
+    "accreditation": "",
+    "address": "",
+    "mapUrl": "#",
+    "posterImage": "https://images.unsplash.com/photo-1541888048259-251f2f811568?auto=format&fit=crop&w=800&q=80",
+    "seoTitle": "Sample Collection Center | OmegaLab Testing Services",
+    "seoDescription": "OmegaLab Sample Collection Center.",
+    "isMainLab": false,
+    "pathOverride": "/our-branch/sample-collection-center"
+  }
+]
