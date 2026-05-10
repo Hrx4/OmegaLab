@@ -15,7 +15,178 @@ const ABOUT_DATA = {
     "Mr. A.K. Das - CEO and Founder of Omegalab Testing Services Pvt Ltd",
 };
 
+const COUNTRY_LIST = [
+  { name: "India", code: "in", dial: "+91" },
+  { name: "Afghanistan", code: "af", dial: "+93" },
+  { name: "Albania", code: "al", dial: "+355" },
+  { name: "Algeria", code: "dz", dial: "+213" },
+  { name: "Andorra", code: "ad", dial: "+376" },
+  { name: "Angola", code: "ao", dial: "+244" },
+  { name: "Argentina", code: "ar", dial: "+54" },
+  { name: "Armenia", code: "am", dial: "+374" },
+  { name: "Australia", code: "au", dial: "+61" },
+  { name: "Austria", code: "at", dial: "+43" },
+  { name: "Azerbaijan", code: "az", dial: "+994" },
+  { name: "Bahrain", code: "bh", dial: "+973" },
+  { name: "Bangladesh", code: "bd", dial: "+880" },
+  { name: "Belarus", code: "by", dial: "+375" },
+  { name: "Belgium", code: "be", dial: "+32" },
+  { name: "Bhutan", code: "bt", dial: "+975" },
+  { name: "Bolivia", code: "bo", dial: "+591" },
+  { name: "Brazil", code: "br", dial: "+55" },
+  { name: "Brunei", code: "bn", dial: "+673" },
+  { name: "Bulgaria", code: "bg", dial: "+359" },
+  { name: "Cambodia", code: "kh", dial: "+855" },
+  { name: "Cameroon", code: "cm", dial: "+237" },
+  { name: "Canada", code: "ca", dial: "+1" },
+  { name: "Chile", code: "cl", dial: "+56" },
+  { name: "China", code: "cn", dial: "+86" },
+  { name: "Colombia", code: "co", dial: "+57" },
+  { name: "Croatia", code: "hr", dial: "+385" },
+  { name: "Cyprus", code: "cy", dial: "+357" },
+  { name: "Czech Republic", code: "cz", dial: "+420" },
+  { name: "Denmark", code: "dk", dial: "+45" },
+  { name: "Egypt", code: "eg", dial: "+20" },
+  { name: "Estonia", code: "ee", dial: "+372" },
+  { name: "Ethiopia", code: "et", dial: "+251" },
+  { name: "Fiji", code: "fj", dial: "+679" },
+  { name: "Finland", code: "fi", dial: "+358" },
+  { name: "France", code: "fr", dial: "+33" },
+  { name: "Georgia", code: "ge", dial: "+995" },
+  { name: "Germany", code: "de", dial: "+49" },
+  { name: "Ghana", code: "gh", dial: "+233" },
+  { name: "Greece", code: "gr", dial: "+30" },
+  { name: "Hong Kong", code: "hk", dial: "+852" },
+  { name: "Hungary", code: "hu", dial: "+36" },
+  { name: "Iceland", code: "is", dial: "+354" },
+  { name: "Indonesia", code: "id", dial: "+62" },
+  { name: "Iran", code: "ir", dial: "+98" },
+  { name: "Iraq", code: "iq", dial: "+964" },
+  { name: "Ireland", code: "ie", dial: "+353" },
+  { name: "Israel", code: "il", dial: "+972" },
+  { name: "Italy", code: "it", dial: "+39" },
+  { name: "Jamaica", code: "jm", dial: "+1" },
+  { name: "Japan", code: "jp", dial: "+81" },
+  { name: "Jordan", code: "jo", dial: "+962" },
+  { name: "Kazakhstan", code: "kz", dial: "+7" },
+  { name: "Kenya", code: "ke", dial: "+254" },
+  { name: "Kuwait", code: "kw", dial: "+965" },
+  { name: "Kyrgyzstan", code: "kg", dial: "+996" },
+  { name: "Laos", code: "la", dial: "+856" },
+  { name: "Latvia", code: "lv", dial: "+371" },
+  { name: "Lebanon", code: "lb", dial: "+961" },
+  { name: "Libya", code: "ly", dial: "+218" },
+  { name: "Liechtenstein", code: "li", dial: "+423" },
+  { name: "Lithuania", code: "lt", dial: "+370" },
+  { name: "Luxembourg", code: "lu", dial: "+352" },
+  { name: "Macao", code: "mo", dial: "+853" },
+  { name: "Macedonia", code: "mk", dial: "+389" },
+  { name: "Madagascar", code: "mg", dial: "+261" },
+  { name: "Malawi", code: "mw", dial: "+265" },
+  { name: "Malaysia", code: "my", dial: "+60" },
+  { name: "Maldives", code: "mv", dial: "+960" },
+  { name: "Malta", code: "mt", dial: "+356" },
+  { name: "Mauritius", code: "mu", dial: "+230" },
+  { name: "Mexico", code: "mx", dial: "+52" },
+  { name: "Moldova", code: "md", dial: "+373" },
+  { name: "Monaco", code: "mc", dial: "+377" },
+  { name: "Mongolia", code: "mn", dial: "+976" },
+  { name: "Montenegro", code: "me", dial: "+382" },
+  { name: "Morocco", code: "ma", dial: "+212" },
+  { name: "Myanmar", code: "mm", dial: "+95" },
+  { name: "Namibia", code: "na", dial: "+264" },
+  { name: "Nepal", code: "np", dial: "+977" },
+  { name: "Netherlands", code: "nl", dial: "+31" },
+  { name: "New Zealand", code: "nz", dial: "+64" },
+  { name: "Nigeria", code: "ng", dial: "+234" },
+  { name: "North Korea", code: "kp", dial: "+850" },
+  { name: "Norway", code: "no", dial: "+47" },
+  { name: "Oman", code: "om", dial: "+968" },
+  { name: "Pakistan", code: "pk", dial: "+92" },
+  { name: "Panama", code: "pa", dial: "+507" },
+  { name: "Papua New Guinea", code: "pg", dial: "+675" },
+  { name: "Paraguay", code: "py", dial: "+595" },
+  { name: "Peru", code: "pe", dial: "+51" },
+  { name: "Philippines", code: "ph", dial: "+63" },
+  { name: "Poland", code: "pl", dial: "+48" },
+  { name: "Portugal", code: "pt", dial: "+351" },
+  { name: "Qatar", code: "qa", dial: "+974" },
+  { name: "Romania", code: "ro", dial: "+40" },
+  { name: "Russia", code: "ru", dial: "+7" },
+  { name: "Rwanda", code: "rw", dial: "+250" },
+  { name: "Saudi Arabia", code: "sa", dial: "+966" },
+  { name: "Senegal", code: "sn", dial: "+221" },
+  { name: "Serbia", code: "rs", dial: "+381" },
+  { name: "Seychelles", code: "sc", dial: "+248" },
+  { name: "Singapore", code: "sg", dial: "+65" },
+  { name: "Slovakia", code: "sk", dial: "+421" },
+  { name: "Slovenia", code: "si", dial: "+386" },
+  { name: "South Africa", code: "za", dial: "+27" },
+  { name: "South Korea", code: "kr", dial: "+82" },
+  { name: "Spain", code: "es", dial: "+34" },
+  { name: "Sri Lanka", code: "lk", dial: "+94" },
+  { name: "Sweden", code: "se", dial: "+46" },
+  { name: "Switzerland", code: "ch", dial: "+41" },
+  { name: "Taiwan", code: "tw", dial: "+886" },
+  { name: "Tajikistan", code: "tj", dial: "+992" },
+  { name: "Tanzania", code: "tz", dial: "+255" },
+  { name: "Thailand", code: "th", dial: "+66" },
+  { name: "Tunisia", code: "tn", dial: "+216" },
+  { name: "Turkey", code: "tr", dial: "+90" },
+  { name: "Turkmenistan", code: "tm", dial: "+993" },
+  { name: "Uganda", code: "ug", dial: "+256" },
+  { name: "Ukraine", code: "ua", dial: "+380" },
+  { name: "United Arab Emirates", code: "ae", dial: "+971" },
+  { name: "United Kingdom", code: "gb", dial: "+44" },
+  { name: "United States", code: "us", dial: "+1" },
+  { name: "Uruguay", code: "uy", dial: "+598" },
+  { name: "Uzbekistan", code: "uz", dial: "+998" },
+  { name: "Venezuela", code: "ve", dial: "+58" },
+  { name: "Vietnam", code: "vn", dial: "+84" },
+  { name: "Yemen", code: "ye", dial: "+967" },
+  { name: "Zambia", code: "zm", dial: "+260" },
+  { name: "Zimbabwe", code: "zw", dial: "+263" },
+];
 
+function DialCodeDropdown() {
+  const [open, setOpen] = useState(false);
+  const [selected, setSelected] = useState(COUNTRY_LIST[0]);
+
+  return (
+    <div className="relative w-[130px] shrink-0">
+      <div 
+        onClick={() => setOpen(!open)}
+        className="w-full h-full min-h-[44px] px-3 py-3 rounded-lg border-2 border-[#1E1B5C]/10 bg-[#EFF6FF] text-[13px] text-[#1E1B5C] cursor-pointer flex items-center justify-between"
+      >
+        <div className="flex items-center gap-2">
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img src={`https://flagcdn.com/w20/${selected.code}.png`} alt={selected.code} className="w-[18px] rounded-sm shadow-sm" />
+          <span className="font-medium">{selected.code.toUpperCase()} {selected.dial}</span>
+        </div>
+        <span className="text-[9px] text-[#1E1B5C]/60 ml-1">▼</span>
+      </div>
+      {open && (
+        <>
+          <div className="fixed inset-0 z-40" onClick={() => setOpen(false)} />
+          <div className="absolute top-full left-0 mt-1 w-56 max-h-56 overflow-y-auto bg-white border border-slate-200 shadow-2xl rounded-xl z-50 py-1">
+            {COUNTRY_LIST.map((c, i) => (
+              <div 
+                key={i} 
+                onClick={() => { setSelected(c); setOpen(false); }}
+                className="px-3 py-2.5 hover:bg-[#EFF6FF] cursor-pointer flex items-center gap-3 text-[13px] transition-colors"
+              >
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img src={`https://flagcdn.com/w20/${c.code}.png`} alt={c.code} className="w-[18px] rounded-sm shadow-sm shrink-0" />
+                <span className="font-semibold text-[#1E1B5C] w-14 shrink-0">{c.code.toUpperCase()} {c.dial}</span>
+                <span className="text-slate-500 text-[12px] truncate">{c.name}</span>
+              </div>
+            ))}
+          </div>
+        </>
+      )}
+    </div>
+  );
+}
 
 const filters = [
     "All Materials",
@@ -798,14 +969,12 @@ const { ref, inView } = useInView({
                 />
               </div>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
-                <div className="flex gap-2 w-full">
-                  <select className="w-20 px-2 py-3 rounded-lg border-2 border-[#1E1B5C]/10 bg-[#EFF6FF] text-[13px] focus:outline-none focus:border-[#FF6700] text-[#1E1B5C]">
-                    <option>🇮🇳</option>
-                  </select>
+                <div className="flex gap-2 w-full min-w-0">
+                  <DialCodeDropdown />
                   <input
                     type="tel"
                     placeholder="Phone Number *"
-                    className="flex-1 px-4 py-3 rounded-lg border-2 border-[#1E1B5C]/10 bg-[#EFF6FF] text-[13px] focus:outline-none focus:border-[#FF6700] transition-colors text-[#1E1B5C]"
+                    className="flex-1 min-w-0 px-4 py-3 rounded-lg border-2 border-[#1E1B5C]/10 bg-[#EFF6FF] text-[13px] focus:outline-none focus:border-[#FF6700] transition-colors text-[#1E1B5C]"
                   />
                 </div>
                 <input
@@ -828,7 +997,11 @@ const { ref, inView } = useInView({
               </div>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
                 <select className="w-full px-4 py-3 rounded-lg border-2 border-[#1E1B5C]/10 bg-[#EFF6FF] text-[13px] focus:outline-none focus:border-[#FF6700] text-[#1E1B5C]">
-                  <option>Select Country</option>
+                  <option value="">Select Country</option>
+                  {COUNTRY_LIST.map((c, i) => (
+                    <option key={i} value={c.name}>{c.name}</option>
+                  ))}
+                  <option value="Other">Other</option>
                 </select>
                 <input
                   type="text"
@@ -843,7 +1016,17 @@ const { ref, inView } = useInView({
               />
 
               <select className="w-full px-4 py-3 rounded-lg border-2 border-[#1E1B5C]/10 bg-[#EFF6FF] text-[13px] focus:outline-none focus:border-[#FF6700] text-[#1E1B5C]">
-                <option>Select Service Required</option>
+                <option value="">Select Service Required</option>
+                <option value="Mechanical Testing">Mechanical Testing</option>
+                <option value="Chemical Testing">Chemical Testing</option>
+                <option value="NDT Services">NDT Services</option>
+                <option value="Cement & Concrete Testing">Cement & Concrete Testing</option>
+                <option value="Steel & Metal Testing">Steel & Metal Testing</option>
+                <option value="Geotextile Testing">Geotextile Testing</option>
+                <option value="Water Testing">Water Testing</option>
+                <option value="Coal Testing">Coal Testing</option>
+                <option value="Pipe Testing">Pipe Testing</option>
+                <option value="Other">Other</option>
               </select>
 
               <div className="text-[11px] font-bold text-[#1E1B5C]/50 uppercase tracking-[0.5px]">
