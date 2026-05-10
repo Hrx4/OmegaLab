@@ -49,7 +49,7 @@ const NAV_ITEMS = [
   },
   { name: 'LAB TOUR', path: '/lab-tour' },
   { name: 'OUR CLIENTS', path: '/our-clients' },
-  { name: 'CONTACT US', path: '#contact' },
+  { name: 'CONTACT US', path: '/#contact' },
   { name: 'CAREER', path: '/career' },
 ];
 const NABL_BADGES = [
@@ -97,7 +97,7 @@ export default function Navbar() {
               <img src="https://cdn-icons-png.flaticon.com/128/9068/9068642.png" alt="Email" className="w-4 h-4 object-contain" />
               <span className="text-[#e0e0e0]">omegalabinfo98@gmail.com</span>
             </div>
-            <Link href="#contact" className="bg-[#FF6700] hover:bg-orange-600 text-white font-black h-7 px-5 rounded-full flex items-center justify-center uppercase text-[10px] md:text-[11px] tracking-wider transition-colors shadow-sm ml-2">
+            <Link href="/#contact" className="bg-[#FF6700] hover:bg-orange-600 text-white font-black h-7 px-5 rounded-full flex items-center justify-center uppercase text-[10px] md:text-[11px] tracking-wider transition-colors shadow-sm ml-2">
               Contact Us
             </Link>
           </div>
