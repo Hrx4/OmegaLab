@@ -32,13 +32,14 @@ const LABS_LEFT = [
   { name: "Kolkata\nLab-1", iframemaps: "https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d29497.216140629127!2d88.3171!3d22.460921!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a027af369b75e1f%3A0xbbe493a0716b324a!2sOmegalabTesting%20Services%20Pvt.%20Ltd.!5e0!3m2!1sen!2sus!4v1778321533839!5m2!1sen!2sus" 
     , maps:"https://maps.app.goo.gl/eMGgb9J1VZSSbaBK8"
   },
-  { name: "Kolkata\nLab-2", iframemaps: "#", maps: "#" },
-  { name: "Siliguri\nLab", iframemaps: "#", maps: "#" },
+  { name: "Kolkata\nLab-2", iframemaps: "https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d29497.216140629127!2d88.3171!3d22.460921!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a027af369b75e1f%3A0xbbe493a0716b324a!2sOmegalabTesting%20Services%20Pvt.%20Ltd.!5e0!3m2!1sen!2sus!4v1778321533839!5m2!1sen!2sus" 
+    , maps:"https://maps.app.goo.gl/eMGgb9J1VZSSbaBK8" },
+  { name: "Siliguri\nLab", iframemaps: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3562.809596710921!2d88.417294!3d26.7504515!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39e44132283a6a41%3A0xfef4e2e3d4224f5d!2sOMEGALAB%20TESTING%20SERVICES%20PRIVATE%20limited!5e0!3m2!1sen!2sin!4v1778397386760!5m2!1sen!2sin", maps: "http://google.com/maps/place/OMEGALAB+TESTING+SERVICES+PRIVATE+limited/@26.7504515,88.417294,17z/data=!3m1!4b1!4m6!3m5!1s0x39e44132283a6a41:0xfef4e2e3d4224f5d!8m2!3d26.7504515!4d88.417294!16s%2Fg%2F11vcw99x0r!18m1!1e1?entry=ttu&g_ep=EgoyMDI2MDUwNi4wIKXMDSoASAFQAw%3D%3D" },
 ];
 
 const LABS_RIGHT = [
-  { name: "Ranchi\nLab", iframemaps: "#", maps: "#" },
-  { name: "Odisha\nLab", iframemaps: "#", maps: "#" },
+  { name: "Ranchi\nLab", iframemaps: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3661.729622081228!2d85.3516901!3d23.397996600000003!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39f4e100695836a9%3A0xbdb80bb1c90a4526!2sOmegalab%20Testing%20Services%20Pvt.%20Ltd!5e0!3m2!1sen!2sin!4v1778397469647!5m2!1sen!2sin", maps: "https://www.google.com/maps/place/Omegalab+Testing+Services+Pvt.+Ltd/@23.3979966,85.3516901,17z/data=!3m1!4b1!4m6!3m5!1s0x39f4e100695836a9:0xbdb80bb1c90a4526!8m2!3d23.3979966!4d85.3516901!16s%2Fg%2F11w3fffslk!18m1!1e1?entry=ttu&g_ep=EgoyMDI2MDUwNi4wIKXMDSoASAFQAw%3D%3D" },
+  { name: "Odisha\nLab", iframemaps: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3744.4950868494725!2d85.8539767!3d20.196737900000002!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a19a1006376e599%3A0x20539cbf7a5c464d!2sOMEGALAB%20TESTING%20SERVICES%20PVT.LTD.!5e0!3m2!1sen!2sin!4v1778397506248!5m2!1sen!2sin", maps: "https://www.google.com/maps/place/OMEGALAB+TESTING+SERVICES+PVT.LTD./@20.1967379,85.8539767,17z/data=!3m1!4b1!4m6!3m5!1s0x3a19a1006376e599:0x20539cbf7a5c464d!8m2!3d20.1967379!4d85.8539767!16s%2Fg%2F11yhjkbrl9!18m1!1e1?entry=ttu&g_ep=EgoyMDI2MDUwNi4wIKXMDSoASAFQAw%3D%3D" },
 ];
 
 const SOCIAL = [
@@ -46,6 +47,14 @@ const SOCIAL = [
   { label: "LinkedIn", icon: <img src="https://cdn-icons-png.flaticon.com/128/145/145807.png" alt="LinkedIn" className="w-full h-full object-contain hover:scale-110 transition-transform duration-300" /> },
   { label: "Instagram", icon: <img src="https://cdn-icons-png.flaticon.com/128/1409/1409946.png" alt="Instagram" className="w-full h-full object-contain hover:scale-110 transition-transform duration-300" /> },
   { label: "YouTube", icon: <img src="https://cdn-icons-png.flaticon.com/128/1384/1384060.png" alt="YouTube" className="w-full h-full object-contain hover:scale-110 transition-transform duration-300" /> },
+];
+
+const NABL_BADGES = [
+  { id: 'TC-11935', url: 'https://res.cloudinary.com/de4cnpfm1/image/upload/v1778245989/TC11935_tsqh9z.webp' },
+  { id: 'TC-13401', url: 'https://res.cloudinary.com/de4cnpfm1/image/upload/v1778245987/TC13401_axis5q.webp' },
+  { id: 'TC-15509', url: 'https://res.cloudinary.com/de4cnpfm1/image/upload/v1778245987/TC15509_dx2lua.webp' },
+  { id: 'TC-16480', url: 'https://res.cloudinary.com/de4cnpfm1/image/upload/v1778245989/TC16480_kmsows.webp' },
+  { id: 'TC-17671', url: 'https://res.cloudinary.com/de4cnpfm1/image/upload/v1778245989/TC17671_ghwfuo.webp' },
 ];
 
 function MapCard({ name, maps , iframemaps }: { name: string; maps: string; iframemaps: string }) {
@@ -161,13 +170,14 @@ export default function Footer() {
                 </div>
               </div>
 
-              <div className="mb-6 flex flex-wrap gap-2">
-                {[1, 2, 3, 4].map((item) => (
+
+              <div className="mb-6 flex flex-wrap ">
+                {NABL_BADGES.map((item , index) => (
                   <div
-                    key={item}
-                    className="flex h-[28px] w-[28px] items-center justify-center rounded-full border border-white/20 bg-white/10 text-[10px] text-white/50 shrink-0"
+                    key={item.id}
+                    className="flex h-[44px] w-[44px] items-center justify-center text-[10px] text-white/50 shrink-0"
                   >
-                    ★
+                    <img src={item.url} alt={`NABL Badge ${item.id}`} className="w-full h-full object-contain" />
                   </div>
                 ))}
               </div>
