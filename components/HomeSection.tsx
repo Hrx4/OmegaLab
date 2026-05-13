@@ -839,7 +839,7 @@ const { ref, inView } = useInView({
             Trusted By Industry Leaders
           </h2>
           <p className="text-[13px] md:text-[16px] text-[#1E1B5C]/50 max-w-2xl mx-auto">
-            Providing reliable testing and calibration to 500+ top enterprises
+            Providing reliable testing and calibration to 1000+ top enterprises
           </p>
           <div className="w-[60px] h-[4px] bg-[#FF6700] mx-auto mt-3 rounded-full" />
         </div>

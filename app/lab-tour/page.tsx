@@ -11,15 +11,15 @@ export default function LabTourPage() {
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
-          className="font-oswald font-bold text-[40px] md:text-[56px] text-[#FF6700] mb-4"
+          className="font-oswald font-black text-[32px] md:text-[56px] text-[#1E1B5C] mb-4 uppercase tracking-tight"
         >
-          Inside OmegaLab
+          Inside <span className="text-[#FF6700]">OmegaLab</span>
         </motion.h1>
         <motion.p
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 0.6, delay: 0.3 }}
-          className="text-[17px] md:text-[19px] text-[#222222] leading-relaxed"
+          className="text-slate-500 text-[15px] md:text-[17px] leading-relaxed max-w-2xl mx-auto"
         >
           Explore OmegaLab&apos;s infrastructure through guided video tours of our laboratories. From advanced equipment to specialized testing divisions, our facilities are designed to deliver accuracy, efficiency, and compliance across all operations.
         </motion.p>
@@ -31,10 +31,10 @@ export default function LabTourPage() {
 
         {/* Sub Header */}
         <div className="text-center mb-12">
-          <h2 className="text-[#1E1B5C] font-oswald text-[32px] md:text-[40px] leading-tight mb-2">
+          <h2 className="text-[#1E1B5C] font-oswald font-black text-[28px] md:text-[40px] uppercase mb-3 tracking-tight">
             Kolkata Lab-1 & Lab-2 Tour
           </h2>
-          <p className="text-[#1E1B5C] text-[17px] md:text-[19px]">
+          <p className="text-slate-500 text-[15px] md:text-[17px] leading-relaxed max-w-2xl mx-auto">
             Inside our Kolkata laboratories—built for precision and performance.
           </p>
         </div>

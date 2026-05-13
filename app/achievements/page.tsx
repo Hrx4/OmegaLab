@@ -51,7 +51,7 @@ const MILESTONES = [
   {
     year: "2025",
     title: "Industry Leadership",
-    description: "Acknowledged as a premier testing laboratory trusted by over 500+ top enterprises and government defense organizations.",
+    description: "Acknowledged as a premier testing laboratory trusted by over 1000+ top enterprises and government defense organizations.",
     icon: Crown,
     color: "from-orange-400 to-[#FF6700]"
   }
