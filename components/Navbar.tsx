@@ -129,58 +129,82 @@ export default function Navbar() {
     <>
       <header className="w-full font-sans flex flex-col relative z-[1000] bg-[#1E1B5C] transition-all">
         {/* Top Utility Bar */}
-        <div className="w-full bg-[#0e0b30] text-white pt-2 pb-1.5 md:py-1.5 px-4 md:px-8 flex flex-col md:flex-row justify-between items-center text-[10px] md:text-xs relative z-[1001]">
-          <div className="flex items-center gap-3 mb-2 md:mb-0">
-            <span className="text-white/80 font-bold uppercase tracking-wider">
-              Follow Us:
-            </span>
-            <div className="flex gap-2">
-              <Link
-                href="#"
-                className="w-6 h-6 flex items-center justify-center hover:opacity-80 transition-opacity"
-              >
+        <div className="w-full bg-[#0e0b30] text-white relative z-[1001]">
+
+          {/* ── Mobile Layout ── */}
+          <div className="flex md:hidden items-center justify-between px-3 py-2 gap-2">
+            {/* Social Icons */}
+            <div className="flex items-center gap-1.5">
+              <Link href="https://www.facebook.com/p/Omegalab-Testing-Services-PVt-Ltd-61579482957218/" target="_blank" aria-label="Facebook" className="w-7 h-7 rounded-full bg-white/10 flex items-center justify-center hover:bg-white/20 transition-colors p-1.5">
                 {ICONS.Facebook}
               </Link>
-              <Link
-                href="#"
-                className="w-6 h-6 flex items-center justify-center hover:opacity-80 transition-opacity"
-              >
+              <Link href="https://www.instagram.com/omegalabtesting" target="_blank" aria-label="Instagram" className="w-7 h-7 rounded-full bg-white/10 flex items-center justify-center hover:bg-white/20 transition-colors p-1.5">
                 {ICONS.Instagram}
               </Link>
-              <Link
-                href="#"
-                className="w-6 h-6 flex items-center justify-center hover:opacity-80 transition-opacity"
-              >
+              <Link href="https://www.linkedin.com/company/omegalab-testing-services-pvt-ltd" target="_blank" aria-label="LinkedIn" className="w-7 h-7 rounded-full bg-white/10 flex items-center justify-center hover:bg-white/20 transition-colors p-1.5">
                 {ICONS.LinkedIn}
               </Link>
-              <Link
-                href="#"
-                className="w-6 h-6 flex items-center justify-center hover:opacity-80 transition-opacity"
-              >
+              <Link href="https://www.youtube.com/@omegalabtestingservices" target="_blank" aria-label="YouTube" className="w-7 h-7 rounded-full bg-white/10 flex items-center justify-center hover:bg-white/20 transition-colors p-1.5">
                 {ICONS.YouTube}
               </Link>
             </div>
-          </div>
-          <div className="flex flex-wrap justify-center items-center gap-4 md:gap-6">
-            <div className="flex items-center gap-1.5 text-[#c14d9b] font-medium">
-              <Phone size={14} className="text-[#c14d9b]" fill="currentColor" />
-              <span className="text-[#e0e0e0]">033 2497 1903</span>
+
+            {/* Right side: phone + contact btn */}
+            <div className="flex items-center gap-2">
+              <a href="tel:03324971903" className="flex items-center gap-1 text-[10px] text-[#e0e0e0] font-medium">
+                <Phone size={11} className="text-[#FF6700]" fill="currentColor" />
+                <span>033 2497 1903</span>
+              </a>
+              <Link
+                href="/#contact"
+                className="bg-[#FF6700] hover:bg-orange-500 text-white font-bold h-6 px-3 rounded-full flex items-center justify-center uppercase text-[9px] tracking-wider transition-colors"
+              >
+                Contact
+              </Link>
             </div>
-            <div className="flex items-center gap-1.5 font-medium">
-              <img
-                src="https://cdn-icons-png.flaticon.com/128/9068/9068642.png"
-                alt="Email"
-                className="w-4 h-4 object-contain"
-              />
-              <span className="text-[#e0e0e0]">omegalabinfo98@gmail.com</span>
-            </div>
-            <Link
-              href="/#contact"
-              className="bg-[#FF6700] hover:bg-orange-600 text-white font-black h-7 px-5 rounded-full flex items-center justify-center uppercase text-[10px] md:text-[11px] tracking-wider transition-colors shadow-sm ml-2"
-            >
-              Contact Us
-            </Link>
           </div>
+
+          {/* ── Desktop Layout ── */}
+          <div className="hidden md:flex items-center justify-between px-6 lg:px-8 py-1.5 text-xs">
+            {/* Left: Follow Us + Icons */}
+            <div className="flex items-center gap-3">
+              <span className="text-white/60 font-semibold uppercase tracking-widest text-[10px]">Follow Us:</span>
+              <div className="flex items-center gap-1.5">
+                <Link href="https://www.facebook.com/p/Omegalab-Testing-Services-PVt-Ltd-61579482957218/" target="_blank" aria-label="Facebook" className="w-6 h-6 flex items-center justify-center hover:opacity-80 transition-opacity">
+                  {ICONS.Facebook}
+                </Link>
+                <Link href="https://www.instagram.com/omegalabtesting" target="_blank" aria-label="Instagram" className="w-6 h-6 flex items-center justify-center hover:opacity-80 transition-opacity">
+                  {ICONS.Instagram}
+                </Link>
+                <Link href="https://www.linkedin.com/company/omegalab-testing-services-pvt-ltd" target="_blank" aria-label="LinkedIn" className="w-6 h-6 flex items-center justify-center hover:opacity-80 transition-opacity">
+                  {ICONS.LinkedIn}
+                </Link>
+                <Link href="https://www.youtube.com/@omegalabtestingservices" target="_blank" aria-label="YouTube" className="w-6 h-6 flex items-center justify-center hover:opacity-80 transition-opacity">
+                  {ICONS.YouTube}
+                </Link>
+              </div>
+            </div>
+
+            {/* Right: Phone, Email, CTA */}
+            <div className="flex items-center gap-5">
+              <a href="tel:03324971903" className="flex items-center gap-1.5 text-[#e0e0e0] font-medium hover:text-white transition-colors">
+                <Phone size={13} className="text-[#FF6700]" fill="currentColor" />
+                <span>033 2497 1903</span>
+              </a>
+              <span className="text-white/20">|</span>
+              <a href="mailto:omegalabinfo98@gmail.com" className="flex items-center gap-1.5 text-[#e0e0e0] font-medium hover:text-white transition-colors">
+                <Mail size={13} className="text-[#FF6700]" />
+                <span>omegalabinfo98@gmail.com</span>
+              </a>
+              <Link
+                href="/#contact"
+                className="bg-[#FF6700] hover:bg-orange-500 text-white font-black h-7 px-5 rounded-full flex items-center justify-center uppercase text-[10px] tracking-wider transition-colors shadow-md"
+              >
+                Contact Us
+              </Link>
+            </div>
+          </div>
+
         </div>
       </header>
 
