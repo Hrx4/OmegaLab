@@ -181,8 +181,8 @@ export default function Footer() {
               <div className="flex gap-3">
                 {[
                   { icon: Facebook, href: "https://www.facebook.com/p/Omegalab-Testing-Services-PVt-Ltd-61579482957218/" },
-                  { icon: Linkedin, href: "https://www.linkedin.com/company/omegalab-testing-services-pvt-ltd" },
-                  { icon: Instagram, href: "https://www.instagram.com/omegalabtesting" },
+                  { icon: Instagram, href: "https://www.instagram.com/omegalabtesting/?hl=en" },
+                  { icon: Linkedin, href: "https://www.linkedin.com/company/omegalab-testing-services-pvt-ltd?originalSubdomain=in" },
                   { icon: Youtube, href: "https://www.youtube.com/@omegalabtestingservices" },
                 ].map((social, i) => {
                   const Icon = social.icon;
