@@ -129,57 +129,80 @@ export default function Navbar() {
     <>
       <header className="w-full font-sans flex flex-col relative z-[1000] bg-[#1E1B5C] transition-all">
         {/* Top Utility Bar */}
-        <div className="w-full bg-[#0e0b30] text-white pt-2 pb-1.5 md:py-1.5 px-4 md:px-8 flex flex-col md:flex-row justify-between items-center text-[10px] md:text-xs relative z-[1001]">
-          <div className="flex items-center gap-3 mb-2 md:mb-0">
-            <span className="text-white/80 font-bold uppercase tracking-wider">
-              Follow Us:
-            </span>
-            <div className="flex gap-2">
-              <Link
-                href="#"
-                className="w-6 h-6 flex items-center justify-center hover:opacity-80 transition-opacity"
-              >
-                {ICONS.Facebook}
-              </Link>
-              <Link
-                href="#"
-                className="w-6 h-6 flex items-center justify-center hover:opacity-80 transition-opacity"
-              >
-                {ICONS.Instagram}
-              </Link>
-              <Link
-                href="#"
-                className="w-6 h-6 flex items-center justify-center hover:opacity-80 transition-opacity"
-              >
-                {ICONS.LinkedIn}
-              </Link>
-              <Link
-                href="#"
-                className="w-6 h-6 flex items-center justify-center hover:opacity-80 transition-opacity"
-              >
-                {ICONS.YouTube}
-              </Link>
+        <div className="w-full bg-[#0a0823] text-white/90 border-b border-white/[0.08] relative z-[1001] font-sans">
+          <div className="max-w-[1920px] mx-auto px-4 md:px-8">
+            {/* Desktop and Tablet Landscape Layout (>= 1024px) */}
+            <div className="hidden lg:flex justify-between items-center py-2 text-xs">
+              {/* Left: Socials */}
+              <div className="flex items-center gap-3">
+                <span className="text-white/50 text-[10px] uppercase font-bold tracking-widest">Follow Us:</span>
+                <div className="flex gap-3.5">
+                  <a href="https://www.facebook.com/p/Omegalab-Testing-Services-PVt-Ltd-61579482957218/" target="_blank" rel="noopener noreferrer" className="w-5 h-5 flex items-center justify-center transition-all duration-300 hover:scale-110">
+                    {ICONS.Facebook}
+                  </a>
+                  <a href="https://www.instagram.com/omegalabtesting/?hl=en" target="_blank" rel="noopener noreferrer" className="w-5 h-5 flex items-center justify-center transition-all duration-300 hover:scale-110">
+                    {ICONS.Instagram}
+                  </a>
+                  <a href="https://www.linkedin.com/company/omegalab-testing-services-pvt-ltd?originalSubdomain=in" target="_blank" rel="noopener noreferrer" className="w-5 h-5 flex items-center justify-center transition-all duration-300 hover:scale-110">
+                    {ICONS.LinkedIn}
+                  </a>
+                  <a href="https://www.youtube.com/@omegalabtestingservices" target="_blank" rel="noopener noreferrer" className="w-5 h-5 flex items-center justify-center transition-all duration-300 hover:scale-110">
+                    {ICONS.YouTube}
+                  </a>
+                </div>
+              </div>
+
+              {/* Right: Contact & Button */}
+              <div className="flex items-center gap-6">
+                <a href="tel:03324971903" className="flex items-center gap-2 group transition-all">
+                  <div className="bg-white/5 p-1.5 rounded-full group-hover:bg-[#FF6700]/10 transition-all">
+                    <Phone size={13} className="text-[#FF6700]" fill="currentColor" />
+                  </div>
+                  <span className="text-white/80 group-hover:text-white font-medium transition-colors">033 2497 1903</span>
+                </a>
+
+                <div className="w-[1px] h-3 bg-white/10"></div>
+
+                <a href="mailto:omegalabinfo98@gmail.com" className="flex items-center gap-2 group transition-all">
+                  <div className="bg-white/5 p-1.5 rounded-full group-hover:bg-[#FF6700]/10 transition-all">
+                    <Mail size={13} className="text-[#FF6700]" />
+                  </div>
+                  <span className="text-white/80 group-hover:text-white font-medium transition-colors">omegalabinfo98@gmail.com</span>
+                </a>
+
+                <Link
+                  href="/#contact"
+                  className="bg-gradient-to-r from-[#FF6700] to-[#ff8c3a] hover:from-[#e65c00] hover:to-[#ff7a22] text-white font-bold h-8 px-5 rounded-full flex items-center justify-center uppercase text-[10px] tracking-wider transition-all duration-300 hover:shadow-[0_0_12px_rgba(255,103,0,0.4)]"
+                >
+                  Contact Us
+                </Link>
+              </div>
             </div>
-          </div>
-          <div className="flex flex-wrap justify-center items-center gap-4 md:gap-6">
-            <div className="flex items-center gap-1.5 text-[#c14d9b] font-medium">
-              <Phone size={14} className="text-[#c14d9b]" fill="currentColor" />
-              <span className="text-[#e0e0e0]">033 2497 1903</span>
+
+            {/* Mobile and Tablet Portrait Layout (< 1024px) */}
+            <div className="lg:hidden flex justify-between items-center py-2.5 text-xs">
+              {/* Left: Click-to-Call Phone Action */}
+              <a href="tel:03324971903" className="flex items-center gap-1.5 text-white/90 active:scale-95 transition-transform">
+                <Phone size={12} className="text-[#FF6700]" fill="currentColor" />
+                <span className="font-bold tracking-wide">033 2497 1903</span>
+              </a>
+
+              {/* Right: Clean Social Icons */}
+              <div className="flex items-center gap-3">
+                <a href="https://www.facebook.com/p/Omegalab-Testing-Services-PVt-Ltd-61579482957218/" target="_blank" rel="noopener noreferrer" className="w-4 h-4 flex items-center justify-center">
+                  {ICONS.Facebook}
+                </a>
+                <a href="https://www.instagram.com/omegalabtesting/?hl=en" target="_blank" rel="noopener noreferrer" className="w-4 h-4 flex items-center justify-center">
+                  {ICONS.Instagram}
+                </a>
+                <a href="https://www.linkedin.com/company/omegalab-testing-services-pvt-ltd?originalSubdomain=in" target="_blank" rel="noopener noreferrer" className="w-4 h-4 flex items-center justify-center">
+                  {ICONS.LinkedIn}
+                </a>
+                <a href="https://www.youtube.com/@omegalabtestingservices" target="_blank" rel="noopener noreferrer" className="w-4 h-4 flex items-center justify-center">
+                  {ICONS.YouTube}
+                </a>
+              </div>
             </div>
-            <div className="flex items-center gap-1.5 font-medium">
-              <img
-                src="https://cdn-icons-png.flaticon.com/128/9068/9068642.png"
-                alt="Email"
-                className="w-4 h-4 object-contain"
-              />
-              <span className="text-[#e0e0e0]">omegalabinfo98@gmail.com</span>
-            </div>
-            <Link
-              href="/#contact"
-              className="bg-[#FF6700] hover:bg-orange-600 text-white font-black h-7 px-5 rounded-full flex items-center justify-center uppercase text-[10px] md:text-[11px] tracking-wider transition-colors shadow-sm ml-2"
-            >
-              Contact Us
-            </Link>
           </div>
         </div>
       </header>

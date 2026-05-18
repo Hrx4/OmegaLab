@@ -5,7 +5,6 @@ import {
   Facebook,
   Linkedin,
   Instagram,
-  Twitter,
   Youtube,
   MapPin,
   Mail,
@@ -181,11 +180,10 @@ export default function Footer() {
               </h4>
               <div className="flex gap-3">
                 {[
-                  { icon: Facebook, href: "#" },
-                  { icon: Twitter, href: "#" },
-                  { icon: Linkedin, href: "#" },
-                  { icon: Instagram, href: "#" },
-                  { icon: Youtube, href: "#" },
+                  { icon: Facebook, href: "https://www.facebook.com/p/Omegalab-Testing-Services-PVt-Ltd-61579482957218/" },
+                  { icon: Instagram, href: "https://www.instagram.com/omegalabtesting/?hl=en" },
+                  { icon: Linkedin, href: "https://www.linkedin.com/company/omegalab-testing-services-pvt-ltd?originalSubdomain=in" },
+                  { icon: Youtube, href: "https://www.youtube.com/@omegalabtestingservices" },
                 ].map((social, i) => {
                   const Icon = social.icon;
                   return (
@@ -194,6 +192,8 @@ export default function Footer() {
                       whileTap={{ scale: 0.9 }}
                       key={i}
                       href={social.href}
+                      target="_blank"
+                      rel="noopener noreferrer"
                       className="w-11 h-11 rounded-full bg-gradient-to-br from-white/10 to-white/5 border border-white/10 flex items-center justify-center text-white/70 hover:from-[#FF6700] hover:to-orange-600 hover:text-white hover:border-[#FF6700] transition-all duration-300 shadow-lg"
                     >
                       <Icon size={20} />

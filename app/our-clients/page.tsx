@@ -65,7 +65,7 @@ export default function OurClientsPage() {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 text-center border-b border-slate-100 pb-12 mb-12">
             <div>
               <div className="text-[#FF6700] font-black text-[40px] md:text-[56px] font-oswald leading-none mb-2">
-                500+
+                1000+
               </div>
               <div className="text-[#1E1B5C] font-bold uppercase tracking-wider text-sm">
                 Enterprise Clients
@@ -73,7 +73,7 @@ export default function OurClientsPage() {
             </div>
             <div className="md:border-l md:border-r border-slate-100">
               <div className="text-[#FF6700] font-black text-[40px] md:text-[56px] font-oswald leading-none mb-2">
-                15+
+                25+
               </div>
               <div className="text-[#1E1B5C] font-bold uppercase tracking-wider text-sm">
                 Years of Trust
