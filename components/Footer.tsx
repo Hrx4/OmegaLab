@@ -17,6 +17,19 @@ import Image from "next/image";
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "motion/react";
 
+const WhatsApp = ({ size = 20 }: { size?: number }) => (
+  <svg
+    width={size}
+    height={size}
+    viewBox="0 0 32 32"
+    xmlns="http://www.w3.org/2000/svg"
+    fill="currentColor"
+  >
+    <path d="M16.01 3C8.83 3 3 8.75 3 15.84c0 2.27.61 4.49 1.77 6.43L3 29l6.92-1.77A13.16 13.16 0 0 0 16.01 28C23.18 28 29 22.25 29 15.84S23.18 3 16.01 3Zm0 22.78c-1.9 0-3.77-.5-5.41-1.45l-.39-.23-4.1 1.05 1.1-3.96-.26-.41a10.7 10.7 0 0 1-1.63-5.67c0-5.95 4.89-10.8 10.89-10.8 2.9 0 5.63 1.12 7.68 3.15a10.67 10.67 0 0 1 3.2 7.65c-.01 5.95-4.89 10.67-11.08 10.67Z" />
+    <path d="M21.95 18.4c-.32-.16-1.9-.93-2.2-1.04-.29-.11-.51-.16-.72.16-.21.32-.83 1.04-1.02 1.25-.19.21-.38.24-.7.08-.32-.16-1.36-.5-2.59-1.6-.96-.85-1.6-1.91-1.79-2.23-.19-.32-.02-.5.14-.66.15-.15.32-.38.48-.56.16-.19.21-.32.32-.53.11-.21.05-.4-.03-.56-.08-.16-.72-1.72-.99-2.36-.26-.62-.53-.54-.72-.55h-.62c-.21 0-.56.08-.85.4-.29.32-1.12 1.09-1.12 2.66s1.15 3.08 1.31 3.29c.16.21 2.26 3.44 5.48 4.82.77.33 1.37.53 1.84.68.77.25 1.47.21 2.02.13.62-.09 1.9-.77 2.17-1.52.27-.75.27-1.39.19-1.52-.08-.13-.29-.21-.61-.37Z" />
+  </svg>
+);
+
 const LOCATIONS = [
   {
     name: "Kolkata Lab-1",
@@ -135,7 +148,7 @@ export default function Footer() {
           >
             <div className="flex flex-col border-b border-white/20 pb-8 relative group">
               <div>
-                <div className="mb-5 flex items-center gap-3 min-w-0">
+                <Link href="/" className="mb-5 flex items-center gap-3 min-w-0 font-sans cursor-pointer">
                   <div className="w-[40px] h-[40px] md:w-[55px] md:h-[55px] xl:w-[68px] xl:h-[68px] bg-white rounded-2xl shadow-lg shrink-0 overflow-hidden flex items-center justify-center">
                     <Image
                       src={LOGO}
@@ -145,7 +158,7 @@ export default function Footer() {
                       className="object-contain w-[30px] h-[30px] md:w-[44px] md:h-[44px] xl:w-[56px] xl:h-[56px]"
                     />
                   </div>
-                  <div className="min-w-0 leading-tight overflow-hidden">
+                  <div className="min-w-0 leading-tight overflow-hidden font-sans">
                     <div className="text-[20px] sm:text-[24px] font-extrabold tracking-tight text-white break-words sm:truncate">
                       OMEGA<span className="text-[#63B7F6]">LAB</span>
                     </div>
@@ -153,7 +166,7 @@ export default function Footer() {
                       Testing Services Private Limited
                     </div>
                   </div>
-                </div>
+                </Link>
                 <div className="mb-6 flex flex-wrap ">
                   {NABL_BADGES.map((item, index) => (
                     <a
@@ -184,6 +197,7 @@ export default function Footer() {
                   { icon: Instagram, href: "https://www.instagram.com/omegalabtesting/?hl=en" },
                   { icon: Linkedin, href: "https://www.linkedin.com/company/omegalab-testing-services-pvt-ltd?originalSubdomain=in" },
                   { icon: Youtube, href: "https://www.youtube.com/@omegalabtestingservices" },
+                  { icon: WhatsApp, href: "#" },
                 ].map((social, i) => {
                   const Icon = social.icon;
                   return (

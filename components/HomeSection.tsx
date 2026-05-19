@@ -460,7 +460,7 @@ const { ref, inView } = useInView({
                 { icon: "👥", text: "100+ Technical Experts" },
                 { icon: "🔬", text: "ISO/IEC 17025:2017 Compliant" },
                 { icon: "📍", text: "Eastern & NE India Coverage" },
-                { icon: "🎯", text: "1000+ Testing Parameters Target 2026" },
+                { icon: "🎯", text: "LIMS supported System" },
               ].map((item, idx) => (
                 <div
                   key={idx}
