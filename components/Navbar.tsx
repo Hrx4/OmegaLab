@@ -35,6 +35,13 @@ const ICONS = {
       className="w-full h-full object-contain hover:scale-110 transition-transform duration-300"
     />
   ),
+  WhatsApp: (
+    <img
+      src="https://cdn-icons-png.flaticon.com/128/733/733585.png"
+      alt="WhatsApp"
+      className="w-full h-full object-contain hover:scale-110 transition-transform duration-300"
+    />
+  ),
 };
 
 const LOGO =
@@ -46,9 +53,12 @@ const NAV_ITEMS = [
     name: "ABOUT US",
     path: "#",
     dropdown: [
-      { name: "Achievement", path: "/achievements" },
-      { name: "External Visit", path: "/external-visit" },
+      { name: "Laboratory Details", path: "/laboratory-details" },
+      { name: "Laboratory Policy & Objective", path: "/laboratory-policy" },
+      { name: "Our Vision & Mission", path: "/vision-mission" },
       { name: "Organizational Chart", path: "/organizational-chart" },
+      { name: "Activity", path: "/activity" },
+      { name: "Achievements", path: "/achievements" },
     ],
   },
   { name: "ACCREDIATION", path: "/accreditation" },
@@ -86,26 +96,31 @@ const NAV_ITEMS = [
 const NABL_BADGES = [
   {
     id: "TC-11935",
+    branch: "Kolkata-1",
     url: "https://res.cloudinary.com/de4cnpfm1/image/upload/v1778245989/TC11935_tsqh9z.webp",
     link: "https://nablwp.qci.org.in/CertificateScopenew?x=eOcz5t8vhPRBC9udGS4tiw==&src=P",
   },
   {
     id: "TC-13401",
+    branch: "Kolkata-2",
     url: "https://res.cloudinary.com/de4cnpfm1/image/upload/v1778245987/TC13401_axis5q.webp",
     link: "https://nablwp.qci.org.in/CertificateScopenew?x=eOcz5t8vhPRBC9udGS4tiw==&src=P",
   },
   {
     id: "TC-15509",
+    branch: "Siliguri",
     url: "https://res.cloudinary.com/de4cnpfm1/image/upload/v1778245987/TC15509_dx2lua.webp",
     link: "https://nablwp.qci.org.in/CertificateScopenew?x=j6k9iq1uw4Bg9VLeGZxZMg==&src=P",
   },
   {
     id: "TC-16480",
+    branch: "Ranchi",
     url: "https://res.cloudinary.com/de4cnpfm1/image/upload/v1778245989/TC16480_kmsows.webp",
     link: "https://nablwp.qci.org.in/CertificateScopenew?x=wsIgkGUfG5PjBiZbOfxOtQ==&src=P",
   },
   {
     id: "TC-17671",
+    branch: "Odisha",
     url: "https://res.cloudinary.com/de4cnpfm1/image/upload/v1778245989/TC17671_ghwfuo.webp",
     link: "https://nablwp.qci.org.in/CertificateScopenew?x=BLtvn2Aigjq6fokVy2tlWQ==&src=P",
   },
@@ -149,16 +164,19 @@ export default function Navbar() {
                   <a href="https://www.youtube.com/@omegalabtestingservices" target="_blank" rel="noopener noreferrer" className="w-5 h-5 flex items-center justify-center transition-all duration-300 hover:scale-110">
                     {ICONS.YouTube}
                   </a>
+                  <a href="#" target="_blank" rel="noopener noreferrer" className="w-5 h-5 flex items-center justify-center transition-all duration-300 hover:scale-110">
+                    {ICONS.WhatsApp}
+                  </a>
                 </div>
               </div>
 
               {/* Right: Contact & Button */}
               <div className="flex items-center gap-6">
-                <a href="tel:03324971903" className="flex items-center gap-2 group transition-all">
+                <a href="tel:08062180808" className="flex items-center gap-2 group transition-all">
                   <div className="bg-white/5 p-1.5 rounded-full group-hover:bg-[#FF6700]/10 transition-all">
                     <Phone size={13} className="text-[#FF6700]" fill="currentColor" />
                   </div>
-                  <span className="text-white/80 group-hover:text-white font-medium transition-colors">033 2497 1903</span>
+                  <span className="text-white/80 group-hover:text-white font-medium transition-colors">08062180808</span>
                 </a>
 
                 <div className="w-[1px] h-3 bg-white/10"></div>
@@ -201,6 +219,9 @@ export default function Navbar() {
                 <a href="https://www.youtube.com/@omegalabtestingservices" target="_blank" rel="noopener noreferrer" className="w-4 h-4 flex items-center justify-center">
                   {ICONS.YouTube}
                 </a>
+                <a href="#" target="_blank" rel="noopener noreferrer" className="w-4 h-4 flex items-center justify-center">
+                  {ICONS.WhatsApp}
+                </a>
               </div>
             </div>
           </div>
@@ -212,7 +233,7 @@ export default function Navbar() {
         {/* Main Logo & Info Bar */}
         <div className="bg-[#1E1B5C] py-4 md:py-6 px-4 md:px-8 flex items-center relative">
           <div className="flex flex-1 items-center gap-4 lg:gap-6 mr-4 lg:mr-10">
-            <div className="mb-5 flex items-center gap-3 min-w-0">
+            <Link href="/" className="mb-5 flex items-center gap-3 min-w-0 cursor-pointer">
               <div className="w-[40px] h-[40px] md:w-[55px] md:h-[55px] xl:w-[88px] xl:h-[88px] bg-white rounded-2xl shadow-lg shrink-0 overflow-hidden flex items-center justify-center">
                 <Image
                   src={LOGO}
@@ -230,33 +251,34 @@ export default function Navbar() {
                   Testing Services Private Limited
                 </div>
               </div>
-            </div>
+            </Link>
           </div>
 
           <div className="hidden lg:flex gap-2 xl:gap-4 items-center shrink-0">
             {NABL_BADGES.map((badge) => (
-              <a
-                href={badge.link}
-                target="_blank"
-                rel="noopener noreferrer"
-                key={badge.id}
-                className="w-[60px] h-[80px] lg:w-[70px] lg:h-[90px] xl:w-[90px] xl:h-[110px] shrink-0 bg-white rounded-full flex flex-col items-center justify-center border-[3px] border-[#FF6700] shadow-md relative overflow-hidden"
-              >
-                <div className="text-[5px] xl:text-[7px] font-bold text-black uppercase text-center flex flex-col items-center mt-[2px] xl:mt-[3px]">
-                  <div className="flex items-center justify-center mb-0.5 relative">
-                    <Image
-                      src={badge.url}
-                      alt={`NABL ${badge.id}`}
-                      width={40}
-                      height={40}
-                      className="object-contain  lg:w-[80px] lg:h-[80px]"
-                    />
+              <div key={badge.id} className="flex flex-col items-center gap-1 lg:gap-1.5 shrink-0">
+                <a
+                  href={badge.link}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-[60px] h-[80px] lg:w-[70px] lg:h-[90px] xl:w-[90px] xl:h-[110px] bg-white rounded-full flex flex-col items-center justify-center border-[3px] border-[#FF6700] shadow-md relative overflow-hidden"
+                >
+                  <div className="text-[5px] xl:text-[7px] font-bold text-black uppercase text-center flex flex-col items-center mt-[2px] xl:mt-[3px]">
+                    <div className="flex items-center justify-center mb-0.5 relative">
+                      <Image
+                        src={badge.url}
+                        alt={`NABL ${badge.id}`}
+                        width={40}
+                        height={40}
+                        className="object-contain lg:w-[80px] lg:h-[80px]"
+                      />
+                    </div>
                   </div>
-                </div>
-                {/* <span className="text-black text-[7px] lg:text-[8px] xl:text-[9px] font-bold font-sans tracking-tight mb-1">
-                    {badge.id}
-                  </span> */}
-              </a>
+                </a>
+                <span className="text-white text-[8px] lg:text-[10px] xl:text-[12px] font-extrabold font-sans tracking-wide uppercase text-center">
+                  {badge.branch}
+                </span>
+              </div>
             ))}
           </div>
 

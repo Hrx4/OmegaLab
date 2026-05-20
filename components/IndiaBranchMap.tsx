@@ -8,6 +8,7 @@ import {
   Marker,
 } from "react-simple-maps";
 import { motion, AnimatePresence } from "motion/react";
+import { MapPin } from "lucide-react";
 
 const geoUrl = "/maps/india-topo.json";
 
@@ -26,37 +27,61 @@ interface Branch {
   state: string;
   details: string[];
   nablCode?: string;
+  certImage?: string;
+  pdfLink?: string;
+  mapEmbedUrl?: string;
 }
 
 const branches: Branch[] = [
   // ── GREEN: NABL Accredited Laboratories ──────────────────────────────
   {
-    name: "Kolkata (HQ)",
+    name: "KOLKATA LAB 1",
     coordinates: [88.3639, 22.5726],
     type: "accredited",
     state: "West Bengal",
     details: [
-      "Central Laboratory (Head Office)",
+      "Head Office & Central Laboratory",
       "14,000 sq.ft. facility",
       "900+ NABL Parameters",
       "120+ Team Members",
     ],
     nablCode: "TC-11935",
+    certImage: "https://res.cloudinary.com/de4cnpfm1/image/upload/v1778247809/KOLKATA1_i1fhgi.jpg",
+    pdfLink: "https://nabl7t.s3.ap-south-1.amazonaws.com/NablCertificate/Scope-128039-TC-11935-1770380307.pdf",
+    mapEmbedUrl: "https://maps.google.com/maps?q=256A,%20M.%20G.%20Road,%20Purbasan,%20Thakurpukur,%20Kolkata&t=&z=15&ie=UTF8&iwloc=&output=embed"
   },
   {
-    name: "Siliguri",
+    name: "KOLKATA LAB 2",
+    coordinates: [88.2339, 22.4226],
+    type: "accredited",
+    state: "West Bengal",
+    details: [
+      "Mechanical & Chemical Testing",
+      "Metals & Construction Materials",
+      "Non-Destructive Testing (NDT)",
+    ],
+    nablCode: "TC-13401",
+    certImage: "https://res.cloudinary.com/de4cnpfm1/image/upload/v1778247810/KOLKATA2_wsg4cn.jpg",
+    pdfLink: "https://nabl7t.s3.ap-south-1.amazonaws.com/NablCertificate/Scope-259631-TC-13401-1775295806.pdf",
+    mapEmbedUrl: "https://maps.google.com/maps?q=256A,%20M.%20G.%20Road,%20Purbasan,%20Thakurpukur,%20Kolkata&t=&z=15&ie=UTF8&iwloc=&output=embed"
+  },
+  {
+    name: "SILIGURI LAB",
     coordinates: [88.4275, 26.7271],
     type: "accredited",
-    state: "West Bengal · North Bengal",
+    state: "West Bengal",
     details: [
       "North Bengal Regional Lab",
       "Construction Materials Testing",
       "Civil Engineering Tests",
     ],
-    nablCode: "TC-13401",
+    nablCode: "TC-15509",
+    certImage: "https://res.cloudinary.com/de4cnpfm1/image/upload/v1778247807/SILIGURI_vqovah.jpg",
+    pdfLink: "https://nabl7t.s3.ap-south-1.amazonaws.com/NablCertificate/Scope-109624-TC-15509-1739864381.pdf",
+    mapEmbedUrl: "https://maps.google.com/maps?q=26.7504515,88.417294&t=&z=15&ie=UTF8&iwloc=&output=embed"
   },
   {
-    name: "Ranchi",
+    name: "RANCHI LAB",
     coordinates: [85.3096, 23.3441],
     type: "accredited",
     state: "Jharkhand",
@@ -65,22 +90,13 @@ const branches: Branch[] = [
       "Ferrous & Non-Ferrous Metals",
       "Infrastructure Project Support",
     ],
-    nablCode: "TC-15509",
-  },
-  {
-    name: "Gandhidham",
-    coordinates: [70.1337, 23.0753],
-    type: "accredited",
-    state: "Gujarat",
-    details: [
-      "Western India Operations",
-      "Construction Material Testing",
-      "NABL Accredited Facility",
-    ],
     nablCode: "TC-16480",
+    certImage: "https://res.cloudinary.com/de4cnpfm1/image/upload/v1778247807/RANCHI_za9xun.jpg",
+    pdfLink: "https://nabl7t.s3.ap-south-1.amazonaws.com/NablCertificate/Scope-119719-TC-16480-1753322384.pdf",
+    mapEmbedUrl: "https://maps.google.com/maps?q=23.3979966,85.3516901&t=&z=15&ie=UTF8&iwloc=&output=embed"
   },
   {
-    name: "Odisha",
+    name: "ODHISHA LAB",
     coordinates: [85.8245, 20.9517],
     type: "accredited",
     state: "Odisha",
@@ -90,100 +106,60 @@ const branches: Branch[] = [
       "Full-scope Testing",
     ],
     nablCode: "TC-17671",
+    certImage: "https://res.cloudinary.com/de4cnpfm1/image/upload/v1778247807/ODISHA_x2opxm.jpg",
+    pdfLink: "https://nabl7t.s3.ap-south-1.amazonaws.com/NablCertificate/Scope-119620-TC-17671-1773220269.pdf",
+    mapEmbedUrl: "https://maps.google.com/maps?q=20.1967379,85.8539767&t=&z=15&ie=UTF8&iwloc=&output=embed"
   },
-
-  // ── BLUE: Other Laboratories ─────────────────────────────────────────
+  // ── ORANGE: Sample Collection Centres ────────────────────────────────
   {
-    name: "Mumbai",
-    coordinates: [72.8777, 19.076],
-    type: "lab",
-    state: "Maharashtra",
-    details: [
-      "Western India Lab",
-      "Material Testing Services",
-    ],
-  },
-  {
-    name: "Pune Unit-1",
-    coordinates: [73.7, 18.52],
-    type: "lab",
-    state: "Maharashtra",
-    details: [
-      "Pune Lab Facility Unit 1",
-      "Construction & Industrial Testing",
-    ],
-  },
-  {
-    name: "Pune Unit-2",
-    coordinates: [74.05, 18.62],
-    type: "lab",
-    state: "Maharashtra",
-    details: [
-      "Pune Lab Facility Unit 2",
-      "Extended Testing Capabilities",
-    ],
-  },
-  {
-    name: "Prayas-1",
-    coordinates: [87.85, 21.95],
-    type: "lab",
-    state: "Eastern India",
-    details: [
-      "Prayas Lab Unit",
-      "Supporting Eastern Region",
-    ],
-  },
-
-  // ── BLACK: Sample Collection Centres ─────────────────────────────────
-  {
-    name: "Baddi",
-    coordinates: [76.7914, 30.9578],
+    name: "MEDINIPUR",
+    coordinates: [87.3204, 22.4285],
     type: "collection",
-    state: "Himachal Pradesh",
+    state: "West Bengal",
     details: [
-      "North India Collection Center",
-      "Sample pick-up point",
+      "C/O-Suvendu Sen, Tantigeria Town Colony",
+      "Post-Vidyasagar University",
+      "(Near - Tantigeria Rail Gate), PS- Kotuali",
+      "Dist: PaschimMedinipur, Pin-721102"
     ],
+    mapEmbedUrl: "https://maps.google.com/maps?q=22.4285,87.3204&t=&z=15&ie=UTF8&iwloc=&output=embed"
   },
   {
-    name: "Lucknow",
-    coordinates: [80.9462, 26.8467],
+    name: "HALDIA",
+    coordinates: [88.0700, 22.0294],
     type: "collection",
-    state: "Uttar Pradesh",
+    state: "West Bengal",
     details: [
-      "Central India Collection Hub",
-      "UP region operations",
+      "Ganganarayan Appartment, Durgachak",
+      "Uttarpally (Near Primary School)",
+      "Haldia, Purba-Medinipur, Pin -721602"
     ],
+    mapEmbedUrl: "https://maps.google.com/maps?q=22.0294,88.0700&t=&z=15&ie=UTF8&iwloc=&output=embed"
   },
   {
-    name: "Hyderabad",
-    coordinates: [78.4867, 17.385],
+    name: "AGARTALA",
+    coordinates: [91.2868, 23.8315],
     type: "collection",
-    state: "Telangana",
+    state: "Tripura",
     details: [
-      "South-Central Collection Center",
-      "Telangana region operations",
+      "C/O- Dhirendra Chandra Das",
+      "East Side of Central Jail, P.O-Dhaleswar",
+      "P.S-East Agartala, Dist-West Agartala",
+      "Pin -799007"
     ],
+    mapEmbedUrl: "https://maps.google.com/maps?q=23.8315,91.2868&t=&z=15&ie=UTF8&iwloc=&output=embed"
   },
   {
-    name: "Nellore",
-    coordinates: [79.9865, 14.4426],
+    name: "SHILLONG",
+    coordinates: [91.8833, 25.5689],
     type: "collection",
-    state: "Andhra Pradesh",
+    state: "Meghalaya",
     details: [
-      "AP Collection Center",
-      "Sample collection point",
+      "Doyantis Lyngdoh, Ward No. : 23",
+      "House No. 390, Kenchs Trace Road",
+      "Shillong – 793004 (Meghalaya)"
     ],
-  },
-  {
-    name: "Chennai",
-    coordinates: [80.2707, 13.0827],
-    type: "collection",
-    state: "Tamil Nadu",
-    details: [
-      "South India Collection Hub",
-      "Tamil Nadu operations",
-    ],
+    mapEmbedUrl: "https://maps.google.com/maps?q=25.5689,91.8833&t=&z=15&ie=UTF8&iwloc=&output=embed"
   },
 ];
 
@@ -206,8 +182,8 @@ const typeConfig: Record<
     icon: "🧪",
   },
   collection: {
-    color: "#1E1B5C",
-    glow: "rgba(30, 27, 92, 0.35)",
+    color: "#FF6700",
+    glow: "rgba(255, 103, 0, 0.45)",
     label: "Sample Collection Centre",
     icon: "📦",
   },
@@ -303,8 +279,8 @@ export default function IndiaBranchMap() {
               <ComposableMap
                 projection="geoMercator"
                 projectionConfig={{
-                  center: [82, 22.5],
-                  scale: 1050,
+                  center: [88.5, 23.8],
+                  scale: 3800,
                 }}
                 width={800}
                 height={870}
@@ -462,6 +438,32 @@ export default function IndiaBranchMap() {
                         </div>
                       )}
 
+                      {/* Certificate & Scope Links */}
+                      {(activeBranch.certImage || activeBranch.pdfLink) && (
+                        <div className="flex flex-col gap-2.5 mb-4">
+                          {activeBranch.certImage && (
+                            <a
+                              href={activeBranch.certImage}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className="flex items-center justify-center gap-2 bg-[#FF6700] hover:bg-[#e65c00] text-white text-[12px] font-bold py-2 px-3 rounded-lg transition-colors cursor-pointer w-full text-center"
+                            >
+                              <span>📄</span> View Certificate
+                            </a>
+                          )}
+                          {activeBranch.pdfLink && (
+                            <a
+                              href={activeBranch.pdfLink}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className="flex items-center justify-center gap-2 bg-white/10 hover:bg-white/20 text-white text-[12px] font-bold py-2 px-3 rounded-lg transition-colors cursor-pointer w-full text-center border border-white/10"
+                            >
+                              <span>🔬</span> View NABL Scope
+                            </a>
+                          )}
+                        </div>
+                      )}
+
                       {/* Details */}
                       <div className="flex flex-col">
                         {activeBranch.details.map((detail, idx) => (
@@ -477,6 +479,27 @@ export default function IndiaBranchMap() {
                           </div>
                         ))}
                       </div>
+
+                      {/* Google Map Embed */}
+                      {activeBranch.mapEmbedUrl && (
+                        <div className="mt-5">
+                          <div className="flex items-center gap-2 mb-2 text-white/70">
+                            <MapPin size={14} className="text-[#FF6700]" />
+                            <span className="text-[11px] font-bold uppercase tracking-wider font-mono">
+                              Google Maps Location
+                            </span>
+                          </div>
+                          <div className="rounded-xl overflow-hidden border border-white/10 aspect-video w-full relative bg-slate-950/20 shadow-inner">
+                            <iframe
+                              title={`Google Map for ${activeBranch.name}`}
+                              src={activeBranch.mapEmbedUrl}
+                              className="absolute inset-0 w-full h-full border-0"
+                              allowFullScreen
+                              loading="lazy"
+                            />
+                          </div>
+                        </div>
+                      )}
                     </div>
                   </div>
                 </motion.div>
@@ -508,13 +531,12 @@ export default function IndiaBranchMap() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5, delay: 0.4 }}
-            className="grid grid-cols-2 md:grid-cols-4 gap-3 mt-6"
+            className="grid grid-cols-1 sm:grid-cols-3 gap-3 mt-6"
           >
             {[
               { value: "5", label: "Accredited Labs", color: "#22c55e" },
-              { value: "4", label: "Other Laboratories", color: "#3b82f6" },
-              { value: "5", label: "Collection Centres", color: "#FF6700" },
-              { value: "Pan India", label: "Nationwide Coverage", color: "#ffffff" },
+              { value: "4", label: "Collection Centres", color: "#FF6700" },
+              { value: "Pan India", label: "Eastern & North Eastern Coverage", color: "#ffffff" },
             ].map((stat, idx) => (
               <div
                 key={idx}

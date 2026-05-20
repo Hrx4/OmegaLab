@@ -1,207 +1,242 @@
-'use client';
+"use client";
 
-import { motion } from 'motion/react';
-import Image from 'next/image';
-import { Briefcase, Users, CheckCircle2 } from 'lucide-react';
+import { motion } from "motion/react";
+import { GitBranch, MapPin, FileText, ExternalLink, Building2 } from "lucide-react";
 
-const ORG_HIERARCHY = {
-  directors: [
-    { name: "Dr. Anish Banerjee", role: "Managing Director", img: "https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&w=400&q=80" },
-    { name: "Mrs. Sunita Verma", role: "Technical Director", img: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=400&q=80" }
-  ],
-  management: [
-    { name: "Rajesh Kumar", role: "Quality Manager", img: "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?auto=format&fit=crop&w=400&q=80" },
-    { name: "Amitabh Singh", role: "Operations Head", img: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=crop&w=400&q=80" },
-    { name: "Priya Sharma", role: "HR & Admin Manager", img: "https://images.unsplash.com/photo-1580489944761-15a19d654956?auto=format&fit=crop&w=400&q=80" }
-  ],
-  departments: [
-    {
-      name: "Mechanical Testing",
-      head: "Vikram Das - HOD",
-      teamSize: 12,
-      subroles: ["Senior Test Engineers", "Junior Analysts", "Technicians"]
-    },
-    {
-      name: "Chemical Analysis",
-      head: "Dr. Sneha Ray - HOD",
-      teamSize: 8,
-      subroles: ["Analytical Chemists", "Lab Assistants", "Sample Prep Team"]
-    },
-    {
-      name: "NDT & Civil",
-      head: "Rahul Bose - HOD",
-      teamSize: 15,
-      subroles: ["NDT LEVEL-II Experts", "Civil Engineers", "Site Inspectors"]
-    }
-  ]
-};
-
-const ProfileNode = ({ person, delay }: { person: any, delay: number }) => (
-  <motion.div
-    initial={{ opacity: 0, scale: 0.9, y: 20 }}
-    animate={{ opacity: 1, scale: 1, y: 0 }}
-    transition={{ duration: 0.5, delay }}
-    className="bg-white rounded-2xl shadow-lg border border-slate-100 flex flex-col items-center p-6 w-full max-w-[280px] group hover:border-[#FF6700] hover:shadow-2xl transition-all relative z-10"
-  >
-    <div className="w-24 h-24 rounded-full overflow-hidden mb-4 border-4 border-[#EFF6FF] group-hover:border-[#FF6700]/20 transition-colors relative shadow-md">
-      <Image
-        src={person.img}
-        alt={person.name}
-        fill
-        className="object-cover"
-        unoptimized
-      />
-    </div>
-    <h3 className="font-bold text-[#1E1B5C] text-lg font-oswald uppercase tracking-wide text-center">{person.name}</h3>
-    <p className="text-[#FF6700] text-sm font-semibold text-center mt-1 uppercase tracking-wider">{person.role}</p>
-  </motion.div>
-);
+const BRANCHES = [
+  {
+    name: "Kolkata",
+    state: "West Bengal",
+    color: "#1E1B5C",
+    glowColor: "rgba(30,27,92,0.25)",
+    pdfUrl:
+      "https://res.cloudinary.com/de4cnpfm1/image/upload/v1779280923/ORGANIZATION_CHART_-_Kolkata_fwdduw.pdf",
+    nablCode: "TC-11935 / TC-13401",
+    details: ["Head Office & Central Laboratory", "14,000 sq.ft. Facility"],
+  },
+  {
+    name: "Siliguri",
+    state: "West Bengal",
+    color: "#FF6700",
+    glowColor: "rgba(255,103,0,0.25)",
+    pdfUrl:
+      "https://res.cloudinary.com/de4cnpfm1/image/upload/v1779280993/ORGANIZATION_CHART_-_Siliguri_mr0laz.pdf",
+    nablCode: "TC-15509",
+    details: ["North Bengal Regional Lab", "Construction Materials Testing"],
+  },
+  {
+    name: "Ranchi",
+    state: "Jharkhand",
+    color: "#0ea5e9",
+    glowColor: "rgba(14,165,233,0.25)",
+    pdfUrl:
+      "https://res.cloudinary.com/de4cnpfm1/image/upload/v1779280993/ORGANIZATION_CHART_-_Ranchi_mgnfgm.pdf",
+    nablCode: "TC-16480",
+    details: ["Industrial Materials Testing", "Ferrous & Non-Ferrous Metals"],
+  },
+  {
+    name: "Odisha",
+    state: "Odisha",
+    color: "#22c55e",
+    glowColor: "rgba(34,197,94,0.25)",
+    pdfUrl:
+      "https://res.cloudinary.com/de4cnpfm1/image/upload/v1779280996/ORGANIZATION_CHART_-_ODISHA_kqnepv.pdf",
+    nablCode: "TC-17671",
+    details: ["Eastern India Operations", "NABL Accredited Full-scope Lab"],
+  },
+];
 
 export default function OrganizationalChartPage() {
   return (
-    <div className="w-full bg-[#EFF6FF] min-h-screen pb-32 font-montserrat">
-      {/* Hero Header Area */}
-      <div className="bg-[#1E1B5C] w-full pt-16 pb-32 px-4 md:px-12 relative overflow-hidden">
-        <div className="absolute inset-x-0 bottom-0 h-32 bg-gradient-to-t from-[#EFF6FF] to-transparent z-10"></div>
-        <div className="absolute top-0 right-0 w-96 h-96 bg-[#FF6700]/10 rounded-full blur-[80px] pointer-events-none"></div>
-        <div className="absolute bottom-0 left-[-100px] w-64 h-64 bg-white/5 rounded-full blur-[60px] pointer-events-none"></div>
+    <div className="w-full bg-[#EFF6FF] min-h-screen pb-24 font-montserrat">
+      {/* Hero */}
+      <div className="bg-[#1E1B5C] w-full pt-16 pb-28 px-4 md:px-12 relative overflow-hidden">
+        <div className="absolute inset-x-0 bottom-0 h-32 bg-gradient-to-t from-[#EFF6FF] to-transparent z-10" />
+        <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-[#FF6700]/10 rounded-full blur-[120px] pointer-events-none" />
+        <div className="absolute -bottom-20 -left-20 w-80 h-80 bg-white/5 rounded-full blur-[80px] pointer-events-none" />
 
         <div className="max-w-[1300px] mx-auto flex flex-col items-center relative z-20 text-center">
+          <motion.div
+            initial={{ opacity: 0, scale: 0.8 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.5 }}
+            className="w-16 h-16 rounded-2xl bg-[#FF6700]/20 border border-[#FF6700]/30 flex items-center justify-center mb-6"
+          >
+            <GitBranch size={32} className="text-[#FF6700]" />
+          </motion.div>
           <motion.h1
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
-            className="text-white font-black text-[32px] md:text-[48px] lg:text-[56px] font-oswald tracking-tight uppercase leading-[1.1] mb-6"
+            className="text-white font-black text-[32px] md:text-[52px] font-oswald tracking-tight uppercase leading-[1.1] mb-4"
           >
             Organizational <span className="text-[#FF6700]">Chart</span>
           </motion.h1>
-
           <motion.p
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.6, delay: 0.2 }}
-            className="text-white/80 font-medium tracking-widest uppercase text-sm md:text-base max-w-2xl"
+            className="text-white/70 text-sm md:text-base max-w-2xl"
           >
-            Meet the dedicated leadership and structured teams driving testing excellence at Omegalab.
+            Our structured leadership and operations across all accredited laboratory branches.
           </motion.p>
         </div>
       </div>
 
-      <div className="max-w-[1200px] mx-auto px-4 mt-[-60px] relative z-30 flex flex-col items-center">
+      {/* Tree Structure */}
+      <div className="max-w-[1300px] mx-auto px-4 md:px-12 mt-[-60px] relative z-30">
 
-        {/* Tier 1: Board of Directors */}
-        <div className="w-full flex justify-center relative z-10">
-          <div className="flex flex-col md:flex-row gap-8 md:gap-16 justify-center w-full relative">
-            {ORG_HIERARCHY.directors.map((director, idx) => (
-              <div key={idx} className="relative z-10 flex justify-center">
-                <ProfileNode person={director} delay={0.2 + (idx * 0.1)} />
-                {/* Vertical drop for each director */}
-                <div className="hidden md:block absolute bottom-[-32px] left-1/2 -translate-x-1/2 w-1 h-8 bg-slate-300 rounded-full"></div>
+        {/* Root Node */}
+        <div className="flex flex-col items-center">
+          <motion.div
+            initial={{ opacity: 0, scale: 0.85 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.6 }}
+            className="bg-white rounded-3xl border-2 border-[#1E1B5C] shadow-2xl px-10 py-7 flex items-center gap-5 relative z-10"
+            style={{ boxShadow: "0 20px 60px rgba(30,27,92,0.15)" }}
+          >
+            <div className="w-14 h-14 rounded-2xl bg-[#1E1B5C] flex items-center justify-center shrink-0">
+              <Building2 size={28} className="text-white" />
+            </div>
+            <div>
+              <div className="text-[10px] font-bold uppercase tracking-widest text-slate-400 mb-1">Head Office</div>
+              <div className="text-[#1E1B5C] font-oswald font-black text-2xl md:text-3xl uppercase tracking-tight">
+                OMEGALAB
               </div>
-            ))}
-          </div>
-        </div>
+              <div className="text-[#FF6700] text-[12px] font-bold uppercase tracking-wider">
+                Testing Services Private Limited
+              </div>
+            </div>
+          </motion.div>
 
-        {/* Connector from Directors to Management */}
-        <div className="w-full relative z-0 flex flex-col items-center">
-          {/* Horizontal join for directors */}
-          <div className="hidden md:block w-[calc(280px+4rem)] lg:w-[calc(280px+4rem)] h-1 bg-slate-300 rounded-full mt-8"></div>
-          {/* Center vertical stem down to Management */}
-          <div className="w-1 h-12 md:h-16 bg-slate-300 rounded-full"></div>
-        </div>
+          {/* Vertical stem down from root */}
+          <motion.div
+            initial={{ scaleY: 0 }}
+            animate={{ scaleY: 1 }}
+            transition={{ duration: 0.4, delay: 0.5 }}
+            style={{ transformOrigin: "top" }}
+            className="w-0.5 h-12 bg-gradient-to-b from-[#1E1B5C] to-[#1E1B5C]/40"
+          />
 
-        {/* Tier 2: Management Team */}
-        <div className="w-full relative">
-          <div className="flex flex-col md:flex-row justify-center w-full relative max-w-[1000px] mx-auto">
-            {/* Horizontal connecting line - Desktop only */}
-            <div className="hidden md:block absolute top-0 left-[16.666%] right-[16.666%] h-1 bg-slate-300 rounded-full"></div>
+          {/* Horizontal bar spanning all 4 branches */}
+          <div className="relative w-full flex justify-center">
+            <motion.div
+              initial={{ scaleX: 0 }}
+              animate={{ scaleX: 1 }}
+              transition={{ duration: 0.5, delay: 0.7 }}
+              style={{ transformOrigin: "center" }}
+              className="absolute top-0 left-[12.5%] right-[12.5%] md:left-[12%] md:right-[12%] h-0.5 bg-gradient-to-r from-[#1E1B5C]/20 via-[#1E1B5C] to-[#1E1B5C]/20"
+            />
 
-            {ORG_HIERARCHY.management.map((manager, idx) => (
-              <div key={idx} className="flex flex-col items-center w-full md:w-1/3 relative z-10 px-4 pt-8 md:pt-0 mb-8 md:mb-0">
-                {/* Vertical stem */}
-                <div className="hidden md:block absolute top-0 left-1/2 -translate-x-1/2 w-1 h-10 bg-slate-300 rounded-full mb-0"></div>
-                <div className="md:hidden absolute top-0 left-1/2 -translate-x-1/2 w-1 h-8 bg-slate-300 rounded-full"></div>
-
-                <div className="mt-0 md:mt-10 w-full flex justify-center">
-                  <ProfileNode person={manager} delay={0.5 + (idx * 0.1)} />
+            {/* 4 vertical stems down to each branch card */}
+            <div className="w-full grid grid-cols-2 md:grid-cols-4 gap-0">
+              {BRANCHES.map((branch, idx) => (
+                <div key={branch.name} className="flex flex-col items-center">
+                  <motion.div
+                    initial={{ scaleY: 0 }}
+                    animate={{ scaleY: 1 }}
+                    transition={{ duration: 0.4, delay: 0.9 + idx * 0.1 }}
+                    style={{ transformOrigin: "top", backgroundColor: branch.color }}
+                    className="w-0.5 h-10 rounded-full"
+                  />
                 </div>
-              </div>
+              ))}
+            </div>
+          </div>
+
+          {/* Branch Cards */}
+          <div className="w-full grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 mt-0">
+            {BRANCHES.map((branch, idx) => (
+              <motion.div
+                key={branch.name}
+                initial={{ opacity: 0, y: 40 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.55, delay: 1.0 + idx * 0.12, ease: "easeOut" }}
+                className="bg-white rounded-3xl border border-slate-100 shadow-lg hover:shadow-2xl hover:-translate-y-2 transition-all duration-300 overflow-hidden group"
+                style={{ boxShadow: `0 8px 30px ${branch.glowColor}` }}
+              >
+                {/* Accent bar */}
+                <div className="h-1.5 w-full" style={{ backgroundColor: branch.color }} />
+
+                <div className="p-6 flex flex-col h-full">
+                  {/* Icon + Name */}
+                  <div className="flex items-start gap-3 mb-4">
+                    <div
+                      className="w-11 h-11 rounded-xl flex items-center justify-center shrink-0"
+                      style={{ backgroundColor: branch.color + "18" }}
+                    >
+                      <MapPin size={20} style={{ color: branch.color }} />
+                    </div>
+                    <div>
+                      <h3
+                        className="font-oswald font-black text-xl uppercase tracking-tight leading-tight"
+                        style={{ color: branch.color }}
+                      >
+                        {branch.name}
+                      </h3>
+                      <span className="text-[11px] text-slate-400 font-semibold uppercase tracking-wider">
+                        {branch.state}
+                      </span>
+                    </div>
+                  </div>
+
+                  {/* NABL code */}
+                  <div
+                    className="text-[10px] font-bold uppercase tracking-wider px-3 py-1.5 rounded-full inline-flex items-center gap-1.5 mb-4 w-fit"
+                    style={{
+                      backgroundColor: branch.color + "12",
+                      color: branch.color,
+                      border: `1px solid ${branch.color}30`,
+                    }}
+                  >
+                    ● NABL {branch.nablCode}
+                  </div>
+
+                  {/* Details */}
+                  <ul className="space-y-2 mb-6 flex-1">
+                    {branch.details.map((d, i) => (
+                      <li key={i} className="flex items-start gap-2 text-[13px] text-slate-500">
+                        <span
+                          className="w-1.5 h-1.5 rounded-full mt-1.5 shrink-0"
+                          style={{ backgroundColor: branch.color }}
+                        />
+                        {d}
+                      </li>
+                    ))}
+                  </ul>
+
+                  {/* CTA */}
+                  <a
+                    href={branch.pdfUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="mt-auto flex items-center justify-center gap-2 w-full py-3 rounded-xl font-bold text-[12px] uppercase tracking-wider transition-all duration-300 group-hover:brightness-110"
+                    style={{
+                      backgroundColor: branch.color,
+                      color: "#fff",
+                      boxShadow: `0 6px 20px ${branch.glowColor}`,
+                    }}
+                  >
+                    <FileText size={15} />
+                    View Org Chart
+                    <ExternalLink size={12} className="opacity-70" />
+                  </a>
+                </div>
+              </motion.div>
             ))}
           </div>
         </div>
 
-        {/* Connector to Departments */}
-        <div className="w-full flex justify-center py-0 relative z-0 h-10 md:h-16">
-          <div className="w-1 h-full bg-slate-300 rounded-full"></div>
-        </div>
-
-        {/* Tier 3: Departments structure with stems */}
-        <div className="w-full relative mt-0 z-10">
-          <div className="text-center bg-white border-2 border-[#1E1B5C] rounded-2xl px-8 py-4 w-max mx-auto shadow-xl mb-0 relative z-20">
-            <h2 className="text-[#1E1B5C] font-black font-oswald text-2xl uppercase tracking-widest leading-none">
-              Operational <span className="text-[#FF6700]">Departments</span>
-            </h2>
-          </div>
-
-          {/* Connector from title to departments */}
-          <div className="w-full flex justify-center relative z-0 h-10 md:h-16">
-            <div className="w-1 h-full bg-slate-300 rounded-full"></div>
-          </div>
-
-          <div className="flex flex-col md:flex-row justify-center w-full relative">
-            {/* Horizontal connecting line - Desktop only */}
-            <div className="hidden md:block absolute top-0 left-[16.666%] right-[16.666%] h-1 bg-slate-300 rounded-full"></div>
-
-            {ORG_HIERARCHY.departments.map((dept, idx) => (
-              <div key={idx} className="flex flex-col items-center w-full md:w-1/3 relative z-10 px-4 pt-10 md:pt-0 mb-8 md:mb-0">
-                {/* Vertical stem */}
-                <div className="hidden md:block absolute top-0 left-1/2 -translate-x-1/2 w-1 h-10 bg-slate-300 rounded-full"></div>
-                <div className="md:hidden absolute top-0 left-1/2 -translate-x-1/2 w-1 h-10 bg-slate-300 rounded-full"></div>
-
-                <motion.div
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.5, delay: 0.2 + (idx * 0.1) }}
-                  className="bg-[#EFF6FF] rounded-2xl p-6 md:p-8 flex flex-col relative overflow-hidden group hover:shadow-xl transition-shadow border border-slate-200 w-full md:mt-10 max-w-[360px]"
-                >
-                  <div className="absolute -right-6 -top-6 w-24 h-24 bg-white rounded-full opacity-50 pointer-events-none group-hover:scale-150 transition-transform duration-700"></div>
-
-                  <div className="flex items-center gap-4 mb-6 relative z-10">
-                    <div className="w-14 h-14 rounded-full bg-white border border-slate-200 text-[#1E1B5C] flex items-center justify-center shadow-md group-hover:border-[#FF6700] transition-colors shrink-0">
-                      <Briefcase size={24} className="group-hover:scale-110 transition-transform" />
-                    </div>
-                    <div className="flex flex-col">
-                      <h3 className="font-bold text-[#1E1B5C] font-oswald text-xl md:text-2xl uppercase tracking-tight leading-none">{dept.name}</h3>
-                      <span className="text-[#FF6700] text-[12px] md:text-[13px] font-bold uppercase tracking-wider mt-1">{dept.head}</span>
-                    </div>
-                  </div>
-
-                  <div className="bg-white rounded-xl p-5 flex-grow border border-slate-100 relative z-10 shadow-sm">
-                    <ul className="flex flex-col gap-3.5 text-sm text-slate-600 font-medium">
-                      {dept.subroles.map((sub, i) => (
-                        <li key={i} className="flex items-start gap-3">
-                          <CheckCircle2 size={18} className="text-[#FF6700] shrink-0 mt-0.5" />
-                          <span className="leading-tight">{sub}</span>
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-
-                  <div className="mt-6 flex items-center justify-between text-slate-500 text-[13px] font-bold relative z-10 border-t border-slate-200 pt-5 uppercase tracking-wide">
-                    <span className="flex items-center gap-2">
-                      <Users size={18} /> Team Size
-                    </span>
-                    <span className="bg-[#1E1B5C] text-white px-3.5 py-1.5 rounded-md">
-                      {dept.teamSize}+ Members
-                    </span>
-                  </div>
-                </motion.div>
-              </div>
-            ))}
-          </div>
-        </div>
-
+        {/* Footer note */}
+        <motion.p
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6, delay: 0.3 }}
+          className="text-center text-slate-400 text-[12px] mt-12 uppercase tracking-widest"
+        >
+          Click "View Org Chart" to open the full PDF in a new tab
+        </motion.p>
       </div>
     </div>
   );

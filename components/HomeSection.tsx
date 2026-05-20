@@ -337,21 +337,36 @@ const { ref, inView } = useInView({
       value: 25,
       suffix: "+",
       label: "Years of Service",
+      isText: false,
+      textValue: "",
     },
     {
       value: 900,
       suffix: "+",
       label: "NABL Test Parameters",
+      isText: false,
+      textValue: "",
     },
     {
       value: 5,
       suffix: "",
       label: "Accredited Labs",
+      isText: false,
+      textValue: "",
     },
     {
       value: 120,
       suffix: "+",
       label: "Team Members",
+      isText: false,
+      textValue: "",
+    },
+    {
+      value: 0,
+      suffix: "",
+      label: "Supported System",
+      isText: true,
+      textValue: "LIMS",
     },
   ];
 
@@ -371,19 +386,21 @@ const { ref, inView } = useInView({
       {/* 2. Stats Section */}
       <section className="bg-[#1E1B5C] py-8 md:py-14 px-4"       ref={ref}
 >
-        <div className="max-w-6xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
+        <div className="max-w-6xl mx-auto grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-6 text-center">
            {stats.map((item, index) => (
           <div key={index}>
             <div className="text-[28px] md:text-[42px] font-black text-[#FF6700] mb-1 font-oswald">
-              
-              {inView && (
-                <CountUp
-                  end={item.value}
-                  duration={2.5}
-                  suffix={item.suffix}
-                />
+              {item.isText ? (
+                item.textValue
+              ) : (
+                inView && (
+                  <CountUp
+                    end={item.value}
+                    duration={2.5}
+                    suffix={item.suffix}
+                  />
+                )
               )}
-
             </div>
 
             <div className="text-[10px] uppercase tracking-[1.5px] text-white/60 font-semibold">
@@ -401,7 +418,7 @@ const { ref, inView } = useInView({
             About Us
           </h2>
           <p className="text-[13px] md:text-[16px] text-slate-500 max-w-2xl mx-auto">
-            Where every material is tested, and every result is trusted.
+            Quality meets Reliability
           </p>
           <div className="w-[60px] h-[4px] bg-[#FF6700] mx-auto mt-3 rounded-full" />
         </div>
@@ -415,12 +432,6 @@ const { ref, inView } = useInView({
                 fill
                 className="object-cover"
               />
-            </div>
-            <div className="absolute -bottom-4 -right-4 bg-[#FF6700] text-white p-4 md:p-6 rounded-xl font-black text-[24px] md:text-[36px] leading-none shadow-[0_8px_24px_rgba(255,103,0,0.3)]">
-              1999
-              <span className="block text-[11px] font-semibold uppercase tracking-[1px] opacity-80 mt-1 font-montserrat">
-                Est. Year
-              </span>
             </div>
           </div>
 
@@ -460,7 +471,7 @@ const { ref, inView } = useInView({
                 { icon: "👥", text: "100+ Technical Experts" },
                 { icon: "🔬", text: "ISO/IEC 17025:2017 Compliant" },
                 { icon: "📍", text: "Eastern & NE India Coverage" },
-                { icon: "🎯", text: "1000+ Testing Parameters Target 2026" },
+                { icon: "🎯", text: "LIMS supported System" },
               ].map((item, idx) => (
                 <div
                   key={idx}
@@ -475,71 +486,6 @@ const { ref, inView } = useInView({
         </div>
       </section>
 
-      {/* 4. Accreditation Strip */}
-      <section className="relative bg-slate-50 py-16 md:py-24 px-4 md:px-12 overflow-hidden border-y border-slate-200">
-        {/* Decorative background blurs */}
-        <div className="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none z-0">
-          <div className="absolute -top-[30%] -left-[10%] w-[60%] h-[60%] rounded-full bg-[#FF6700]/[0.04] blur-[100px]"></div>
-          <div className="absolute -bottom-[30%] -right-[10%] w-[60%] h-[60%] rounded-full bg-[#1E1B5C]/[0.04] blur-[100px]"></div>
-        </div>
-
-        <div className="max-w-[1300px] mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-5 md:gap-8 relative z-10">
-          {[
-            {
-              icon: "🏛️",
-              title: "NABL Accredited",
-              sub: "National Accreditation Board",
-            },
-            {
-              icon: "📋",
-              title: "ISO/IEC 17025:2017",
-              sub: "MAINTAINED MANAGEMENT PROCESS AS PER ISO/IEC 17025",
-            },
-            {
-              icon: "🏗️",
-              title: "Construction Testing",
-              sub: "CONSTRUCTION AND OTHERS MATERIAL TESTING FACILITY",
-            },
-            {
-              icon: "🔬",
-              title: "900+ Testing Parameters",
-              sub: "850+ ACCREDITED PARAMETERS, Under NABL SCOPE",
-            },
-            {
-              icon: "🌏",
-              title: "Pan Eastern India",
-              sub: "9 Offices & Centers",
-            },
-          ].map((item, idx) => (
-            <div 
-              key={idx} 
-              className="bg-white border border-slate-200 shadow-[0_8px_30px_rgba(0,0,0,0.08)] hover:shadow-[0_20px_40px_rgba(30,27,92,0.12)] hover:-translate-y-2 transition-all duration-500 ease-out rounded-3xl p-6 md:p-8 relative group flex flex-col items-center justify-center text-center z-10"
-            >
-              <div className="absolute inset-0 bg-gradient-to-br from-white via-white to-slate-50/50 rounded-3xl -z-10"></div>
-              
-              {/* Icon Container with glowing effect */}
-              <div className="relative w-16 h-16 md:w-20 md:h-20 mb-6 mt-2">
-                <div className="absolute inset-0 bg-[#FF6700]/20 rounded-full blur-xl scale-0 group-hover:scale-150 transition-transform duration-700 ease-out z-0"></div>
-                <div className="relative z-10 w-full h-full bg-gradient-to-br from-[#EFF6FF] to-white border border-blue-50 group-hover:border-[#FF6700]/30 shadow-sm group-hover:shadow-md rounded-2xl flex items-center justify-center text-[28px] md:text-[32px] transition-all duration-500 transform group-hover:-rotate-6 group-hover:scale-110">
-                  <span className="drop-shadow-sm">{item.icon}</span>
-                </div>
-              </div>
-              
-              {/* Typography */}
-              <div className="text-[14px] md:text-[16px] font-black text-[#1E1B5C] uppercase mb-3 font-oswald tracking-wide leading-tight group-hover:text-[#FF6700] transition-colors duration-300">
-                {item.title}
-              </div>
-
-              {/* Dynamic Expanding Divider */}
-              <div className="w-8 h-1 bg-[#1E1B5C]/10 group-hover:bg-[#FF6700] group-hover:w-16 rounded-full mb-3.5 transition-all duration-500 ease-out"></div>
-
-              <div className="text-[11px] md:text-[12px] font-medium text-slate-500 max-w-[200px] mx-auto leading-relaxed group-hover:text-[#1E1B5C]/80 transition-colors duration-300">
-                {item.sub}
-              </div>
-            </div>
-          ))}
-        </div>
-      </section>
 
       {/* 5. Laboratory Network Section */}
       <section className="bg-[#1E1B5C] py-12 md:py-20 px-4 md:px-12">
@@ -825,7 +771,7 @@ const { ref, inView } = useInView({
              100% { transform: translateX(-50%); }
            }
            .animate-marquee {
-             animation: marquee 50s linear infinite;
+             animation: marquee 120s linear infinite;
              display: flex;
              width: max-content;
            }
