@@ -260,6 +260,7 @@ export default function Footer() {
                 { name: "Lab Tour", path: "/lab-tour" },
                 { name: "Clients", path: "/our-clients" },
                 { name: "Career", path: "/career" },
+                { name: "Feedback Form", path: "/feedback" },
               ].map((link, idx) => (
                 <Link
                   key={link.name}
