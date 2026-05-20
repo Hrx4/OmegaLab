@@ -3,7 +3,7 @@
 import React, { useState, useEffect } from 'react';
 import Image from 'next/image';
 import { motion, AnimatePresence } from 'motion/react';
-import { ChevronUp, ChevronDown, ChevronLeft, ChevronRight, FileImage } from 'lucide-react';
+import { ChevronLeft, ChevronRight, MapPin, FileDown, Eye, X, Award } from 'lucide-react';
 
 const BIG_BADGES = [
   { id: 1, tc: "TC-11935", image: "https://res.cloudinary.com/de4cnpfm1/image/upload/v1778245989/TC11935_tsqh9z.webp" },
@@ -21,6 +21,7 @@ const LAB_DATA = [
     address: "256A, M. G. Road, Purbasan, Thakurpukur, Kolkata - 700 063",
     certText: "ISO/IEC 17025 Accredited Testing Laboratory by NABL vide Certificate number",
     certImage: "https://res.cloudinary.com/de4cnpfm1/image/upload/v1778247809/KOLKATA1_i1fhgi.jpg",
+    qrImage: "https://res.cloudinary.com/de4cnpfm1/image/upload/v1779278317/KOLKATA1QR_bxgh6e.jpg",
     scopeText: "Access the complete scope of our NABL accreditation, including detailed parameters, testing methods, and applicable standards.",
     pdfLink: "https://nabl7t.s3.ap-south-1.amazonaws.com/NablCertificate/Scope-128039-TC-11935-1770380307.pdf"
   },
@@ -31,6 +32,7 @@ const LAB_DATA = [
     address: "996, M. G. Road, Purbasan, Thakurpukur, Kolkata - 700 063",
     certText: "ISO/IEC 17025 Accredited Testing Laboratory by NABL vide Certificate number",
     certImage: "https://res.cloudinary.com/de4cnpfm1/image/upload/v1778247810/KOLKATA2_wsg4cn.jpg",
+    qrImage: "https://res.cloudinary.com/de4cnpfm1/image/upload/v1779278316/KOLKATA2QR_sbz3l7.jpg",
     scopeText: "Access the complete scope of our NABL accreditation, including detailed parameters, testing methods, and applicable standards.",
     pdfLink: "https://nabl7t.s3.ap-south-1.amazonaws.com/NablCertificate/Scope-259631-TC-13401-1775295806.pdf"
   },
@@ -41,6 +43,7 @@ const LAB_DATA = [
     address: "1052/A, Narmada Bagan, Ward No. 46, Siliguri, Darjeeling - 734003",
     certText: "ISO/IEC 17025 Accredited Testing Laboratory by NABL vide Certificate number",
     certImage: "https://res.cloudinary.com/de4cnpfm1/image/upload/v1778247807/SILIGURI_vqovah.jpg",
+    qrImage: "https://res.cloudinary.com/de4cnpfm1/image/upload/v1779278316/SILIGURI_QR_qnoftz.jpg",
     scopeText: "Access the complete scope of our NABL accreditation, including detailed parameters, testing methods, and applicable standards.",
     pdfLink: "https://nabl7t.s3.ap-south-1.amazonaws.com/NablCertificate/Scope-109624-TC-15509-1739864381.pdf"
   },
@@ -51,6 +54,7 @@ const LAB_DATA = [
     address: "2085/B, Ward No. 19/4, Bariatu Basti Hill View Road, Bariatu, Ranchi, Jharkhand",
     certText: "ISO/IEC 17025 Accredited Testing Laboratory by NABL vide Certificate number",
     certImage: "https://res.cloudinary.com/de4cnpfm1/image/upload/v1778247807/RANCHI_za9xun.jpg",
+    qrImage: "https://res.cloudinary.com/de4cnpfm1/image/upload/v1779278316/RANCHI_QR_bl6uea.jpg",
     scopeText: "Access the complete scope of our NABL accreditation, including detailed parameters, testing methods, and applicable standards.",
     pdfLink: "https://nabl7t.s3.ap-south-1.amazonaws.com/NablCertificate/Scope-119719-TC-16480-1753322384.pdf"
   },
@@ -61,6 +65,7 @@ const LAB_DATA = [
     address: "Plot no. 891/1572 ,Uttarasasana, Kousalyaganga, Pubasasan , P.S. Pipli, Dist.-Puri, Odisha,PIN-751002.",
     certText: "ISO/IEC 17025 Accredited Testing Laboratory by NABL vide Certificate number",
     certImage: "https://res.cloudinary.com/de4cnpfm1/image/upload/v1778247807/ODISHA_x2opxm.jpg",
+    qrImage: "https://res.cloudinary.com/de4cnpfm1/image/upload/v1779278316/ODISHA_QR_as8vyg.jpg",
     scopeText: "Access the complete scope of our NABL accreditation, including detailed parameters, testing methods, and applicable standards.",
     pdfLink: "https://nabl7t.s3.ap-south-1.amazonaws.com/NablCertificate/Scope-119620-TC-17671-1773220269.pdf"
   }
@@ -68,17 +73,9 @@ const LAB_DATA = [
 
 export default function AccreditationPage() {
   const [currentSlide, setCurrentSlide] = useState(0);
+  const [selectedImage, setSelectedImage] = useState<{ src: string; title: string } | null>(null);
 
-  // Accordion states
-  const [openLabs, setOpenLabs] = useState<Record<string, boolean>>(
-    LAB_DATA.reduce((acc, lab) => ({ ...acc, [lab.id]: false }), {}) // Default to close
-  );
-
-  const [openScopes, setOpenScopes] = useState<Record<string, boolean>>(
-    LAB_DATA.reduce((acc, lab) => ({ ...acc, [lab.id]: false }), {}) // Default to close
-  );
-
-  // Auto-slide effect
+  // Auto-slide effect for the hero slider
   useEffect(() => {
     const timer = setInterval(() => {
       setCurrentSlide((prev) => (prev + 1) % BIG_BADGES.length);
@@ -86,30 +83,33 @@ export default function AccreditationPage() {
     return () => clearInterval(timer);
   }, []);
 
+  // Listen for Escape key to close image modal
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') {
+        setSelectedImage(null);
+      }
+    };
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, []);
+
   const nextSlide = () => {
     setCurrentSlide((prev) => (prev + 1) % BIG_BADGES.length);
   };
-
-  const getBadgeUrl = (tc: string) =>
-    BIG_BADGES.find((b) => b.tc === tc)?.image ?? '';
 
   const prevSlide = () => {
     setCurrentSlide((prev) => (prev - 1 + BIG_BADGES.length) % BIG_BADGES.length);
   };
 
-  const toggleLab = (id: string) => {
-    setOpenLabs(prev => ({ ...prev, [id]: !prev[id] }));
-  };
-
-  const toggleScope = (id: string) => {
-    setOpenScopes(prev => ({ ...prev, [id]: !prev[id] }));
-  };
+  const getBadgeUrl = (tc: string) =>
+    BIG_BADGES.find((b) => b.tc === tc)?.image ?? '';
 
   return (
     <div className="w-full bg-white font-montserrat flex flex-col min-h-screen">
 
       {/* Top Description Section */}
-      <div className="max-w-[1400px] mx-auto w-full px-4 md:px-12 py-12 md:py-20 flex flex-col overflow-hidden">
+      <div className="max-w-[1400px] mx-auto w-full px-4 sm:px-6 md:px-12 py-12 md:py-20 flex flex-col overflow-hidden">
         <h1 className="text-center md:text-left font-black text-[28px] md:text-[36px] text-[#1E1B5C] font-oswald tracking-tight mb-8 md:mb-12">
           Quality Accreditation & Assurance
         </h1>
@@ -133,9 +133,9 @@ export default function AccreditationPage() {
           </div>
 
           {/* Big NABL Logo Slider */}
-          <div className="flex flex-col items-center justify-center w-full max-w-[400px] mx-auto">
-            <div className="relative w-full aspect-square  border border-slate-200 p-2 shadow-lg group rounded-full ">
-              <div className=" w-full h-full overflow-hidden relative rounded-full">
+          <div className="flex flex-col items-center justify-center w-full max-w-[400px] mx-auto px-4">
+            <div className="relative w-full aspect-square border border-slate-200 p-2 shadow-lg group rounded-full max-w-[340px] sm:max-w-full">
+              <div className="w-full h-full overflow-hidden relative rounded-full">
                 <AnimatePresence mode="wait">
                   <motion.div
                     key={currentSlide}
@@ -149,22 +149,17 @@ export default function AccreditationPage() {
                       src={BIG_BADGES[currentSlide].image}
                       alt={`NABL Accreditation ${BIG_BADGES[currentSlide].tc}`}
                       fill
-                      className="object-contain scale-90 "
+                      className="object-contain scale-90"
                     />
-                    {/* <div className="absolute bottom-[10%] inset-x-0 text-center">
-                      <span className="bg-white/80 backdrop-blur px-4 py-1.5 rounded-full font-bold text-lg text-[#1E1B5C] uppercase tracking-wider inline-block">
-                        {BIG_BADGES[currentSlide].tc}
-                      </span>
-                    </div> */}
                   </motion.div>
                 </AnimatePresence>
               </div>
 
               {/* Slider Controls */}
-              <button onClick={prevSlide} className="absolute left-[-20px] top-1/2 -translate-y-1/2 w-10 h-10 bg-white rounded-full shadow-lg flex items-center justify-center text-[#1E1B5C] hover:bg-[#FF6700] hover:text-white transition-colors z-10 border border-slate-200">
+              <button onClick={prevSlide} className="absolute left-2 sm:left-[-20px] top-1/2 -translate-y-1/2 w-10 h-10 bg-white rounded-full shadow-lg flex items-center justify-center text-[#1E1B5C] hover:bg-[#FF6700] hover:text-white transition-colors z-10 border border-slate-200 cursor-pointer">
                 <ChevronLeft size={24} />
               </button>
-              <button onClick={nextSlide} className="absolute right-[-20px] top-1/2 -translate-y-1/2 w-10 h-10 bg-white rounded-full shadow-lg flex items-center justify-center text-[#1E1B5C] hover:bg-[#FF6700] hover:text-white transition-colors z-10 border border-slate-200">
+              <button onClick={nextSlide} className="absolute right-2 sm:right-[-20px] top-1/2 -translate-y-1/2 w-10 h-10 bg-white rounded-full shadow-lg flex items-center justify-center text-[#1E1B5C] hover:bg-[#FF6700] hover:text-white transition-colors z-10 border border-slate-200 cursor-pointer">
                 <ChevronRight size={24} />
               </button>
             </div>
@@ -175,7 +170,7 @@ export default function AccreditationPage() {
                 <button
                   key={idx}
                   onClick={() => setCurrentSlide(idx)}
-                  className={`w-3 h-3 rounded-full transition-all ${idx === currentSlide ? 'bg-[#FF6700] w-8' : 'bg-slate-300 hover:bg-slate-400'
+                  className={`w-3 h-3 rounded-full transition-all cursor-pointer ${idx === currentSlide ? 'bg-[#FF6700] w-8' : 'bg-slate-300 hover:bg-slate-400'
                     }`}
                   aria-label={`Go to slide ${idx + 1}`}
                 />
@@ -185,101 +180,122 @@ export default function AccreditationPage() {
         </div>
       </div>
 
-      {/* Accordion Labs Section */}
-      <div className="bg-[#EFF6FF] w-full py-12 md:py-20 px-4 md:px-8 border-t border-slate-200 flex-grow">
-        <div className="max-w-[1500px] mx-auto w-full">
-          <div className="flex flex-col lg:grid lg:grid-cols-5 gap-8 lg:gap-6 w-full pb-8">
+      {/* Accredited Labs Grid Section */}
+      <div className="bg-slate-50 w-full py-12 md:py-24 px-4 sm:px-6 md:px-8 border-t border-slate-200 flex-grow">
+        <div className="max-w-[1400px] mx-auto w-full">
+          <div className="text-center mb-10 md:mb-16">
+            <h2 className="text-[24px] md:text-[36px] font-black text-[#1E1B5C] font-oswald tracking-tight mb-2 uppercase">
+              Accredited Laboratory Facilities
+            </h2>
+            <p className="text-[13px] md:text-[15px] text-slate-500 max-w-xl mx-auto px-4">
+              Explore our NABL ISO/IEC 17025 accredited labs across Eastern India
+            </p>
+            <div className="w-[60px] h-[4px] bg-[#FF6700] mx-auto mt-4 rounded-full" />
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8 w-full pb-8">
             {LAB_DATA.map((lab) => (
-              <div key={lab.id} className="w-full flex flex-col shrink-0">
-
-                {/* Main Lab Accordion Toggle */}
-                <button
-                  onClick={() => toggleLab(lab.id)}
-                  className="w-full flex items-center justify-start gap-2 text-[#1E1B5C] font-bold text-lg md:text-xl font-oswald tracking-wide uppercase mb-4 hover:text-[#FF6700] transition-colors"
-                >
-                  {openLabs[lab.id] ? <ChevronUp className="text-[#1E1B5C] shrink-0" /> : <ChevronDown className="text-[#1E1B5C] shrink-0" />}
-                  <span className="text-left">{lab.name}</span>
-                </button>
-
-                <AnimatePresence>
-                  {openLabs[lab.id] && (
-                    <motion.div
-                      initial={{ height: 0, opacity: 0 }}
-                      animate={{ height: 'auto', opacity: 1 }}
-                      exit={{ height: 0, opacity: 0 }}
-                      transition={{ duration: 0.3 }}
-                      className="flex flex-col gap-6 overflow-hidden mb-6"
-                    >
-                      {/* Top Badges */}
-                      <div className="flex gap-4 items-center">
-                        <div className="w-24 h-24 rounded-full border border-slate-200 overflow-hidden relative bg-white flex items-center justify-center shadow-sm shrink-0">
-                          <Image
-                            src={getBadgeUrl(lab.cert)}
-                            alt={`NABL Logo ${lab.cert}`}
-                            width={64}
-                            height={64}
-                            className="object-contain p-6 h-12 w-12"
-                          />
-                          <span className="absolute bottom-1 text-[#1E1B5C] font-black text-[9px] bg-white/90 px-1 rounded uppercase tracking-tighter shadow-sm">
-                            {lab.cert}
-                          </span>
-                        </div>
-                        <div className="w-24 h-24 rounded bg-slate-800 flex items-center justify-center text-slate-400 border border-slate-700 shadow-sm shrink-0 relative overflow-hidden">
-                          <FileImage size={24} className="opacity-50" />
-                          <div className="absolute inset-0 bg-gradient-to-tr from-transparent via-white/5 to-transparent pointer-events-none"></div>
-                        </div>
+              <div 
+                key={lab.id} 
+                className="bg-white rounded-3xl border border-slate-100 shadow-[0_10px_30px_rgba(30,27,92,0.02)] hover:shadow-[0_20px_50px_rgba(30,27,92,0.06)] transition-all duration-300 p-5 sm:p-6 md:p-8 flex flex-col justify-between relative overflow-hidden group"
+              >
+                {/* Accent Top Bar */}
+                <div className="absolute top-0 left-0 w-full h-[4px] bg-gradient-to-r from-[#1E1B5C] to-[#FF6700]" />
+                
+                <div>
+                  {/* Card Title & NABL Details */}
+                  <div className="flex justify-between items-start gap-4 mb-5">
+                    <div>
+                      <h3 className="text-lg sm:text-xl md:text-2xl font-black text-[#1E1B5C] font-oswald tracking-tight uppercase group-hover:text-[#FF6700] transition-colors duration-300">
+                        {lab.name}
+                      </h3>
+                      <div className="flex items-center gap-1.5 mt-1.5">
+                        <Award size={14} className="text-[#FF6700]" />
+                        <span className="text-[10px] sm:text-[11px] font-bold text-slate-400 uppercase tracking-widest font-mono">
+                          NABL {lab.cert}
+                        </span>
                       </div>
+                    </div>
+                  </div>
 
-                      {/* Address & Cert Text */}
-                      <div className="flex flex-col gap-4 text-sm text-black leading-relaxed mt-2 pr-4">
-                        <p><strong>Address:</strong> {lab.address}</p>
-                        <p>{lab.certText} <strong>{lab.cert}</strong></p>
+                  {/* NABL Badge and Scan QR Code Row (Enlarged for easy scanning) */}
+                  <div className="flex items-center gap-4 mb-6">
+                    {/* Badge */}
+                    <div className="w-[96px] h-[96px] sm:w-[110px] sm:h-[110px] rounded-2xl border border-slate-100 bg-white shadow-sm flex items-center justify-center shrink-0 p-2">
+                      <Image
+                        src={getBadgeUrl(lab.cert)}
+                        alt={`NABL Logo ${lab.cert}`}
+                        width={90}
+                        height={90}
+                        className="object-contain"
+                      />
+                    </div>
+
+                    {/* QR Code */}
+                    <div className="w-[96px] h-[96px] sm:w-[110px] sm:h-[110px] rounded-2xl border border-slate-100 bg-white shadow-sm flex items-center justify-center shrink-0 p-1.5 overflow-hidden">
+                      <Image
+                        src={lab.qrImage}
+                        alt={`QR Code ${lab.name}`}
+                        width={90}
+                        height={90}
+                        className="object-contain rounded-xl"
+                      />
+                    </div>
+                  </div>
+
+                  {/* Address Section */}
+                  <div className="flex items-start gap-3 mb-5">
+                    <MapPin size={16} className="text-[#FF6700] shrink-0 mt-0.5" />
+                    <p className="text-[13px] md:text-[14px] text-slate-500 leading-relaxed">
+                      {lab.address}
+                    </p>
+                  </div>
+
+                  {/* NABL Certification Text box */}
+                  <div className="bg-slate-50 border border-slate-100 rounded-2xl p-4 mb-6">
+                    <p className="text-[12px] md:text-[13px] text-[#1E1B5C] font-semibold leading-relaxed">
+                      {lab.certText} <strong className="text-[#FF6700]">{lab.cert}</strong>
+                    </p>
+                  </div>
+
+                  {/* Certificate Image Frame with Hover Effect */}
+                  <div 
+                    onClick={() => setSelectedImage({ src: lab.certImage, title: lab.name })}
+                    className="relative aspect-[1/1.4] w-full rounded-2xl border border-slate-200 overflow-hidden bg-slate-50/50 shadow-sm group/image cursor-pointer p-4 flex items-center justify-center"
+                  >
+                    <Image
+                      src={lab.certImage}
+                      alt={`${lab.name} Certificate`}
+                      fill
+                      className="object-contain p-2 transition-transform duration-700 ease-out group-hover/image:scale-[1.03]"
+                      unoptimized
+                    />
+                    {/* Hover Overlay */}
+                    <div className="absolute inset-0 bg-[#1E1B5C]/60 opacity-0 group-hover/image:opacity-100 transition-opacity duration-300 flex flex-col items-center justify-center gap-2">
+                      <div className="w-12 h-12 rounded-full bg-white/20 backdrop-blur border border-white/30 flex items-center justify-center text-white shadow-lg transform translate-y-4 group-hover/image:translate-y-0 transition-transform duration-500">
+                        <Eye size={20} />
                       </div>
-                    </motion.div>
-                  )}
-                </AnimatePresence>
-
-                {/* Certificate Document (Always visible) */}
-                <div className="bg-white p-2 border border-slate-300 shadow-sm flex flex-col relative w-full h-auto aspect-[1/1.4] overflow-hidden group">
-                  <Image
-                    src={lab.certImage}
-                    alt={`${lab.name} Certificate`}
-                    fill
-                    className="object-cover group-hover:scale-[1.02] transition-transform duration-500"
-                    unoptimized
-                  />
+                      <span className="text-white text-xs font-bold uppercase tracking-wider">
+                        View Certificate
+                      </span>
+                    </div>
+                  </div>
                 </div>
 
-                {/* Scope Accordion Toggle (Always visible) */}
-                <div className="mt-6 flex flex-col">
-                  <button
-                    onClick={() => toggleScope(lab.id)}
-                    className="flex items-start gap-2 text-sm md:text-[15px] font-bold text-[#1E1B5C] hover:text-[#FF6700] transition-colors text-left"
+                {/* Scope Actions Section */}
+                <div className="mt-6 md:mt-8 pt-6 border-t border-slate-100 flex flex-col gap-4">
+                  <p className="text-[11px] md:text-[12px] text-slate-400 leading-relaxed">
+                    {lab.scopeText}
+                  </p>
+                  <a 
+                    href={lab.pdfLink} 
+                    target="_blank" 
+                    rel="noopener noreferrer" 
+                    className="w-full bg-[#1E1B5C] hover:bg-[#FF6700] text-white text-center py-3 sm:py-3.5 rounded-2xl font-bold text-xs md:text-sm tracking-wide uppercase transition-all duration-300 flex items-center justify-center gap-2 shadow-[0_4px_15px_rgba(30,27,92,0.08)] hover:shadow-[0_4px_15px_rgba(255,103,0,0.25)] hover:-translate-y-0.5 active:translate-y-0 cursor-pointer"
                   >
-                    <div className="shrink-0 mt-0.5">
-                      {openScopes[lab.id] ? <ChevronUp size={18} /> : <ChevronDown size={18} />}
-                    </div>
-                    <span>View NABL Scope of Accreditation</span>
-                  </button>
-
-                  <AnimatePresence>
-                    {openScopes[lab.id] && (
-                      <motion.div
-                        initial={{ height: 0, opacity: 0 }}
-                        animate={{ height: 'auto', opacity: 1 }}
-                        exit={{ height: 0, opacity: 0 }}
-                        transition={{ duration: 0.3 }}
-                        className="overflow-hidden"
-                      >
-                        <div className="pt-3 pb-2 text-[14px] text-slate-700 leading-relaxed pr-4 flex flex-col gap-3">
-                          <p>{lab.scopeText}</p>
-                          <a href={lab.pdfLink} target="_blank" rel="noopener noreferrer" className="text-[#1E1B5C] font-bold border-b border-[#1E1B5C] hover:text-[#FF6700] hover:border-[#FF6700] transition-colors inline-block w-fit pb-0.5">
-                            [Download Scope PDF]
-                          </a>
-                        </div>
-                      </motion.div>
-                    )}
-                  </AnimatePresence>
+                    <FileDown size={16} />
+                    Download Scope PDF
+                  </a>
                 </div>
               </div>
             ))}
@@ -287,7 +303,49 @@ export default function AccreditationPage() {
         </div>
       </div>
 
+      {/* Lightbox / Modal for Certificate Zoom */}
+      <AnimatePresence>
+        {selectedImage && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 z-[99999] bg-black/85 backdrop-blur-sm flex items-center justify-center p-4 md:p-6 cursor-pointer"
+            onClick={() => setSelectedImage(null)}
+          >
+            {/* Close Button */}
+            <button 
+              onClick={() => setSelectedImage(null)}
+              className="absolute top-4 right-4 md:top-6 md:right-6 z-[100000] w-10 h-10 md:w-12 md:h-12 rounded-full bg-white/15 hover:bg-white/30 text-white flex items-center justify-center transition-colors border border-white/20 cursor-pointer shadow-lg"
+              aria-label="Close modal"
+            >
+              <X size={20} className="md:w-6 md:h-6" />
+            </button>
+
+            {/* Modal Content Box */}
+            <motion.div
+              initial={{ scale: 0.95, y: 20 }}
+              animate={{ scale: 1, y: 0 }}
+              exit={{ scale: 0.95, y: 20 }}
+              transition={{ type: "spring", duration: 0.4 }}
+              className="relative max-w-3xl w-full h-[80vh] md:h-[85vh] bg-slate-950/10 rounded-3xl overflow-hidden flex flex-col items-center p-4 pt-16 md:pt-20"
+              onClick={(e) => e.stopPropagation()} // Prevent close on modal content click
+            >
+              <div className="absolute top-4 left-4 right-16 z-10 text-white text-xs md:text-sm font-bold bg-[#FF6700]/95 backdrop-blur px-4 py-2 rounded-full uppercase tracking-wider shadow-md w-fit truncate">
+                {selectedImage.title}
+              </div>
+              <div className="w-full h-full flex items-center justify-center">
+                <img
+                  src={selectedImage.src}
+                  alt={`${selectedImage.title} Certificate Large`}
+                  className="max-w-full max-h-full object-contain rounded-xl shadow-2xl"
+                />
+              </div>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+
     </div>
   );
 }
-

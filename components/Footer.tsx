@@ -146,9 +146,9 @@ export default function Footer() {
             transition={{ duration: 0.6, ease: "easeOut" }}
             className="flex flex-col gap-6 lg:gap-8 lg:col-span-2 xl:col-span-1 border-b lg:border-b-0 border-white/10 pb-8 lg:pb-0"
           >
-            <div className="flex flex-col border-b border-white/20 pb-8 relative group">
+            <div className="flex flex-col border-b border-white/20 pb-4 relative group">
               <div>
-                <Link href="/" className="mb-5 flex items-center gap-3 min-w-0 font-sans cursor-pointer">
+                <Link href="/" className="flex items-center gap-3 min-w-0 font-sans cursor-pointer">
                   <div className="w-[40px] h-[40px] md:w-[55px] md:h-[55px] xl:w-[68px] xl:h-[68px] bg-white rounded-2xl shadow-lg shrink-0 overflow-hidden flex items-center justify-center">
                     <Image
                       src={LOGO}
@@ -167,23 +167,6 @@ export default function Footer() {
                     </div>
                   </div>
                 </Link>
-                <div className="mb-6 flex flex-wrap ">
-                  {NABL_BADGES.map((item, index) => (
-                    <a
-                      href={item.link}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      key={item.id}
-                      className="flex h-[44px] w-[44px] items-center justify-center text-[10px] text-white/50 shrink-0"
-                    >
-                      <img
-                        src={item.url}
-                        alt={`NABL Badge ${item.id}`}
-                        className="w-full h-full object-contain"
-                      />
-                    </a>
-                  ))}
-                </div>
               </div>
             </div>
 
@@ -372,7 +355,10 @@ export default function Footer() {
                 </div>
               </a>
 
-              <div className="flex items-start gap-4 group cursor-pointer">
+              <a
+                href="tel:08062180808"
+                className="flex items-start gap-4 group"
+              >
                 <div className="w-10 h-10 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center shrink-0 group-hover:bg-gradient-to-br group-hover:from-[#FF6700] group-hover:to-orange-500 group-hover:border-transparent transition-all duration-300 shadow-sm relative overflow-hidden">
                   <Phone
                     size={18}
@@ -385,10 +371,10 @@ export default function Footer() {
                     Corporate Office
                   </span>
                   <span className="text-white/90 text-[13px] font-medium group-hover:text-[#FF6700] transition-colors">
-                    Available on Request
+                    08062180808
                   </span>
                 </div>
-              </div>
+              </a>
             </div>
 
             {/* Dynamic Team Slider */}

@@ -1,8 +1,18 @@
 [
   {
+    "name": "Larsen & Toubro Limited (L&T)",
+    "logo": "https://res.cloudinary.com/de4cnpfm1/image/upload/v1779279362/L_T_lzl07o.png",
+    "alt": "Larsen & Toubro Limited (L&T) Logo"
+  },
+  {
     "name": "National Highways Authority of India (NHAI)",
     "logo": "https://res.cloudinary.com/de4cnpfm1/image/upload/v1778339590/NHAI_jklrfa.png",
     "alt": "NHAI - National Highways Authority of India Logo"
+  },
+  {
+    "name": "TATA Projects Limited",
+    "logo": "https://res.cloudinary.com/de4cnpfm1/image/upload/v1779279360/TATA_PROJECTS_oytktf.png",
+    "alt": "TATA Projects Limited Logo"
   },
   {
     "name": "Airports Authority of India (AAI)",
@@ -10,9 +20,19 @@
     "alt": "Airports Authority of India Logo"
   },
   {
+    "name": "Shapoorji Pallonji and Company Pvt. Ltd.",
+    "logo": "https://res.cloudinary.com/de4cnpfm1/image/upload/v1779279360/SHAPOORJI_PALLONJI_h9z9gk.png",
+    "alt": "Shapoorji Pallonji and Company Pvt. Ltd. Logo"
+  },
+  {
     "name": "NHPC Limited",
     "logo": "https://res.cloudinary.com/de4cnpfm1/image/upload/v1778339589/NHPC_w7zntt.png",
     "alt": "NHPC - National Hydroelectric Power Corporation Logo"
+  },
+  {
+    "name": "Reliance Industries Ltd",
+    "logo": "https://res.cloudinary.com/de4cnpfm1/image/upload/v1779279359/RELIANCE_INDUS._LTD._mikuhg.png",
+    "alt": "Reliance Industries Ltd Logo"
   },
   {
     "name": "NTPC Limited",
@@ -20,9 +40,19 @@
     "alt": "NTPC - National Thermal Power Corporation Logo"
   },
   {
+    "name": "Adani Group",
+    "logo": "https://res.cloudinary.com/de4cnpfm1/image/upload/v1779279359/adani_eckgbg.png",
+    "alt": "Adani Group Logo"
+  },
+  {
     "name": "Central Public Works Department (CPWD)",
     "logo": "https://res.cloudinary.com/de4cnpfm1/image/upload/v1778339588/CPWD_ntemrm.jpg",
     "alt": "CPWD - Central Public Works Department Logo"
+  },
+  {
+    "name": "Afcons Infrastructure Limited",
+    "logo": "https://res.cloudinary.com/de4cnpfm1/image/upload/v1779279358/afcons_endhth.jpg",
+    "alt": "Afcons Infrastructure Limited Logo"
   },
   {
     "name": "Indian Oil Corporation Limited (IOCL)",
@@ -30,9 +60,19 @@
     "alt": "Indian Oil Corporation Logo"
   },
   {
+    "name": "Kalpataru Projects International Ltd.",
+    "logo": "https://res.cloudinary.com/de4cnpfm1/image/upload/v1779279357/Kalpataru_projects_international_ltd_gvi9uo.jpg",
+    "alt": "Kalpataru Projects International Ltd. Logo"
+  },
+  {
     "name": "Bharat Petroleum Corporation Limited (BPCL)",
     "logo": "https://res.cloudinary.com/de4cnpfm1/image/upload/v1778339587/BPCL_ydh7ol.png",
     "alt": "BPCL - Bharat Petroleum Corporation Limited Logo"
+  },
+  {
+    "name": "NCC Ltd",
+    "logo": "https://res.cloudinary.com/de4cnpfm1/image/upload/v1779279357/NCC_Ltd_h1in3n.png",
+    "alt": "NCC Ltd Logo"
   },
   {
     "name": "NBCC (India) Limited",
@@ -40,9 +80,19 @@
     "alt": "NBCC - National Buildings Construction Corporation Logo"
   },
   {
+    "name": "Ashoka Buildcon Ltd",
+    "logo": "https://res.cloudinary.com/de4cnpfm1/image/upload/v1779279356/Ashoka_Buildcon_Ltd._dm1tlv.png",
+    "alt": "Ashoka Buildcon Ltd Logo"
+  },
+  {
     "name": "National Projects Construction Corporation Limited (NPCC)",
     "logo": "https://res.cloudinary.com/de4cnpfm1/image/upload/v1778339586/NPCC_uoghs3.png",
     "alt": "NPCC - National Projects Construction Corporation Logo"
+  },
+  {
+    "name": "Hindustan Construction Company",
+    "logo": "https://res.cloudinary.com/de4cnpfm1/image/upload/v1779279356/HCC_oo26f7.jpg",
+    "alt": "Hindustan Construction Company Logo"
   },
   {
     "name": "Power Grid Corporation of India Limited (PGCIL)",
@@ -50,9 +100,19 @@
     "alt": "PGCIL - Power Grid Corporation of India Logo"
   },
   {
+    "name": "Godrej Properties Ltd",
+    "logo": "https://res.cloudinary.com/de4cnpfm1/image/upload/v1779279355/Godrej_Properties_Ltd_pvqgix.png",
+    "alt": "Godrej Properties Ltd Logo"
+  },
+  {
     "name": "Rail Vikas Nigam Limited (RVNL)",
     "logo": "https://res.cloudinary.com/de4cnpfm1/image/upload/v1778339586/RVNL_cq5wln.png",
     "alt": "RVNL - Rail Vikas Nigam Limited Logo"
+  },
+  {
+    "name": "IRB Infrastructure Developers Ltd.",
+    "logo": "https://res.cloudinary.com/de4cnpfm1/image/upload/v1779279355/IRB_Infrastructure_Developers_Ltd._tnymqf.jpg",
+    "alt": "IRB Infrastructure Developers Ltd. Logo"
   },
   {
     "name": "IRCON International Limited",
@@ -60,9 +120,19 @@
     "alt": "IRCON International Limited Logo"
   },
   {
+    "name": "Dilip Buildcon Ltd.",
+    "logo": "https://res.cloudinary.com/de4cnpfm1/image/upload/v1779279354/Dilip_Buildcon_Ltd._smyws4.jpg",
+    "alt": "Dilip Buildcon Ltd. Logo"
+  },
+  {
     "name": "Eastern Railway",
     "logo": "https://res.cloudinary.com/de4cnpfm1/image/upload/v1778339584/Eastern_Railway_gr5jh6.jpg",
     "alt": "Eastern Railway Logo"
+  },
+  {
+    "name": "KEC International Ltd.",
+    "logo": "https://res.cloudinary.com/de4cnpfm1/image/upload/v1779279353/KEC_International_LTd_xjdyik.jpg",
+    "alt": "KEC International Ltd. Logo"
   },
   {
     "name": "South Eastern Railway",
@@ -70,9 +140,19 @@
     "alt": "South Eastern Railway Logo"
   },
   {
+    "name": "Patel Engineering Ltd",
+    "logo": "https://res.cloudinary.com/de4cnpfm1/image/upload/v1779279352/Patel_Engineering_Ltd_prkred.jpg",
+    "alt": "Patel Engineering Ltd Logo"
+  },
+  {
     "name": "Northeast Frontier Railway (NFR)",
     "logo": "https://res.cloudinary.com/de4cnpfm1/image/upload/v1778339583/NEFR_rukgnz.png",
     "alt": "NEFR - Northeast Frontier Railway Logo"
+  },
+  {
+    "name": "G R Infraprojects Ltd.",
+    "logo": "https://res.cloudinary.com/de4cnpfm1/image/upload/v1779279352/G_R_Infraprojects_Ltd._sphcft.jpg",
+    "alt": "G R Infraprojects Ltd. Logo"
   },
   {
     "name": "Coal India Limited (CIL)",
@@ -80,9 +160,19 @@
     "alt": "Coal India Limited Logo"
   },
   {
+    "name": "Power Mech Projects Ltd",
+    "logo": "https://res.cloudinary.com/de4cnpfm1/image/upload/v1779279352/Poewer_Mech_Projects_Ltd_hn6igw.png",
+    "alt": "Power Mech Projects Ltd Logo"
+  },
+  {
     "name": "Steel Authority of India Limited (SAIL)",
     "logo": "https://res.cloudinary.com/de4cnpfm1/image/upload/v1778339583/SAIL_j3zzaa.png",
     "alt": "SAIL - Steel Authority of India Limited Logo"
+  },
+  {
+    "name": "Gammon India Ltd.",
+    "logo": "https://res.cloudinary.com/de4cnpfm1/image/upload/v1779279352/Gammon_India_Ltd._s9yesm.png",
+    "alt": "Gammon India Ltd. Logo"
   },
   {
     "name": "RITES Limited",
@@ -90,9 +180,19 @@
     "alt": "RITES Limited Logo"
   },
   {
+    "name": "JMC Projects (India) Ltd",
+    "logo": "https://res.cloudinary.com/de4cnpfm1/image/upload/v1779279353/JMC_Projects_India_Ltd_mle96t.png",
+    "alt": "JMC Projects (India) Ltd Logo"
+  },
+  {
     "name": "Bharat Heavy Electricals Limited (BHEL)",
     "logo": "https://res.cloudinary.com/de4cnpfm1/image/upload/v1778339583/BHEL_kbtp2s.png",
     "alt": "BHEL - Bharat Heavy Electricals Limited Logo"
+  },
+  {
+    "name": "Simplex Infrastructures Ltd",
+    "logo": "https://res.cloudinary.com/de4cnpfm1/image/upload/v1779279352/Simplex_infrastructures_ltd_meoqvc.png",
+    "alt": "Simplex Infrastructures Ltd Logo"
   },
   {
     "name": "GAIL (India) Limited",
