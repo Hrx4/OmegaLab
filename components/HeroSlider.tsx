@@ -71,7 +71,7 @@ export default function HeroSlider() {
   useEffect(() => {
     const timer = setInterval(() => {
       setCurrentSlide((prev) => (prev + 1) % slides.length);
-    }, 5000); // 5 seconds
+    }, 7000); // 5 seconds
 
     return () => clearInterval(timer);
   }, []);
@@ -92,7 +92,7 @@ export default function HeroSlider() {
           className={`absolute inset-0 transition-opacity duration-1000 ease-in-out ${index === currentSlide ? 'opacity-100 z-10' : 'opacity-0 z-0'
             }`}
         >
-          <div className="absolute inset-0 opacity-40 mix-blend-overlay">
+          <div className="absolute inset-0 opacity-80 mix-blend-overlay">
             <Image
               src={slide.image}
               alt={slide.title}
@@ -104,7 +104,7 @@ export default function HeroSlider() {
           </div>
           {/* Dark Overlay for Text Contrast */}
           <div className="absolute inset-0 bg-black/40 md:bg-black/30 bg-gradient-to-b from-black/60 via-transparent to-black/60"></div>
-          
+
           <div className="absolute inset-0 flex flex-col items-center justify-center text-center px-12 md:px-20 z-10">
             <span className="inline-block bg-[#FF6700]/15 border border-[#FF6700] text-[#FF6700] text-[10px] md:text-[13px] font-bold px-5 py-1.5 rounded-full mb-4 uppercase tracking-[0.5px] drop-shadow-md">
               {slide.badge}
