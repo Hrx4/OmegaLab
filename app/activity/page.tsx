@@ -138,34 +138,6 @@ export default function ActivityPage() {
           ))}
         </div>
 
-        {/* Link to Achievements */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-          className="bg-gradient-to-r from-[#1E1B5C] to-[#2d2a7a] rounded-3xl p-8 md:p-12 flex flex-col md:flex-row items-center justify-between gap-6 relative overflow-hidden"
-        >
-          <div className="absolute top-0 right-0 w-64 h-64 bg-[#FF6700]/10 rounded-full blur-3xl pointer-events-none" />
-          <div className="relative z-10">
-            <div className="flex items-center gap-3 mb-3">
-              <Award size={24} className="text-[#FF6700]" />
-              <span className="text-[#FF6700] font-bold uppercase tracking-widest text-sm">Milestones</span>
-            </div>
-            <h3 className="text-white font-oswald font-black text-2xl md:text-3xl uppercase mb-2">
-              View Our Achievements
-            </h3>
-            <p className="text-white/60 text-[14px] max-w-xl">
-              Explore our key milestones, recognitions, and accomplishments since our founding in 1999.
-            </p>
-          </div>
-          <Link
-            href="/achievements"
-            className="shrink-0 relative z-10 inline-flex items-center gap-2 bg-[#FF6700] hover:bg-[#e65c00] text-white font-bold px-8 py-4 rounded-2xl transition-colors duration-300 uppercase tracking-wider text-sm shadow-lg hover:shadow-[#FF6700]/30 hover:shadow-xl"
-          >
-            Achievements <ArrowRight size={18} />
-          </Link>
-        </motion.div>
       </div>
     </div>
   );

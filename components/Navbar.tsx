@@ -58,7 +58,6 @@ const NAV_ITEMS = [
       { name: "Our Vision & Mission", path: "/vision-mission" },
       { name: "Organizational Chart", path: "/organizational-chart" },
       { name: "Activity", path: "/activity" },
-      { name: "Achievements", path: "/achievements" },
     ],
   },
   { name: "ACCREDIATION", path: "/accreditation" },

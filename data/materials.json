@@ -1,0 +1,982 @@
+[
+  {
+    "icon": "🪨",
+    "name": "Coarse & Fine Aggregates (Chemical)",
+    "category": ["Cement & Concrete"],
+    "nablCert": "TC-11935",
+    "testType": "Chemical",
+    "parameters": [
+      "Alkalies (Na2O equivalent)", "Potassium Oxide", "Sodium Oxide", "Silica", "Alumina",
+      "Calcium Oxide", "Iron Oxide", "Magnesia (as MgO)", "Sulphide Sulphur (as S)",
+      "Sulphuric Anhydride", "Acid Soluble Chloride",
+      "Alkali Aggregates Reaction – a) Concentration of Silica, b) Reduction in Alkalinity",
+      "Water Soluble Chloride", "Organic Impurities"
+    ]
+  },
+  {
+    "icon": "🧱",
+    "name": "Hydraulic Cement OPC/PPC/PSC/PCC/GGBS/White Cement/Clinker (Chemical)",
+    "category": ["Cement & Concrete"],
+    "nablCert": "TC-11935",
+    "testType": "Chemical",
+    "parameters": [
+      "Ratio of percentage of alumina to that of iron oxide",
+      "Ratio of percentage of lime to percentages of silica, alumina and iron oxide",
+      "Tricalcium Aluminate (C3A)", "Sulphuric Anhydride", "Tricalcium Silicate (C3S)",
+      "Available Alkali as Na2O", "Potassium Oxide", "Sodium Oxide", "Alumina",
+      "Chloride Content", "Silica", "Magnesia (as MgO)", "Loss on Ignition",
+      "Calcium Oxide", "Insoluble Residue", "Iron Oxide", "Sulphide Sulphur (as S)"
+    ]
+  },
+  {
+    "icon": "🏗️",
+    "name": "Fresh Mortar & Fresh Concrete (Chemical)",
+    "category": ["Cement & Concrete"],
+    "nablCert": "TC-11935",
+    "testType": "Chemical",
+    "parameters": [
+      "Acid Soluble Chloride", "Water Soluble Chloride"
+    ]
+  },
+  {
+    "icon": "💨",
+    "name": "Fly Ash (Chemical) – TC-11935",
+    "category": ["Cement & Concrete"],
+    "nablCert": "TC-11935",
+    "testType": "Chemical",
+    "parameters": [
+      "Aluminum Oxide", "Available Alkali as Na2O", "Calcium Oxide", "Chloride",
+      "Iron Oxide", "Loss on Ignition", "Magnesium Oxide", "Moisture Content",
+      "Potassium Oxide", "Silica", "Silicon Dioxide + Aluminium Oxide + Iron Oxide",
+      "Sodium Oxide", "Sulphate as SO3"
+    ]
+  },
+  {
+    "icon": "💎",
+    "name": "Microsilica (Chemical)",
+    "category": ["Cement & Concrete"],
+    "nablCert": "TC-11935",
+    "testType": "Chemical",
+    "parameters": [
+      "Available Alkali as Na2O", "Loss on Ignition", "Moisture Content",
+      "Potassium Oxide", "Silica", "Sodium Oxide"
+    ]
+  },
+  {
+    "icon": "🏭",
+    "name": "GI Pipe / GI Sheet / GI Wire / Zinc Coated Steel (Chemical)",
+    "category": ["Metals & Steel"],
+    "nablCert": "TC-11935",
+    "testType": "Chemical",
+    "parameters": [
+      "Mass of Zinc Coating (Strand, GI Pipe, GI Sheet, GI Wire, GI Structural Steel and other alloyed products)"
+    ]
+  },
+  {
+    "icon": "✨",
+    "name": "Aluminium & Aluminium Alloys (Chemical – OES)",
+    "category": ["Metals & Steel"],
+    "nablCert": "TC-11935",
+    "testType": "Chemical",
+    "parameters": [
+      "Iron", "Chromium", "Copper", "Magnesium", "Manganese",
+      "Nickel", "Silicon", "Titanium", "Zinc"
+    ]
+  },
+  {
+    "icon": "🔩",
+    "name": "Aluminium & Aluminium Alloys (Mechanical)",
+    "category": ["Metals & Steel"],
+    "nablCert": "TC-11935",
+    "testType": "Mechanical",
+    "parameters": [
+      "Dimension Check", "Tensile Strength", "% Elongation",
+      "0.2% Proof Stress", "Rockwell Hardness (HRC & HRB)"
+    ]
+  },
+  {
+    "icon": "⚗️",
+    "name": "Carbon Steel – Low/Medium/High Carbon (Chemical – OES)",
+    "category": ["Metals & Steel"],
+    "nablCert": "TC-11935",
+    "testType": "Chemical",
+    "parameters": [
+      "Nitrogen", "Aluminium", "Carbon", "Phosphorus", "Sulphur", "Silicon",
+      "Carbon Equivalent", "Chromium", "Cobalt", "Copper", "Manganese",
+      "Molybdenum", "Nickel", "Vanadium", "Sulphur + Phosphorus"
+    ]
+  },
+  {
+    "icon": "🔬",
+    "name": "High Alloy Steel / Stainless Steel (Chemical – OES)",
+    "category": ["Metals & Steel"],
+    "nablCert": "TC-11935",
+    "testType": "Chemical",
+    "parameters": [
+      "Carbon", "Phosphorus", "Silicon", "Sulphur",
+      "Chromium", "Copper", "Manganese", "Molybdenum", "Nickel", "Nitrogen"
+    ]
+  },
+  {
+    "icon": "⚙️",
+    "name": "Ferrous Metal & Alloy Products (Mechanical)",
+    "category": ["Metals & Steel"],
+    "nablCert": "TC-11935",
+    "testType": "Mechanical",
+    "parameters": [
+      "Dimension – Depth, Length, Width, Diameter, Thickness",
+      "Hardness Test (HRBW)", "Hardness Test (HRC)",
+      "Impact Test – Charpy (V Notch)",
+      "Mass per unit area", "Tensile Strength",
+      "% Elongation", "0.2% Proof Stress / Yield Stress"
+    ]
+  },
+  {
+    "icon": "🥇",
+    "name": "Copper & Copper Alloys (Chemical – OES)",
+    "category": ["Metals & Steel"],
+    "nablCert": "TC-11935",
+    "testType": "Chemical",
+    "parameters": [
+      "Aluminium (Al)", "Antimony (Sb)", "Arsenic (As)", "Bismuth (Bi)",
+      "Iron (Fe)", "Lead (Pb)", "Manganese (Mn)", "Nickel (Ni)",
+      "Phosphorus (P)", "Silicon (Si)", "Silver (Ag)", "Tin (Sn)", "Zinc (Zn)"
+    ]
+  },
+  {
+    "icon": "🔧",
+    "name": "Copper & Copper Alloys (Mechanical)",
+    "category": ["Metals & Steel"],
+    "nablCert": "TC-11935",
+    "testType": "Mechanical",
+    "parameters": [
+      "Dimension Check", "Tensile Test", "% Elongation"
+    ]
+  },
+  {
+    "icon": "🏗️",
+    "name": "Cast Iron & Pig Iron (Chemical)",
+    "category": ["Metals & Steel"],
+    "nablCert": "TC-11935",
+    "testType": "Chemical",
+    "parameters": [
+      "Carbon", "Chromium", "Manganese", "Nickel", "Phosphorous", "Silicon"
+    ]
+  },
+  {
+    "icon": "🔩",
+    "name": "Fasteners – Nuts / Bolts / Screws / Studs (Mechanical)",
+    "category": ["Metals & Steel"],
+    "nablCert": "TC-11935",
+    "testType": "Mechanical",
+    "parameters": [
+      "Ultimate Tensile Strength", "Ultimate Tensile Load",
+      "0.2% Proof Stress / Yield Stress", "Shear Strength",
+      "% Elongation", "% Reduction in Area",
+      "Proof Load Test (For Nut)", "Proof Load Test (For Bolt)",
+      "Hardness (HRBW & HRC)", "Hardness for Washer (HRBW & HRC)"
+    ]
+  },
+  {
+    "icon": "🔵",
+    "name": "Ferrous Pipes & Tubes (Mechanical)",
+    "category": ["Metals & Steel"],
+    "nablCert": "TC-11935",
+    "testType": "Mechanical",
+    "parameters": [
+      "Ultimate Tensile Load", "0.2% Proof Stress / Yield Bend Test",
+      "% Elongation", "Flattening Test",
+      "Dimension – Outside Diameter, Thickness",
+      "Mass", "Hardness (HRBW & HRC)"
+    ]
+  },
+  {
+    "icon": "🔗",
+    "name": "Reinforced Couplers for Mechanical Splicing (Mechanical)",
+    "category": ["Metals & Steel"],
+    "nablCert": "TC-11935",
+    "testType": "Mechanical",
+    "parameters": [
+      "Location of Failure", "Slip across the Mechanical Splice",
+      "Static Tensile Strength", "Total % Elongation",
+      "Hardness (HRBW & HRC)"
+    ]
+  },
+  {
+    "icon": "🏗️",
+    "name": "Structural Steel – Channel / Beams / Plate / Hollow Section (Mechanical)",
+    "category": ["Metals & Steel"],
+    "nablCert": "TC-11935",
+    "testType": "Mechanical",
+    "parameters": [
+      "Dimension – Depth, Length, Width, Thickness, Diameter, Side Width",
+      "Tensile Strength", "% Elongation", "Reduction in Area",
+      "Yield Stress", "Mass per unit Weight", "Bend Test",
+      "Hardness (HRBW & HRC)"
+    ]
+  },
+  {
+    "icon": "🪢",
+    "name": "Pre-stressing Strand / HT Strand (Mechanical)",
+    "category": ["Metals & Steel"],
+    "nablCert": "TC-11935",
+    "testType": "Mechanical",
+    "parameters": [
+      "Mass Per Meter", "Tensile Strength", "Total Elongation %",
+      "0.2% Proof Load", "Breaking Load",
+      "Dimension – Diameter, Length of Lay, Nominal Area",
+      "Percentage Difference in Diameter of Center Wire and Surrounding Wires"
+    ]
+  },
+  {
+    "icon": "🔩",
+    "name": "Reinforcement Steel / TMT Bars / Rebar (Mechanical)",
+    "category": ["Metals & Steel"],
+    "nablCert": "TC-11935",
+    "testType": "Mechanical",
+    "parameters": [
+      "Weight per Meter", "Tensile Strength",
+      "0.2% Proof Stress / Yield Strength",
+      "% Elongation", "Total Elongation",
+      "Bend Test", "Re-bend Test", "TS/YS Ratio",
+      "Mean area rib per unit length",
+      "Hardness (HRBW & HRC)"
+    ]
+  },
+  {
+    "icon": "⚙️",
+    "name": "Ferrous Welded Coupons (Mechanical)",
+    "category": ["Metals & Steel"],
+    "nablCert": "TC-11935",
+    "testType": "Mechanical",
+    "parameters": [
+      "All Weld Tensile Strength (Butt Weld)",
+      "All Weld Tensile Test – % Elongation",
+      "All Weld Tensile Test – % Reduction Area",
+      "All Weld Tensile Test – 0.2% Proof Stress",
+      "All Weld Tensile Test – Tensile Strength",
+      "All Weld Tensile Test – Yield Strength",
+      "Hardness Test (HRBW & HRC)",
+      "Transverse Tensile Strength on Butt Weld Joint",
+      "Bend – Root Bend, Face Bend, Side Bend",
+      "Impact Test – Charpy (V Notch)",
+      "Test Specimen Location, Notch Orientation and Examination",
+      "Longitudinal Bend – Root, Face, Side",
+      "Longitudinal Root and Face Bend on Butt Weld",
+      "Transverse Bend – Root Bend, Face Bend, Side Bend"
+    ]
+  },
+  {
+    "icon": "🔊",
+    "name": "Non-Ferrous Welded Coupons (Mechanical)",
+    "category": ["Metals & Steel"],
+    "nablCert": "TC-11935",
+    "testType": "Mechanical",
+    "parameters": [
+      "All Weld Tensile Strength (Butt Weld)",
+      "All Weld Tensile Test – % Elongation",
+      "All Weld Tensile Test – % Reduction Area",
+      "All Weld Tensile Test – 0.2% Proof Stress",
+      "All Weld Tensile Test – Tensile Strength",
+      "All Weld Tensile Test – Yield Strength",
+      "Hardness Test (HRBW)",
+      "Transverse Tensile Strength on Butt Weld Joint",
+      "Transverse Tensile Strength"
+    ]
+  },
+  {
+    "icon": "🔵",
+    "name": "Corrugated HDPE Sheathing Duct, CPVC, UPC & PVC Pipes (Mechanical)",
+    "category": ["Plastic"],
+    "nablCert": "TC-11935",
+    "testType": "Mechanical",
+    "parameters": [
+      "Visual Appearance", "Transverse Load Rating Test",
+      "Water Loss Test", "Workability Test"
+    ]
+  },
+  {
+    "icon": "🔵",
+    "name": "Corrugated HDPE Sheathing Duct (Mechanical)",
+    "category": ["Plastic"],
+    "nablCert": "TC-11935",
+    "testType": "Mechanical",
+    "parameters": [
+      "Transverse Load Rating Test", "Water Loss Test", "Workability Test"
+    ]
+  },
+  {
+    "icon": "🔵",
+    "name": "CPVC / UPC / PVC / PP Pipes & Fittings (Mechanical)",
+    "category": ["Plastic"],
+    "nablCert": "TC-11935",
+    "testType": "Mechanical",
+    "parameters": [
+      "Visual Appearance", "Density",
+      "Shore Hardness (Shore-A & Shore-D)",
+      "Tensile Strength", "Tensile Properties – Yield Strength",
+      "Dimension – Mean Outside Diameter, Ovality, Thickness, Wall Thickness",
+      "Reversion Test", "Flattening Test",
+      "Melt Flow Rate", "Melt Flow Index",
+      "Vicat Softening Temperature",
+      "Internal Hydrostatic Pressure Test",
+      "Opacity", "Resistance to External Blows",
+      "Resistance to Sulphuric Acid",
+      "Axial Shrinkage", "Sulphated Ash Content", "Carbon Black Content"
+    ]
+  },
+  {
+    "icon": "🛡️",
+    "name": "HDPE Pipe, Geomembrane, Film & Sheet",
+    "category": ["Plastic", "Geotextiles"],
+    "nablCert": "TC-11935",
+    "testType": "Mechanical",
+    "parameters": [
+      "Visual Appearance", "Thickness",
+      "Nominal Thickness – Average & Core Thickness",
+      "Dimension – Ovality, Outside Diameter, Wall Thickness",
+      "Index Puncture Resistance", "Tear Resistance",
+      "Tensile Break Strength", "Tensile Yield Strength",
+      "Base Density", "Shore Hardness (Shore-A & Shore-D)",
+      "Internal Pressure Creep Rupture Test",
+      "Melt Flow Rate", "Carbon Black Content"
+    ]
+  },
+  {
+    "icon": "🛡️",
+    "name": "PVC Geomembrane for Lining",
+    "category": ["Plastic", "Geotextiles"],
+    "nablCert": "TC-11935",
+    "testType": "Mechanical",
+    "parameters": [
+      "Behaviour During Perforation",
+      "Change of Dimension after Heating",
+      "Cold Crack Resistance at Low Temperature",
+      "Dimension Stability", "Index Puncture Resistance",
+      "Low Temperature Crack Resistance",
+      "Seam Strength", "Strength of Weld Seam Shear Resistance",
+      "Specific Gravity", "Tear Propagation Strength",
+      "Tear Resistance", "Tensile Strength", "Thickness", "Water Extraction"
+    ]
+  },
+  {
+    "icon": "🔵",
+    "name": "PVC Plain Conduit Pipes",
+    "category": ["Plastic"],
+    "nablCert": "TC-11935",
+    "testType": "Mechanical",
+    "parameters": [
+      "Compression Test", "Construction of Pipe",
+      "Marking of Pipes", "Uniformity of Wall Thickness"
+    ]
+  },
+  {
+    "icon": "💧",
+    "name": "Water Stopper",
+    "category": ["Plastic"],
+    "nablCert": "TC-11935",
+    "testType": "Mechanical",
+    "parameters": [
+      "Water Absorption", "Tensile Strength",
+      "Hardness (Shore A & Shore D)"
+    ]
+  },
+  {
+    "icon": "🟠",
+    "name": "Thermoplastic Elastomer",
+    "category": ["Plastic"],
+    "nablCert": "TC-11935",
+    "testType": "Mechanical",
+    "parameters": [
+      "Tensile Strength", "Hardness (Shore A & Shore D)"
+    ]
+  },
+  {
+    "icon": "🔐",
+    "name": "Adhesive Bond",
+    "category": ["Plastic"],
+    "nablCert": "TC-11935",
+    "testType": "Mechanical",
+    "parameters": [
+      "Peel or Stripping Strength"
+    ]
+  },
+  {
+    "icon": "🟫",
+    "name": "APP Modified Bituminous Membrane – TC-11935",
+    "category": ["Cement & Concrete"],
+    "nablCert": "TC-11935",
+    "testType": "Mechanical",
+    "parameters": [
+      "Puncture Resistance", "Breaking Strength",
+      "Cold Temperature Pliability Test",
+      "Heat Resistance Capacity",
+      "Mass per unit area", "Thickness", "Water Absorption"
+    ]
+  },
+  {
+    "icon": "🧵",
+    "name": "Geosynthetics / Geotextile / Vertical Drain / Geo Matt / Geo Strip / Geomembrane",
+    "category": ["Geotextiles"],
+    "nablCert": "TC-11935",
+    "testType": "Mechanical",
+    "parameters": [
+      "% Elongation", "Index Puncture Resistance",
+      "Static Puncture Strength (CBR Puncture Strength)",
+      "Thickness", "Width", "Wide Strip Tensile Strength",
+      "Ultimate Tensile Strength", "Apparent Opening Size",
+      "Grab Breaking Load",
+      "Puncture Resistance by Falling Cone Method",
+      "Trapezoid Tearing Strength",
+      "Wide Width Strip Tensile Strength",
+      "Mass per unit area", "Burst Strength",
+      "Elongation at Maximum Force",
+      "Tensile at Maximum Force",
+      "% Elongation at Failure for Wide Width Tensile"
+    ]
+  },
+  {
+    "icon": "🧶",
+    "name": "Fabric",
+    "category": ["Geotextiles"],
+    "nablCert": "TC-11935",
+    "testType": "Mechanical",
+    "parameters": [
+      "Mass per unit area", "% Elongation",
+      "Wide Width Strip Tensile Strength",
+      "Seam Strength", "Threads Per Unit Length"
+    ]
+  },
+  {
+    "icon": "🔳",
+    "name": "GeoGrid",
+    "category": ["Geotextiles"],
+    "nablCert": "TC-11935",
+    "testType": "Mechanical",
+    "parameters": [
+      "% Elongation at Failure (Multi Rib)",
+      "% Elongation at Failure (Single Rib)",
+      "Tensile Strength at 2% Strain",
+      "Tensile Strength at 5% Strain",
+      "Tensile Strength by Multi Rib Method",
+      "Tensile Strength by Single Rib Method",
+      "Ultimate Tensile Strength by Multi Rib Method"
+    ]
+  },
+  {
+    "icon": "🟫",
+    "name": "Geo Cell",
+    "category": ["Geotextiles"],
+    "nablCert": "TC-11935",
+    "testType": "Mechanical",
+    "parameters": [
+      "Seam Peel Strength", "Carbon Black Content", "Density"
+    ]
+  },
+  {
+    "icon": "🚰",
+    "name": "Borewell Water / Construction Water (Chemical)",
+    "category": ["Water"],
+    "nablCert": "TC-13401",
+    "testType": "Chemical",
+    "parameters": [
+      "Acidity", "Alkalinity", "Chloride",
+      "Filterable Residue (TDS)", "Non-Filterable Residue (TSS)",
+      "pH Value", "Sulphates",
+      "Total Inorganic Solids", "Total Organic Solids"
+    ]
+  },
+  {
+    "icon": "🥤",
+    "name": "Drinking / Surface / Ground Water (Chemical)",
+    "category": ["Water"],
+    "nablCert": "TC-13401",
+    "testType": "Chemical",
+    "parameters": [
+      "Aluminium (Al)", "Ammonia (total ammonia-N)", "Calcium",
+      "Chloride", "Colour", "Conductivity", "Fluoride (F)",
+      "Free Residual Chlorine", "Hexavalent Chromium (Cr+6)",
+      "Iron (Fe)", "Magnesium", "Nitrate-Nitrogen", "Nitrite-Nitrogen",
+      "Odour", "pH Value", "Phosphorus (PO4-P)", "Potassium (K)",
+      "Silica (SiO2)", "Sodium (Na)", "Sulphates", "Taste",
+      "Total Alkalinity", "Total Dissolved Solid (TDS)",
+      "Total Hardness", "Turbidity"
+    ]
+  },
+  {
+    "icon": "🏊",
+    "name": "Swimming Pool Water (Chemical)",
+    "category": ["Water"],
+    "nablCert": "TC-13401",
+    "testType": "Chemical",
+    "parameters": [
+      "Aluminium (Al)", "Chloride", "Colour", "Iron (Fe)",
+      "Odour", "pH Value", "Potassium (K)", "Sodium (Na)",
+      "Total Alkalinity", "Total Dissolved Solid (TDS)",
+      "Total Residual Chlorine"
+    ]
+  },
+  {
+    "icon": "🧱",
+    "name": "Hydraulic Cement OPC/PPC/PSC/PCC (Chemical)",
+    "category": ["Cement & Concrete"],
+    "nablCert": "TC-13401",
+    "testType": "Chemical",
+    "parameters": [
+      "Ratio of percentage of alumina to that of iron oxide",
+      "Ratio of percentage of lime to percentages of silica, alumina and iron oxide",
+      "Tricalcium Aluminate (C3A)", "Tricalcium Silicate (C3S)",
+      "Sulphuric Anhydride", "Available Alkali as Na2O",
+      "Potassium Oxide", "Sodium Oxide", "Alumina", "Chloride Content",
+      "Silica", "Magnesia (as MgO)", "Loss on Ignition",
+      "Calcium Oxide", "Insoluble Residue", "Iron Oxide",
+      "Sulphide Sulphur (as S)"
+    ]
+  },
+  {
+    "icon": "🏗️",
+    "name": "Hydraulic Cement OPC/PPC/PSC/PCC (Mechanical)",
+    "category": ["Cement & Concrete"],
+    "nablCert": "TC-13401",
+    "testType": "Mechanical",
+    "parameters": [
+      "Normal Consistency", "Compressive Strength", "Density",
+      "Final Setting Time", "Initial Setting Time",
+      "Fineness by Blain Apparatus", "Fineness by Dry Sieving",
+      "Specific Gravity", "Soundness by Autoclave Expansion",
+      "Soundness by Le-Chatelier"
+    ]
+  },
+  {
+    "icon": "💨",
+    "name": "Fly Ash (Chemical) – TC-13401",
+    "category": ["Cement & Concrete"],
+    "nablCert": "TC-13401",
+    "testType": "Chemical",
+    "parameters": [
+      "Aluminum Oxide", "Available Alkali as Na2O", "Calcium Oxide",
+      "Chloride", "Iron Oxide", "Loss on Ignition", "Magnesium Oxide",
+      "Moisture Content", "Silica", "Reactive Silica",
+      "SiO2 + Al2O3 + Fe2O3", "Sulphate as SO3"
+    ]
+  },
+  {
+    "icon": "💨",
+    "name": "Fly Ash (Mechanical)",
+    "category": ["Cement & Concrete"],
+    "nablCert": "TC-13401",
+    "testType": "Mechanical",
+    "parameters": [
+      "Compressive Strength", "Fineness by Blain Apparatus",
+      "Fineness by Wet Sieving (45 micron)",
+      "Soundness by Autoclave Expansion",
+      "Lime Reactivity", "Specific Gravity"
+    ]
+  },
+  {
+    "icon": "💎",
+    "name": "Micro Silica / Silica Fume (Mechanical)",
+    "category": ["Cement & Concrete"],
+    "nablCert": "TC-13401",
+    "testType": "Mechanical",
+    "parameters": [
+      "Compressive Strength", "Specific Gravity",
+      "Over size % retained on 45 Micron IS Sieve"
+    ]
+  },
+  {
+    "icon": "🖌️",
+    "name": "Putty",
+    "category": ["Cement & Concrete"],
+    "nablCert": "TC-13401",
+    "testType": "Mechanical",
+    "parameters": [
+      "Compressive Strength", "Final Setting Time", "Initial Setting Time"
+    ]
+  },
+  {
+    "icon": "🔐",
+    "name": "Bonding Agent",
+    "category": ["Cement & Concrete"],
+    "nablCert": "TC-13401",
+    "testType": "Mechanical",
+    "parameters": [
+      "Compressive Strength"
+    ]
+  },
+  {
+    "icon": "🛡️",
+    "name": "Waterproofing Compound (Chemical)",
+    "category": ["Cement & Concrete"],
+    "nablCert": "TC-13401",
+    "testType": "Chemical",
+    "parameters": [
+      "Chloride Content"
+    ]
+  },
+  {
+    "icon": "🌡️",
+    "name": "Curing Compound (Mechanical)",
+    "category": ["Cement & Concrete"],
+    "nablCert": "TC-13401",
+    "testType": "Mechanical",
+    "parameters": [
+      "Drying Time", "Water Retention"
+    ]
+  },
+  {
+    "icon": "⚡",
+    "name": "Accelerated Cured Concrete",
+    "category": ["Cement & Concrete"],
+    "nablCert": "TC-13401",
+    "testType": "Mechanical",
+    "parameters": [
+      "Compressive Strength"
+    ]
+  },
+  {
+    "icon": "🏗️",
+    "name": "Fresh Cement Concrete (Mechanical)",
+    "category": ["Cement & Concrete"],
+    "nablCert": "TC-13401",
+    "testType": "Mechanical",
+    "parameters": [
+      "Flow Test", "Slump Test", "V-Funnel Test"
+    ]
+  },
+  {
+    "icon": "🧱",
+    "name": "Hardened Concrete (Mechanical)",
+    "category": ["Cement & Concrete"],
+    "nablCert": "TC-13401",
+    "testType": "Mechanical",
+    "parameters": [
+      "Compressive Strength (Core)", "Compressive Strength (Cube)",
+      "Flexural Strength", "Splitting Tensile Strength",
+      "Water Absorption",
+      "Depth of Water Penetration Under Pressure (Permeability)"
+    ]
+  },
+  {
+    "icon": "🔬",
+    "name": "Hardened Concrete (Chemical)",
+    "category": ["Cement & Concrete"],
+    "nablCert": "TC-13401",
+    "testType": "Chemical",
+    "parameters": [
+      "Acid Soluble Sulphate", "Water Soluble Sulphate",
+      "Electrical Indication of Concrete's Ability to Resist Chloride Ion Penetration (RCPT)"
+    ]
+  },
+  {
+    "icon": "🧫",
+    "name": "Concrete Admixture (Chemical)",
+    "category": ["Cement & Concrete"],
+    "nablCert": "TC-13401",
+    "testType": "Chemical",
+    "parameters": [
+      "Ash Content", "pH Value", "Relative Density",
+      "Chloride Content", "Specific Gravity",
+      "Dry Material Content",
+      "Determination of Water Soluble Chloride Content"
+    ]
+  },
+  {
+    "icon": "🧊",
+    "name": "Autoclaved Cellular (AAC) Concrete Blocks",
+    "category": ["Cement & Concrete"],
+    "nablCert": "TC-13401",
+    "testType": "Mechanical",
+    "parameters": [
+      "Bulk Density", "Compressive Strength", "Thermal Conductivity"
+    ]
+  },
+  {
+    "icon": "🔲",
+    "name": "Concrete Paving Block / Paver Block",
+    "category": ["Cement & Concrete"],
+    "nablCert": "TC-13401",
+    "testType": "Mechanical",
+    "parameters": [
+      "Abrasion Resistance", "Compressive Strength",
+      "Dimension – Width, Thickness, Length",
+      "Splitting Tensile Strength", "Water Absorption"
+    ]
+  },
+  {
+    "icon": "🧱",
+    "name": "Bricks – Clay / Fly Ash / PFA Lime / PFA Cement (Mechanical)",
+    "category": ["Cement & Concrete"],
+    "nablCert": "TC-13401",
+    "testType": "Mechanical",
+    "parameters": [
+      "Compressive Strength", "Efflorescence",
+      "Water Absorption",
+      "Dimension – Width, Height, Length"
+    ]
+  },
+  {
+    "icon": "🔲",
+    "name": "Ceramic & Vitrified Tiles / Acid Resisting Tiles (Chemical)",
+    "category": ["Cement & Concrete"],
+    "nablCert": "TC-13401",
+    "testType": "Chemical",
+    "parameters": [
+      "Determination of Acid Resistance",
+      "Determination of Chemical Resistance",
+      "Stain Test"
+    ]
+  },
+  {
+    "icon": "🔲",
+    "name": "Ceramic & Vitrified Tiles / Acid Resisting Tiles (Mechanical)",
+    "category": ["Cement & Concrete"],
+    "nablCert": "TC-13401",
+    "testType": "Mechanical",
+    "parameters": [
+      "Breaking Strength", "Modulus of Rupture",
+      "Water Absorption", "Scratch Hardness"
+    ]
+  },
+  {
+    "icon": "⛰️",
+    "name": "Stones & Rock (Mechanical)",
+    "category": ["Cement & Concrete"],
+    "nablCert": "TC-13401",
+    "testType": "Mechanical",
+    "parameters": [
+      "Scratch Hardness", "Apparent Porosity", "Apparent Specific Gravity",
+      "Resistance to Wear by Abrasion", "True Porosity", "True Specific Gravity",
+      "Ultrasonic Pulse Velocity",
+      "Uni-Axial Compressive Strength", "Water Absorption"
+    ]
+  },
+  {
+    "icon": "🌍",
+    "name": "Clays & Soils (Chemical)",
+    "category": ["Cement & Concrete", "NDT Services"],
+    "nablCert": "TC-13401",
+    "testType": "Chemical",
+    "parameters": [
+      "Organic Matter", "pH Value",
+      "Soluble Sulphate (2:1 Water-solid ratio)",
+      "Sulphate", "Total Soluble Sulphate",
+      "Water Soluble Chloride"
+    ]
+  },
+  {
+    "icon": "🌍",
+    "name": "Clay & Soil – Coarse & Fine Grained (Mechanical)",
+    "category": ["Cement & Concrete", "NDT Services"],
+    "nablCert": "TC-13401",
+    "testType": "Mechanical",
+    "parameters": [
+      "Hydrometer Analysis",
+      "California Bearing Ratio (CBR)",
+      "Free Swell Index",
+      "Heavy Compaction Test – MDD & OMC",
+      "Light Compaction Test – MDD & OMC",
+      "Liquid Limit", "Plastic Limit", "Plasticity Index",
+      "Sieve Analysis (19mm to 0.075mm)",
+      "Specific Gravity", "Water Content / Moisture Content",
+      "Co-efficient of Curvature (Cc)",
+      "Co-efficient of Uniformity (Cu)",
+      "Direct Shear Test (Angle of Internal Friction & Cohesion)"
+    ]
+  },
+  {
+    "icon": "🛣️",
+    "name": "Blanketing Material (Mechanical)",
+    "category": ["Cement & Concrete"],
+    "nablCert": "TC-13401",
+    "testType": "Mechanical",
+    "parameters": [
+      "California Bearing Ratio (CBR)",
+      "Heavy Compaction Test – MDD & OMC",
+      "Co-efficient of Curvature (Cc)",
+      "Co-efficient of Uniformity (Cu)",
+      "Liquid Limit", "Plastic Limit", "Plasticity Index",
+      "Sieve Analysis (0.075mm to 40mm)",
+      "Aggregate Abrasion Value by Los Angeles Machine"
+    ]
+  },
+  {
+    "icon": "🛣️",
+    "name": "Granular Sub Base (Mechanical)",
+    "category": ["Cement & Concrete"],
+    "nablCert": "TC-13401",
+    "testType": "Mechanical",
+    "parameters": [
+      "California Bearing Ratio (CBR)",
+      "Heavy Compaction Test – MDD & OMC",
+      "Liquid Limit", "Plastic Limit",
+      "Aggregate Impact Value",
+      "Sieve Analysis (0.075mm to 75mm)",
+      "Water Absorption"
+    ]
+  },
+  {
+    "icon": "🛣️",
+    "name": "Wet Mix Macadam / WBM Screening Material (Mechanical)",
+    "category": ["Cement & Concrete"],
+    "nablCert": "TC-13401",
+    "testType": "Mechanical",
+    "parameters": [
+      "California Bearing Ratio (CBR)",
+      "Heavy Compaction Test – MDD & OMC",
+      "Liquid Limit", "Plastic Limit",
+      "Sieve Analysis (0.075mm to 53mm)"
+    ]
+  },
+  {
+    "icon": "🪨",
+    "name": "Coarse & Fine Aggregates (Mechanical)",
+    "category": ["Cement & Concrete"],
+    "nablCert": "TC-13401",
+    "testType": "Mechanical",
+    "parameters": [
+      "Bulk Density (Compacted, Loose)",
+      "Clay Lumps", "Coal Lignite",
+      "Material Finer than 75 Micron",
+      "Soundness by MgSO4", "Soundness by Na2SO4",
+      "Specific Gravity", "Water Absorption"
+    ]
+  },
+  {
+    "icon": "🪨",
+    "name": "Fine Aggregates (Mechanical)",
+    "category": ["Cement & Concrete"],
+    "nablCert": "TC-13401",
+    "testType": "Mechanical",
+    "parameters": [
+      "Bulk Density (Compacted & Loose)",
+      "Deleterious Content – Clay Lumps, Coal Lignite, Clay, Fine Silt & Fine Dust, Material finer than 75 micron",
+      "Sieve Analysis (10mm to 0.150mm)",
+      "Fineness Modulus",
+      "Soundness by MgSO4", "Soundness by Na2SO4",
+      "Specific Gravity", "Water Absorption"
+    ]
+  },
+  {
+    "icon": "🪨",
+    "name": "Coarse Aggregates (Mechanical)",
+    "category": ["Cement & Concrete"],
+    "nablCert": "TC-13401",
+    "testType": "Mechanical",
+    "parameters": [
+      "10% Fines Value",
+      "Aggregate Abrasion Value by Los Angeles Machine",
+      "Aggregate Impact Value", "Crushing Value", "Stripping Value",
+      "Elongation Index", "Flakiness Index",
+      "Combined Flakiness & Elongation Index",
+      "Bulk Density (Compacted, Loose)",
+      "Deleterious Content – Clay Lumps, Coal Lignite, Material finer than 75 micron",
+      "Sieve Analysis (80mm to 2.36mm)",
+      "Soundness by MgSO4", "Soundness by Na2SO4",
+      "Specific Gravity", "Water Absorption"
+    ]
+  },
+  {
+    "icon": "🚂",
+    "name": "Ballast (Mechanical)",
+    "category": ["Cement & Concrete"],
+    "nablCert": "TC-13401",
+    "testType": "Mechanical",
+    "parameters": [
+      "Aggregate Abrasion Value by Los Angeles Machine",
+      "Aggregate Impact Value",
+      "Sieve Analysis (20mm to 65mm)",
+      "Water Absorption"
+    ]
+  },
+  {
+    "icon": "🛣️",
+    "name": "Bitumen (Mechanical)",
+    "category": ["Cement & Concrete"],
+    "nablCert": "TC-13401",
+    "testType": "Mechanical",
+    "parameters": [
+      "Absolute Viscosity", "Ductility", "Flash Point",
+      "Kinematic Viscosity", "Loss on Heating",
+      "Solubility in Trichloroethylene",
+      "Specific Gravity", "Viscosity Ratio"
+    ]
+  },
+  {
+    "icon": "🛣️",
+    "name": "Bitumen Emulsion",
+    "category": ["Cement & Concrete"],
+    "nablCert": "TC-13401",
+    "testType": "Mechanical",
+    "parameters": [
+      "Ductility", "Miscibility with Water", "Particle Charge",
+      "Penetration", "Residue by Evaporation",
+      "Residue on 600 Micron Sieve",
+      "Solubility in Trichloroethylene",
+      "Stability to Mixing with Cement",
+      "Storage Stability after 24h"
+    ]
+  },
+  {
+    "icon": "🟫",
+    "name": "APP Modified Bituminous Membrane – TC-13401",
+    "category": ["Cement & Concrete"],
+    "nablCert": "TC-13401",
+    "testType": "Mechanical",
+    "parameters": [
+      "Penetration", "Softening Point"
+    ]
+  },
+  {
+    "icon": "🔨",
+    "name": "Rebound Hammer Test (NDT)",
+    "category": ["NDT Services"],
+    "nablCert": "NABL Accredited",
+    "testType": "Mechanical",
+    "parameters": [
+      "Rebound Number (Surface Hardness Assessment)",
+      "Estimated Compressive Strength of Concrete",
+      "Structural Condition Assessment"
+    ]
+  },
+  {
+    "icon": "📡",
+    "name": "Ultrasonic Pulse Velocity – USPV (NDT)",
+    "category": ["NDT Services"],
+    "nablCert": "NABL Accredited",
+    "testType": "Mechanical",
+    "parameters": [
+      "Pulse Velocity (m/s)",
+      "Concrete Quality Classification",
+      "Detection of Internal Cracks / Voids",
+      "Homogeneity Assessment"
+    ]
+  },
+  {
+    "icon": "🔊",
+    "name": "Ultrasonic Testing for Metals & Welds (NDT)",
+    "category": ["NDT Services"],
+    "nablCert": "NABL Accredited",
+    "testType": "Mechanical",
+    "parameters": [
+      "Flaw Detection in Metals",
+      "Weld Integrity Assessment",
+      "Thickness Measurement",
+      "Defect Characterization"
+    ]
+  },
+  {
+    "icon": "💧",
+    "name": "Dye Penetrant (DP) Test (NDT)",
+    "category": ["NDT Services"],
+    "nablCert": "NABL Accredited",
+    "testType": "Mechanical",
+    "parameters": [
+      "Surface Crack Detection",
+      "Porosity Identification",
+      "Seam and Weld Defect Identification",
+      "Colour Contrast Penetrant Test",
+      "Fluorescent Penetrant Test"
+    ]
+  }
+]

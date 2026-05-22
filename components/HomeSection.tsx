@@ -154,7 +154,7 @@ function DialCodeDropdown() {
 
   return (
     <div className="relative w-[130px] shrink-0">
-      <div 
+      <div
         onClick={() => setOpen(!open)}
         className="w-full h-full min-h-[44px] px-3 py-3 rounded-lg border-2 border-[#1E1B5C]/10 bg-[#EFF6FF] text-[13px] text-[#1E1B5C] cursor-pointer flex items-center justify-between"
       >
@@ -170,8 +170,8 @@ function DialCodeDropdown() {
           <div className="fixed inset-0 z-40" onClick={() => setOpen(false)} />
           <div className="absolute top-full left-0 mt-1 w-56 max-h-56 overflow-y-auto bg-white border border-slate-200 shadow-2xl rounded-xl z-50 py-1">
             {COUNTRY_LIST.map((c, i) => (
-              <div 
-                key={i} 
+              <div
+                key={i}
                 onClick={() => { setSelected(c); setOpen(false); }}
                 className="px-3 py-2.5 hover:bg-[#EFF6FF] cursor-pointer flex items-center gap-3 text-[13px] transition-colors"
               >
@@ -188,146 +188,27 @@ function DialCodeDropdown() {
   );
 }
 
+import materials from "../data/materials.json";
+import TestingModal, { type MaterialItem } from "./TestingModal";
+
 const filters = [
-    "All Materials",
-    "Metals & Steel",
-    "Cement & Concrete",
-    "Geotextiles",
-    "NDT Services",
-    "Plastic",
-    "Water",
-  ];
+  "All Materials",
+  "Metals & Steel",
+  "Cement & Concrete",
+  "Geotextiles",
+  "NDT Services",
+  "Plastic",
+  "Water",
+];
 
-  const materials = [
-    {
-      icon: "🔩",
-      name: "Reinforcement Steel (TMT/HSD)",
-      category: ["Metals & Steel"],
-    },
-    {
-      icon: "🏗️",
-      name: "Structural Steel",
-      category: ["Metals & Steel"],
-    },
-    {
-      icon: "🔧",
-      name: "Fasteners/Nuts/Bolts/Washers",
-      category: ["Metals & Steel"],
-    },
-    {
-      icon: "🪢",
-      name: "HT Strand & Wire",
-      category: ["Metals & Steel"],
-    },
-    {
-      icon: "⚙️",
-      name: "Welded Coupons & Joints",
-      category: ["Metals & Steel"],
-    },
-    {
-      icon: "🥇",
-      name: "Non-Ferrous Metals",
-      category: ["Metals & Steel"],
-    },
-    {
-      icon: "🧱",
-      name: "Cement (OPC/PPC/PSC)",
-      category: ["Cement & Concrete"],
-    },
-    {
-      icon: "💨",
-      name: "Fly Ash & Micro Silica",
-      category: ["Cement & Concrete"],
-    },
-    {
-      icon: "🪨",
-      name: "Aggregates & Sand",
-      category: ["Cement & Concrete"],
-    },
-    {
-      icon: "🏛️",
-      name: "Concrete & Design Mix",
-      category: ["Cement & Concrete"],
-    },
-    {
-      icon: "🧱",
-      name: "All Kinds of Bricks",
-      category: ["Cement & Concrete"],
-    },
-    {
-      icon: "⛰️",
-      name: "Natural Building Stones",
-      category: ["Cement & Concrete"],
-    },
-    {
-      icon: "🧊",
-      name: "AAC Blocks",
-      category: ["Cement & Concrete"],
-    },
-    {
-      icon: "🔲",
-      name: "Ceramic & Vitrified Tiles",
-      category: ["Cement & Concrete"],
-    },
-    {
-      icon: "🧵",
-      name: "Geotextile",
-      category: ["Geotextiles"],
-    },
-    {
-      icon: "🔳",
-      name: "Geogrid",
-      category: ["Geotextiles"],
-    },
-    {
-      icon: "🟫",
-      name: "Geocell",
-      category: ["Geotextiles"],
-    },
-    {
-      icon: "🛡️",
-      name: "Geomembrane",
-      category: ["Geotextiles"],
-    },
-    {
-      icon: "🌍",
-      name: "Soil Testing",
-      category: ["NDT Services"],
-    },
-    {
-      icon: "🔨",
-      name: "Rebound Hammer Test",
-      category: ["NDT Services"],
-    },
-    {
-      icon: "📡",
-      name: "Ultrasonic Pulse Velocity (USPV)",
-      category: ["NDT Services"],
-    },
-    {
-      icon: "🔊",
-      name: "Ultrasonic for Metals & Welds",
-      category: ["NDT Services", "Metals & Steel"],
-    },
-    {
-      icon: "💧",
-      name: "Dye Penetrant (DP) Test",
-      category: ["NDT Services"],
-    },
-    {
-      icon: "🔵",
-      name: "PVC/UPVC/HDPE/CPVC Pipes",
-      category: ["Plastic", "Water"],
-    },
-  ];
 
-  
 
 export default function HomeSections() {
 
-const [activeFilter, setActiveFilter] = useState("All Materials");
+  const [activeFilter, setActiveFilter] = useState("All Materials");
+  const [selectedMaterial, setSelectedMaterial] = useState<MaterialItem | null>(null);
 
-const { ref, inView } = useInView({
+  const { ref, inView } = useInView({
     triggerOnce: true,
     threshold: 0.3,
   });
@@ -370,12 +251,15 @@ const { ref, inView } = useInView({
     },
   ];
 
-  const filteredMaterials =
+  const filteredMaterials = (
     activeFilter === "All Materials"
       ? materials
       : materials.filter((item) =>
-          item.category.includes(activeFilter)
-        );
+        item.category.includes(activeFilter)
+      )
+  ).slice(0, 24);
+
+
 
 
   return (
@@ -384,30 +268,30 @@ const { ref, inView } = useInView({
       <HeroSlider />
 
       {/* 2. Stats Section */}
-      <section className="bg-[#1E1B5C] py-8 md:py-14 px-4"       ref={ref}
->
+      <section className="bg-[#1E1B5C] py-8 md:py-14 px-4" ref={ref}
+      >
         <div className="max-w-6xl mx-auto grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-6 text-center">
-           {stats.map((item, index) => (
-          <div key={index}>
-            <div className="text-[28px] md:text-[42px] font-black text-[#FF6700] mb-1 font-oswald">
-              {item.isText ? (
-                item.textValue
-              ) : (
-                inView && (
-                  <CountUp
-                    end={item.value}
-                    duration={2.5}
-                    suffix={item.suffix}
-                  />
-                )
-              )}
-            </div>
+          {stats.map((item, index) => (
+            <div key={index}>
+              <div className="text-[28px] md:text-[42px] font-black text-[#FF6700] mb-1 font-oswald">
+                {item.isText ? (
+                  item.textValue
+                ) : (
+                  inView && (
+                    <CountUp
+                      end={item.value}
+                      duration={2.5}
+                      suffix={item.suffix}
+                    />
+                  )
+                )}
+              </div>
 
-            <div className="text-[10px] uppercase tracking-[1.5px] text-white/60 font-semibold">
-              {item.label}
+              <div className="text-[10px] uppercase tracking-[1.5px] text-white/60 font-semibold">
+                {item.label}
+              </div>
             </div>
-          </div>
-        ))}
+          ))}
         </div>
       </section>
 
@@ -437,7 +321,7 @@ const { ref, inView } = useInView({
 
           <div>
             <blockquote className="border-l-4 border-[#FF6700] p-5 mb-6 bg-[#FF6700]/5 rounded-r-xl italic text-[14px] md:text-[16px] leading-[1.7] text-[#1E1B5C]">
-              &quot; WELCOME TO OMEGALAB—where accuracy is our goal, quality is
+              &quot; Where accuracy is our goal, quality is
               our soul, safety is our priority, satisfaction is our
               guarantee.&quot;
               <cite className="block not-italic font-bold mt-3 text-[#FF6700] text-[13px] font-montserrat">
@@ -445,6 +329,9 @@ const { ref, inView } = useInView({
               </cite>
             </blockquote>
 
+            <p className="text-[13px] md:text-[15px] leading-[1.75] text-[#1E1B5C]/75 mb-4">
+              We always embrace transformation as a necessary weapon to turning challenges into opportunities for innovation. Using history to show that advancements in one generation build the foundation for the next. Focusing on build a strong, passionate team and well build infrastructure to serve the nation.
+            </p>
             <p className="text-[13px] md:text-[15px] leading-[1.75] text-[#1E1B5C]/75 mb-4">
               Short history: OMEGALAB TESTING SERVICES PVT LTD was established
               on the year 1999 by our CEO, Mr.A.K.Das, ex faculty of Jadavpur
@@ -611,39 +498,57 @@ const { ref, inView } = useInView({
         </div>
 
         <div className="flex flex-wrap justify-center gap-2 mb-8">
-        {filters.map((tab) => (
-          <button
-            key={tab}
-            onClick={() => setActiveFilter(tab)}
-            className={`px-5 py-2.5 rounded-full border-2 text-[12px] font-bold cursor-pointer transition-all ${
-              activeFilter === tab
+          {filters.map((tab) => (
+            <button
+              key={tab}
+              onClick={() => setActiveFilter(tab)}
+              className={`px-5 py-2.5 rounded-full border-2 text-[12px] font-bold cursor-pointer transition-all ${activeFilter === tab
                 ? "bg-[#FF6700] border-[#FF6700] text-white"
                 : "bg-transparent border-[#1E1B5C]/15 text-[#1E1B5C] hover:bg-[#FF6700] hover:text-white hover:border-[#FF6700]"
-            }`}
-          >
-            {tab}
-          </button>
-        ))}
-      </div>
+                }`}
+            >
+              {tab}
+            </button>
+          ))}
+        </div>
 
-      
+
 
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-        {filteredMaterials.map((svc, idx) => (
-          <div
-            key={idx}
-            className="bg-white rounded-xl p-4 flex items-center gap-3 border-2 border-transparent hover:border-[#FF6700] hover:-translate-y-1 hover:shadow-[0_8px_20px_rgba(0,0,0,0.06)] transition-all cursor-pointer"
-          >
-            <div className="w-11 h-11 bg-[#EFF6FF] rounded-lg flex items-center justify-center text-[20px] shrink-0">
-              {svc.icon}
+          {filteredMaterials.map((svc, idx) => (
+            <div
+              key={idx}
+              onClick={() => setSelectedMaterial(svc as MaterialItem)}
+              className="bg-white rounded-xl p-4 flex items-center gap-3 border-2 border-transparent hover:border-[#FF6700] hover:-translate-y-1 hover:shadow-[0_8px_20px_rgba(0,0,0,0.06)] transition-all cursor-pointer group relative"
+            >
+              <div className="w-11 h-11 bg-[#EFF6FF] group-hover:bg-[#FF6700]/10 rounded-lg flex items-center justify-center text-[20px] shrink-0 transition-colors">
+                {svc.icon}
+              </div>
+              <div className="flex-1 min-w-0">
+                <div className="text-[13px] font-bold text-[#1E1B5C] leading-snug">
+                  {svc.name}
+                </div>
+                {svc.nablCert && (
+                  <div className="text-[10px] text-[#FF6700] font-semibold mt-0.5 truncate">{svc.nablCert}</div>
+                )}
+              </div>
+              <span className="text-[10px] text-[#1E1B5C]/30 group-hover:text-[#FF6700] transition-colors shrink-0 font-bold">›</span>
             </div>
+          ))}
+        </div>
 
-            <div className="text-[13px] font-bold text-[#1E1B5C]">
-              {svc.name}
-            </div>
-          </div>
-        ))}
-      </div>
+        <TestingModal material={selectedMaterial} onClose={() => setSelectedMaterial(null)} />
+
+        <div className="mt-10 flex justify-center">
+          <Link
+            href="/facilities"
+            className="px-8 py-3.5 bg-[#FF6700] text-white font-extrabold uppercase tracking-[1px] text-[13px] rounded-full hover:bg-[#e65c00] hover:-translate-y-[2px] hover:shadow-[0_8px_24px_rgba(255,103,0,0.35)] transition-all flex items-center gap-2 group cursor-pointer"
+          >
+            Show More
+            <span className="group-hover:translate-x-1 transition-transform">→</span>
+          </Link>
+        </div>
+
 
       </section>
 
@@ -651,7 +556,7 @@ const { ref, inView } = useInView({
       <section className="bg-white py-12 md:py-20 px-4 md:px-12">
         <div className="text-center mb-10 md:mb-16">
           <h2 className="text-[24px] md:text-[38px] font-black text-[#1E1B5C] mb-2 font-oswald tracking-tight">
-            Sample Collection Centers
+            Widest Sample Collection Centers
           </h2>
           <p className="text-[13px] md:text-[16px] text-[#1E1B5C]/50 max-w-2xl mx-auto">
             Convenient drop-off points across Eastern & North-Eastern India

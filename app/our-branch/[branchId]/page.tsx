@@ -48,10 +48,10 @@ export default async function BranchPage({ params }: { params: Promise<{ branchI
             <div className="absolute top-0 left-0 w-1.5 h-full bg-gradient-to-b from-[#1E1B5C] to-[#FF6700] z-20"></div>
             
             {/* Top Clear Image Banner */}
-            <div className="w-full h-64 md:h-80 relative shrink-0">
+            <div className="w-full h-64 md:h-80 relative shrink-0 bg-slate-100">
               <Image 
-                src="https://res.cloudinary.com/de4cnpfm1/image/upload/v1778432629/offc_rp2lzu.jpg" 
-                alt="OmegaLab Office"
+                src={branch.posterImage || "https://res.cloudinary.com/de4cnpfm1/image/upload/v1778432629/offc_rp2lzu.jpg"} 
+                alt={`${branch.name} Office`}
                 fill
                 className="object-cover"
                 unoptimized

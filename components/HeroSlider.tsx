@@ -3,67 +3,7 @@
 import { useState, useEffect } from 'react';
 import Image from 'next/image';
 
-const LOGO = "https://res.cloudinary.com/de4cnpfm1/image/upload/v1778247941/LOGO-_OCS_eamyrc.jpg";
-
-// const NABL_BADGES = [
-//   "https://res.cloudinary.com/de4cnpfm1/image/upload/v1778245989/TC11935_tsqh9z.webp",
-//   "https://res.cloudinary.com/de4cnpfm1/image/upload/v1778245989/TC16480_kmsows.webp",
-//   "https://res.cloudinary.com/de4cnpfm1/image/upload/v1778245989/TC17671_ghwfuo.webp",
-//   "https://res.cloudinary.com/de4cnpfm1/image/upload/v1778245987/TC13401_axis5q.webp",
-//   "https://res.cloudinary.com/de4cnpfm1/image/upload/v1778245987/TC15509_dx2lua.webp",
-// ];
-
-const slides = [
-  {
-    image: "https://res.cloudinary.com/de4cnpfm1/image/upload/v1778425833/1_zujbnq.jpg",
-    badge: "NABL Accredited Since 2012",
-    title: "25+ Years of Testing Excellence",
-    description:
-      "Eastern & North Eastern India's most trusted material testing laboratory.",
-  },
-  {
-    image: "https://res.cloudinary.com/de4cnpfm1/image/upload/v1778425835/2_fru1ln.jpg",
-    badge: "900+ Test Parameters",
-    title: "Advanced Testing Standards",
-    description:
-      "Comprehensive testing as per IS, ISO, ASTM, APHA, ASME, BS, EN & MoRTH standards.",
-  },
-  {
-    image: "https://res.cloudinary.com/de4cnpfm1/image/upload/v1778425832/3_ttoqqo.jpg",
-    badge: "5 Accredited Laboratories",
-    title: "Expanding Across India",
-    description:
-      "Kolkata Lab 1, Kolkata Lab 2, Siliguri, Odisha & Ranchi labs serving industries nationwide.",
-  },
-  {
-    image: "https://res.cloudinary.com/de4cnpfm1/image/upload/v1778425834/4_dkvlyv.jpg",
-    badge: "Ferrous & Non-Ferrous Testing",
-    title: "Mechanical & Chemical Analysis",
-    description:
-      "Comprehensive testing facility for ferrous and non-ferrous materials with precision equipment.",
-  },
-  {
-    image: "https://res.cloudinary.com/de4cnpfm1/image/upload/v1778425834/5_dtjanz.jpg",
-    badge: "Construction Material Testing",
-    title: "Concrete, Cement & Fly Ash",
-    description:
-      "Mechanical, chemical & NDT testing facilities including concrete design mix analysis.",
-  },
-  {
-    image: "https://res.cloudinary.com/de4cnpfm1/image/upload/v1778425832/6_whqpbj.jpg",
-    badge: "Water & Chemical Testing",
-    title: "Advanced NDT Facilities",
-    description:
-      "Rebound Hammer, USPV, Ultrasonic & DP testing for accurate structural assessment.",
-  },
-  {
-    image: "https://res.cloudinary.com/de4cnpfm1/image/upload/v1778425833/7_ullpak.jpg",
-    badge: "Trusted Testing Facility",
-    title: "Hundreds of Successful Projects",
-    description:
-      "100+ technical professionals including M.Sc, B.Sc, B.Tech & Diploma experts since 1999.",
-  },
-];
+import slides from '../data/slides.json';
 
 export default function HeroSlider() {
   const [currentSlide, setCurrentSlide] = useState(0);
