@@ -5,14 +5,24 @@ import { GitBranch, MapPin, FileText, ExternalLink, Building2 } from "lucide-rea
 
 const BRANCHES = [
   {
-    name: "Kolkata",
+    name: "Kolkata Lab 1",
     state: "West Bengal",
     color: "#1E1B5C",
     glowColor: "rgba(30,27,92,0.25)",
     pdfUrl:
       "https://res.cloudinary.com/de4cnpfm1/image/upload/v1779280923/ORGANIZATION_CHART_-_Kolkata_fwdduw.pdf",
-    nablCode: "TC-11935 / TC-13401",
+    nablCode: "TC-11935",
     details: ["Head Office & Central Laboratory", "14,000 sq.ft. Facility"],
+  },
+  {
+    name: "Kolkata Lab 2",
+    state: "West Bengal",
+    color: "#1E1B5C",
+    glowColor: "rgba(30,27,92,0.25)",
+    pdfUrl:
+      "https://res.cloudinary.com/de4cnpfm1/image/upload/v1779280923/ORGANIZATION_CHART_-_Kolkata_fwdduw.pdf",
+    nablCode: "TC-13401",
+    details: ["Haridevpur Facility", "Advanced Testing Setup"],
   },
   {
     name: "Siliguri",
@@ -106,6 +116,9 @@ export default function OrganizationalChartPage() {
               <div className="text-[#FF6700] text-[12px] font-bold uppercase tracking-wider">
                 Testing Services Private Limited
               </div>
+              <div className="text-slate-500 text-[10px] font-semibold mt-2 uppercase max-w-[280px] leading-tight">
+                (Registered Office - 256A M.G. Road, Thakurpukur, Kolkata-700063)
+              </div>
             </div>
           </motion.div>
 
@@ -118,18 +131,18 @@ export default function OrganizationalChartPage() {
             className="w-0.5 h-12 bg-gradient-to-b from-[#1E1B5C] to-[#1E1B5C]/40"
           />
 
-          {/* Horizontal bar spanning all 4 branches */}
+          {/* Horizontal bar spanning all 5 branches */}
           <div className="relative w-full flex justify-center">
             <motion.div
               initial={{ scaleX: 0 }}
               animate={{ scaleX: 1 }}
               transition={{ duration: 0.5, delay: 0.7 }}
               style={{ transformOrigin: "center" }}
-              className="absolute top-0 left-[12.5%] right-[12.5%] md:left-[12%] md:right-[12%] h-0.5 bg-gradient-to-r from-[#1E1B5C]/20 via-[#1E1B5C] to-[#1E1B5C]/20"
+              className="absolute top-0 left-[12.5%] right-[12.5%] md:left-[10%] md:right-[10%] h-0.5 bg-gradient-to-r from-[#1E1B5C]/20 via-[#1E1B5C] to-[#1E1B5C]/20"
             />
 
-            {/* 4 vertical stems down to each branch card */}
-            <div className="w-full grid grid-cols-2 md:grid-cols-4 gap-0">
+            {/* 5 vertical stems down to each branch card */}
+            <div className="w-full grid grid-cols-2 md:grid-cols-5 gap-0">
               {BRANCHES.map((branch, idx) => (
                 <div key={branch.name} className="flex flex-col items-center">
                   <motion.div
@@ -145,7 +158,7 @@ export default function OrganizationalChartPage() {
           </div>
 
           {/* Branch Cards */}
-          <div className="w-full grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 mt-0">
+          <div className="w-full grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-5 mt-0">
             {BRANCHES.map((branch, idx) => (
               <motion.div
                 key={branch.name}

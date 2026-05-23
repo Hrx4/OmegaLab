@@ -58,7 +58,6 @@ const NAV_ITEMS = [
       { name: "Our Vision & Mission", path: "/vision-mission" },
       { name: "Organizational Chart", path: "/organizational-chart" },
       { name: "Activity", path: "/activity" },
-      { name: "Achievements", path: "/achievements" },
     ],
   },
   { name: "ACCREDIATION", path: "/accreditation" },
@@ -231,7 +230,7 @@ export default function Navbar() {
       {/* Main Header Section */}
       <div className="w-full sticky top-0 z-[1000] shadow-2xl bg-[#1E1B5C] transition-all font-sans">
         {/* Main Logo & Info Bar */}
-        <div className="bg-[#1E1B5C] py-4 md:py-6 px-4 md:px-8 flex items-center relative">
+        <div className="bg-white py-4 md:py-6 px-4 md:px-8 flex items-center relative">
           <div className="flex flex-1 items-center gap-4 lg:gap-6 mr-4 lg:mr-10">
             <Link href="/" className="mb-5 flex items-center gap-3 min-w-0 cursor-pointer">
               <div className="w-[40px] h-[40px] md:w-[55px] md:h-[55px] xl:w-[88px] xl:h-[88px] bg-white rounded-2xl shadow-lg shrink-0 overflow-hidden flex items-center justify-center">
@@ -244,10 +243,10 @@ export default function Navbar() {
                 />
               </div>
               <div className="min-w-0 leading-tight overflow-hidden">
-                <div className="text-[20px] sm:text-[40px] font-extrabold tracking-tight text-white break-words sm:truncate">
+                <div className="text-[20px] sm:text-[40px] font-extrabold tracking-tight text-[#2E1271] break-words sm:truncate">
                   OMEGA<span className="text-[#63B7F6]">LAB</span>
                 </div>
-                <div className="text-[12px] sm:text-[20px] uppercase tracking-wide text-white/75 leading-tight break-words">
+                <div className="text-[12px] sm:text-[22px] uppercase tracking-wide text-[#2E1271] break-words font-extrabold font-century-gothic">
                   Testing Services Private Limited
                 </div>
               </div>
@@ -261,7 +260,7 @@ export default function Navbar() {
                   href={badge.link}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="w-[60px] h-[80px] lg:w-[70px] lg:h-[90px] xl:w-[90px] xl:h-[110px] bg-white rounded-full flex flex-col items-center justify-center border-[3px] border-[#FF6700] shadow-md relative overflow-hidden"
+                  className="w-[60px] h-[80px] lg:w-[70px] lg:h-[90px] xl:w-[90px] xl:h-[110px] bg-white rounded-full flex flex-col items-center justify-center shadow-md relative overflow-hidden"
                 >
                   <div className="text-[5px] xl:text-[7px] font-bold text-black uppercase text-center flex flex-col items-center mt-[2px] xl:mt-[3px]">
                     <div className="flex items-center justify-center mb-0.5 relative">
@@ -275,7 +274,7 @@ export default function Navbar() {
                     </div>
                   </div>
                 </a>
-                <span className="text-white text-[8px] lg:text-[10px] xl:text-[12px] font-extrabold font-sans tracking-wide uppercase text-center">
+                <span className="text-black text-[8px] lg:text-[10px] xl:text-[12px] font-extrabold font-sans tracking-wide uppercase text-center">
                   {badge.branch}
                 </span>
               </div>
@@ -284,7 +283,7 @@ export default function Navbar() {
 
           {/* Mobile Menu Button  */}
           <button
-            className="lg:hidden text-white p-2 hover:bg-white/10 rounded-md transition-colors shrink-0 ml-auto"
+            className="lg:hidden text-[#1E1B5C] p-2 hover:bg-[#1E1B5C]/10 rounded-md transition-colors shrink-0 ml-auto"
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
             aria-label="Toggle Navigation"
           >
@@ -343,11 +342,10 @@ export default function Navbar() {
 
         {/* Mobile Navigation Drawer */}
         <div
-          className={`lg:hidden absolute top-full left-0 w-full bg-[#1E1B5C] shadow-2xl flex flex-col transition-all duration-300 ease-in-out origin-top z-[998] overflow-hidden ${
-            isMobileMenuOpen
-              ? "max-h-[85vh] border-t-[3px] border-[#FF6700]"
-              : "max-h-0 border-t-0"
-          }`}
+          className={`lg:hidden absolute top-full left-0 w-full bg-[#1E1B5C] shadow-2xl flex flex-col transition-all duration-300 ease-in-out origin-top z-[998] overflow-hidden ${isMobileMenuOpen
+            ? "max-h-[85vh] border-t-[3px] border-[#FF6700]"
+            : "max-h-0 border-t-0"
+            }`}
         >
           <div className="h-auto max-h-[85vh] overflow-y-auto">
             <ul className="flex flex-col text-white font-sans p-2">

@@ -251,7 +251,7 @@ export default function Footer() {
             <div className="grid grid-cols-2 gap-x-4 gap-y-3">
               {[
                 { name: "Home", path: "/" },
-                { name: "About Us", path: "/achievements" },
+                { name: "About Us", path: "/laboratory-details" },
                 { name: "Accreditation", path: "/accreditation" },
                 { name: "Facilities", path: "/facilities" },
                 { name: "Profiles", path: "/profiles" },

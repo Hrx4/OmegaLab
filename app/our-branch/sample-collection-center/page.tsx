@@ -28,26 +28,8 @@ export default function SampleCollectionPage() {
           </p>
         </div>
 
-        {/* Side-by-Side Layout: Image Left, 2x2 Grid Right */}
-        <div className="w-full max-w-[1400px] grid grid-cols-1 lg:grid-cols-2 gap-8 items-stretch mb-14">
-
-          {/* Left: Office Image */}
-          <div className="relative w-full min-h-[400px] lg:min-h-0 rounded-3xl overflow-hidden shadow-[0_15px_40px_rgba(30,27,92,0.1)] border border-slate-100">
-            <div className="absolute top-0 left-0 w-1.5 h-full bg-gradient-to-b from-[#1E1B5C] to-[#FF6700] z-20"></div>
-            <Image
-              src="https://res.cloudinary.com/de4cnpfm1/image/upload/v1778433786/sampleoffc_ywjffi.jpg"
-              alt="OmegaLab Sample Collection Office"
-              fill
-              className="object-cover"
-              unoptimized
-              priority
-            />
-          </div>
-
-          {/* Right: 2x2 Cards Grid */}
-          <CollectionAccordion />
-
-        </div>
+        {/* Side-by-Side Layout handled by CollectionAccordion */}
+        <CollectionAccordion />
       </div>
     </div>
   );
