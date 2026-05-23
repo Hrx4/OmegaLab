@@ -4,7 +4,7 @@ import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import Image from 'next/image';
 import Link from 'next/link';
-import { Microscope, FlaskConical, PenToolIcon as Tool, Factory, Beaker, ChevronLeft, ChevronRight } from 'lucide-react';
+import { Microscope, FlaskConical, PenToolIcon as Tool, Factory, Beaker, ChevronLeft, ChevronRight, Search, X } from 'lucide-react';
 import materialsRaw from '../../data/materials.json';
 import facilitiesData from '../../data/facilities.json';
 import TestingModal, { type MaterialItem } from '../../components/TestingModal';
@@ -251,6 +251,26 @@ function CertSection({
 // ── Page ─────────────────────────────────────────────────────────────────────
 export default function FacilitiesPage() {
   const [selectedMaterial, setSelectedMaterial] = useState<MaterialItem | null>(null);
+  const [searchQuery, setSearchQuery] = useState("");
+  const [showDropdown, setShowDropdown] = useState(false);
+
+  useEffect(() => {
+    const handleOutsideClick = (e: MouseEvent) => {
+      const target = e.target as HTMLElement;
+      if (!target.closest(".search-container-el")) {
+        setShowDropdown(false);
+      }
+    };
+    document.addEventListener("mousedown", handleOutsideClick);
+    return () => document.removeEventListener("mousedown", handleOutsideClick);
+  }, []);
+
+  const searchResults = searchQuery.trim() === "" ? [] : materials.filter(m => {
+    const query = searchQuery.toLowerCase();
+    const nameMatch = m.name.toLowerCase().includes(query);
+    const paramMatch = m.parameters?.some(p => p.toLowerCase().includes(query));
+    return nameMatch || paramMatch;
+  });
 
   return (
     <div className="w-full bg-[#EFF6FF] min-h-screen pt-12 pb-24">
@@ -278,6 +298,87 @@ export default function FacilitiesPage() {
         >
           Equipped with world-class analytical instruments and a highly skilled technical team, OMEGALAB delivers precision testing across multiple disciplines to ensure your products meet global standards.
         </motion.p>
+
+        {/* Interactive Search Bar */}
+        <div className="search-container-el relative w-full max-w-xl mx-auto mt-8 mb-2 z-50">
+          <div className="relative flex items-center">
+            <Search className="absolute left-4 text-[#1E1B5C]/40" size={18} />
+            <input
+              type="text"
+              placeholder="Search 900+ parameters or testing services (e.g. Concrete, Steel...)"
+              value={searchQuery}
+              onChange={(e) => {
+                setSearchQuery(e.target.value);
+                setShowDropdown(true);
+              }}
+              onFocus={() => setShowDropdown(true)}
+              className="w-full pl-12 pr-12 py-3.5 bg-white border-2 border-[#1E1B5C]/10 rounded-full text-[14px] text-[#1E1B5C] placeholder-[#1E1B5C]/40 font-semibold focus:outline-none focus:border-[#FF6700] focus:shadow-[0_0_15px_rgba(255,103,0,0.15)] transition-all shadow-sm"
+            />
+            {searchQuery && (
+              <button
+                type="button"
+                onClick={() => {
+                  setSearchQuery("");
+                  setShowDropdown(false);
+                }}
+                className="absolute right-4 text-[#1E1B5C]/40 hover:text-[#FF6700] p-1 rounded-full hover:bg-slate-100 transition-colors"
+              >
+                <X size={16} />
+              </button>
+            )}
+          </div>
+
+          {/* Dropdown Results */}
+          {showDropdown && searchQuery.trim() !== "" && (
+            <div className="absolute left-0 right-0 top-full mt-2 bg-white rounded-2xl shadow-2xl border border-slate-100 z-[100] max-h-[320px] overflow-y-auto py-2 text-left">
+              {searchResults.length > 0 ? (
+                searchResults.map((m, idx) => {
+                  const query = searchQuery.toLowerCase();
+                  const matchedParams = m.parameters?.filter(p => p.toLowerCase().includes(query)) || [];
+                  return (
+                    <div
+                      key={idx}
+                      onClick={() => {
+                        setSelectedMaterial(m);
+                        setShowDropdown(false);
+                      }}
+                      className="px-5 py-3 hover:bg-[#EFF6FF] transition-colors cursor-pointer border-b border-slate-50 last:border-b-0 flex items-start gap-3.5 group"
+                    >
+                      <div className="w-9 h-9 rounded-lg bg-[#EFF6FF] group-hover:bg-[#FF6700]/10 flex items-center justify-center text-[18px] shrink-0 transition-colors">
+                        {m.icon}
+                      </div>
+                      <div className="flex-1 min-w-0">
+                        <div className="flex items-center justify-between gap-2">
+                          <span className="font-bold text-[13px] text-[#1E1B5C] group-hover:text-[#FF6700] transition-colors truncate">
+                            {m.name}
+                          </span>
+                          {m.nablCert && (
+                            <span className="text-[9px] font-bold text-[#FF6700] bg-[#FF6700]/10 px-2 py-0.5 rounded-full shrink-0">
+                              {m.nablCert}
+                            </span>
+                          )}
+                        </div>
+                        {matchedParams.length > 0 ? (
+                          <div className="text-[11px] text-[#FF6700] font-semibold mt-0.5">
+                            Parameters: <span className="text-slate-500 font-medium">{matchedParams.slice(0, 3).join(", ")}{matchedParams.length > 3 ? "..." : ""}</span>
+                          </div>
+                        ) : (
+                          <div className="text-[11px] text-slate-400 mt-0.5">
+                            {m.testType || "Material"} Testing
+                          </div>
+                        )}
+                      </div>
+                    </div>
+                  );
+                })
+              ) : (
+                <div className="px-5 py-6 text-center text-slate-400 text-[13px] italic">
+                  No parameters or services match &quot;{searchQuery}&quot;
+                </div>
+              )}
+            </div>
+          )}
+        </div>
 
         {/* Quick links */}
         <motion.div

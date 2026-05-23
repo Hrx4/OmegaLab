@@ -4,7 +4,9 @@ import Link from "next/link";
 import HeroSlider from "./HeroSlider";
 import IndiaBranchMap from "./IndiaBranchMap";
 import CLIENT_DATA from "../data/clients.json";
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
+import { Search, X, FlaskConical, CheckCircle2 } from "lucide-react";
+import { useSearchParams } from "next/navigation";
 import { useInView } from "react-intersection-observer";
 import CountUp from "react-countup";
 
@@ -207,6 +209,66 @@ export default function HomeSections() {
 
   const [activeFilter, setActiveFilter] = useState("All Materials");
   const [selectedMaterial, setSelectedMaterial] = useState<MaterialItem | null>(null);
+  const [searchQuery, setSearchQuery] = useState("");
+  const [showDropdown, setShowDropdown] = useState(false);
+  const [enquiryService, setEnquiryService] = useState("");
+  const [enquiryParams, setEnquiryParams] = useState<string[]>([]);
+  const searchParams = useSearchParams();
+
+  // Safety limits to prevent oversized URL payloads causing UI issues
+  const MAX_SERVICE_LEN = 300;
+  const MAX_PARAM_LEN = 200;
+  const MAX_PARAM_COUNT = 50;
+
+  // Read URL query params set by TestingModal and pre-fill the contact form.
+  // Values are sanitized: trimmed, length-capped, and non-printable chars stripped.
+  useEffect(() => {
+    const sanitize = (s: string, max: number) =>
+      s.replace(/[\x00-\x1F\x7F]/g, '').trim().slice(0, max);
+
+    const rawService = searchParams.get("service") ?? "";
+    const rawParams = searchParams.get("parameters") ?? "";
+
+    if (rawService) {
+      const service = sanitize(rawService, MAX_SERVICE_LEN);
+      const params = rawParams
+        ? rawParams
+            .split("||") 
+            .slice(0, MAX_PARAM_COUNT)
+            .map(p => sanitize(p, MAX_PARAM_LEN))
+            .filter(Boolean)
+        : [];
+      setEnquiryService(service);
+      setEnquiryParams(params);
+
+      // Clean query parameters from URL so that refreshing the page does not re-add them
+      if (typeof window !== "undefined") {
+        window.history.replaceState(null, "", window.location.pathname + window.location.hash);
+      }
+
+      setTimeout(() => {
+        document.getElementById("contact")?.scrollIntoView({ behavior: "smooth", block: "start" });
+      }, 300);
+    }
+  }, [searchParams, MAX_SERVICE_LEN, MAX_PARAM_LEN, MAX_PARAM_COUNT]);
+
+  useEffect(() => {
+    const handleOutsideClick = (e: MouseEvent) => {
+      const target = e.target as HTMLElement;
+      if (!target.closest(".search-container-el")) {
+        setShowDropdown(false);
+      }
+    };
+    document.addEventListener("mousedown", handleOutsideClick);
+    return () => document.removeEventListener("mousedown", handleOutsideClick);
+  }, []);
+
+  const searchResults = searchQuery.trim() === "" ? [] : (materials as MaterialItem[]).filter(m => {
+    const query = searchQuery.toLowerCase();
+    const nameMatch = m.name.toLowerCase().includes(query);
+    const paramMatch = m.parameters?.some(p => p.toLowerCase().includes(query));
+    return nameMatch || paramMatch;
+  });
 
   const { ref, inView } = useInView({
     triggerOnce: true,
@@ -314,6 +376,7 @@ export default function HomeSections() {
                 src={ABOUT_DATA.ceoImage}
                 alt={ABOUT_DATA.ceoImageAlt}
                 fill
+                sizes="(min-width: 1300px) 522px, (min-width: 1024px) 43vw, (min-width: 768px) calc(100vw - 96px), calc(100vw - 32px)"
                 className="object-cover"
               />
             </div>
@@ -495,6 +558,87 @@ export default function HomeSections() {
             industrial categories
           </p>
           <div className="w-[60px] h-[4px] bg-[#FF6700] mx-auto mt-3 rounded-full" />
+
+          {/* Interactive Search Bar */}
+          <div className="search-container-el relative w-full max-w-xl mx-auto mt-7 mb-2 z-50">
+            <div className="relative flex items-center">
+              <Search className="absolute left-4 text-[#1E1B5C]/40" size={18} />
+              <input
+                type="text"
+                placeholder="Search 900+ parameters or testing services (e.g. Silica, Tensile...)"
+                value={searchQuery}
+                onChange={(e) => {
+                  setSearchQuery(e.target.value);
+                  setShowDropdown(true);
+                }}
+                onFocus={() => setShowDropdown(true)}
+                className="w-full pl-12 pr-12 py-3.5 bg-white border-2 border-[#1E1B5C]/10 rounded-full text-[14px] text-[#1E1B5C] placeholder-[#1E1B5C]/40 font-semibold focus:outline-none focus:border-[#FF6700] focus:shadow-[0_0_15px_rgba(255,103,0,0.15)] transition-all shadow-sm"
+              />
+              {searchQuery && (
+                <button
+                  type="button"
+                  onClick={() => {
+                    setSearchQuery("");
+                    setShowDropdown(false);
+                  }}
+                  className="absolute right-4 text-[#1E1B5C]/40 hover:text-[#FF6700] p-1 rounded-full hover:bg-slate-100 transition-colors"
+                >
+                  <X size={16} />
+                </button>
+              )}
+            </div>
+
+            {/* Dropdown Results */}
+            {showDropdown && searchQuery.trim() !== "" && (
+              <div className="absolute left-0 right-0 top-full mt-2 bg-white rounded-2xl shadow-2xl border border-slate-100 z-[100] max-h-[320px] overflow-y-auto py-2 text-left">
+                {searchResults.length > 0 ? (
+                  searchResults.map((m, idx) => {
+                    const query = searchQuery.toLowerCase();
+                    const matchedParams = m.parameters?.filter(p => p.toLowerCase().includes(query)) || [];
+                    return (
+                      <div
+                        key={idx}
+                        onClick={() => {
+                          setSelectedMaterial(m);
+                          setShowDropdown(false);
+                        }}
+                        className="px-5 py-3 hover:bg-[#EFF6FF] transition-colors cursor-pointer border-b border-slate-50 last:border-b-0 flex items-start gap-3.5 group"
+                      >
+                        <div className="w-9 h-9 rounded-lg bg-[#EFF6FF] group-hover:bg-[#FF6700]/10 flex items-center justify-center text-[18px] shrink-0 transition-colors">
+                          {m.icon}
+                        </div>
+                        <div className="flex-1 min-w-0">
+                          <div className="flex items-center justify-between gap-2">
+                            <span className="font-bold text-[13px] text-[#1E1B5C] group-hover:text-[#FF6700] transition-colors truncate">
+                              {m.name}
+                            </span>
+                            {m.nablCert && (
+                              <span className="text-[9px] font-bold text-[#FF6700] bg-[#FF6700]/10 px-2 py-0.5 rounded-full shrink-0">
+                                {m.nablCert}
+                              </span>
+                            )}
+                          </div>
+                          {matchedParams.length > 0 ? (
+                            <div className="text-[11px] text-[#FF6700] font-semibold mt-0.5">
+                              Parameters: <span className="text-slate-500 font-medium">{matchedParams.slice(0, 3).join(", ")}{matchedParams.length > 3 ? "..." : ""}</span>
+                            </div>
+                          ) : (
+                            <div className="text-[11px] text-slate-400 mt-0.5">
+                              {m.testType || "Material"} Testing
+                            </div>
+                          )}
+                        </div>
+                      </div>
+                    );
+                  })
+                ) : (
+                  <div className="px-5 py-6 text-center text-slate-400 text-[13px] italic">
+                    No parameters or services match &quot;{searchQuery}&quot;
+                  </div>
+                )}
+              </div>
+            )}
+          </div>
         </div>
 
         <div className="flex flex-wrap justify-center gap-2 mb-8">
@@ -806,16 +950,24 @@ export default function HomeSections() {
             <h3 className="text-[16px] md:text-[20px] font-extrabold text-[#1E1B5C] mb-5 text-center">
               Submit Your Enquiry
             </h3>
+            {/* formsubmit.co / Resend ready — all fields have name attributes */}
             <form className="flex flex-col gap-4 font-montserrat">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
                 <input
                   type="text"
+                  name="full_name"
                   placeholder="Full Name *"
+                  required
+                  maxLength={100}
+                  autoComplete="name"
                   className="w-full px-4 py-3 rounded-lg border-2 border-[#1E1B5C]/10 bg-[#EFF6FF] text-[13px] focus:outline-none focus:border-[#FF6700] transition-colors text-[#1E1B5C]"
                 />
                 <input
                   type="text"
+                  name="organization"
                   placeholder="Organization"
+                  maxLength={150}
+                  autoComplete="organization"
                   className="w-full px-4 py-3 rounded-lg border-2 border-[#1E1B5C]/10 bg-[#EFF6FF] text-[13px] focus:outline-none focus:border-[#FF6700] transition-colors text-[#1E1B5C]"
                 />
               </div>
@@ -824,30 +976,44 @@ export default function HomeSections() {
                   <DialCodeDropdown />
                   <input
                     type="tel"
+                    name="phone"
                     placeholder="Phone Number *"
+                    required
+                    maxLength={20}
+                    autoComplete="tel"
                     className="flex-1 min-w-0 px-4 py-3 rounded-lg border-2 border-[#1E1B5C]/10 bg-[#EFF6FF] text-[13px] focus:outline-none focus:border-[#FF6700] transition-colors text-[#1E1B5C]"
                   />
                 </div>
                 <input
                   type="email"
+                  name="email"
                   placeholder="Email ID *"
+                  required
+                  maxLength={150}
+                  autoComplete="email"
                   className="w-full px-4 py-3 rounded-lg border-2 border-[#1E1B5C]/10 bg-[#EFF6FF] text-[13px] focus:outline-none focus:border-[#FF6700] transition-colors text-[#1E1B5C]"
                 />
               </div>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
                 <input
                   type="text"
+                  name="city"
                   placeholder="City"
+                  maxLength={80}
+                  autoComplete="address-level2"
                   className="w-full px-4 py-3 rounded-lg border-2 border-[#1E1B5C]/10 bg-[#EFF6FF] text-[13px] focus:outline-none focus:border-[#FF6700] transition-colors text-[#1E1B5C]"
                 />
                 <input
                   type="text"
+                  name="state"
                   placeholder="State"
+                  maxLength={80}
+                  autoComplete="address-level1"
                   className="w-full px-4 py-3 rounded-lg border-2 border-[#1E1B5C]/10 bg-[#EFF6FF] text-[13px] focus:outline-none focus:border-[#FF6700] transition-colors text-[#1E1B5C]"
                 />
               </div>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
-                <select className="w-full px-4 py-3 rounded-lg border-2 border-[#1E1B5C]/10 bg-[#EFF6FF] text-[13px] focus:outline-none focus:border-[#FF6700] text-[#1E1B5C]">
+                <select name="country" autoComplete="country-name" className="w-full px-4 py-3 rounded-lg border-2 border-[#1E1B5C]/10 bg-[#EFF6FF] text-[13px] focus:outline-none focus:border-[#FF6700] text-[#1E1B5C]">
                   <option value="">Select Country</option>
                   {COUNTRY_LIST.map((c, i) => (
                     <option key={i} value={c.name}>{c.name}</option>
@@ -856,17 +1022,91 @@ export default function HomeSections() {
                 </select>
                 <input
                   type="text"
+                  name="pincode"
                   placeholder="Pin Code / Zip"
+                  maxLength={12}
+                  autoComplete="postal-code"
                   className="w-full px-4 py-3 rounded-lg border-2 border-[#1E1B5C]/10 bg-[#EFF6FF] text-[13px] focus:outline-none focus:border-[#FF6700] transition-colors text-[#1E1B5C]"
                 />
               </div>
               <textarea
+                name="address"
                 placeholder="Address"
                 rows={3}
+                maxLength={500}
+                autoComplete="street-address"
                 className="w-full px-4 py-3 rounded-lg border-2 border-[#1E1B5C]/10 bg-[#EFF6FF] text-[13px] focus:outline-none focus:border-[#FF6700] transition-colors text-[#1E1B5C] resize-y min-h-[80px]"
               />
 
-              <select className="w-full px-4 py-3 rounded-lg border-2 border-[#1E1B5C]/10 bg-[#EFF6FF] text-[13px] focus:outline-none focus:border-[#FF6700] text-[#1E1B5C]">
+              {/* ── Pre-filled Selected Tests from Modal ── */}
+              {(enquiryService || enquiryParams.length > 0) && (
+                <div className="rounded-xl border-2 border-[#FF6700]/30 bg-[#FF6700]/5 p-4 flex flex-col gap-2">
+                  <div className="flex items-center justify-between gap-2">
+                    <div className="flex items-center gap-2">
+                      <FlaskConical size={15} className="text-[#FF6700] shrink-0" />
+                      <span className="text-[12px] font-black uppercase tracking-wider text-[#FF6700]">Selected from Testing Services</span>
+                    </div>
+                    <button
+                      type="button"
+                      onClick={() => {
+                        setEnquiryService("");
+                        setEnquiryParams([]);
+                        if (typeof window !== "undefined") {
+                          window.history.replaceState(null, "", window.location.pathname + window.location.hash);
+                        }
+                      }}
+                      className="text-[11px] font-bold text-slate-400 hover:text-red-500 transition-colors"
+                    >
+                      ✕ Clear
+                    </button>
+                  </div>
+                  {enquiryService && (
+                    <div className="flex items-start gap-2">
+                      <CheckCircle2 size={14} className="text-[#FF6700] shrink-0 mt-0.5" />
+                      <span className="text-[13px] font-bold text-[#1E1B5C] leading-snug">{enquiryService}</span>
+                    </div>
+                  )}
+                  {enquiryParams.length > 0 && (
+                    <div className="flex flex-wrap gap-1.5 mt-1">
+                      {enquiryParams.map((p, i) => (
+                        <span key={i} className="inline-flex items-center gap-1 text-[11px] font-semibold px-2.5 py-1 rounded-full bg-white border border-[#FF6700]/25 text-[#1E1B5C]">
+                          {p}
+                        </span>
+                      ))}
+                    </div>
+                  )}
+                </div>
+              )}
+
+              {/* Hidden input carries service + params for formsubmit.co / Resend — not shown to user, visual card above handles display */}
+              <input
+                type="hidden"
+                name="selected_service"
+                value={enquiryService}
+              />
+              <input
+                type="hidden"
+                name="selected_parameters"
+                value={enquiryParams.join(', ')}
+              />
+
+              {/* Manual / Additional Parameters Field */}
+              <div className="flex flex-col gap-1.5">
+                <label className="flex items-center gap-2 text-[11px] font-bold uppercase tracking-[0.8px] text-[#1E1B5C]/60">
+                  <span className="w-3 h-[2px] bg-[#FF6700] rounded-full inline-block" />
+                  Additional / Custom Test Parameters
+                  <span className="normal-case tracking-normal font-medium text-[#1E1B5C]/40">(optional — type manually)</span>
+                </label>
+                <textarea
+                  name="custom_parameters"
+                  rows={3}
+                  maxLength={2000}
+                  placeholder={`e.g. Tensile Strength, Compressive Strength, pH Value\nList any specific parameters or tests you require that are not in the selection above.`}
+                  className="w-full px-4 py-3 rounded-lg border-2 border-[#1E1B5C]/10 bg-[#EFF6FF] text-[13px] focus:outline-none focus:border-[#FF6700] transition-colors text-[#1E1B5C] resize-y min-h-[80px] placeholder-[#1E1B5C]/30"
+                />
+              </div>
+
+              <select name="service_required" className="w-full px-4 py-3 rounded-lg border-2 border-[#1E1B5C]/10 bg-[#EFF6FF] text-[13px] focus:outline-none focus:border-[#FF6700] text-[#1E1B5C]">
                 <option value="">Select Service Required</option>
                 <option value="Mechanical Testing">Mechanical Testing</option>
                 <option value="Chemical Testing">Chemical Testing</option>
@@ -912,12 +1152,15 @@ export default function HomeSections() {
 
               <input
                 type="date"
+                name="preferred_date"
                 className="w-full px-4 py-3 rounded-lg border-2 border-[#1E1B5C]/10 bg-[#EFF6FF] text-[13px] focus:outline-none focus:border-[#FF6700] transition-colors text-[#1E1B5C]"
               />
 
               <textarea
+                name="message"
                 placeholder="Message / Requirements"
                 rows={3}
+                maxLength={2000}
                 className="w-full px-4 py-3 rounded-lg border-2 border-[#1E1B5C]/10 bg-[#EFF6FF] text-[13px] focus:outline-none focus:border-[#FF6700] transition-colors text-[#1E1B5C] resize-y min-h-[80px]"
               />
 
@@ -936,7 +1179,7 @@ export default function HomeSections() {
               </div>
 
               <button
-                type="button"
+                type="submit"
                 className="w-full py-4 bg-[#FF6700] text-white font-extrabold uppercase tracking-[1px] text-[14px] rounded-lg hover:bg-[#e65c00] hover:-translate-y-[2px] hover:shadow-[0_8px_24px_rgba(255,103,0,0.35)] transition-all"
               >
                 SUBMIT ENQUIRY →

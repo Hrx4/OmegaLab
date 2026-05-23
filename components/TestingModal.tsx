@@ -1,8 +1,9 @@
 'use client';
 
-import { useEffect } from 'react';
-import Link from 'next/link';
+import { useEffect, useState } from 'react';
+import { useRouter } from 'next/navigation';
 import { motion, AnimatePresence } from 'motion/react';
+import { Check, CheckSquare, Square, ListChecks } from 'lucide-react';
 
 export type MaterialItem = {
   icon: string;
@@ -19,6 +20,14 @@ type Props = {
 };
 
 export default function TestingModal({ material, onClose }: Props) {
+  const router = useRouter();
+  const [selectedParams, setSelectedParams] = useState<Set<string>>(new Set());
+
+  // Reset selections when modal changes material
+  useEffect(() => {
+    setSelectedParams(new Set());
+  }, [material?.name]);
+
   // Close on Escape key
   useEffect(() => {
     const handler = (e: KeyboardEvent) => {
@@ -37,6 +46,50 @@ export default function TestingModal({ material, onClose }: Props) {
     }
     return () => { document.body.style.overflow = ''; };
   }, [material]);
+
+  const toggleParam = (param: string) => {
+    setSelectedParams(prev => {
+      const next = new Set(prev);
+      if (next.has(param)) {
+        next.delete(param);
+      } else {
+        next.add(param);
+      }
+      return next;
+    });
+  };
+
+  const selectAll = () => {
+    if (material?.parameters) {
+      setSelectedParams(new Set(material.parameters));
+    }
+  };
+
+  const clearAll = () => {
+    setSelectedParams(new Set());
+  };
+
+  const handleEnquire = () => {
+    if (!material) return;
+    const params = new URLSearchParams();
+    params.set('service', material.name);
+    if (selectedParams.size > 0) {
+      params.set('parameters', Array.from(selectedParams).join('||'));
+    }
+    onClose();
+    // Small delay to let modal close animation run before navigation
+    setTimeout(() => {
+      // Query string MUST come before hash so useSearchParams can read it
+      router.push(`/?${params.toString()}#contact`);
+      // Scroll to contact section
+      setTimeout(() => {
+        document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }, 200);
+    }, 150);
+  };
+
+  const allParams = material?.parameters ?? [];
+  const allSelected = allParams.length > 0 && selectedParams.size === allParams.length;
 
   return (
     <AnimatePresence>
@@ -63,8 +116,8 @@ export default function TestingModal({ material, onClose }: Props) {
             className="fixed inset-0 z-[1001] flex items-center justify-center p-4"
             onClick={(e) => e.stopPropagation()}
           >
-            <div className="relative bg-white rounded-2xl shadow-2xl w-full max-w-2xl max-h-[88vh] flex flex-col overflow-hidden">
-              
+            <div className="relative bg-white rounded-2xl shadow-2xl w-full max-w-2xl max-h-[90vh] flex flex-col overflow-hidden">
+
               {/* Header */}
               <div className="bg-gradient-to-br from-[#1E1B5C] to-[#2d2890] px-6 pt-6 pb-5 flex-shrink-0">
                 <div className="flex items-start justify-between gap-4">
@@ -103,25 +156,69 @@ export default function TestingModal({ material, onClose }: Props) {
 
               {/* Parameters Body */}
               <div className="flex-1 overflow-y-auto px-6 py-5">
-                <div className="mb-4">
-                  <h3 className="text-[11px] font-bold uppercase tracking-[1.5px] text-[#FF6700] mb-3 flex items-center gap-2">
-                    <span className="w-4 h-[2px] bg-[#FF6700] rounded-full inline-block" />
-                    Test Parameters
-                  </h3>
-                  {material.parameters && material.parameters.length > 0 ? (
-                    <div className="flex flex-wrap gap-2">
-                      {material.parameters.map((param, idx) => (
-                        <motion.span
-                          key={idx}
-                          initial={{ opacity: 0, scale: 0.9 }}
-                          animate={{ opacity: 1, scale: 1 }}
-                          transition={{ duration: 0.15, delay: idx * 0.02 }}
-                          className="inline-block bg-[#EFF6FF] border border-[#1E1B5C]/10 text-[#1E1B5C] text-[12px] font-semibold px-3 py-1.5 rounded-lg leading-snug"
+                <div className="mb-2">
+                  {/* Section label + Select All / Clear All */}
+                  <div className="flex items-center justify-between mb-3 gap-3 flex-wrap">
+                    <h3 className="text-[11px] font-bold uppercase tracking-[1.5px] text-[#FF6700] flex items-center gap-2">
+                      <span className="w-4 h-[2px] bg-[#FF6700] rounded-full inline-block" />
+                      Test Parameters
+                      {allParams.length > 0 && (
+                        <span className="text-[#1E1B5C]/40 font-semibold normal-case tracking-normal ml-1">
+                          — tap to select
+                        </span>
+                      )}
+                    </h3>
+                    {allParams.length > 0 && (
+                      <div className="flex items-center gap-2 shrink-0">
+                        <button
+                          onClick={allSelected ? clearAll : selectAll}
+                          className="flex items-center gap-1.5 text-[11px] font-bold text-[#1E1B5C]/60 hover:text-[#FF6700] transition-colors px-2.5 py-1 rounded-full border border-[#1E1B5C]/10 hover:border-[#FF6700]/30 hover:bg-[#FF6700]/5"
                         >
-                          {param}
-                        </motion.span>
-                      ))}
-                    </div>
+                          {allSelected ? (
+                            <><CheckSquare size={13} /> Clear All</>
+                          ) : (
+                            <><Square size={13} /> Select All</>
+                          )}
+                        </button>
+                      </div>
+                    )}
+                  </div>
+
+                  {allParams.length > 0 ? (
+                    <ul className="grid grid-cols-1 sm:grid-cols-2 gap-x-4 gap-y-2">
+                      {allParams.map((param, idx) => {
+                        const isSelected = selectedParams.has(param);
+                        return (
+                          <motion.li
+                            key={idx}
+                            initial={{ opacity: 0, x: -8 }}
+                            animate={{ opacity: 1, x: 0 }}
+                            transition={{ duration: 0.18, delay: idx * 0.015 }}
+                          >
+                            <button
+                              type="button"
+                              onClick={() => toggleParam(param)}
+                              className={`w-full flex items-start gap-3 text-[13px] font-semibold leading-snug text-left px-3 py-2.5 rounded-lg transition-all border-2 ${
+                                isSelected
+                                  ? 'bg-[#FF6700]/10 border-[#FF6700]/40 text-[#1E1B5C]'
+                                  : 'bg-transparent border-transparent hover:bg-slate-50 hover:border-slate-200 text-slate-600'
+                              }`}
+                            >
+                              <span
+                                className={`flex items-center justify-center w-5 h-5 rounded-full shrink-0 mt-0.5 border-2 transition-all ${
+                                  isSelected
+                                    ? 'bg-[#FF6700] border-[#FF6700] text-white'
+                                    : 'bg-white border-slate-300 text-transparent'
+                                }`}
+                              >
+                                <Check size={10} strokeWidth={3.5} />
+                              </span>
+                              <span className={isSelected ? 'text-[#1E1B5C]' : ''}>{param}</span>
+                            </button>
+                          </motion.li>
+                        );
+                      })}
+                    </ul>
                   ) : (
                     <p className="text-slate-400 text-[13px] italic">
                       Parameter list available on request.
@@ -131,18 +228,39 @@ export default function TestingModal({ material, onClose }: Props) {
               </div>
 
               {/* Footer CTA */}
-              <div className="flex-shrink-0 border-t border-slate-100 px-6 py-4 bg-slate-50 flex flex-col sm:flex-row items-center justify-between gap-3">
-                <p className="text-[12px] text-slate-500 text-center sm:text-left">
-                  Need testing for this material? Get in touch with our experts.
-                </p>
-                <Link
-                  href="/#contact"
-                  onClick={onClose}
-                  className="shrink-0 px-6 py-2.5 bg-[#FF6700] text-white font-extrabold uppercase tracking-[0.8px] text-[12px] rounded-full hover:bg-[#e65c00] hover:shadow-[0_6px_20px_rgba(255,103,0,0.35)] hover:-translate-y-[1px] transition-all flex items-center gap-1.5 group"
-                >
-                  Enquire for this Test
-                  <span className="group-hover:translate-x-0.5 transition-transform">→</span>
-                </Link>
+              <div className="flex-shrink-0 border-t border-slate-100 px-6 py-4 bg-slate-50">
+                {/* Selection summary */}
+                {selectedParams.size > 0 && (
+                  <motion.div
+                    initial={{ opacity: 0, y: 6 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    className="flex items-center gap-2 mb-3 px-3 py-2 bg-[#FF6700]/10 rounded-lg border border-[#FF6700]/20"
+                  >
+                    <ListChecks size={15} className="text-[#FF6700] shrink-0" />
+                    <span className="text-[12px] font-bold text-[#1E1B5C]">
+                      {selectedParams.size} parameter{selectedParams.size > 1 ? 's' : ''} selected
+                    </span>
+                    <span className="text-[11px] text-slate-400 ml-1 truncate hidden sm:block">
+                      — {Array.from(selectedParams).slice(0, 2).join(', ')}{selectedParams.size > 2 ? ` +${selectedParams.size - 2} more` : ''}
+                    </span>
+                  </motion.div>
+                )}
+
+                <div className="flex flex-col sm:flex-row items-center justify-between gap-3">
+                  <p className="text-[12px] text-slate-500 text-center sm:text-left">
+                    {selectedParams.size > 0
+                      ? 'Your selected parameters will be pre-filled in the enquiry form.'
+                      : 'Select parameters above or enquire for all tests.'}
+                  </p>
+                  <button
+                    type="button"
+                    onClick={handleEnquire}
+                    className="shrink-0 px-6 py-2.5 bg-[#FF6700] text-white font-extrabold uppercase tracking-[0.8px] text-[12px] rounded-full hover:bg-[#e65c00] hover:shadow-[0_6px_20px_rgba(255,103,0,0.35)] hover:-translate-y-[1px] transition-all flex items-center gap-1.5 group cursor-pointer"
+                  >
+                    Enquire for this Test
+                    <span className="group-hover:translate-x-0.5 transition-transform">→</span>
+                  </button>
+                </div>
               </div>
             </div>
           </motion.div>

@@ -283,7 +283,7 @@ export default function Navbar() {
 
           {/* Mobile Menu Button  */}
           <button
-            className="lg:hidden text-white p-2 hover:bg-white/10 rounded-md transition-colors shrink-0 ml-auto"
+            className="lg:hidden text-[#1E1B5C] p-2 hover:bg-[#1E1B5C]/10 rounded-md transition-colors shrink-0 ml-auto"
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
             aria-label="Toggle Navigation"
           >
