@@ -8,7 +8,7 @@ import { ChevronLeft, ChevronRight, MapPin, FileDown, Eye, X, Award } from 'luci
 const BIG_BADGES = [
   { id: 1, tc: "TC-11935", image: "https://res.cloudinary.com/de4cnpfm1/image/upload/v1778245989/TC11935_tsqh9z.webp" },
   { id: 2, tc: "TC-13401", image: "https://res.cloudinary.com/de4cnpfm1/image/upload/v1778245987/TC13401_axis5q.webp" },
-  { id: 3, tc: "TC-15509", image: "https://res.cloudinary.com/de4cnpfm1/image/upload/v1778245987/TC15509_dx2lua.webp" },
+  { id: 3, tc: "TC-15509", image: "https://res.cloudinary.com/de4cnpfm1/image/upload/v1780118711/copy_of_tc15509webp_1_stiyix.png" },
   { id: 4, tc: "TC-16480", image: "https://res.cloudinary.com/de4cnpfm1/image/upload/v1778245989/TC16480_kmsows.webp" },
   { id: 5, tc: "TC-17671", image: "https://res.cloudinary.com/de4cnpfm1/image/upload/v1778245989/TC17671_ghwfuo.webp" },
 ];
@@ -23,7 +23,7 @@ const LAB_DATA = [
     certImage: "https://res.cloudinary.com/de4cnpfm1/image/upload/v1778247809/KOLKATA1_i1fhgi.jpg",
     qrImage: "https://res.cloudinary.com/de4cnpfm1/image/upload/v1779278317/KOLKATA1QR_bxgh6e.jpg",
     scopeText: "Access the complete scope of our NABL accreditation, including detailed parameters, testing methods, and applicable standards.",
-    pdfLink: "https://nabl7t.s3.ap-south-1.amazonaws.com/NablCertificate/Scope-128039-TC-11935-1770380307.pdf"
+    pdfLink: "https://nablwp.qci.org.in/CertificateScopenew?x=eOcz5t8vhPRBC9udGS4tiw==&src=P"
   },
   {
     id: "kolkata-2",
@@ -34,7 +34,7 @@ const LAB_DATA = [
     certImage: "https://res.cloudinary.com/de4cnpfm1/image/upload/v1778247810/KOLKATA2_wsg4cn.jpg",
     qrImage: "https://res.cloudinary.com/de4cnpfm1/image/upload/v1779278316/KOLKATA2QR_sbz3l7.jpg",
     scopeText: "Access the complete scope of our NABL accreditation, including detailed parameters, testing methods, and applicable standards.",
-    pdfLink: "https://nabl7t.s3.ap-south-1.amazonaws.com/NablCertificate/Scope-259631-TC-13401-1775295806.pdf"
+    pdfLink: "https://nablwp.qci.org.in/CertificateScopenew?x=eOcz5t8vhPRBC9udGS4tiw==&src=P"
   },
   {
     id: "siliguri",
@@ -45,7 +45,7 @@ const LAB_DATA = [
     certImage: "https://res.cloudinary.com/de4cnpfm1/image/upload/v1778247807/SILIGURI_vqovah.jpg",
     qrImage: "https://res.cloudinary.com/de4cnpfm1/image/upload/v1779278316/SILIGURI_QR_qnoftz.jpg",
     scopeText: "Access the complete scope of our NABL accreditation, including detailed parameters, testing methods, and applicable standards.",
-    pdfLink: "https://nabl7t.s3.ap-south-1.amazonaws.com/NablCertificate/Scope-109624-TC-15509-1739864381.pdf"
+    pdfLink: "https://nablwp.qci.org.in/CertificateScopenew?x=j6k9iq1uw4Bg9VLeGZxZMg==&src=P"
   },
   {
     id: "ranchi",
@@ -56,7 +56,7 @@ const LAB_DATA = [
     certImage: "https://res.cloudinary.com/de4cnpfm1/image/upload/v1778247807/RANCHI_za9xun.jpg",
     qrImage: "https://res.cloudinary.com/de4cnpfm1/image/upload/v1779278316/RANCHI_QR_bl6uea.jpg",
     scopeText: "Access the complete scope of our NABL accreditation, including detailed parameters, testing methods, and applicable standards.",
-    pdfLink: "https://nabl7t.s3.ap-south-1.amazonaws.com/NablCertificate/Scope-119719-TC-16480-1753322384.pdf"
+    pdfLink: "https://nablwp.qci.org.in/CertificateScopenew?x=wsIgkGUfG5PjBiZbOfxOtQ==&src=P"
   },
   {
     id: "odhisha",
@@ -67,7 +67,7 @@ const LAB_DATA = [
     certImage: "https://res.cloudinary.com/de4cnpfm1/image/upload/v1778247807/ODISHA_x2opxm.jpg",
     qrImage: "https://res.cloudinary.com/de4cnpfm1/image/upload/v1779278316/ODISHA_QR_as8vyg.jpg",
     scopeText: "Access the complete scope of our NABL accreditation, including detailed parameters, testing methods, and applicable standards.",
-    pdfLink: "https://nabl7t.s3.ap-south-1.amazonaws.com/NablCertificate/Scope-119620-TC-17671-1773220269.pdf"
+    pdfLink: "https://nablwp.qci.org.in/CertificateScopenew?x=BLtvn2Aigjq6fokVy2tlWQ==&src=P"
   }
 ];
 
@@ -119,16 +119,13 @@ export default function AccreditationPage() {
           {/* Text Content */}
           <div className="flex flex-col gap-6 text-[14px] md:text-[15px] leading-[1.6] text-black">
             <p>
-              <strong>National Accreditation Board for Testing and Calibration Laboratories (NABL)</strong> is an autonomous body under the Department of Science & Technology, Government of India, and the sole accreditation authority for testing and calibration laboratories. It certifies laboratories that comply with internationally recognised standards such as <strong>ISO/IEC 17025</strong>, ensuring technical competence and reliable results.
+              <strong>OmegaLab Testing Services Private Limited</strong> is accredited as per <strong>ISO/IEC 17025: 2017</strong> by NABL in Chemical, Mechanical & Non-destructive testing, reflecting our commitment to accuracy, reliability, and compliance with global standards.
             </p>
             <p>
-              Accreditation provides formal recognition of a laboratory&apos;s capability, enhancing trust and global acceptance of its test reports through international affiliations like ILAC and APLAC.
+              Our management system is aligned with ISO/IEC 17025, ensuring that all tests are conducted using validated methods (national or international Test methods or standards) and in accordance with client and regulatory requirements.
             </p>
-            <p>
-              OmegaLab Testing Services Private Limited is accredited by NABL in <strong>Chemical and Mechanical testing</strong>, reflecting our commitment to accuracy, reliability, and compliance with global standards. Our management system is aligned with ISO/IEC 17025, ensuring that all tests are conducted using validated methods and in accordance with client and regulatory requirements.
-            </p>
-            <p>
-              We are dedicated to delivering <strong>precise, timely, and high-quality analytical</strong> services, supported by a strong quality framework and continuous improvement in our processes.
+            <p className="font-semibold text-[#FF6700]">
+              Under Accreditation we have total 5 accredited lab, Details are given below:
             </p>
           </div>
 
@@ -291,10 +288,10 @@ export default function AccreditationPage() {
                     href={lab.pdfLink} 
                     target="_blank" 
                     rel="noopener noreferrer" 
-                    className="w-full bg-[#1E1B5C] hover:bg-[#FF6700] text-white text-center py-3 sm:py-3.5 rounded-2xl font-bold text-xs md:text-sm tracking-wide uppercase transition-all duration-300 flex items-center justify-center gap-2 shadow-[0_4px_15px_rgba(30,27,92,0.08)] hover:shadow-[0_4px_15px_rgba(255,103,0,0.25)] hover:-translate-y-0.5 active:translate-y-0 cursor-pointer"
+                    className="w-full bg-[#1E1B5C] hover:bg-[#FF6700] text-white text-center py-3 sm:py-3.5 px-4 rounded-2xl font-bold text-[11px] md:text-xs tracking-wide uppercase transition-all duration-300 flex items-center justify-center gap-2.5 shadow-[0_4px_15px_rgba(30,27,92,0.08)] hover:shadow-[0_4px_15px_rgba(255,103,0,0.25)] hover:-translate-y-0.5 active:translate-y-0 cursor-pointer"
                   >
-                    <FileDown size={16} />
-                    Download Scope PDF
+                    <FileDown size={15} className="shrink-0" />
+                    <span className="text-center">Accredited Certificate & Scope through NABL portal</span>
                   </a>
                 </div>
               </div>

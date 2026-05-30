@@ -108,7 +108,7 @@ const NABL_BADGES = [
   {
     id: "TC-15509",
     branch: "Siliguri",
-    url: "https://res.cloudinary.com/de4cnpfm1/image/upload/v1778245987/TC15509_dx2lua.webp",
+    url: "https://res.cloudinary.com/de4cnpfm1/image/upload/v1780118711/copy_of_tc15509webp_1_stiyix.png",
     link: "https://nablwp.qci.org.in/CertificateScopenew?x=j6k9iq1uw4Bg9VLeGZxZMg==&src=P",
   },
   {

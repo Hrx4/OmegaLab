@@ -16,11 +16,15 @@ const INFRASTRUCTURE_DATA = {
     image: 'https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&w=1200&q=80',
     icon: Wrench,
     instruments: [
-      { name: 'Universal Testing Machine (UTM)', uses: 'Tensile, Compression, Bending, and Shear tests on metals, polymers, and composites.' },
-      { name: 'Impact Testing Machine', uses: 'Charpy and Izod impact strength evaluation for toughness measurement.' },
-      { name: 'Hardness Testers', uses: 'Brinell, Rockwell, and Vickers microhardness measurements.' },
-      { name: 'Fatigue Testing Machine', uses: 'High cycle and low cycle fatigue life determination.' },
-      { name: 'Optical Emission Spectrometer', uses: 'Chemical composition analysis of metallic samples to verify grades.' },
+      { name: 'Universal Testing Machine (UTM) - High Capacity', uses: 'UTM models with capacities of 600 KN, 1000 KN, 1200 KN etc., for tensile, compression, bending, and shear evaluations.' },
+      { name: 'Universal Testing Machine - Low Capacity', uses: 'Precision testing machines (500 Kgf, 3000 Kgf, 5000 Kgf) with Extensometers for accurate elongation and strength measurement.' },
+      { name: 'Charpy & Izod Impact Tester', uses: 'Determining the impact toughness and energy absorption behavior of materials under high strain rates.' },
+      { name: 'Hardness Tester', uses: 'Rockwell, Brinell, and Vickers hardness measurements to evaluate material resistance.' },
+      { name: 'Vicat Softening Temperature Machine', uses: 'Measuring the softening temperature point of polymers and plastic products (up to 300°C).' },
+      { name: 'Melt Flow Index & Hydrostatic Pressure Apparatus', uses: 'Testing polymer melt flow rate and evaluating the internal hydrostatic pressure performance of plastic pipes.' },
+      { name: 'Shore Hardness Tester', uses: 'Precise Shore A and Shore D hardness testing for rubber and elastomers.' },
+      { name: 'Opacity & Bursting Strength Tester', uses: 'Measuring the light transmission (opacity) of plastics and testing the bursting resistance of sheets.' },
+      { name: 'Coating Thickness Gauge', uses: 'Precise measurement of dry film thickness (DFT) on metallic and alloyed substrates.' },
     ]
   },
   chemical: {
@@ -30,11 +34,14 @@ const INFRASTRUCTURE_DATA = {
     image: 'https://images.unsplash.com/photo-1532094349884-543bc11b234d?auto=format&fit=crop&w=1200&q=80',
     icon: Beaker,
     instruments: [
-      { name: 'Atomic Absorption Spectrophotometer (AAS)', uses: 'Trace metal analysis in water, wastewater, and solid samples.' },
-      { name: 'UV-Visible Spectrophotometer', uses: 'Quantitative analysis of different analytes based on light absorption.' },
-      { name: 'Gas Chromatograph (GC)', uses: 'Separation and analysis of volatile compounds.' },
-      { name: 'Muffle Furnace & Hot Air Ovens', uses: 'Ash content determination, heating, and drying of samples.' },
-      { name: 'pH & Conductivity Meters', uses: 'Precise measurement of acidity, alkalinity, and electrical conductivity.' }
+      { name: 'Optical Emission Spectrometer (OES)', uses: 'High-speed composition analysis and alloy grade verification.' },
+      { name: 'Spectrophotometer', uses: 'Quantitative chemical diagnostics and light absorption measurements.' },
+      { name: 'Digital Nephelometer', uses: 'Measuring liquid sample turbidity and water quality from 0.1 to 199.9 NTU.' },
+      { name: 'Conductivity / TDS Meter', uses: 'Evaluating water electrical conductivity and total dissolved solids (ranges from 0 to 200µS, 0 to 200mS, 0 to 200ppm, and 0 to 200ppt).' },
+      { name: 'Muffle Furnace', uses: 'High-temperature sample ash determination and thermal testing (up to 1400 °C).' },
+      { name: 'Flame Photometer', uses: 'Measuring concentrations of alkali and alkaline earth metals (1ppm to 100ppm).' },
+      { name: 'Electronic Analytical Balance', uses: 'Ultra-high precision weighing with 0.0001 g (0.1 mg) resolution.' },
+      { name: 'Micro-pipette', uses: 'High-precision liquid dispensing and micro-volume fluid handling (0.001 ml accuracy).' },
     ]
   },
   civil: {
@@ -44,11 +51,14 @@ const INFRASTRUCTURE_DATA = {
     image: 'https://images.unsplash.com/photo-1503387762-592deb58ef4e?auto=format&fit=crop&w=1200&q=80',
     icon: Factory,
     instruments: [
-      { name: 'Compression Testing Machine (CTM)', uses: 'Compressive strength testing of concrete cubes, bricks, and cylinders.' },
-      { name: 'Marshall Stability Test Apparatus', uses: 'Bituminous mix design and stability analysis for pavement construction.' },
-      { name: 'CBR Test Apparatus', uses: 'California Bearing Ratio measurement to evaluate subgrade strength of roads.' },
-      { name: 'Vicat Apparatus', uses: 'Initial and final setting time determination of cement.' },
-      { name: 'Los Angeles Abrasion Machine', uses: 'Measuring the degradation of standard gradings of aggregates from abrasion.' }
+      { name: 'CMOD Measuring Equipment', uses: 'Crack Mouth Opening Displacement instrumentation for fracture mechanics and concrete toughness testing.' },
+      { name: 'Digital Compression Testing Machine (CTM)', uses: 'High-capacity compression testing (up to 2000 KN, 3000 KN) of concrete cubes and cylindrical specimens.' },
+      { name: 'Digital Flexural Testing Machine', uses: 'Determining the flexural strength of concrete beams and structural specimens.' },
+      { name: 'Abrasion & Softening Point Testing Apparatus', uses: 'Testing aggregate degradation and softening points of bituminous mixtures.' },
+      { name: 'Integral Proving Ring & Pressure Gauges', uses: 'Load calibration and pressure monitoring for load frame setups.' },
+      { name: 'Casagrande Apparatus & Autoclave', uses: 'Soil plasticity (liquid limit) testing and autoclave testing for cement soundness.' },
+      { name: 'EV2 & SBC Setup', uses: 'Plate load test setups for safe bearing capacity (SBC) and soil compaction evaluations.' },
+      { name: 'Precision Measuring instruments', uses: 'Digital Vernier calipers (0.01 mm accuracy), electronic balances up to 100 Kg capacity, and analytical balances (0.0001 g accuracy).' },
     ]
   },
   ndt: {
@@ -58,11 +68,9 @@ const INFRASTRUCTURE_DATA = {
     image: 'https://images.unsplash.com/photo-1581092580497-e0d23cbdf1dc?auto=format&fit=crop&w=1200&q=80',
     icon: ShieldCheck,
     instruments: [
-      { name: 'Ultrasonic Flaw Detector', uses: 'Volumetric inspection for internal defects in welds, castings, and forgings.' },
-      { name: 'Magnetic Particle Testing (MPT) Yoke', uses: 'Detection of surface and near-surface discontinuities in ferromagnetic materials.' },
-      { name: 'Liquid Penetrant Testing (LPT) Kits', uses: 'Detecting surface-breaking flaws in non-porous materials.' },
-      { name: 'Radiography Testing (RT) Equipment', uses: 'X-ray and Gamma-ray inspection for internal structural flaws.' },
-      { name: 'Coating Thickness Gauge', uses: 'Precise measurement of dry film thickness (DFT) on metallic substrates.' }
+      { name: 'Ultrasonic Pulse Velocity testing Apparatus', uses: 'Evaluating the quality and velocity of concrete (range 0.01 Km/sec to 10 Km/sec).' },
+      { name: 'Rebound Hammer', uses: 'Non-destructive estimation of in-situ compressive strength of hardened concrete (10 MPa to 70 MPa).' },
+      { name: 'Solid Moisture Meter', uses: 'Instantaneous moisture determination of solid materials from 0% to 100%.' },
     ]
   }
 };

@@ -252,14 +252,26 @@ export default function TestingModal({ material, onClose }: Props) {
                       ? 'Your selected parameters will be pre-filled in the enquiry form.'
                       : 'Select parameters above or enquire for all tests.'}
                   </p>
-                  <button
-                    type="button"
-                    onClick={handleEnquire}
-                    className="shrink-0 px-6 py-2.5 bg-[#FF6700] text-white font-extrabold uppercase tracking-[0.8px] text-[12px] rounded-full hover:bg-[#e65c00] hover:shadow-[0_6px_20px_rgba(255,103,0,0.35)] hover:-translate-y-[1px] transition-all flex items-center gap-1.5 group cursor-pointer"
-                  >
-                    Enquire for this Test
-                    <span className="group-hover:translate-x-0.5 transition-transform">→</span>
-                  </button>
+                  <div className="flex flex-col sm:flex-row gap-2 w-full sm:w-auto shrink-0 justify-end">
+                    {material.name.toLowerCase().includes("alloy") && (
+                      <a
+                        href="https://nabl7t.s3.ap-south-1.amazonaws.com/NablCertificate/Scope-128039-TC-11935-1770380307.pdf"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="px-4 py-2.5 bg-white border-2 border-[#1E1B5C] text-[#1E1B5C] font-extrabold uppercase tracking-[0.8px] text-[11px] rounded-full hover:bg-slate-50 transition-all flex items-center justify-center gap-1.5 cursor-pointer"
+                      >
+                        Download Accredited Certificate & Scope
+                      </a>
+                    )}
+                    <button
+                      type="button"
+                      onClick={handleEnquire}
+                      className="px-6 py-2.5 bg-[#FF6700] text-white font-extrabold uppercase tracking-[0.8px] text-[12px] rounded-full hover:bg-[#e65c00] hover:shadow-[0_6px_20px_rgba(255,103,0,0.35)] hover:-translate-y-[1px] transition-all flex items-center justify-center gap-1.5 group cursor-pointer"
+                    >
+                      Enquire for this Test
+                      <span className="group-hover:translate-x-0.5 transition-transform">→</span>
+                    </button>
+                  </div>
                 </div>
               </div>
             </div>

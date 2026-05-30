@@ -73,7 +73,7 @@ const NABL_BADGES = [
   },
   {
     id: "TC-15509",
-    url: "https://res.cloudinary.com/de4cnpfm1/image/upload/v1778245987/TC15509_dx2lua.webp",
+    url: "https://res.cloudinary.com/de4cnpfm1/image/upload/v1780118711/copy_of_tc15509webp_1_stiyix.png",
     link: "https://nablwp.qci.org.in/CertificateScopenew?x=j6k9iq1uw4Bg9VLeGZxZMg==&src=P",
   },
   {
@@ -265,11 +265,11 @@ export default function Footer() {
                 <Link
                   key={link.name}
                   href={link.path}
-                  className="text-white/60 hover:text-white hover:font-medium text-[13px] flex items-center gap-1.5 transition-all group py-1 relative"
+                  className="text-white/60 hover:text-white hover:bg-white/[0.04] px-3.5 py-2.5 rounded-xl text-[13px] font-semibold transition-all duration-300 flex items-center justify-between w-full group -mx-3.5 border border-transparent hover:border-white/5"
                 >
-                  <div className="w-1.5 h-1.5 rounded-full bg-[#FF6700] opacity-0 group-hover:opacity-100 transition-all duration-300 scale-0 group-hover:scale-100"></div>
-                  <span className="-ml-3 group-hover:ml-0 transition-all duration-300">
-                    {link.name}
+                  <span className="group-hover:translate-x-0.5 transition-transform duration-300">{link.name}</span>
+                  <span className="opacity-0 scale-75 group-hover:opacity-100 group-hover:scale-100 translate-x-[-4px] group-hover:translate-x-0 transition-all duration-300 text-[#FF6700] font-bold text-[15px] shrink-0 leading-none">
+                    →
                   </span>
                 </Link>
               ))}
