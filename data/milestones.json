@@ -1,0 +1,74 @@
+[
+  {
+    "year": "2011",
+    "title": "Foundation of Omegalab",
+    "description": "Established with a bold vision to provide accurate, unbiased, and reliable testing and calibration services to the industry.",
+    "points": [
+      "Founded as Omega Consultant Services",
+      "Focused on accurate & reliable testing",
+      "Specialized in fertilizer & soil analysis"
+    ],
+    "icon": "Target",
+    "theme": "blue"
+  },
+  {
+    "year": "2013",
+    "title": "National Recognition",
+    "description": "Secured Position No. 18 globally in the CRM Preparation Programme. The only participating laboratory from West Bengal.",
+    "points": [
+      "Enlisted in CRM Preparation Programme",
+      "Secured Position No. 18 globally",
+      "Only selected lab from West Bengal"
+    ],
+    "icon": "Award",
+    "theme": "orange"
+  },
+  {
+    "year": "2016",
+    "title": "NABL Accreditation",
+    "description": "Earned the prestigious NABL accreditation adhering strictly to the ISO/IEC 17025:2017 international testing standards.",
+    "points": [
+      "Earned NABL accreditation",
+      "ISO/IEC 17025:2017 compliant",
+      "Ensured international testing standards"
+    ],
+    "icon": "CheckCircle",
+    "theme": "blue"
+  },
+  {
+    "year": "2019",
+    "title": "Eastern India Expansion",
+    "description": "Successfully expanded our state-of-the-art testing facilities across Eastern India, opening new branches in Siliguri and Ranchi.",
+    "points": [
+      "Expanded facilities across Eastern India",
+      "Opened new Siliguri & Ranchi branches",
+      "Upgraded analytical infrastructure"
+    ],
+    "icon": "MapPin",
+    "theme": "orange"
+  },
+  {
+    "year": "2023",
+    "title": "10M+ Samples Tested",
+    "description": "Crossed a remarkable milestone of over 10 million samples tested, delivering uncompromising accuracy to our clients.",
+    "points": [
+      "10 Million+ samples tested",
+      "Delivered uncompromising accuracy",
+      "Increased testing capability & speed"
+    ],
+    "icon": "Star",
+    "theme": "blue"
+  },
+  {
+    "year": "2025",
+    "title": "Industry Leadership",
+    "description": "Acknowledged as a premier testing laboratory trusted by over 1000+ top enterprises and government defense organizations.",
+    "points": [
+      "Trusted by 1000+ top enterprises",
+      "Partnered with defense organizations",
+      "Acknowledged as premier testing lab"
+    ],
+    "icon": "Crown",
+    "theme": "orange"
+  }
+]

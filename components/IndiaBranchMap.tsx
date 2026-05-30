@@ -112,42 +112,13 @@ const branches: Branch[] = [
   },
   // ── ORANGE: Sample Collection Centres ────────────────────────────────
   {
-    name: "MEDINIPUR",
-    coordinates: [87.3204, 22.4285],
+    name: "GUWAHATI",
+    coordinates: [91.7362, 26.1158],
     type: "collection",
-    state: "West Bengal",
+    state: "Assam",
     details: [
-      "C/O-Suvendu Sen, Tantigeria Town Colony",
-      "Post-Vidyasagar University",
-      "(Near - Tantigeria Rail Gate), PS- Kotuali",
-      "Dist: PaschimMedinipur, Pin-721102"
-    ],
-    mapEmbedUrl: "https://maps.google.com/maps?q=22.4285,87.3204&t=&z=15&ie=UTF8&iwloc=&output=embed"
-  },
-  {
-    name: "HALDIA",
-    coordinates: [88.0700, 22.0294],
-    type: "collection",
-    state: "West Bengal",
-    details: [
-      "Ganganarayan Appartment, Durgachak",
-      "Uttarpally (Near Primary School)",
-      "Haldia, Purba-Medinipur, Pin -721602"
-    ],
-    mapEmbedUrl: "https://maps.google.com/maps?q=22.0294,88.0700&t=&z=15&ie=UTF8&iwloc=&output=embed"
-  },
-  {
-    name: "AGARTALA",
-    coordinates: [91.2868, 23.8315],
-    type: "collection",
-    state: "Tripura",
-    details: [
-      "C/O- Dhirendra Chandra Das",
-      "East Side of Central Jail, P.O-Dhaleswar",
-      "P.S-East Agartala, Dist-West Agartala",
-      "Pin -799007"
-    ],
-    mapEmbedUrl: "https://maps.google.com/maps?q=23.8315,91.2868&t=&z=15&ie=UTF8&iwloc=&output=embed"
+      "Contact details for more details: 8837368798"
+    ]
   },
   {
     name: "SHILLONG",
@@ -155,11 +126,35 @@ const branches: Branch[] = [
     type: "collection",
     state: "Meghalaya",
     details: [
-      "Doyantis Lyngdoh, Ward No. : 23",
-      "House No. 390, Kenchs Trace Road",
-      "Shillong – 793004 (Meghalaya)"
-    ],
-    mapEmbedUrl: "https://maps.google.com/maps?q=25.5689,91.8833&t=&z=15&ie=UTF8&iwloc=&output=embed"
+      "Contact details for more details: 8837368798"
+    ]
+  },
+  {
+    name: "AGARTALA",
+    coordinates: [91.2868, 23.8315],
+    type: "collection",
+    state: "Tripura",
+    details: [
+      "Contact details for more details: 9862561693"
+    ]
+  },
+  {
+    name: "HALDIA",
+    coordinates: [88.0700, 22.0294],
+    type: "collection",
+    state: "West Bengal",
+    details: [
+      "Contact details for more details: 8768446680"
+    ]
+  },
+  {
+    name: "MEDINIPUR",
+    coordinates: [87.3204, 22.4285],
+    type: "collection",
+    state: "West Bengal",
+    details: [
+      "Contact details for more details: 9064732962"
+    ]
   },
 ];
 
@@ -535,7 +530,7 @@ export default function IndiaBranchMap() {
           >
             {[
               { value: "5", label: "Accredited Labs", color: "#22c55e" },
-              { value: "4", label: "Collection Centres", color: "#FF6700" },
+              { value: "5", label: "Collection Centres", color: "#FF6700" },
               { value: "Pan India", label: "Eastern & North Eastern Coverage", color: "#ffffff" },
             ].map((stat, idx) => (
               <div

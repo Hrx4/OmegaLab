@@ -62,29 +62,37 @@ export default function OurClientsPage() {
 
       <div className="max-w-[1300px] mx-auto px-4 md:px-12 mt-[-40px] relative z-30 mb-20">
         <div className="bg-white rounded-2xl shadow-xl overflow-hidden border-t-4 border-[#FF6700] p-6 lg:p-12">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 text-center border-b border-slate-100 pb-12 mb-12">
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-8 text-center border-b border-slate-100 pb-12 mb-12">
             <div>
               <div className="text-[#FF6700] font-black text-[40px] md:text-[56px] font-oswald leading-none mb-2">
                 1000+
               </div>
-              <div className="text-[#1E1B5C] font-bold uppercase tracking-wider text-sm">
+              <div className="text-[#1E1B5C] font-bold uppercase tracking-wider text-xs sm:text-sm">
                 Enterprise Clients
               </div>
             </div>
-            <div className="md:border-l md:border-r border-slate-100">
+            <div className="border-l border-slate-100/80">
               <div className="text-[#FF6700] font-black text-[40px] md:text-[56px] font-oswald leading-none mb-2">
                 25+
               </div>
-              <div className="text-[#1E1B5C] font-bold uppercase tracking-wider text-sm">
+              <div className="text-[#1E1B5C] font-bold uppercase tracking-wider text-xs sm:text-sm">
                 Years of Trust
               </div>
             </div>
-            <div>
+            <div className="border-l border-slate-100/80">
               <div className="text-[#FF6700] font-black text-[40px] md:text-[56px] font-oswald leading-none mb-2">
                 10M+
               </div>
-              <div className="text-[#1E1B5C] font-bold uppercase tracking-wider text-sm">
+              <div className="text-[#1E1B5C] font-bold uppercase tracking-wider text-xs sm:text-sm">
                 Samples Tested
+              </div>
+            </div>
+            <div className="border-l border-slate-100/80">
+              <div className="text-[#FF6700] font-black text-[40px] md:text-[56px] font-oswald leading-none mb-2">
+                1000+
+              </div>
+              <div className="text-[#1E1B5C] font-bold uppercase tracking-wider text-xs sm:text-sm">
+                Projects Completed
               </div>
             </div>
           </div>

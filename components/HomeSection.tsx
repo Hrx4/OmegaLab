@@ -17,190 +17,60 @@ const ABOUT_DATA = {
     "Mr. A.K. Das - CEO and Founder of Omegalab Testing Services Pvt Ltd",
 };
 
-const COUNTRY_LIST = [
-  { name: "India", code: "in", dial: "+91" },
-  { name: "Afghanistan", code: "af", dial: "+93" },
-  { name: "Albania", code: "al", dial: "+355" },
-  { name: "Algeria", code: "dz", dial: "+213" },
-  { name: "Andorra", code: "ad", dial: "+376" },
-  { name: "Angola", code: "ao", dial: "+244" },
-  { name: "Argentina", code: "ar", dial: "+54" },
-  { name: "Armenia", code: "am", dial: "+374" },
-  { name: "Australia", code: "au", dial: "+61" },
-  { name: "Austria", code: "at", dial: "+43" },
-  { name: "Azerbaijan", code: "az", dial: "+994" },
-  { name: "Bahrain", code: "bh", dial: "+973" },
-  { name: "Bangladesh", code: "bd", dial: "+880" },
-  { name: "Belarus", code: "by", dial: "+375" },
-  { name: "Belgium", code: "be", dial: "+32" },
-  { name: "Bhutan", code: "bt", dial: "+975" },
-  { name: "Bolivia", code: "bo", dial: "+591" },
-  { name: "Brazil", code: "br", dial: "+55" },
-  { name: "Brunei", code: "bn", dial: "+673" },
-  { name: "Bulgaria", code: "bg", dial: "+359" },
-  { name: "Cambodia", code: "kh", dial: "+855" },
-  { name: "Cameroon", code: "cm", dial: "+237" },
-  { name: "Canada", code: "ca", dial: "+1" },
-  { name: "Chile", code: "cl", dial: "+56" },
-  { name: "China", code: "cn", dial: "+86" },
-  { name: "Colombia", code: "co", dial: "+57" },
-  { name: "Croatia", code: "hr", dial: "+385" },
-  { name: "Cyprus", code: "cy", dial: "+357" },
-  { name: "Czech Republic", code: "cz", dial: "+420" },
-  { name: "Denmark", code: "dk", dial: "+45" },
-  { name: "Egypt", code: "eg", dial: "+20" },
-  { name: "Estonia", code: "ee", dial: "+372" },
-  { name: "Ethiopia", code: "et", dial: "+251" },
-  { name: "Fiji", code: "fj", dial: "+679" },
-  { name: "Finland", code: "fi", dial: "+358" },
-  { name: "France", code: "fr", dial: "+33" },
-  { name: "Georgia", code: "ge", dial: "+995" },
-  { name: "Germany", code: "de", dial: "+49" },
-  { name: "Ghana", code: "gh", dial: "+233" },
-  { name: "Greece", code: "gr", dial: "+30" },
-  { name: "Hong Kong", code: "hk", dial: "+852" },
-  { name: "Hungary", code: "hu", dial: "+36" },
-  { name: "Iceland", code: "is", dial: "+354" },
-  { name: "Indonesia", code: "id", dial: "+62" },
-  { name: "Iran", code: "ir", dial: "+98" },
-  { name: "Iraq", code: "iq", dial: "+964" },
-  { name: "Ireland", code: "ie", dial: "+353" },
-  { name: "Israel", code: "il", dial: "+972" },
-  { name: "Italy", code: "it", dial: "+39" },
-  { name: "Jamaica", code: "jm", dial: "+1" },
-  { name: "Japan", code: "jp", dial: "+81" },
-  { name: "Jordan", code: "jo", dial: "+962" },
-  { name: "Kazakhstan", code: "kz", dial: "+7" },
-  { name: "Kenya", code: "ke", dial: "+254" },
-  { name: "Kuwait", code: "kw", dial: "+965" },
-  { name: "Kyrgyzstan", code: "kg", dial: "+996" },
-  { name: "Laos", code: "la", dial: "+856" },
-  { name: "Latvia", code: "lv", dial: "+371" },
-  { name: "Lebanon", code: "lb", dial: "+961" },
-  { name: "Libya", code: "ly", dial: "+218" },
-  { name: "Liechtenstein", code: "li", dial: "+423" },
-  { name: "Lithuania", code: "lt", dial: "+370" },
-  { name: "Luxembourg", code: "lu", dial: "+352" },
-  { name: "Macao", code: "mo", dial: "+853" },
-  { name: "Macedonia", code: "mk", dial: "+389" },
-  { name: "Madagascar", code: "mg", dial: "+261" },
-  { name: "Malawi", code: "mw", dial: "+265" },
-  { name: "Malaysia", code: "my", dial: "+60" },
-  { name: "Maldives", code: "mv", dial: "+960" },
-  { name: "Malta", code: "mt", dial: "+356" },
-  { name: "Mauritius", code: "mu", dial: "+230" },
-  { name: "Mexico", code: "mx", dial: "+52" },
-  { name: "Moldova", code: "md", dial: "+373" },
-  { name: "Monaco", code: "mc", dial: "+377" },
-  { name: "Mongolia", code: "mn", dial: "+976" },
-  { name: "Montenegro", code: "me", dial: "+382" },
-  { name: "Morocco", code: "ma", dial: "+212" },
-  { name: "Myanmar", code: "mm", dial: "+95" },
-  { name: "Namibia", code: "na", dial: "+264" },
-  { name: "Nepal", code: "np", dial: "+977" },
-  { name: "Netherlands", code: "nl", dial: "+31" },
-  { name: "New Zealand", code: "nz", dial: "+64" },
-  { name: "Nigeria", code: "ng", dial: "+234" },
-  { name: "North Korea", code: "kp", dial: "+850" },
-  { name: "Norway", code: "no", dial: "+47" },
-  { name: "Oman", code: "om", dial: "+968" },
-  { name: "Pakistan", code: "pk", dial: "+92" },
-  { name: "Panama", code: "pa", dial: "+507" },
-  { name: "Papua New Guinea", code: "pg", dial: "+675" },
-  { name: "Paraguay", code: "py", dial: "+595" },
-  { name: "Peru", code: "pe", dial: "+51" },
-  { name: "Philippines", code: "ph", dial: "+63" },
-  { name: "Poland", code: "pl", dial: "+48" },
-  { name: "Portugal", code: "pt", dial: "+351" },
-  { name: "Qatar", code: "qa", dial: "+974" },
-  { name: "Romania", code: "ro", dial: "+40" },
-  { name: "Russia", code: "ru", dial: "+7" },
-  { name: "Rwanda", code: "rw", dial: "+250" },
-  { name: "Saudi Arabia", code: "sa", dial: "+966" },
-  { name: "Senegal", code: "sn", dial: "+221" },
-  { name: "Serbia", code: "rs", dial: "+381" },
-  { name: "Seychelles", code: "sc", dial: "+248" },
-  { name: "Singapore", code: "sg", dial: "+65" },
-  { name: "Slovakia", code: "sk", dial: "+421" },
-  { name: "Slovenia", code: "si", dial: "+386" },
-  { name: "South Africa", code: "za", dial: "+27" },
-  { name: "South Korea", code: "kr", dial: "+82" },
-  { name: "Spain", code: "es", dial: "+34" },
-  { name: "Sri Lanka", code: "lk", dial: "+94" },
-  { name: "Sweden", code: "se", dial: "+46" },
-  { name: "Switzerland", code: "ch", dial: "+41" },
-  { name: "Taiwan", code: "tw", dial: "+886" },
-  { name: "Tajikistan", code: "tj", dial: "+992" },
-  { name: "Tanzania", code: "tz", dial: "+255" },
-  { name: "Thailand", code: "th", dial: "+66" },
-  { name: "Tunisia", code: "tn", dial: "+216" },
-  { name: "Turkey", code: "tr", dial: "+90" },
-  { name: "Turkmenistan", code: "tm", dial: "+993" },
-  { name: "Uganda", code: "ug", dial: "+256" },
-  { name: "Ukraine", code: "ua", dial: "+380" },
-  { name: "United Arab Emirates", code: "ae", dial: "+971" },
-  { name: "United Kingdom", code: "gb", dial: "+44" },
-  { name: "United States", code: "us", dial: "+1" },
-  { name: "Uruguay", code: "uy", dial: "+598" },
-  { name: "Uzbekistan", code: "uz", dial: "+998" },
-  { name: "Venezuela", code: "ve", dial: "+58" },
-  { name: "Vietnam", code: "vn", dial: "+84" },
-  { name: "Yemen", code: "ye", dial: "+967" },
-  { name: "Zambia", code: "zm", dial: "+260" },
-  { name: "Zimbabwe", code: "zw", dial: "+263" },
+const INDIAN_STATES = [
+  "Andhra Pradesh",
+  "Arunachal Pradesh",
+  "Assam",
+  "Bihar",
+  "Chhattisgarh",
+  "Goa",
+  "Gujarat",
+  "Haryana",
+  "Himachal Pradesh",
+  "Jharkhand",
+  "Karnataka",
+  "Kerala",
+  "Madhya Pradesh",
+  "Maharashtra",
+  "Manipur",
+  "Meghalaya",
+  "Mizoram",
+  "Nagaland",
+  "Odisha",
+  "Punjab",
+  "Rajasthan",
+  "Sikkim",
+  "Tamil Nadu",
+  "Telangana",
+  "Tripura",
+  "Uttar Pradesh",
+  "Uttarakhand",
+  "West Bengal",
+  "Andaman and Nicobar Islands",
+  "Chandigarh",
+  "Dadra and Nagar Haveli and Daman and Diu",
+  "Delhi",
+  "Jammu and Kashmir",
+  "Ladakh",
+  "Lakshadweep",
+  "Puducherry"
 ];
 
-function DialCodeDropdown() {
-  const [open, setOpen] = useState(false);
-  const [selected, setSelected] = useState(COUNTRY_LIST[0]);
 
-  return (
-    <div className="relative w-[130px] shrink-0">
-      <div
-        onClick={() => setOpen(!open)}
-        className="w-full h-full min-h-[44px] px-3 py-3 rounded-lg border-2 border-[#1E1B5C]/10 bg-[#EFF6FF] text-[13px] text-[#1E1B5C] cursor-pointer flex items-center justify-between"
-      >
-        <div className="flex items-center gap-2">
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img src={`https://flagcdn.com/w20/${selected.code}.png`} alt={selected.code} className="w-[18px] rounded-sm shadow-sm" />
-          <span className="font-medium">{selected.code.toUpperCase()} {selected.dial}</span>
-        </div>
-        <span className="text-[9px] text-[#1E1B5C]/60 ml-1">▼</span>
-      </div>
-      {open && (
-        <>
-          <div className="fixed inset-0 z-40" onClick={() => setOpen(false)} />
-          <div className="absolute top-full left-0 mt-1 w-56 max-h-56 overflow-y-auto bg-white border border-slate-200 shadow-2xl rounded-xl z-50 py-1">
-            {COUNTRY_LIST.map((c, i) => (
-              <div
-                key={i}
-                onClick={() => { setSelected(c); setOpen(false); }}
-                className="px-3 py-2.5 hover:bg-[#EFF6FF] cursor-pointer flex items-center gap-3 text-[13px] transition-colors"
-              >
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img src={`https://flagcdn.com/w20/${c.code}.png`} alt={c.code} className="w-[18px] rounded-sm shadow-sm shrink-0" />
-                <span className="font-semibold text-[#1E1B5C] w-14 shrink-0">{c.code.toUpperCase()} {c.dial}</span>
-                <span className="text-slate-500 text-[12px] truncate">{c.name}</span>
-              </div>
-            ))}
-          </div>
-        </>
-      )}
-    </div>
-  );
-}
 
 import materials from "../data/materials.json";
 import TestingModal, { type MaterialItem } from "./TestingModal";
 
 const filters = [
   "All Materials",
-  "Metals & Steel",
-  "Cement & Concrete",
-  "Geotextiles",
-  "NDT Services",
+  "Metal & Alloys",
   "Plastic",
+  "Textile",
+  "Building & Construction Material",
+  "Soil & Rock",
+  "NDT",
   "Water",
+  "Others Materials",
 ];
 
 
@@ -213,6 +83,7 @@ export default function HomeSections() {
   const [showDropdown, setShowDropdown] = useState(false);
   const [enquiryService, setEnquiryService] = useState("");
   const [enquiryParams, setEnquiryParams] = useState<string[]>([]);
+  const [showOtherService, setShowOtherService] = useState(false);
   const searchParams = useSearchParams();
 
   // Safety limits to prevent oversized URL payloads causing UI issues
@@ -286,7 +157,7 @@ export default function HomeSections() {
     {
       value: 900,
       suffix: "+",
-      label: "NABL Test Parameters",
+      label: "Accredited Test Parameters",
       isText: false,
       textValue: "",
     },
@@ -316,9 +187,44 @@ export default function HomeSections() {
   const filteredMaterials = (
     activeFilter === "All Materials"
       ? materials
-      : materials.filter((item) =>
-        item.category.includes(activeFilter)
-      )
+      : materials.filter((item) => {
+          const nameLower = item.name.toLowerCase();
+          const categories = item.category || [];
+          
+          if (activeFilter === "Metal & Alloys") {
+            return categories.includes("Metals & Steel");
+          }
+          if (activeFilter === "Plastic") {
+            return categories.includes("Plastic");
+          }
+          if (activeFilter === "Textile") {
+            return categories.includes("Geotextiles");
+          }
+          if (activeFilter === "Building & Construction Material") {
+            // Include Cement & Concrete but exclude Soil/Rock/Clay items
+            const isSoilOrRock = nameLower.includes("soil") || nameLower.includes("rock") || nameLower.includes("stone") || nameLower.includes("clay") || nameLower.includes("blanketing");
+            return categories.includes("Cement & Concrete") && !isSoilOrRock;
+          }
+          if (activeFilter === "Soil & Rock") {
+            return nameLower.includes("soil") || nameLower.includes("rock") || nameLower.includes("stone") || nameLower.includes("clay") || nameLower.includes("blanketing");
+          }
+          if (activeFilter === "NDT") {
+            return categories.includes("NDT Services");
+          }
+          if (activeFilter === "Water") {
+            return categories.includes("Water");
+          }
+          if (activeFilter === "Others Materials") {
+            const hasKnownCategory = categories.includes("Metals & Steel") || 
+                                     categories.includes("Plastic") || 
+                                     categories.includes("Geotextiles") || 
+                                     categories.includes("Cement & Concrete") || 
+                                     categories.includes("NDT Services") || 
+                                     categories.includes("Water");
+            return !hasKnownCategory;
+          }
+          return false;
+        })
   ).slice(0, 24);
 
 
@@ -330,31 +236,60 @@ export default function HomeSections() {
       <HeroSlider />
 
       {/* 2. Stats Section */}
-      <section className="bg-[#1E1B5C] py-8 md:py-14 px-4" ref={ref}
-      >
-        <div className="max-w-6xl mx-auto grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-6 text-center">
-          {stats.map((item, index) => (
-            <div key={index}>
-              <div className="text-[28px] md:text-[42px] font-black text-[#FF6700] mb-1 font-oswald">
-                {item.isText ? (
-                  item.textValue
-                ) : (
-                  inView && (
-                    <CountUp
-                      end={item.value}
-                      duration={2.5}
-                      suffix={item.suffix}
-                    />
-                  )
-                )}
-              </div>
+      <section className="relative bg-[#1E1B5C] overflow-hidden" ref={ref}>
+        {/* Subtle grid texture */}
+        <div className="absolute inset-0 opacity-[0.04]"
+          style={{ backgroundImage: "repeating-linear-gradient(0deg,transparent,transparent 39px,#fff 39px,#fff 40px),repeating-linear-gradient(90deg,transparent,transparent 39px,#fff 39px,#fff 40px)" }}
+        />
+        {/* Top accent line */}
+        <div className="absolute top-0 left-0 right-0 h-[3px] bg-gradient-to-r from-transparent via-[#FF6700] to-transparent" />
 
-              <div className="text-[10px] uppercase tracking-[1.5px] text-white/60 font-semibold">
-                {item.label}
+        <div className="relative max-w-6xl mx-auto px-4 py-10 md:py-14">
+          <div className="flex flex-col sm:flex-row items-stretch justify-between divide-y sm:divide-y-0 sm:divide-x divide-white/10">
+            {stats.map((item, index) => (
+              <div
+                key={index}
+                className="flex-1 flex flex-col items-center justify-center py-7 sm:py-6 px-4 md:px-6 group relative"
+                style={{ animationDelay: `${index * 80}ms` }}
+              >
+                {/* Number / Text */}
+                <div className="text-[38px] md:text-[52px] font-black text-[#FF6700] font-oswald leading-none mb-2 tabular-nums tracking-tight">
+                  {item.isText ? (
+                    <span className="text-[28px] md:text-[38px]">{item.textValue}</span>
+                  ) : (
+                    inView ? (
+                      <CountUp
+                        end={item.value}
+                        duration={2.2}
+                        suffix={item.suffix}
+                        useEasing
+                        easingFn={(t, b, c, d) => {
+                          t /= d / 2;
+                          if (t < 1) return (c / 2) * t * t + b;
+                          t--;
+                          return (-c / 2) * (t * (t - 2) - 1) + b;
+                        }}
+                      />
+                    ) : (
+                      <span>0{item.suffix}</span>
+                    )
+                  )}
+                </div>
+
+                {/* Label */}
+                <div className="text-[10px] md:text-[11px] uppercase tracking-[2px] text-white/55 font-bold text-center leading-snug">
+                  {item.label}
+                </div>
+
+                {/* Hover bottom bar */}
+                <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-0 group-hover:w-10 h-[2px] bg-[#FF6700] rounded-full transition-all duration-300" />
               </div>
-            </div>
-          ))}
+            ))}
+          </div>
         </div>
+
+        {/* Bottom accent line */}
+        <div className="absolute bottom-0 left-0 right-0 h-[3px] bg-gradient-to-r from-transparent via-[#FF6700]/40 to-transparent" />
       </section>
 
       {/* 3. About Section */}
@@ -363,9 +298,6 @@ export default function HomeSections() {
           <h2 className="text-[24px] md:text-[38px] font-black text-[#1E1B5C] mb-2 font-oswald tracking-tight">
             About Us
           </h2>
-          <p className="text-[13px] md:text-[16px] text-slate-500 max-w-2xl mx-auto">
-            Quality meets Reliability
-          </p>
           <div className="w-[60px] h-[4px] bg-[#FF6700] mx-auto mt-3 rounded-full" />
         </div>
 
@@ -384,9 +316,7 @@ export default function HomeSections() {
 
           <div>
             <blockquote className="border-l-4 border-[#FF6700] p-5 mb-6 bg-[#FF6700]/5 rounded-r-xl italic text-[14px] md:text-[16px] leading-[1.7] text-[#1E1B5C]">
-              &quot; Where accuracy is our goal, quality is
-              our soul, safety is our priority, satisfaction is our
-              guarantee.&quot;
+              &quot;Welcome to Omegalab, where Quality meets Reliability, accuracy is our goal, quality is our soul, safety is our priority, and satisfaction is our guarantee.&quot;
               <cite className="block not-italic font-bold mt-3 text-[#FF6700] text-[13px] font-montserrat">
                 — A.K. Das, CEO & Founder
               </cite>
@@ -454,67 +384,67 @@ export default function HomeSections() {
             {
               tag: "NABL Accredited",
               tagColor: "text-[#FF6700] bg-[#FF6700]/15",
-              city: "Kolkata – 1",
-              state: "West Bengal · Head Office",
+              city: "Kolkata - 1",
+              state: "WEST BENGAL · HEAD OFFICE",
               details: [
-                "🏗️ Central Laboratory (HQ)",
-                "📐 14,000 sq. ft.",
-                "👥 120+ Team",
-                "🔬 900+ Parameters",
+                "🏢 Central Laboratory",
+                "🏗️ Metal & Building Material Testing Facility",
+                "🧪 Reared test facility (Plastic, Textile etc.)",
               ],
             },
             {
               tag: "NABL Accredited",
               tagColor: "text-[#FF6700] bg-[#FF6700]/15",
-              city: "Kolkata – 2",
-              state: "West Bengal",
+              city: "Kolkata - 2",
+              state: "WEST BENGAL",
               details: [
-                "🧪 Mechanical & Chemical",
-                "🔩 Metals & Construction",
-                "⚡ NDT Services",
+                "🌉 Infrastructure Projects",
+                "🔩 Building Material & NDT Testing facility",
+                "💧 Reared test facility (Water, soil, oil, Paint, putty, etc.)",
               ],
             },
             {
               tag: "NABL Accredited",
               tagColor: "text-[#FF6700] bg-[#FF6700]/15",
               city: "Siliguri",
-              state: "West Bengal · North Bengal",
+              state: "WEST BENGAL · NORTH BENGAL",
               details: [
                 "🌄 North Bengal Region",
-                "🧱 Construction Materials",
-                "🏗️ Civil Engineering Tests",
+                "🧱 Construction Material testing facility",
+                "⚡ Reared test facility (CMOD, Energy Absorption etc.)",
               ],
             },
             {
               tag: "NABL Accredited",
               tagColor: "text-[#FF6700] bg-[#FF6700]/15",
               city: "Ranchi",
-              state: "Jharkhand",
+              state: "JHARKHAND",
               details: [
-                "⚙️ Industrial Materials",
-                "🔬 Ferrous & Non-Ferrous",
-                "🏭 Infrastructure Projects",
+                "🏭 Industrial Projects",
+                "🌱 Soil & Construction Material testing facility",
+                "📏 Reared test facility (EV2, SBC, soil site test etc.)",
               ],
             },
             {
-              tag: "NABL ACCREDITED",
+              tag: "NABL Accredited",
               tagColor: "text-[#FF6700] bg-[#FF6700]/15",
               city: "Odisha",
-              state: "Eastern India",
+              state: "EASTERN INDIA",
               details: [
-                "🔄 Under NABL Process",
-                "🌐 Odisha Operations",
-                "📅 Accreditation Targeted 2026",
+                "🔬 High-tech Equipment",
+                "⚙️ Metal & Building Material Testing Facility",
+                "🛡️ Reared test facility (Coating thickness, MS conduit etc.)",
               ],
             },
           ].map((lab, idx) => (
             <div
               key={idx}
-              className="bg-white/5 border border-white/10 rounded-xl p-6 relative overflow-hidden group hover:-translate-y-1 hover:shadow-[0_12px_32px_rgba(0,0,0,0.3)] transition-all"
+              className="bg-white/5 border border-white/10 rounded-2xl p-6 relative overflow-hidden group hover:-translate-y-2 hover:border-[#FF6700]/40 hover:bg-white/[0.08] hover:shadow-[0_20px_40px_rgba(255,103,0,0.12)] transition-all duration-500 ease-out"
             >
-              <div className="absolute top-0 left-0 w-full h-[3px] bg-[#FF6700] scale-x-0 origin-left transition-transform duration-300 group-hover:scale-x-100" />
+              {/* Ambient backdrop glow in top-right corner */}
+              <div className="absolute -right-10 -top-10 w-28 h-28 bg-[#FF6700]/0 rounded-full blur-2xl group-hover:bg-[#FF6700]/15 transition-all duration-500 pointer-events-none" />
               <span
-                className={`inline-flex items-center gap-1.5 text-[10px] font-bold uppercase tracking-[0.5px] px-3 py-1 rounded-full mb-4 ${lab.tagColor}`}
+                className={`inline-flex items-center gap-1.5 text-[10px] font-bold uppercase tracking-[0.5px] px-3 py-1 rounded-full mb-4 ${lab.tagColor} transition-transform duration-300 group-hover:scale-105`}
               >
                 ● {lab.tag}
               </span>
@@ -768,32 +698,32 @@ export default function HomeSections() {
             {
               icon: "🏆",
               title: "NABL Accredited Excellence",
-              desc: "5 labs under ISO/IEC 17025:2017, accepted by govt bodies",
+              desc: "5 accredited lab as per ISO/IEC 17025: 2017 under NABL.",
             },
             {
               icon: "⏱️",
               title: "Fast Turnaround Time",
-              desc: "120+ team members, rapid delivery, minimal project delays",
+              desc: "Quick report delivery, 120+ team member with LIMS software & Hi-tech equipment.",
             },
             {
               icon: "🌐",
-              title: "Widest Regional Coverage",
-              desc: "Kolkata to Shillong, Haldia to Guwahati",
+              title: "Pan India Coverage",
+              desc: "Eastern & North-Eastern India coverage",
             },
             {
               icon: "🔬",
-              title: "900+ Test Parameters",
-              desc: "One of the most comprehensive NABL scopes in the region",
+              title: "900+ accredited Test Parameters",
+              desc: "One of the most comprehensive NABL scopes in the region.",
             },
             {
               icon: "👨‍🔬",
               title: "Expert Technical Team",
-              desc: "100+ qualified professionals, M.Sc / B.Tech / Diploma",
+              desc: "Driven by 100+ highly Qualified Technical Experts",
             },
             {
               icon: "📈",
-              title: "Continuous Growth",
-              desc: "Targeting 1000+ parameters by 2030",
+              title: "LIMS supported System",
+              desc: "First Report Delivery",
             },
           ].map((reason, idx) => (
             <div
@@ -973,7 +903,12 @@ export default function HomeSections() {
               </div>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
                 <div className="flex gap-2 w-full min-w-0">
-                  <DialCodeDropdown />
+                  <div className="flex items-center gap-2 px-3 py-3 rounded-lg border-2 border-[#1E1B5C]/10 bg-[#EFF6FF] text-[13px] text-[#1E1B5C] font-semibold select-none shrink-0">
+                    {/* eslint-disable-next-line @next/next/no-img-element */}
+                    <img src="https://flagcdn.com/w20/in.png" alt="IN" className="w-[18px] rounded-sm shadow-sm" />
+                    <span>+91</span>
+                  </div>
+                  <input type="hidden" name="dial_code" value="+91" />
                   <input
                     type="tel"
                     name="phone"
@@ -995,6 +930,29 @@ export default function HomeSections() {
                 />
               </div>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+                <select 
+                  name="country" 
+                  autoComplete="country-name" 
+                  className="w-full px-4 py-3 rounded-lg border-2 border-[#1E1B5C]/10 bg-[#EFF6FF] text-[13px] focus:outline-none focus:border-[#FF6700] text-[#1E1B5C]"
+                  defaultValue=""
+                  required
+                >
+                  <option value="">Select Country *</option>
+                  <option value="India">India</option>
+                </select>
+                <select 
+                  name="state" 
+                  autoComplete="address-level1" 
+                  className="w-full px-4 py-3 rounded-lg border-2 border-[#1E1B5C]/10 bg-[#EFF6FF] text-[13px] focus:outline-none focus:border-[#FF6700] text-[#1E1B5C]"
+                  required
+                >
+                  <option value="">Select State *</option>
+                  {INDIAN_STATES.map((state) => (
+                    <option key={state} value={state}>{state}</option>
+                  ))}
+                </select>
+              </div>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
                 <input
                   type="text"
                   name="city"
@@ -1003,23 +961,6 @@ export default function HomeSections() {
                   autoComplete="address-level2"
                   className="w-full px-4 py-3 rounded-lg border-2 border-[#1E1B5C]/10 bg-[#EFF6FF] text-[13px] focus:outline-none focus:border-[#FF6700] transition-colors text-[#1E1B5C]"
                 />
-                <input
-                  type="text"
-                  name="state"
-                  placeholder="State"
-                  maxLength={80}
-                  autoComplete="address-level1"
-                  className="w-full px-4 py-3 rounded-lg border-2 border-[#1E1B5C]/10 bg-[#EFF6FF] text-[13px] focus:outline-none focus:border-[#FF6700] transition-colors text-[#1E1B5C]"
-                />
-              </div>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
-                <select name="country" autoComplete="country-name" className="w-full px-4 py-3 rounded-lg border-2 border-[#1E1B5C]/10 bg-[#EFF6FF] text-[13px] focus:outline-none focus:border-[#FF6700] text-[#1E1B5C]">
-                  <option value="">Select Country</option>
-                  {COUNTRY_LIST.map((c, i) => (
-                    <option key={i} value={c.name}>{c.name}</option>
-                  ))}
-                  <option value="Other">Other</option>
-                </select>
                 <input
                   type="text"
                   name="pincode"
@@ -1106,54 +1047,98 @@ export default function HomeSections() {
                 />
               </div>
 
-              <select name="service_required" className="w-full px-4 py-3 rounded-lg border-2 border-[#1E1B5C]/10 bg-[#EFF6FF] text-[13px] focus:outline-none focus:border-[#FF6700] text-[#1E1B5C]">
-                <option value="">Select Service Required</option>
-                <option value="Mechanical Testing">Mechanical Testing</option>
-                <option value="Chemical Testing">Chemical Testing</option>
-                <option value="NDT Services">NDT Services</option>
-                <option value="Cement & Concrete Testing">Cement & Concrete Testing</option>
-                <option value="Steel & Metal Testing">Steel & Metal Testing</option>
-                <option value="Geotextile Testing">Geotextile Testing</option>
-                <option value="Water Testing">Water Testing</option>
-                <option value="Coal Testing">Coal Testing</option>
-                <option value="Pipe Testing">Pipe Testing</option>
-                <option value="Other">Other</option>
-              </select>
+              <div className="flex flex-col gap-2">
+                <label className="text-[11px] font-bold text-[#1E1B5C]/50 uppercase tracking-[0.5px]">
+                  Services / Materials Required (Select multiple if needed)
+                </label>
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-4 gap-y-2 bg-[#EFF6FF] p-4 rounded-lg border-2 border-[#1E1B5C]/10">
+                  {[
+                    "Mechanical Testing",
+                    "Chemical Testing",
+                    "NDT Services",
+                    "Cement & Concrete Testing",
+                    "Steel & Metal Testing",
+                    "Geotextile Testing",
+                    "Water Testing",
+                    "Coal Testing",
+                    "Pipe Testing"
+                  ].map((service) => (
+                    <label key={service} className="flex items-center gap-2 text-[12px] text-[#1E1B5C] font-semibold cursor-pointer select-none">
+                      <input
+                        type="checkbox"
+                        name="services_required[]"
+                        value={service}
+                        className="accent-[#FF6700] rounded"
+                      />
+                      {service}
+                    </label>
+                  ))}
+                  <label className="flex items-center gap-2 text-[12px] text-[#1E1B5C] font-semibold cursor-pointer select-none">
+                    <input
+                      type="checkbox"
+                      name="services_required[]"
+                      value="Other"
+                      onChange={(e) => setShowOtherService(e.target.checked)}
+                      className="accent-[#FF6700] rounded"
+                    />
+                    Other / Custom Testing
+                  </label>
+                </div>
+              </div>
+
+              {showOtherService && (
+                <div className="flex flex-col gap-1.5 animate-fadeIn">
+                  <input
+                    type="text"
+                    name="custom_service_details"
+                    placeholder="Specify other service / material required *"
+                    required={showOtherService}
+                    className="w-full px-4 py-3 rounded-lg border-2 border-[#1E1B5C]/10 bg-[#EFF6FF] text-[13px] focus:outline-none focus:border-[#FF6700] transition-colors text-[#1E1B5C]"
+                  />
+                </div>
+              )}
 
               <div className="text-[11px] font-bold text-[#1E1B5C]/50 uppercase tracking-[0.5px]">
-                Preferred Testing Type
+                Preferred Testing Type (Select all that apply)
               </div>
               <div className="flex gap-4">
-                <label className="flex items-center gap-1 text-[12px] text-[#1E1B5C] font-semibold cursor-pointer">
+                <label className="flex items-center gap-1.5 text-[12px] text-[#1E1B5C] font-semibold cursor-pointer">
                   <input
-                    type="radio"
-                    name="testingType"
-                    className="accent-[#FF6700]"
+                    type="checkbox"
+                    name="testingType[]"
+                    value="Mechanical"
+                    className="accent-[#FF6700] rounded"
                   />{" "}
                   Mechanical
                 </label>
-                <label className="flex items-center gap-1 text-[12px] text-[#1E1B5C] font-semibold cursor-pointer">
+                <label className="flex items-center gap-1.5 text-[12px] text-[#1E1B5C] font-semibold cursor-pointer">
                   <input
-                    type="radio"
-                    name="testingType"
-                    className="accent-[#FF6700]"
+                    type="checkbox"
+                    name="testingType[]"
+                    value="Chemical"
+                    className="accent-[#FF6700] rounded"
                   />{" "}
                   Chemical
                 </label>
-                <label className="flex items-center gap-1 text-[12px] text-[#1E1B5C] font-semibold cursor-pointer">
+                <label className="flex items-center gap-1.5 text-[12px] text-[#1E1B5C] font-semibold cursor-pointer">
                   <input
-                    type="radio"
-                    name="testingType"
-                    className="accent-[#FF6700]"
+                    type="checkbox"
+                    name="testingType[]"
+                    value="NDT"
+                    className="accent-[#FF6700] rounded"
                   />{" "}
                   NDT
                 </label>
               </div>
 
+              <div className="text-[12px] text-[#1E1B5C]/60 font-semibold px-4 py-3 rounded-lg border-2 border-[#1E1B5C]/10 bg-[#EFF6FF] select-none flex items-center justify-between">
+                <span>Enquiry Date:</span>
+                <span className="text-[#1E1B5C] font-bold">{new Date().toLocaleDateString('en-IN', { day: '2-digit', month: 'long', year: 'numeric' })}</span>
+              </div>
               <input
-                type="date"
+                type="hidden"
                 name="preferred_date"
-                className="w-full px-4 py-3 rounded-lg border-2 border-[#1E1B5C]/10 bg-[#EFF6FF] text-[13px] focus:outline-none focus:border-[#FF6700] transition-colors text-[#1E1B5C]"
+                value={new Date().toISOString().split('T')[0]}
               />
 
               <textarea

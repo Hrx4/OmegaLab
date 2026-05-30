@@ -117,7 +117,7 @@ function FacilityImageSlider({ images, title }: { images: string[]; title: strin
 }
 
 // ── Filter definitions ──────────────────────────────────────────────────────
-const TC11935_FILTERS = ["All", "Metals & Steel", "Geotextiles", "Plastic", "NDT Services"];
+const TC11935_FILTERS = ["All", "Metals & Steel", "Geotextiles", "Plastic", "Building Material"];
 const TC13401_FILTERS = ["All", "Cement & Concrete", "Water", "NDT Services"];
 
 // ── NABL Certificate segments ────────────────────────────────────────────────
@@ -167,6 +167,7 @@ function CertSection({
   items,
   color,
   onSelect,
+  facilityType = "Under Permanent Facility",
 }: {
   certNo: string;
   facilityLabel: string;
@@ -175,13 +176,17 @@ function CertSection({
   items: MaterialItem[];
   color: string;
   onSelect: (m: MaterialItem) => void;
+  facilityType?: string;
 }) {
   const [activeFilter, setActiveFilter] = useState("All");
 
   const filteredItems =
     activeFilter === "All"
       ? items
-      : items.filter((m) => m.category.includes(activeFilter));
+      : items.filter((m) => {
+          const categoryToMatch = activeFilter === "Building Material" ? "Cement & Concrete" : activeFilter;
+          return m.category.includes(categoryToMatch);
+        });
 
   return (
     <motion.section
@@ -197,7 +202,7 @@ function CertSection({
           <div className="flex-1">
             <div className="flex items-center gap-2 mb-1">
               <span className="inline-block text-[11px] font-black uppercase tracking-[1.5px] px-3 py-0.5 rounded-full bg-white/20 text-white border border-white/25">
-                Under Permanent Facility
+                {facilityType}
               </span>
             </div>
             <h2 className="text-white font-black text-[22px] md:text-[28px] font-oswald tracking-tight">
@@ -205,10 +210,7 @@ function CertSection({
             </h2>
             <p className="text-white/70 text-[13px] mt-0.5">{description}</p>
           </div>
-          <div className="shrink-0 text-right">
-            <div className="text-white/60 text-[10px] uppercase tracking-widest font-bold mb-0.5">NABL Certificate No.</div>
-            <div className="text-white font-black text-[22px] font-oswald tracking-wider">{certNo}</div>
-          </div>
+
         </div>
       </div>
 
@@ -296,7 +298,7 @@ export default function FacilitiesPage() {
           transition={{ duration: 0.6, delay: 0.3 }}
           className="text-center text-[15px] md:text-[17px] text-slate-600 max-w-3xl mx-auto leading-relaxed"
         >
-          Equipped with world-class analytical instruments and a highly skilled technical team, OMEGALAB delivers precision testing across multiple disciplines to ensure your products meet global standards.
+          Equipped with world-class analytical instruments and a highly skilled technical team, OMEGALAB delivers precision testing across multiple disciplines to ensure your products meet national or international standards & product specification.
         </motion.p>
 
         {/* Interactive Search Bar */}
@@ -352,11 +354,6 @@ export default function FacilitiesPage() {
                           <span className="font-bold text-[13px] text-[#1E1B5C] group-hover:text-[#FF6700] transition-colors truncate">
                             {m.name}
                           </span>
-                          {m.nablCert && (
-                            <span className="text-[9px] font-bold text-[#FF6700] bg-[#FF6700]/10 px-2 py-0.5 rounded-full shrink-0">
-                              {m.nablCert}
-                            </span>
-                          )}
                         </div>
                         {matchedParams.length > 0 ? (
                           <div className="text-[11px] text-[#FF6700] font-semibold mt-0.5">
@@ -388,8 +385,8 @@ export default function FacilitiesPage() {
           className="flex flex-wrap justify-center gap-3 mt-8"
         >
           {[
-            { label: "Jump to TC-11935", href: "#tc11935" },
-            { label: "Jump to TC-13401", href: "#tc13401" },
+            { label: "Metals & NDT Lab", href: "#tc11935" },
+            { label: "Construction & Water Lab", href: "#tc13401" },
           ].map((link) => (
             <a
               key={link.href}
@@ -413,24 +410,26 @@ export default function FacilitiesPage() {
         <div id="tc11935">
           <CertSection
             certNo={TC11935_CERT}
-            facilityLabel="Metals, Geosynthetics & NDT Laboratory"
+            facilityLabel="Building Material, Metal, Plastic & Textile Testing Services"
             description="Advanced mechanical & chemical testing for ferrous / non-ferrous metals, geosynthetics, plastic pipes and non-destructive evaluation."
             filters={TC11935_FILTERS}
             items={tc11935Items}
             color="from-[#1E1B5C] to-[#2d2890]"
             onSelect={setSelectedMaterial}
+            facilityType="Under Permanent Facility"
           />
         </div>
 
         <div id="tc13401">
           <CertSection
             certNo={TC13401_CERT}
-            facilityLabel="Construction Materials, Water & Civil Laboratory"
+            facilityLabel="Water, NDT, Building & Construction Material testing services"
             description="Comprehensive testing for cement, concrete, aggregates, soil, bitumen, water, and other civil engineering materials."
             filters={TC13401_FILTERS}
             items={tc13401Items}
             color="from-[#b34500] to-[#FF6700]"
             onSelect={setSelectedMaterial}
+            facilityType="Permanent & Site Facility"
           />
         </div>
       </div>

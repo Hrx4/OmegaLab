@@ -77,11 +77,29 @@ export default async function BranchPage({ params }: { params: Promise<{ branchI
               )}
               
               {branch.address && (
-                <div className="flex items-start gap-3 mb-6 w-full text-left bg-slate-50 p-4 rounded-xl border border-slate-100">
+                <div className="flex items-start gap-3 mb-4 w-full text-left bg-slate-50 p-4 rounded-xl border border-slate-100">
                   <MapPin size={20} className="text-[#FF6700] shrink-0 mt-0.5" />
                   <p className="text-[14px] md:text-[15px] text-slate-700 leading-relaxed font-semibold">
                     {branch.address}
                   </p>
+                </div>
+              )}
+
+              {branch.phone && (
+                <div className="flex items-center gap-3 mb-4 w-full text-left bg-slate-50 p-4 rounded-xl border border-slate-100">
+                  <Phone size={18} className="text-[#FF6700] shrink-0" />
+                  <a href={`tel:${branch.phone.split('/')[0].trim()}`} className="text-[14px] md:text-[15px] text-slate-700 font-bold hover:text-[#FF6700] transition-colors">
+                    {branch.phone}
+                  </a>
+                </div>
+              )}
+
+              {branch.email && (
+                <div className="flex items-center gap-3 mb-6 w-full text-left bg-slate-50 p-4 rounded-xl border border-slate-100">
+                  <span className="text-[16px] shrink-0">✉️</span>
+                  <a href={`mailto:${branch.email}`} className="text-[14px] md:text-[15px] text-slate-700 font-bold hover:text-[#FF6700] transition-colors">
+                    {branch.email}
+                  </a>
                 </div>
               )}
 

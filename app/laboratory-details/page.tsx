@@ -3,7 +3,31 @@
 import { useState, useEffect, useRef } from "react";
 import Image from "next/image";
 import { motion, useScroll, useTransform } from "motion/react";
-import { FlaskConical, Building2, ShieldCheck, CreditCard, BadgeCheck, MapPin, Award, Target, CheckCircle, Star, Crown } from "lucide-react";
+import { FlaskConical, Building2, ShieldCheck, CreditCard, BadgeCheck, MapPin, Award, Target, CheckCircle, Star, Crown, LucideIcon } from "lucide-react";
+import milestonesData from "@/data/milestones.json";
+
+type MilestoneIcon = "Target" | "Award" | "CheckCircle" | "MapPin" | "Star" | "Crown";
+type MilestoneTheme = "blue" | "orange";
+
+interface MilestoneData {
+  year: string;
+  title: string;
+  description: string;
+  points: string[];
+  icon: MilestoneIcon;
+  theme: MilestoneTheme;
+}
+
+const ICON_MAP: Record<MilestoneIcon, LucideIcon> = {
+  Target,
+  Award,
+  CheckCircle,
+  MapPin,
+  Star,
+  Crown,
+};
+
+const MILESTONES: MilestoneData[] = milestonesData as MilestoneData[];
 
 const highlights = [
   {
@@ -57,50 +81,8 @@ const TEAM_IMAGES = [
   "https://res.cloudinary.com/de4cnpfm1/image/upload/v1778339108/T1_pfcuu9.jpg",
 ];
 
-const MILESTONES = [
-  {
-    year: "2011",
-    title: "Foundation of Omegalab",
-    description: "Established with a bold vision to provide accurate, unbiased, and reliable testing and calibration services to the industry.",
-    icon: Target,
-    color: "from-blue-500 to-[#1E1B5C]"
-  },
-  {
-    year: "2013",
-    title: "National Recognition by CSIR-NML",
-    description: "Secured Position No. 18 globally in the CRM Preparation Programme. The only participating laboratory from West Bengal.",
-    icon: Award,
-    color: "from-orange-400 to-[#FF6700]"
-  },
-  {
-    year: "2016",
-    title: "NABL Accreditation",
-    description: "Earned the prestigious NABL accreditation adhering strictly to the ISO/IEC 17025:2017 international testing standards.",
-    icon: CheckCircle,
-    color: "from-blue-500 to-[#1E1B5C]"
-  },
-  {
-    year: "2019",
-    title: "Eastern India Expansion",
-    description: "Successfully expanded our state-of-the-art testing facilities across Eastern India, opening new branches in Siliguri and Ranchi.",
-    icon: MapPin,
-    color: "from-orange-400 to-[#FF6700]"
-  },
-  {
-    year: "2023",
-    title: "10 Million+ Samples Tested",
-    description: "Crossed a remarkable milestone of over 10 million samples tested, delivering uncompromising accuracy to our clients.",
-    icon: Star,
-    color: "from-blue-500 to-[#1E1B5C]"
-  },
-  {
-    year: "2025",
-    title: "Industry Leadership",
-    description: "Acknowledged as a premier testing laboratory trusted by over 1000+ top enterprises and government defense organizations.",
-    icon: Crown,
-    color: "from-orange-400 to-[#FF6700]"
-  }
-];
+
+
 
 export default function LaboratoryDetailsPage() {
   const [currentSlide, setCurrentSlide] = useState(0);
@@ -178,10 +160,10 @@ export default function LaboratoryDetailsPage() {
           </div>
           <div className="space-y-5 text-slate-600 leading-[1.9] text-[15px] md:text-[16px]">
             <p>
-              <strong className="text-[#1E1B5C]">OMEGALAB TESTING SERVICES PRIVATE LIMITED</strong> started its journey in the field of industrial testing and analysis in the year <strong className="text-[#FF6700]">1999</strong> as <em>Omega Consultant Services</em>. It was an ISO 9001 certified firm with its two laboratories in Kolkata and Haldia, mainly with expertise in fertilizer and soil analysis.
+              <strong className="text-[#1E1B5C]">OMEGALAB TESTING SERVICES PVT LTD</strong> was established in the year <strong className="text-[#FF6700]">1999</strong> by our CEO, <strong className="text-[#1E1B5C]">Mr. A.K. Das</strong> (ex-faculty of Jadavpur University). Initially, it was named as <em>Omega Consultant Services</em>, an ISO 9001 certified company. In the year <strong className="text-[#FF6700]">2012</strong>, we got our first NABL accreditation for Physical and Chemical testing. OMEGALAB has covered a long journey of <strong className="text-[#FF6700]">25 years</strong>, and in the year 2026 we became a pioneer in the construction material testing field in Eastern India, with <strong className="text-[#1E1B5C]">five NABL accredited laboratories</strong>, above <strong className="text-[#1E1B5C]">120 team members</strong>, and above <strong className="text-[#1E1B5C]">900 NABL accredited test parameters</strong>.
             </p>
             <p>
-              OMEGALAB TESTING SERVICES PRIVATE LIMITED is incorporated on <strong className="text-[#1E1B5C]">20.06.2023</strong> under the Companies Act 2013 (18 of 2013). The company is a MSME registered, E.S.I. insured industrial testing and analytical laboratory with sophisticated instruments and competent manpower. Currently the laboratory is working in multiple locations, of which <strong className="text-[#FF6700]">5 are already NABL accredited</strong>.
+              <strong className="text-[#1E1B5C]">OMEGALAB TESTING SERVICES PRIVATE LIMITED</strong> is incorporated on <strong className="text-[#1E1B5C]">20.06.2023</strong> under the Companies Act 2013 (18 of 2013). Currently, the laboratory is working in multiple locations, of which <strong className="text-[#FF6700]">5 are already NABL accredited</strong>.
             </p>
           </div>
         </motion.div>
@@ -322,8 +304,8 @@ export default function LaboratoryDetailsPage() {
         </motion.div>
 
         {/* Animated Timeline Section */}
-        <div className="max-w-[1000px] mx-auto mt-20 mb-10 relative">
-          <div className="text-center mb-16 relative z-10">
+        <div className="max-w-[1200px] mx-auto mt-20 mb-10 relative">
+          <div className="text-center mb-14 relative z-10">
             <motion.h2
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -332,52 +314,265 @@ export default function LaboratoryDetailsPage() {
             >
               Journey of <span className="text-[#FF6700]">Excellence</span>
             </motion.h2>
-            <div className="w-24 h-1.5 bg-[#FF6700] mx-auto mt-6 mb-4"></div>
-            <p className="text-slate-600 max-w-2xl mx-auto text-[16px]">
-              Tracing the key milestones that shaped Omegalab into a leading name in testing and calibration services.
-            </p>
+            <motion.div
+              initial={{ scaleX: 0 }}
+              whileInView={{ scaleX: 1 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: 0.2 }}
+              className="w-24 h-1.5 bg-[#FF6700] mx-auto mt-6 mb-4 origin-left"
+            />
+            <motion.p
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: 0.35 }}
+              className="text-slate-500 max-w-xl mx-auto text-[15px]"
+            >
+              Tracing the key milestones that shaped Omegalab into a leading name in testing and calibration.
+            </motion.p>
           </div>
 
-          <div className="relative" ref={containerRef}>
-            {/* Animated Line connecting milestones */}
+          {/* ─── DESKTOP TIMELINE ─── */}
+          <div className="hidden lg:block">
+
+            {/* Top row — even cards (0, 2, 4) */}
+            <div className="grid grid-cols-6 gap-0">
+              {MILESTONES.map((milestone, idx) => {
+                const IconComp = ICON_MAP[milestone.icon];
+                const isBlue = milestone.theme === "blue";
+                if (idx % 2 !== 0) return <div key={idx} />;
+                return (
+                  <motion.div
+                    key={idx}
+                    initial={{ opacity: 0, y: -40, scale: 0.92 }}
+                    whileInView={{ opacity: 1, y: 0, scale: 1 }}
+                    viewport={{ once: true, margin: "-60px" }}
+                    transition={{ duration: 0.55, delay: idx * 0.1, ease: [0.22, 1, 0.36, 1] }}
+                    className="relative mx-2 rounded-2xl border border-slate-100 bg-white shadow-md p-4 pt-8 text-left group hover:shadow-xl hover:-translate-y-1 transition-all duration-300"
+                  >
+                    {/* Header pill */}
+                    <div className="absolute -top-4 left-4 px-3 py-1 rounded-full flex items-center gap-1.5 text-white shadow-md text-[9px] font-bold uppercase tracking-wider font-oswald bg-gradient-to-r from-sky-400 to-[#1E1B5C]">
+                      <div className="w-5 h-5 rounded-full bg-white text-[#1E1B5C] flex items-center justify-center shrink-0">
+                        <IconComp size={10} />
+                      </div>
+                      {milestone.title}
+                    </div>
+                    <div className="font-black text-2xl font-oswald text-sky-500 mb-2">{milestone.year}</div>
+                    <ul className="space-y-1 text-[11px] text-slate-500 list-disc pl-3">
+                      {milestone.points.map((p, i) => (
+                        <motion.li
+                          key={i}
+                          initial={{ opacity: 0, x: -10 }}
+                          whileInView={{ opacity: 1, x: 0 }}
+                          viewport={{ once: true }}
+                          transition={{ duration: 0.35, delay: idx * 0.1 + i * 0.08 + 0.25 }}
+                          className="leading-tight"
+                        >{p}</motion.li>
+                      ))}
+                    </ul>
+                    {/* Bottom accent bar */}
+                    <motion.div
+                      initial={{ scaleX: 0 }}
+                      whileInView={{ scaleX: 1 }}
+                      viewport={{ once: true }}
+                      transition={{ duration: 0.5, delay: idx * 0.1 + 0.4 }}
+                      className="absolute bottom-0 left-4 right-4 h-[3px] bg-gradient-to-r from-sky-400 to-[#1E1B5C] rounded-full origin-left"
+                    />
+                  </motion.div>
+                );
+              })}
+            </div>
+
+            {/* Spine row */}
+            <div className="relative grid grid-cols-6 gap-0 h-16 my-1">
+              {/* Animated horizontal line */}
+              <div className="absolute top-1/2 left-4 right-4 h-[3px] bg-slate-100 -translate-y-1/2 rounded-full overflow-hidden">
+                <motion.div
+                  initial={{ scaleX: 0 }}
+                  whileInView={{ scaleX: 1 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 1.2, ease: "easeInOut", delay: 0.2 }}
+                  className="absolute inset-0 bg-gradient-to-r from-sky-300 via-slate-300 to-orange-300 origin-left rounded-full"
+                />
+              </div>
+              {MILESTONES.map((milestone, idx) => {
+                const isBlue = milestone.theme === "blue";
+                const stepNumber = String(idx + 1).padStart(2, '0');
+                return (
+                  <div key={idx} className="relative flex flex-col items-center justify-center h-full">
+                    {/* Vertical tick up (even) */}
+                    {idx % 2 === 0 && (
+                      <motion.div
+                        initial={{ scaleY: 0 }}
+                        whileInView={{ scaleY: 1 }}
+                        viewport={{ once: true }}
+                        transition={{ duration: 0.35, delay: idx * 0.1 + 0.5 }}
+                        className="absolute bottom-1/2 w-[2px] h-[calc(50%-16px)] bg-slate-300 origin-bottom"
+                      />
+                    )}
+                    {/* Vertical tick down (odd) */}
+                    {idx % 2 !== 0 && (
+                      <motion.div
+                        initial={{ scaleY: 0 }}
+                        whileInView={{ scaleY: 1 }}
+                        viewport={{ once: true }}
+                        transition={{ duration: 0.35, delay: idx * 0.1 + 0.5 }}
+                        className="absolute top-1/2 w-[2px] h-[calc(50%-16px)] bg-slate-300 origin-top"
+                      />
+                    )}
+                    {/* Step node */}
+                    <motion.div
+                      initial={{ scale: 0, opacity: 0 }}
+                      whileInView={{ scale: 1, opacity: 1 }}
+                      viewport={{ once: true }}
+                      transition={{ duration: 0.4, delay: idx * 0.12 + 0.3, type: "spring", stiffness: 200 }}
+                      className={`relative w-10 h-10 rounded-full border-4 border-white text-white font-bold text-xs shadow-lg z-10 flex items-center justify-center
+                        ${ isBlue ? "bg-sky-400" : "bg-[#FF6700]" }
+                      `}
+                    >
+                      {stepNumber}
+                      {/* Ripple ring */}
+                      <motion.span
+                        initial={{ scale: 1, opacity: 0.5 }}
+                        whileInView={{ scale: 2.2, opacity: 0 }}
+                        viewport={{ once: true }}
+                        transition={{ duration: 0.9, delay: idx * 0.12 + 0.6, ease: "easeOut" }}
+                        className={`absolute inset-0 rounded-full ${ isBlue ? "bg-sky-400" : "bg-[#FF6700]" }`}
+                      />
+                    </motion.div>
+                  </div>
+                );
+              })}
+            </div>
+
+            {/* Bottom row — odd cards (1, 3, 5) */}
+            <div className="grid grid-cols-6 gap-0">
+              {MILESTONES.map((milestone, idx) => {
+                const IconComp = ICON_MAP[milestone.icon];
+                if (idx % 2 !== 1) return <div key={idx} />;
+                return (
+                  <motion.div
+                    key={idx}
+                    initial={{ opacity: 0, y: 40, scale: 0.92 }}
+                    whileInView={{ opacity: 1, y: 0, scale: 1 }}
+                    viewport={{ once: true, margin: "-60px" }}
+                    transition={{ duration: 0.55, delay: idx * 0.1, ease: [0.22, 1, 0.36, 1] }}
+                    className="relative mx-2 rounded-2xl border border-slate-100 bg-white shadow-md p-4 pb-8 text-left group hover:shadow-xl hover:translate-y-1 transition-all duration-300"
+                  >
+                    {/* Top accent bar */}
+                    <motion.div
+                      initial={{ scaleX: 0 }}
+                      whileInView={{ scaleX: 1 }}
+                      viewport={{ once: true }}
+                      transition={{ duration: 0.5, delay: idx * 0.1 + 0.4 }}
+                      className="absolute top-0 left-4 right-4 h-[3px] bg-gradient-to-r from-[#FF6700] to-red-500 rounded-full origin-left"
+                    />
+                    <div className="font-black text-2xl font-oswald text-[#FF6700] mb-2">{milestone.year}</div>
+                    <ul className="space-y-1 text-[11px] text-slate-500 list-disc pl-3">
+                      {milestone.points.map((p, i) => (
+                        <motion.li
+                          key={i}
+                          initial={{ opacity: 0, x: -10 }}
+                          whileInView={{ opacity: 1, x: 0 }}
+                          viewport={{ once: true }}
+                          transition={{ duration: 0.35, delay: idx * 0.1 + i * 0.08 + 0.25 }}
+                          className="leading-tight"
+                        >{p}</motion.li>
+                      ))}
+                    </ul>
+                    {/* Bottom pill */}
+                    <div className="absolute -bottom-4 left-4 px-3 py-1 rounded-full flex items-center gap-1.5 text-white shadow-md text-[9px] font-bold uppercase tracking-wider font-oswald bg-gradient-to-r from-[#FF6700] to-red-500">
+                      <div className="w-5 h-5 rounded-full bg-white text-[#FF6700] flex items-center justify-center shrink-0">
+                        <IconComp size={10} />
+                      </div>
+                      {milestone.title}
+                    </div>
+                  </motion.div>
+                );
+              })}
+            </div>
+          </div>
+
+          {/* ─── MOBILE / TABLET VERTICAL TIMELINE ─── */}
+          <div className="lg:hidden relative" ref={containerRef}>
+            {/* Animated vertical line */}
             <div className="absolute left-[20px] md:left-1/2 md:-translate-x-1/2 top-0 bottom-0 w-1 bg-slate-200 rounded-full">
               <motion.div
-                className="w-full bg-[#FF6700] rounded-full origin-top"
+                className="w-full bg-gradient-to-b from-sky-400 via-[#FF6700] to-red-500 rounded-full origin-top"
                 style={{ height: lineHeight }}
               />
             </div>
 
-            <div className="flex flex-col gap-12 md:gap-24 relative z-10 py-10">
-              {MILESTONES.map((milestone, idx) => (
-                <motion.div
-                  key={idx}
-                  initial={{ opacity: 0, y: 50 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true, margin: "-100px" }}
-                  transition={{ duration: 0.6, delay: 0.1 }}
-                  className={`flex flex-col md:flex-row items-center gap-8 ${idx % 2 === 0 ? 'md:flex-row-reverse' : ''
-                    }`}
-                >
-                  <div className="w-full md:w-1/2 pl-16 md:pl-0 flex justify-start md:justify-center">
-                    <div className={`
-                             bg-white p-8 rounded-2xl shadow-lg border border-slate-100 hover:shadow-2xl transition-all duration-300 w-full max-w-[400px] group
-                             ${idx % 2 === 0 ? 'md:mr-auto' : 'md:ml-auto'}
-                          `}>
-                      <div className="text-[#FF6700] font-black text-4xl mb-4 font-oswald">{milestone.year}</div>
-                      <h3 className="font-bold text-[#1E1B5C] text-xl mb-3 leading-tight font-oswald uppercase tracking-wide">{milestone.title}</h3>
-                      <p className="text-slate-600 text-[15px] leading-relaxed relative z-10">{milestone.description}</p>
-                    </div>
-                  </div>
+            <div className="flex flex-col gap-10 relative z-10 py-10">
+              {MILESTONES.map((milestone, idx) => {
+                const IconComp = ICON_MAP[milestone.icon];
+                const isBlue = milestone.theme === "blue";
+                const stepNumber = String(idx + 1).padStart(2, '0');
+                const isLeft = idx % 2 === 0;
 
-                  <div className="absolute left-[20px] md:left-1/2 -translate-x-1/2 w-10 h-10 md:w-14 md:h-14 rounded-full bg-white border-4 border-[#EFF6FF] shadow-lg flex items-center justify-center z-20">
-                    <div className={`w-full h-full rounded-full bg-gradient-to-br ${milestone.color} flex items-center justify-center text-white scale-90`}>
-                      <milestone.icon size={20} className="md:w-6 md:h-6" />
+                return (
+                  <motion.div
+                    key={idx}
+                    initial={{ opacity: 0, x: isLeft ? -40 : 40 }}
+                    whileInView={{ opacity: 1, x: 0 }}
+                    viewport={{ once: true, margin: "-50px" }}
+                    transition={{ duration: 0.55, ease: [0.22, 1, 0.36, 1] }}
+                    className="pl-14 md:pl-0 md:flex md:items-start md:gap-8"
+                  >
+                    <div className="md:w-1/2 md:flex md:justify-end">
+                      <div className="w-full max-w-sm rounded-2xl border border-slate-100 bg-white shadow-md p-5 pt-8 relative group hover:shadow-xl transition-all duration-300">
+                        {/* Pill */}
+                        <div className={`absolute -top-4 left-5 px-3 py-1 rounded-full flex items-center gap-1.5 text-white text-[10px] font-bold uppercase tracking-wider font-oswald shadow-md
+                          ${ isBlue ? "bg-gradient-to-r from-sky-400 to-[#1E1B5C]" : "bg-gradient-to-r from-[#FF6700] to-red-500" }
+                        `}>
+                          <div className="w-5 h-5 rounded-full bg-white flex items-center justify-center shrink-0">
+                            <IconComp size={10} className={isBlue ? "text-[#1E1B5C]" : "text-[#FF6700]"} />
+                          </div>
+                          {milestone.title}
+                        </div>
+                        <div className={`font-black text-3xl font-oswald mb-1 ${ isBlue ? "text-sky-500" : "text-[#FF6700]" }`}>
+                          {milestone.year}
+                        </div>
+                        <p className="text-[13px] text-slate-600 leading-relaxed mb-3">{milestone.description}</p>
+                        <ul className="space-y-1.5 text-xs text-slate-500 list-disc pl-4">
+                          {milestone.points.map((p, i) => (
+                            <motion.li
+                              key={i}
+                              initial={{ opacity: 0, x: -8 }}
+                              whileInView={{ opacity: 1, x: 0 }}
+                              viewport={{ once: true }}
+                              transition={{ duration: 0.3, delay: i * 0.07 + 0.2 }}
+                            >{p}</motion.li>
+                          ))}
+                        </ul>
+                        {/* Animated accent bar */}
+                        <motion.div
+                          initial={{ scaleX: 0 }}
+                          whileInView={{ scaleX: 1 }}
+                          viewport={{ once: true }}
+                          transition={{ duration: 0.5, delay: 0.3 }}
+                          className={`absolute bottom-0 left-4 right-4 h-[3px] rounded-full origin-left ${ isBlue ? "bg-gradient-to-r from-sky-400 to-[#1E1B5C]" : "bg-gradient-to-r from-[#FF6700] to-red-500" }`}
+                        />
+                      </div>
                     </div>
-                  </div>
 
-                  <div className="hidden md:block w-1/2"></div>
-                </motion.div>
-              ))}
+                    {/* Step node */}
+                    <motion.div
+                      initial={{ scale: 0, opacity: 0 }}
+                      whileInView={{ scale: 1, opacity: 1 }}
+                      viewport={{ once: true }}
+                      transition={{ duration: 0.4, delay: 0.1, type: "spring", stiffness: 220 }}
+                      className="absolute left-[8px] md:left-1/2 md:-translate-x-1/2 w-10 h-10 rounded-full bg-white border-4 border-[#EFF6FF] shadow-lg flex items-center justify-center z-20"
+                    >
+                      <div className={`w-full h-full rounded-full flex items-center justify-center text-white text-[10px] font-bold ${ isBlue ? "bg-sky-400" : "bg-[#FF6700]" }`}>
+                        {stepNumber}
+                      </div>
+                    </motion.div>
+
+                    <div className="hidden md:block md:w-1/2" />
+                  </motion.div>
+                );
+              })}
             </div>
           </div>
         </div>
