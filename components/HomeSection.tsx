@@ -5,7 +5,7 @@ import HeroSlider from "./HeroSlider";
 import IndiaBranchMap from "./IndiaBranchMap";
 import CLIENT_DATA from "../data/clients.json";
 import { useState, useEffect, useRef } from "react";
-import { Search, X, FlaskConical, CheckCircle2 } from "lucide-react";
+import { Search, X, FlaskConical, CheckCircle2, HelpCircle } from "lucide-react";
 import { useSearchParams } from "next/navigation";
 import { useInView } from "react-intersection-observer";
 import CountUp from "react-countup";
@@ -84,6 +84,10 @@ export default function HomeSections() {
   const [enquiryService, setEnquiryService] = useState("");
   const [enquiryParams, setEnquiryParams] = useState<string[]>([]);
   const [showOtherService, setShowOtherService] = useState(false);
+  const [showAll, setShowAll] = useState(false);
+  const [selectedServices, setSelectedServices] = useState<string[]>([]);
+  const [selectedParameters, setSelectedParameters] = useState<Record<string, string[]>>({});
+  const [selectionSaved, setSelectionSaved] = useState(false);
   const searchParams = useSearchParams();
 
   // Safety limits to prevent oversized URL payloads causing UI issues
@@ -225,7 +229,7 @@ export default function HomeSections() {
           }
           return false;
         })
-  ).slice(0, 24);
+  ).slice(0, showAll ? undefined : 24);
 
 
 
@@ -236,26 +240,45 @@ export default function HomeSections() {
       <HeroSlider />
 
       {/* 2. Stats Section */}
-      <section className="relative bg-[#1E1B5C] overflow-hidden" ref={ref}>
-        {/* Subtle grid texture */}
-        <div className="absolute inset-0 opacity-[0.04]"
-          style={{ backgroundImage: "repeating-linear-gradient(0deg,transparent,transparent 39px,#fff 39px,#fff 40px),repeating-linear-gradient(90deg,transparent,transparent 39px,#fff 39px,#fff 40px)" }}
-        />
-        {/* Top accent line */}
-        <div className="absolute top-0 left-0 right-0 h-[3px] bg-gradient-to-r from-transparent via-[#FF6700] to-transparent" />
+      <section className="relative bg-[#0e0b30] overflow-hidden" ref={ref}>
+        {/* Ambient animated glow blobs — same as footer */}
+        <div className="absolute inset-0 overflow-hidden pointer-events-none z-0">
+          <div className="absolute -top-[30%] -right-[10%] w-[45%] h-[150%] rounded-full bg-[#1E1B5C]/70 blur-[120px]" />
+          <div className="absolute top-[50%] -left-[10%] w-[35%] h-[200%] rounded-full bg-[#FF6700]/8 blur-[100px]" />
+          <div className="absolute bottom-[10%] right-[25%] w-[18%] h-[200%] rounded-full bg-[#1E1B5C]/50 blur-[80px]" />
+        </div>
 
-        <div className="relative max-w-6xl mx-auto px-4 py-10 md:py-14">
-          <div className="flex flex-col sm:flex-row items-stretch justify-between divide-y sm:divide-y-0 sm:divide-x divide-white/10">
+        {/* SVG cross/dot pattern — identical to footer */}
+        <div
+          className="absolute inset-0 opacity-[0.035] pointer-events-none mix-blend-screen z-0"
+          style={{
+            backgroundImage:
+              "url(\"data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='1'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E\")",
+          }}
+        />
+
+        {/* Top orange border — same as footer */}
+        <div className="absolute top-0 left-0 right-0 h-[4px] bg-[#FF6700] z-10" />
+
+        <div className="relative z-10 max-w-7xl mx-auto px-6 lg:px-8 py-12 md:py-16">
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-px bg-white/[0.06] rounded-2xl overflow-hidden border border-white/[0.08] shadow-[0_0_60px_rgba(0,0,0,0.4)]">
             {stats.map((item, index) => (
               <div
                 key={index}
-                className="flex-1 flex flex-col items-center justify-center py-7 sm:py-6 px-4 md:px-6 group relative"
-                style={{ animationDelay: `${index * 80}ms` }}
+                className="relative flex flex-col items-center justify-center py-10 px-6 bg-[#0e0b30] hover:bg-white/[0.04] transition-all duration-300 group cursor-default"
               >
+                {/* Subtle orange glow on hover */}
+                <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none rounded-sm"
+                  style={{ background: "radial-gradient(ellipse at center, rgba(255,103,0,0.07) 0%, transparent 70%)" }}
+                />
+
+                {/* Orange accent dot top */}
+                <div className="absolute top-5 left-1/2 -translate-x-1/2 w-1.5 h-1.5 rounded-full bg-[#FF6700]/40 group-hover:bg-[#FF6700] transition-colors duration-300" />
+
                 {/* Number / Text */}
-                <div className="text-[38px] md:text-[52px] font-black text-[#FF6700] font-oswald leading-none mb-2 tabular-nums tracking-tight">
+                <div className="text-[42px] md:text-[54px] font-black text-[#FF6700] font-oswald leading-none tabular-nums tracking-tight mb-1 group-hover:scale-105 transition-transform duration-300 origin-bottom">
                   {item.isText ? (
-                    <span className="text-[28px] md:text-[38px]">{item.textValue}</span>
+                    <span className="text-[30px] md:text-[40px]">{item.textValue}</span>
                   ) : (
                     inView ? (
                       <CountUp
@@ -276,20 +299,20 @@ export default function HomeSections() {
                   )}
                 </div>
 
+                {/* Thin divider line */}
+                <div className="w-8 h-[2px] bg-[#FF6700]/30 group-hover:bg-[#FF6700]/70 group-hover:w-12 transition-all duration-300 rounded-full mb-3" />
+
                 {/* Label */}
-                <div className="text-[10px] md:text-[11px] uppercase tracking-[2px] text-white/55 font-bold text-center leading-snug">
+                <div className="text-[10px] md:text-[11px] uppercase tracking-[2px] text-white/45 group-hover:text-white/70 font-bold text-center leading-snug transition-colors duration-300">
                   {item.label}
                 </div>
-
-                {/* Hover bottom bar */}
-                <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-0 group-hover:w-10 h-[2px] bg-[#FF6700] rounded-full transition-all duration-300" />
               </div>
             ))}
           </div>
         </div>
 
-        {/* Bottom accent line */}
-        <div className="absolute bottom-0 left-0 right-0 h-[3px] bg-gradient-to-r from-transparent via-[#FF6700]/40 to-transparent" />
+        {/* Bottom fade */}
+        <div className="absolute bottom-0 left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-[#FF6700]/30 to-transparent" />
       </section>
 
       {/* 3. About Section */}
@@ -315,33 +338,39 @@ export default function HomeSections() {
           </div>
 
           <div>
-            <blockquote className="border-l-4 border-[#FF6700] p-5 mb-6 bg-[#FF6700]/5 rounded-r-xl italic text-[14px] md:text-[16px] leading-[1.7] text-[#1E1B5C]">
-              &quot;Welcome to Omegalab, where Quality meets Reliability, accuracy is our goal, quality is our soul, safety is our priority, and satisfaction is our guarantee.&quot;
-              <cite className="block not-italic font-bold mt-3 text-[#FF6700] text-[13px] font-montserrat">
-                — A.K. Das, CEO & Founder
-              </cite>
-            </blockquote>
+            <div className="relative overflow-hidden bg-gradient-to-br from-[#1E1B5C]/[0.02] to-[#FF6700]/[0.04] border border-[#1E1B5C]/5 rounded-3xl p-6 md:p-8 mb-8 shadow-[0_4px_20px_rgba(30,27,92,0.02)] group hover:shadow-[0_10px_30px_rgba(255,103,0,0.05)] transition-all duration-300">
+              {/* Huge stylized double quote watermark */}
+              <span className="absolute -top-8 -right-4 text-[130px] font-serif font-black text-[#FF6700]/10 select-none pointer-events-none transition-transform duration-500 group-hover:scale-105">
+                ”
+              </span>
+              
+              <div className="relative z-10">
+                <p className="font-oswald text-[18px] md:text-[22px] font-black uppercase text-[#1E1B5C] tracking-wide mb-3 leading-tight">
+                  Welcome to Omegalab
+                </p>
+                <div className="w-12 h-1 bg-[#FF6700] rounded-full mb-6" />
+                
+                <p className="text-[15px] md:text-[18px] font-semibold leading-relaxed text-[#1E1B5C]/90 italic mb-6">
+                  &quot;Where <span className="text-[#FF6700] font-extrabold not-italic">Quality</span> meets <span className="text-[#FF6700] font-extrabold not-italic">Reliability</span>, accuracy is our goal, quality is our soul, safety is our priority, and satisfaction is our guarantee.&quot;
+                </p>
+                
+                {/* Author Info */}
+                <div className="flex items-center gap-3">
+                  <div className="w-8 h-[2px] bg-[#FF6700]" />
+                  <div>
+                    <span className="block font-black text-[13px] uppercase tracking-wider text-[#1E1B5C] font-montserrat">
+                      A.K. Das
+                    </span>
+                    <span className="inline-block text-[11px] font-bold text-[#FF6700] uppercase tracking-widest mt-0.5">
+                      CEO & Founder
+                    </span>
+                  </div>
+                </div>
+              </div>
+            </div>
 
-            <p className="text-[13px] md:text-[15px] leading-[1.75] text-[#1E1B5C]/75 mb-4">
-              We always embrace transformation as a necessary weapon to turning challenges into opportunities for innovation. Using history to show that advancements in one generation build the foundation for the next. Focusing on build a strong, passionate team and well build infrastructure to serve the nation.
-            </p>
-            <p className="text-[13px] md:text-[15px] leading-[1.75] text-[#1E1B5C]/75 mb-4">
-              Short history: OMEGALAB TESTING SERVICES PVT LTD was established
-              on the year 1999 by our CEO, Mr.A.K.Das, ex faculty of Jadavpur
-              University on the year 1999. Initially it was a proprietorship
-              firm named as Omega Consultant Services. It was an ISO 9001
-              certified firm with its two laboratories in Kolkata and Haldia,
-              mainly was expertise on some fertilizer and soil analysis.
-            </p>
             <p className="text-[13px] md:text-[15px] leading-[1.75] text-[#1E1B5C]/75 mb-6">
-              Gradually increased the scope of work and in the year 2012 we got
-              our first NABL accreditation for Physical and Chemical testing of
-              ferrous metals. At that time lab had only 5000 square feet area
-              and total 15 staff strength. OMEGALAB has walked a long journey of
-              25 years and now in the year 2026 it became a pioneer of
-              construction material testing field in eastern India, with five
-              NABL accredited laboratories, above 120 manpower, above 900 NABL
-              accredited test parameters.
+              We always embrace transformation as a necessary weapon to turning challenges into opportunities for innovation. Using history to show that advancements in one generation build the foundation for the next. Focusing on build a strong, passionate team and well build infrastructure to serve the nation.
             </p>
 
             <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
@@ -480,8 +509,15 @@ export default function HomeSections() {
       {/* 6. Testing Services */}
       <section className="py-12 md:py-20 px-4 md:px-12 max-w-[1300px] mx-auto w-full">
         <div className="text-center mb-8 md:mb-12">
-          <h2 className="text-[24px] md:text-[38px] font-black text-[#1E1B5C] mb-2 font-oswald tracking-tight">
+          <h2 className="text-[24px] md:text-[38px] font-black text-[#1E1B5C] mb-2 font-oswald tracking-tight flex items-center justify-center gap-2 relative group">
             Testing Services
+            <span className="relative inline-flex items-center">
+              <HelpCircle size={18} className="text-[#1E1B5C]/30 cursor-pointer hover:text-[#FF6700] transition-colors" />
+              {/* Tooltip */}
+              <span className="absolute left-1/2 -translate-x-1/2 top-6 hidden group-hover:block z-[9999] bg-[#1E1B5C] text-white text-[11px] font-medium normal-case tracking-normal p-3 rounded-lg shadow-xl w-[260px] leading-normal border border-white/10 text-center font-sans">
+                You can select multiple services and parameters, add them to your selection basket, and go to the form to enquire about all of them together.
+              </span>
+            </span>
           </h2>
           <p className="text-[13px] md:text-[16px] text-[#1E1B5C]/50 max-w-2xl mx-auto">
             Comprehensive material testing across all major construction and
@@ -589,39 +625,157 @@ export default function HomeSections() {
 
 
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-          {filteredMaterials.map((svc, idx) => (
-            <div
-              key={idx}
-              onClick={() => setSelectedMaterial(svc as MaterialItem)}
-              className="bg-white rounded-xl p-4 flex items-center gap-3 border-2 border-transparent hover:border-[#FF6700] hover:-translate-y-1 hover:shadow-[0_8px_20px_rgba(0,0,0,0.06)] transition-all cursor-pointer group relative"
-            >
-              <div className="w-11 h-11 bg-[#EFF6FF] group-hover:bg-[#FF6700]/10 rounded-lg flex items-center justify-center text-[20px] shrink-0 transition-colors">
-                {svc.icon}
-              </div>
-              <div className="flex-1 min-w-0">
-                <div className="text-[13px] font-bold text-[#1E1B5C] leading-snug">
-                  {svc.name}
+          {filteredMaterials.map((svc, idx) => {
+            const isSelected = selectedServices.includes(svc.name);
+            return (
+              <div
+                key={idx}
+                onClick={() => setSelectedMaterial(svc as MaterialItem)}
+                className={`bg-white rounded-xl p-4 flex items-center justify-between gap-3 border-2 hover:-translate-y-1 hover:shadow-[0_8px_20px_rgba(0,0,0,0.06)] transition-all cursor-pointer group relative ${
+                  isSelected ? "border-[#FF6700] shadow-[0_4px_12px_rgba(255,103,0,0.15)]" : "border-transparent hover:border-[#FF6700]/60"
+                }`}
+              >
+                {/* Info block */}
+                <div className="flex items-center gap-3 flex-1 min-w-0">
+                  <div className={`w-11 h-11 rounded-lg flex items-center justify-center text-[20px] shrink-0 transition-colors ${
+                    isSelected ? "bg-[#FF6700]/10" : "bg-[#EFF6FF] group-hover:bg-[#FF6700]/10"
+                  }`}>
+                    {svc.icon}
+                  </div>
+                  <div className="flex-1 min-w-0 pr-1">
+                    <div className={`text-[13px] font-bold leading-snug ${
+                      isSelected ? "text-[#FF6700]" : "text-[#1E1B5C]"
+                    }`}>
+                      {svc.name}
+                    </div>
+                    {svc.nablCert && (
+                      <div className="text-[10px] text-[#FF6700] font-semibold mt-0.5 truncate">{svc.nablCert}</div>
+                    )}
+                  </div>
                 </div>
-                {svc.nablCert && (
-                  <div className="text-[10px] text-[#FF6700] font-semibold mt-0.5 truncate">{svc.nablCert}</div>
-                )}
+
+                {/* Arrow indicator at the right */}
+                <div
+                  className={`w-7 h-7 rounded-full flex items-center justify-center border transition-all text-[14px] shrink-0 font-bold ${
+                    isSelected
+                      ? "bg-[#FF6700] border-[#FF6700] text-white"
+                      : "bg-slate-50 border-slate-100 text-[#1E1B5C]/30 group-hover:bg-[#FF6700] group-hover:text-white group-hover:border-[#FF6700]"
+                  }`}
+                >
+                  ➔
+                </div>
               </div>
-              <span className="text-[10px] text-[#1E1B5C]/30 group-hover:text-[#FF6700] transition-colors shrink-0 font-bold">›</span>
-            </div>
-          ))}
+            );
+          })}
         </div>
 
-        <TestingModal material={selectedMaterial} onClose={() => setSelectedMaterial(null)} />
+        <TestingModal
+          material={selectedMaterial}
+          onClose={() => setSelectedMaterial(null)}
+          onAddToSelection={(serviceName, params) => {
+            // Add service to selected list if not already there
+            setSelectedServices(prev =>
+              prev.includes(serviceName) ? prev : [...prev, serviceName]
+            );
+            // Overwrite parameters with the explicit selection from modal
+            setSelectedParameters(prev => ({
+              ...prev,
+              [serviceName]: params
+            }));
+            setSelectionSaved(false); // reset saved state so bar shows Save button again
+          }}
+        />
 
-        <div className="mt-10 flex justify-center">
-          <Link
-            href="/facilities"
-            className="px-8 py-3.5 bg-[#FF6700] text-white font-extrabold uppercase tracking-[1px] text-[13px] rounded-full hover:bg-[#e65c00] hover:-translate-y-[2px] hover:shadow-[0_8px_24px_rgba(255,103,0,0.35)] transition-all flex items-center gap-2 group cursor-pointer"
+        {/* Show More / Less Toggle */}
+        <div className="mt-6 flex justify-center">
+          <button
+            type="button"
+            onClick={() => setShowAll(prev => !prev)}
+            className="px-8 py-3.5 bg-[#1E1B5C] hover:bg-[#FF6700] text-white font-extrabold uppercase tracking-[1px] text-[13px] rounded-full hover:-translate-y-[2px] hover:shadow-[0_8px_24px_rgba(255,103,0,0.35)] transition-all flex items-center gap-2 group cursor-pointer"
           >
-            Show More
-            <span className="group-hover:translate-x-1 transition-transform">→</span>
-          </Link>
+            {showAll ? (
+              <><span>Show Less</span><span className="group-hover:-translate-y-0.5 transition-transform">↑</span></>
+            ) : (
+              <><span>Show More</span><span className="group-hover:translate-y-0.5 transition-transform">↓</span></>
+            )}
+          </button>
         </div>
+
+        {/* Selected Parameters Panel */}
+        {selectedServices.length > 0 && (
+          <div className="mt-8 rounded-2xl border-2 border-[#FF6700]/25 bg-[#FF6700]/[0.03] p-6">
+            <div className="flex items-center justify-between mb-5 flex-wrap gap-3">
+              <div>
+                <h3 className="text-[16px] font-black text-[#1E1B5C]">Selected Services & Parameters</h3>
+                <p className="text-[12px] text-[#1E1B5C]/50 mt-0.5">Select parameters for each service below — scroll up anytime to add more services</p>
+              </div>
+              <button
+                type="button"
+                onClick={() => { setSelectedServices([]); setSelectedParameters({}); }}
+                className="text-[11px] font-bold text-slate-400 hover:text-red-500 transition-colors"
+              >✕ Clear All</button>
+            </div>
+
+            <div className="flex flex-col gap-6">
+              {selectedServices.map(svcName => {
+                const svcData = (materials as MaterialItem[]).find(m => m.name === svcName);
+                const params = svcData?.parameters ?? [];
+                const chosenParams = selectedParameters[svcName] ?? [];
+                return (
+                  <div key={svcName} className="bg-white rounded-xl p-4 border border-slate-100 shadow-sm">
+                    <div className="flex items-center justify-between mb-3">
+                      <div className="flex items-center gap-2">
+                        <span className="text-[18px]">{svcData?.icon}</span>
+                        <span className="text-[13px] font-black text-[#1E1B5C]">{svcName}</span>
+                        {chosenParams.length > 0 && (
+                          <span className="text-[10px] font-bold text-white bg-[#FF6700] px-2 py-0.5 rounded-full">{chosenParams.length} selected</span>
+                        )}
+                      </div>
+                      <button
+                        type="button"
+                        onClick={() => {
+                          setSelectedServices(prev => prev.filter(n => n !== svcName));
+                          setSelectedParameters(prev => { const c = { ...prev }; delete c[svcName]; return c; });
+                        }}
+                        className="text-[11px] text-slate-400 hover:text-red-500 font-bold transition-colors"
+                      >✕ Remove</button>
+                    </div>
+                    {params.length > 0 ? (
+                      <div className="flex flex-wrap gap-2">
+                        {params.map(param => {
+                          const isChosen = chosenParams.includes(param);
+                          return (
+                            <button
+                              key={param}
+                              type="button"
+                              onClick={() => {
+                                setSelectedParameters(prev => ({
+                                  ...prev,
+                                  [svcName]: isChosen
+                                    ? (prev[svcName] ?? []).filter(p => p !== param)
+                                    : [...(prev[svcName] ?? []), param]
+                                }));
+                              }}
+                              className={`px-3 py-1.5 rounded-full text-[11px] font-semibold border transition-all ${
+                                isChosen
+                                  ? "bg-[#FF6700] border-[#FF6700] text-white"
+                                  : "bg-slate-50 border-slate-200 text-[#1E1B5C] hover:border-[#FF6700] hover:text-[#FF6700]"
+                              }`}
+                            >
+                              {isChosen ? "✓ " : ""}{param}
+                            </button>
+                          );
+                        })}
+                      </div>
+                    ) : (
+                      <p className="text-[12px] text-slate-400 italic">No specific parameters listed — full service will be enquired.</p>
+                    )}
+                  </div>
+                );
+              })}
+            </div>
+          </div>
+        )}
 
 
       </section>
@@ -1173,6 +1327,56 @@ export default function HomeSections() {
           </div>
         </div>
       </section>
+      {/* ── Sticky Enquiry Floating Bar ─────────────────────────────────────── */}
+      {selectedServices.length > 0 && (
+        <div className="fixed bottom-0 left-0 right-0 z-[999] pointer-events-none">
+          <div className="max-w-[1300px] mx-auto px-4 pb-4 md:pb-6 flex justify-center pointer-events-none">
+            <div className="pointer-events-auto flex items-center gap-4 bg-[#1E1B5C] shadow-[0_-4px_30px_rgba(30,27,92,0.35)] rounded-2xl px-5 py-3.5 border border-white/10 backdrop-blur-sm">
+              {/* Service count summary */}
+              <div className="flex items-center gap-2 flex-wrap max-w-[220px] md:max-w-[420px] overflow-hidden">
+                <FlaskConical size={15} className="text-[#FF6700] shrink-0" />
+                <span className="text-white text-[12px] font-bold">
+                  {selectedServices.length} service{selectedServices.length > 1 ? "s" : ""} selected
+                </span>
+                <div className="hidden md:flex gap-1.5 flex-wrap">
+                  {selectedServices.slice(0, 3).map(s => (
+                    <span key={s} className="text-[10px] font-semibold bg-white/10 text-white/80 px-2 py-0.5 rounded-full truncate max-w-[110px]">{s}</span>
+                  ))}
+                  {selectedServices.length > 3 && (
+                    <span className="text-[10px] font-bold text-[#FF6700]">+{selectedServices.length - 3} more</span>
+                  )}
+                </div>
+              </div>
+              <div className="w-px h-8 bg-white/15 shrink-0" />
+              {/* Clear */}
+              <button
+                type="button"
+                onClick={() => { setSelectedServices([]); setSelectedParameters({}); setSelectionSaved(false); }}
+                className="text-[11px] text-white/50 hover:text-red-400 font-bold transition-colors shrink-0"
+              >✕ Clear</button>
+
+              <button
+                type="button"
+                onClick={() => {
+                  const serviceNames = selectedServices.join(", ");
+                  const allParams = Object.entries(selectedParameters)
+                    .flatMap(([svc, params]) =>
+                      params.length > 0 ? params.map(p => `[${svc}] ${p}`) : []
+                    );
+                  setEnquiryService(serviceNames);
+                  setEnquiryParams(allParams);
+                  setSelectedServices([]);
+                  setSelectedParameters({});
+                  document.getElementById("contact")?.scrollIntoView({ behavior: "smooth", block: "start" });
+                }}
+                className="px-6 py-2.5 bg-gradient-to-r from-[#FF6700] to-[#ff8c3a] hover:from-[#e65c00] hover:to-[#ff7a22] text-white font-black uppercase tracking-[1px] text-[12px] rounded-xl hover:shadow-[0_4px_20px_rgba(255,103,0,0.5)] transition-all shrink-0 cursor-pointer"
+              >
+                Go to Enquiry Form →
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 }
