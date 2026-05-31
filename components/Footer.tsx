@@ -73,7 +73,7 @@ const NABL_BADGES = [
   },
   {
     id: "TC-15509",
-    url: "https://res.cloudinary.com/de4cnpfm1/image/upload/v1780118711/copy_of_tc15509webp_1_stiyix.png",
+    url: "https://res.cloudinary.com/de4cnpfm1/image/upload/v1780202025/ChatGPT_Image_May_31_2026_09_55_06_AM_ddjfjc.jpg",
     link: "https://nablwp.qci.org.in/CertificateScopenew?x=j6k9iq1uw4Bg9VLeGZxZMg==&src=P",
   },
   {

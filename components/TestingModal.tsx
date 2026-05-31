@@ -3,7 +3,7 @@
 import { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { motion, AnimatePresence } from 'motion/react';
-import { Check, CheckSquare, Square, ListChecks } from 'lucide-react';
+import { Check, CheckSquare, Square, ListChecks, Plus } from 'lucide-react';
 
 export type MaterialItem = {
   icon: string;
@@ -17,15 +17,18 @@ export type MaterialItem = {
 type Props = {
   material: MaterialItem | null;
   onClose: () => void;
+  onAddToSelection?: (serviceName: string, params: string[]) => void;
 };
 
-export default function TestingModal({ material, onClose }: Props) {
+export default function TestingModal({ material, onClose, onAddToSelection }: Props) {
   const router = useRouter();
   const [selectedParams, setSelectedParams] = useState<Set<string>>(new Set());
+  const [addedFeedback, setAddedFeedback] = useState(false);
 
   // Reset selections when modal changes material
   useEffect(() => {
     setSelectedParams(new Set());
+    setAddedFeedback(false);
   }, [material?.name]);
 
   // Close on Escape key
@@ -69,7 +72,20 @@ export default function TestingModal({ material, onClose }: Props) {
     setSelectedParams(new Set());
   };
 
-  const handleEnquire = () => {
+  // Add to selection basket (stays on page)
+  const handleAddToSelection = () => {
+    if (!material) return;
+    if (onAddToSelection) {
+      onAddToSelection(material.name, Array.from(selectedParams));
+    }
+    setAddedFeedback(true);
+    setTimeout(() => {
+      onClose();
+    }, 700);
+  };
+
+  // Direct enquire (old behaviour — goes straight to form)
+  const handleEnquireDirect = () => {
     if (!material) return;
     const params = new URLSearchParams();
     params.set('service', material.name);
@@ -77,11 +93,8 @@ export default function TestingModal({ material, onClose }: Props) {
       params.set('parameters', Array.from(selectedParams).join('||'));
     }
     onClose();
-    // Small delay to let modal close animation run before navigation
     setTimeout(() => {
-      // Query string MUST come before hash so useSearchParams can read it
       router.push(`/?${params.toString()}#contact`);
-      // Scroll to contact section
       setTimeout(() => {
         document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
       }, 200);
@@ -248,9 +261,11 @@ export default function TestingModal({ material, onClose }: Props) {
 
                 <div className="flex flex-col sm:flex-row items-center justify-between gap-3">
                   <p className="text-[12px] text-slate-500 text-center sm:text-left">
-                    {selectedParams.size > 0
-                      ? 'Your selected parameters will be pre-filled in the enquiry form.'
-                      : 'Select parameters above or enquire for all tests.'}
+                    {onAddToSelection
+                      ? 'Add to your basket and continue selecting more services.'
+                      : selectedParams.size > 0
+                        ? 'Your selected parameters will be pre-filled in the enquiry form.'
+                        : 'Select parameters above or enquire for all tests.'}
                   </p>
                   <div className="flex flex-col sm:flex-row gap-2 w-full sm:w-auto shrink-0 justify-end">
                     {material.name.toLowerCase().includes("alloy") && (
@@ -263,13 +278,34 @@ export default function TestingModal({ material, onClose }: Props) {
                         Download Accredited Certificate & Scope
                       </a>
                     )}
+
+                    {/* Primary: Add to selection basket */}
+                    {onAddToSelection && (
+                      <button
+                        type="button"
+                        onClick={handleAddToSelection}
+                        disabled={addedFeedback}
+                        className={`px-6 py-2.5 font-extrabold uppercase tracking-[0.8px] text-[12px] rounded-full transition-all flex items-center justify-center gap-1.5 group cursor-pointer ${
+                          addedFeedback
+                            ? 'bg-emerald-500 text-white shadow-[0_6px_20px_rgba(16,185,129,0.3)]'
+                            : 'bg-[#FF6700] text-white hover:bg-[#e65c00] hover:shadow-[0_6px_20px_rgba(255,103,0,0.35)] hover:-translate-y-[1px]'
+                        }`}
+                      >
+                        {addedFeedback ? (
+                          <><Check size={14} /> Added!</>
+                        ) : (
+                          <><Plus size={14} /> Add to Selection</>
+                        )}
+                      </button>
+                    )}
+
+                    {/* Secondary: Enquire directly (single-service quick flow) */}
                     <button
                       type="button"
-                      onClick={handleEnquire}
-                      className="px-6 py-2.5 bg-[#FF6700] text-white font-extrabold uppercase tracking-[0.8px] text-[12px] rounded-full hover:bg-[#e65c00] hover:shadow-[0_6px_20px_rgba(255,103,0,0.35)] hover:-translate-y-[1px] transition-all flex items-center justify-center gap-1.5 group cursor-pointer"
+                      onClick={handleEnquireDirect}
+                      className="px-4 py-2.5 bg-white border-2 border-[#1E1B5C]/20 text-[#1E1B5C]/70 font-bold uppercase tracking-[0.8px] text-[11px] rounded-full hover:border-[#1E1B5C]/40 hover:text-[#1E1B5C] transition-all flex items-center justify-center gap-1.5 cursor-pointer"
                     >
-                      Enquire for this Test
-                      <span className="group-hover:translate-x-0.5 transition-transform">→</span>
+                      Enquire directly →
                     </button>
                   </div>
                 </div>
@@ -281,3 +317,4 @@ export default function TestingModal({ material, onClose }: Props) {
     </AnimatePresence>
   );
 }
+

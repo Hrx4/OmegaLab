@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import Image from 'next/image';
 import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 import { Microscope, FlaskConical, PenToolIcon as Tool, Factory, Beaker, ChevronLeft, ChevronRight, Search, X } from 'lucide-react';
 import materialsRaw from '../../data/materials.json';
 import facilitiesData from '../../data/facilities.json';
@@ -133,7 +134,17 @@ const tc13401Items = materials.filter((m) =>
 );
 
 // ── Card Component ───────────────────────────────────────────────────────────
-function MaterialCard({ svc, onClick }: { svc: MaterialItem; onClick: () => void }) {
+function MaterialCard({
+  svc,
+  isSelected,
+  onToggle,
+  onOpenModal,
+}: {
+  svc: MaterialItem;
+  isSelected: boolean;
+  onToggle: () => void;
+  onOpenModal: () => void;
+}) {
   return (
     <motion.div
       layout
@@ -141,19 +152,48 @@ function MaterialCard({ svc, onClick }: { svc: MaterialItem; onClick: () => void
       animate={{ opacity: 1, y: 0 }}
       exit={{ opacity: 0, scale: 0.96 }}
       transition={{ duration: 0.22 }}
-      onClick={onClick}
-      className="bg-white rounded-xl p-4 flex items-center gap-3 border-2 border-transparent hover:border-[#FF6700] hover:-translate-y-1 hover:shadow-[0_8px_20px_rgba(0,0,0,0.06)] transition-all cursor-pointer group"
+      className={`bg-white rounded-xl p-4 flex items-center gap-3 border-2 hover:-translate-y-1 hover:shadow-[0_8px_20px_rgba(0,0,0,0.06)] transition-all cursor-pointer group relative ${
+        isSelected ? "border-[#FF6700] shadow-[0_4px_12px_rgba(255,103,0,0.15)]" : "border-transparent hover:border-[#FF6700]/60"
+      }`}
     >
-      <div className="w-11 h-11 bg-[#EFF6FF] group-hover:bg-[#FF6700]/10 rounded-lg flex items-center justify-center text-[20px] shrink-0 transition-colors">
-        {svc.icon}
+      {/* Checkbox toggle */}
+      <button
+        type="button"
+        onClick={(e) => {
+          e.stopPropagation();
+          onToggle();
+        }}
+        className={`absolute top-2.5 right-2.5 w-5 h-5 rounded-full border-2 flex items-center justify-center transition-all z-10 ${
+          isSelected
+            ? "bg-[#FF6700] border-[#FF6700] text-white"
+            : "border-[#1E1B5C]/20 bg-white hover:border-[#FF6700]"
+        }`}
+        aria-label={isSelected ? "Deselect service" : "Select service"}
+      >
+        {isSelected && <span className="text-white text-[10px] font-black leading-none">✓</span>}
+      </button>
+
+      {/* Info: open modal */}
+      <div
+        className="flex items-center gap-3 flex-1 min-w-0"
+        onClick={onOpenModal}
+      >
+        <div className={`w-11 h-11 rounded-lg flex items-center justify-center text-[20px] shrink-0 transition-colors ${
+          isSelected ? "bg-[#FF6700]/10" : "bg-[#EFF6FF] group-hover:bg-[#FF6700]/10"
+        }`}>
+          {svc.icon}
+        </div>
+        <div className="flex-1 min-w-0 pr-4">
+          <div className={`text-[13px] font-bold leading-snug ${
+            isSelected ? "text-[#FF6700]" : "text-[#1E1B5C]"
+          }`}>
+            {svc.name}
+          </div>
+          {svc.testType && (
+            <div className="text-[10px] text-slate-400 font-semibold mt-0.5 truncate">{svc.testType}</div>
+          )}
+        </div>
       </div>
-      <div className="flex-1 min-w-0">
-        <div className="text-[13px] font-bold text-[#1E1B5C] leading-snug">{svc.name}</div>
-        {svc.testType && (
-          <div className="text-[10px] text-slate-400 font-semibold mt-0.5 truncate">{svc.testType}</div>
-        )}
-      </div>
-      <span className="text-[10px] text-[#1E1B5C]/30 group-hover:text-[#FF6700] transition-colors shrink-0 font-bold">›</span>
     </motion.div>
   );
 }
@@ -168,6 +208,9 @@ function CertSection({
   color,
   onSelect,
   facilityType = "Under Permanent Facility",
+  labName,
+  selectedServices,
+  onToggleService,
 }: {
   certNo: string;
   facilityLabel: string;
@@ -177,6 +220,9 @@ function CertSection({
   color: string;
   onSelect: (m: MaterialItem) => void;
   facilityType?: string;
+  labName: string;
+  selectedServices: string[];
+  onToggleService: (svcName: string) => void;
 }) {
   const [activeFilter, setActiveFilter] = useState("All");
 
@@ -211,6 +257,11 @@ function CertSection({
             <p className="text-white/70 text-[13px] mt-0.5">{description}</p>
           </div>
 
+          <div className="shrink-0 bg-white/10 backdrop-blur-sm border border-white/25 rounded-2xl px-6 py-3.5 text-center flex items-center justify-center min-w-[120px] self-start sm:self-auto shadow-inner">
+            <span className="text-white text-[20px] font-black font-oswald tracking-wide uppercase leading-none">
+              {labName}
+            </span>
+          </div>
         </div>
       </div>
 
@@ -240,7 +291,13 @@ function CertSection({
       <motion.div layout className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
         <AnimatePresence mode="popLayout">
           {filteredItems.map((svc) => (
-            <MaterialCard key={svc.name} svc={svc} onClick={() => onSelect(svc)} />
+            <MaterialCard
+              key={svc.name}
+              svc={svc}
+              isSelected={selectedServices.includes(svc.name)}
+              onToggle={() => onToggleService(svc.name)}
+              onOpenModal={() => onSelect(svc)}
+            />
           ))}
         </AnimatePresence>
       </motion.div>
@@ -252,9 +309,13 @@ function CertSection({
 
 // ── Page ─────────────────────────────────────────────────────────────────────
 export default function FacilitiesPage() {
+  const router = useRouter();
   const [selectedMaterial, setSelectedMaterial] = useState<MaterialItem | null>(null);
   const [searchQuery, setSearchQuery] = useState("");
   const [showDropdown, setShowDropdown] = useState(false);
+  const [selectedServices, setSelectedServices] = useState<string[]>([]);
+  const [selectedParameters, setSelectedParameters] = useState<Record<string, string[]>>({});
+  const [selectionSaved, setSelectionSaved] = useState(false);
 
   useEffect(() => {
     const handleOutsideClick = (e: MouseEvent) => {
@@ -385,8 +446,8 @@ export default function FacilitiesPage() {
           className="flex flex-wrap justify-center gap-3 mt-8"
         >
           {[
-            { label: "Metals & NDT Lab", href: "#tc11935" },
-            { label: "Construction & Water Lab", href: "#tc13401" },
+            { label: "Kolkata 1 - Metals & NDT Lab", href: "#tc11935" },
+            { label: "Kolkata 2 - Construction & Water Lab", href: "#tc13401" },
           ].map((link) => (
             <a
               key={link.href}
@@ -417,6 +478,17 @@ export default function FacilitiesPage() {
             color="from-[#1E1B5C] to-[#2d2890]"
             onSelect={setSelectedMaterial}
             facilityType="Under Permanent Facility"
+            labName="Kolkata 1"
+            selectedServices={selectedServices}
+            onToggleService={(svcName) => {
+              setSelectedServices(prev =>
+                prev.includes(svcName) ? prev.filter(n => n !== svcName) : [...prev, svcName]
+              );
+              if (!selectedParameters[svcName]) {
+                setSelectedParameters(prev => ({ ...prev, [svcName]: [] }));
+              }
+              setSelectionSaved(false);
+            }}
           />
         </div>
 
@@ -430,8 +502,97 @@ export default function FacilitiesPage() {
             color="from-[#b34500] to-[#FF6700]"
             onSelect={setSelectedMaterial}
             facilityType="Permanent & Site Facility"
+            labName="Kolkata 2"
+            selectedServices={selectedServices}
+            onToggleService={(svcName) => {
+              setSelectedServices(prev =>
+                prev.includes(svcName) ? prev.filter(n => n !== svcName) : [...prev, svcName]
+              );
+              if (!selectedParameters[svcName]) {
+                setSelectedParameters(prev => ({ ...prev, [svcName]: [] }));
+              }
+              setSelectionSaved(false);
+            }}
           />
         </div>
+
+        {/* Selected Parameters Panel */}
+        {selectedServices.length > 0 && (
+          <div className="mt-8 rounded-2xl border-2 border-[#FF6700]/25 bg-[#FF6700]/[0.03] p-6 text-left">
+            <div className="flex items-center justify-between mb-5 flex-wrap gap-3">
+              <div>
+                <h3 className="text-[16px] font-black text-[#1E1B5C]">Selected Services & Parameters</h3>
+                <p className="text-[12px] text-[#1E1B5C]/50 mt-0.5">Select parameters for each service below — scroll up anytime to add more services</p>
+              </div>
+              <button
+                type="button"
+                onClick={() => { setSelectedServices([]); setSelectedParameters({}); setSelectionSaved(false); }}
+                className="text-[11px] font-bold text-slate-400 hover:text-red-500 transition-colors cursor-pointer"
+              >✕ Clear All</button>
+            </div>
+
+            <div className="flex flex-col gap-6">
+              {selectedServices.map(svcName => {
+                const svcData = materials.find(m => m.name === svcName);
+                const params = svcData?.parameters ?? [];
+                const chosenParams = selectedParameters[svcName] ?? [];
+                return (
+                  <div key={svcName} className="bg-white rounded-xl p-4 border border-slate-100 shadow-sm">
+                    <div className="flex items-center justify-between mb-3">
+                      <div className="flex items-center gap-2">
+                        <span className="text-[18px]">{svcData?.icon}</span>
+                        <span className="text-[13px] font-black text-[#1E1B5C]">{svcName}</span>
+                        {chosenParams.length > 0 && (
+                          <span className="text-[10px] font-bold text-white bg-[#FF6700] px-2 py-0.5 rounded-full">{chosenParams.length} selected</span>
+                        )}
+                      </div>
+                      <button
+                        type="button"
+                        onClick={() => {
+                          setSelectedServices(prev => prev.filter(n => n !== svcName));
+                          setSelectedParameters(prev => { const c = { ...prev }; delete c[svcName]; return c; });
+                          setSelectionSaved(false);
+                        }}
+                        className="text-[11px] text-slate-400 hover:text-red-500 font-bold transition-colors cursor-pointer"
+                      >✕ Remove</button>
+                    </div>
+                    {params.length > 0 ? (
+                      <div className="flex flex-wrap gap-2">
+                        {params.map(param => {
+                          const isChosen = chosenParams.includes(param);
+                          return (
+                            <button
+                              key={param}
+                              type="button"
+                              onClick={() => {
+                                setSelectedParameters(prev => ({
+                                  ...prev,
+                                  [svcName]: isChosen
+                                    ? (prev[svcName] ?? []).filter(p => p !== param)
+                                    : [...(prev[svcName] ?? []), param]
+                                }));
+                                setSelectionSaved(false);
+                              }}
+                              className={`px-3 py-1.5 rounded-full text-[11px] font-semibold border transition-all cursor-pointer ${
+                                isChosen
+                                  ? "bg-[#FF6700] border-[#FF6700] text-white"
+                                  : "bg-slate-50 border-slate-200 text-[#1E1B5C] hover:border-[#FF6700] hover:text-[#FF6700]"
+                              }`}
+                            >
+                              {isChosen ? "✓ " : ""}{param}
+                            </button>
+                          );
+                        })}
+                      </div>
+                    ) : (
+                      <p className="text-[12px] text-slate-400 italic">No specific parameters listed — full service will be enquired.</p>
+                    )}
+                  </div>
+                );
+              })}
+            </div>
+          </div>
+        )}
       </div>
 
 
@@ -515,8 +676,95 @@ export default function FacilitiesPage() {
       </div>
 
       {/* Shared Modal */}
-      <TestingModal material={selectedMaterial} onClose={() => setSelectedMaterial(null)} />
+      <TestingModal
+        material={selectedMaterial}
+        onClose={() => setSelectedMaterial(null)}
+        onAddToSelection={(serviceName, params) => {
+          setSelectedServices(prev =>
+            prev.includes(serviceName) ? prev : [...prev, serviceName]
+          );
+          setSelectedParameters(prev => {
+            const existing = prev[serviceName] ?? [];
+            const merged = Array.from(new Set([...existing, ...params]));
+            return { ...prev, [serviceName]: merged };
+          });
+          setSelectionSaved(false);
+        }}
+      />
+
+      {/* ── Sticky Enquiry Floating Bar ─────────────────────────────────────── */}
+      {selectedServices.length > 0 && (
+        <div className="fixed bottom-0 left-0 right-0 z-[999] pointer-events-none">
+          <div className="max-w-[1300px] mx-auto px-4 pb-4 md:pb-6 flex justify-center pointer-events-none">
+            <div className="pointer-events-auto flex items-center justify-between gap-3 sm:gap-4 bg-[#1E1B5C] shadow-[0_-4px_30px_rgba(30,27,92,0.35)] rounded-xl sm:rounded-2xl px-3 py-2.5 sm:px-5 sm:py-3.5 border border-white/10 backdrop-blur-sm max-w-full">
+              {/* Service count summary */}
+              <div className="flex items-center gap-1.5 shrink-0 max-w-[200px] sm:max-w-[400px] overflow-hidden">
+                <FlaskConical size={14} className="text-[#FF6700] shrink-0" />
+                <span className="text-white text-[11px] sm:text-[12px] font-bold">
+                  {selectedServices.length} service{selectedServices.length > 1 ? "s" : ""} selected
+                </span>
+                <div className="hidden lg:flex gap-1.5 flex-wrap ml-1">
+                  {selectedServices.slice(0, 2).map(s => (
+                    <span key={s} className="text-[10px] font-semibold bg-white/10 text-white/80 px-2 py-0.5 rounded-full truncate max-w-[100px]">{s}</span>
+                  ))}
+                  {selectedServices.length > 2 && (
+                    <span className="text-[10px] font-bold text-[#FF6700]">+{selectedServices.length - 2} more</span>
+                  )}
+                </div>
+              </div>
+              <div className="hidden sm:block w-px h-6 bg-white/15 shrink-0" />
+              {/* Clear */}
+              <button
+                type="button"
+                onClick={() => { setSelectedServices([]); setSelectedParameters({}); setSelectionSaved(false); }}
+                className="text-[10px] sm:text-[11px] text-white/50 hover:text-red-400 font-bold transition-colors shrink-0 cursor-pointer"
+              >✕ Clear</button>
+
+              {selectionSaved ? (
+                /* — Saved state: show confirmation + Go to Form */
+                <>
+                  <span className="text-[10px] sm:text-[11px] font-bold text-emerald-400 flex items-center gap-1 shrink-0">
+                    <span>✓</span> Saved
+                  </span>
+                  <button
+                    type="button"
+                    onClick={() => {
+                      const serviceNames = selectedServices.join(", ");
+                      const allParams = Object.entries(selectedParameters)
+                        .flatMap(([svc, params]) =>
+                          params.length > 0 ? params.map(p => `[${svc}] ${p}`) : [`[${svc}] All parameters`]
+                        );
+                      const query = new URLSearchParams();
+                      query.set("service", serviceNames);
+                      query.set("parameters", allParams.join("||"));
+                      router.push(`/?${query.toString()}#contact`);
+                    }}
+                    className="px-3.5 py-2 sm:px-5 sm:py-2.5 bg-emerald-500 hover:bg-emerald-600 text-white font-black uppercase tracking-[1px] text-[11px] sm:text-[12px] rounded-lg sm:rounded-xl hover:shadow-[0_4px_20px_rgba(16,185,129,0.4)] transition-all shrink-0 cursor-pointer"
+                  >
+                    Go to Form →
+                  </button>
+                  <button
+                    type="button"
+                    onClick={() => setSelectionSaved(false)}
+                    className="text-[10px] sm:text-[11px] text-white/40 hover:text-white/70 font-semibold transition-colors shrink-0 cursor-pointer"
+                  >+ Add more</button>
+                </>
+              ) : (
+                /* — Normal state: Save to Form button */
+                <button
+                  type="button"
+                  onClick={() => {
+                    setSelectionSaved(true);
+                  }}
+                  className="px-4 py-2 sm:px-6 sm:py-2.5 bg-gradient-to-r from-[#FF6700] to-[#ff8c3a] hover:from-[#e65c00] hover:to-[#ff7a22] text-white font-black uppercase tracking-[1px] text-[11px] sm:text-[12px] rounded-lg sm:rounded-xl hover:shadow-[0_4px_20px_rgba(255,103,0,0.5)] transition-all shrink-0 cursor-pointer"
+                >
+                  Save to Form →
+                </button>
+              )}
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
-
 }
