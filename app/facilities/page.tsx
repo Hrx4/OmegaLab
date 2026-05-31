@@ -5,7 +5,7 @@ import { motion, AnimatePresence } from 'motion/react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
-import { Microscope, FlaskConical, PenToolIcon as Tool, Factory, Beaker, ChevronLeft, ChevronRight, Search, X } from 'lucide-react';
+import { Microscope, FlaskConical, PenToolIcon as Tool, Factory, Beaker, ChevronLeft, ChevronRight, Search, X, HelpCircle } from 'lucide-react';
 import materialsRaw from '../../data/materials.json';
 import facilitiesData from '../../data/facilities.json';
 import TestingModal, { type MaterialItem } from '../../components/TestingModal';
@@ -137,12 +137,10 @@ const tc13401Items = materials.filter((m) =>
 function MaterialCard({
   svc,
   isSelected,
-  onToggle,
   onOpenModal,
 }: {
   svc: MaterialItem;
   isSelected: boolean;
-  onToggle: () => void;
   onOpenModal: () => void;
 }) {
   return (
@@ -152,38 +150,19 @@ function MaterialCard({
       animate={{ opacity: 1, y: 0 }}
       exit={{ opacity: 0, scale: 0.96 }}
       transition={{ duration: 0.22 }}
-      className={`bg-white rounded-xl p-4 flex items-center gap-3 border-2 hover:-translate-y-1 hover:shadow-[0_8px_20px_rgba(0,0,0,0.06)] transition-all cursor-pointer group relative ${
+      onClick={onOpenModal}
+      className={`bg-white rounded-xl p-4 flex items-center justify-between gap-3 border-2 hover:-translate-y-1 hover:shadow-[0_8px_20px_rgba(0,0,0,0.06)] transition-all cursor-pointer group relative ${
         isSelected ? "border-[#FF6700] shadow-[0_4px_12px_rgba(255,103,0,0.15)]" : "border-transparent hover:border-[#FF6700]/60"
       }`}
     >
-      {/* Checkbox toggle */}
-      <button
-        type="button"
-        onClick={(e) => {
-          e.stopPropagation();
-          onToggle();
-        }}
-        className={`absolute top-2.5 right-2.5 w-5 h-5 rounded-full border-2 flex items-center justify-center transition-all z-10 ${
-          isSelected
-            ? "bg-[#FF6700] border-[#FF6700] text-white"
-            : "border-[#1E1B5C]/20 bg-white hover:border-[#FF6700]"
-        }`}
-        aria-label={isSelected ? "Deselect service" : "Select service"}
-      >
-        {isSelected && <span className="text-white text-[10px] font-black leading-none">✓</span>}
-      </button>
-
       {/* Info: open modal */}
-      <div
-        className="flex items-center gap-3 flex-1 min-w-0"
-        onClick={onOpenModal}
-      >
+      <div className="flex items-center gap-3 flex-1 min-w-0">
         <div className={`w-11 h-11 rounded-lg flex items-center justify-center text-[20px] shrink-0 transition-colors ${
           isSelected ? "bg-[#FF6700]/10" : "bg-[#EFF6FF] group-hover:bg-[#FF6700]/10"
         }`}>
           {svc.icon}
         </div>
-        <div className="flex-1 min-w-0 pr-4">
+        <div className="flex-1 min-w-0 pr-1">
           <div className={`text-[13px] font-bold leading-snug ${
             isSelected ? "text-[#FF6700]" : "text-[#1E1B5C]"
           }`}>
@@ -193,6 +172,17 @@ function MaterialCard({
             <div className="text-[10px] text-slate-400 font-semibold mt-0.5 truncate">{svc.testType}</div>
           )}
         </div>
+      </div>
+
+      {/* Arrow indicator at the right */}
+      <div
+        className={`w-7 h-7 rounded-full flex items-center justify-center border transition-all text-[14px] shrink-0 font-bold ${
+          isSelected
+            ? "bg-[#FF6700] border-[#FF6700] text-white"
+            : "bg-slate-50 border-slate-100 text-[#1E1B5C]/30 group-hover:bg-[#FF6700] group-hover:text-white group-hover:border-[#FF6700]"
+        }`}
+      >
+        ➔
       </div>
     </motion.div>
   );
@@ -295,7 +285,6 @@ function CertSection({
               key={svc.name}
               svc={svc}
               isSelected={selectedServices.includes(svc.name)}
-              onToggle={() => onToggleService(svc.name)}
               onOpenModal={() => onSelect(svc)}
             />
           ))}
@@ -343,9 +332,16 @@ export default function FacilitiesPage() {
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
-          className="text-center font-black text-[32px] md:text-[48px] text-[#1E1B5C] font-oswald tracking-tight mb-3 uppercase"
+          className="text-center font-black text-[32px] md:text-[48px] text-[#1E1B5C] font-oswald tracking-tight mb-3 uppercase flex items-center justify-center gap-2 relative group"
         >
-          Our <span className="text-[#FF6700]">Facilities</span>
+          <span>Our <span className="text-[#FF6700]">Facilities</span></span>
+          <span className="relative inline-flex items-center">
+            <HelpCircle size={20} className="text-[#1E1B5C]/30 cursor-pointer hover:text-[#FF6700] transition-colors" />
+            {/* Tooltip */}
+            <span className="absolute left-1/2 -translate-x-1/2 top-8 hidden group-hover:block z-[9999] bg-[#1E1B5C] text-white text-[11px] font-medium normal-case tracking-normal p-3 rounded-lg shadow-xl w-[260px] leading-normal border border-white/10 text-center font-sans">
+              You can select multiple services and parameters, add them to your selection basket, and go to the form to enquire about all of them together.
+            </span>
+          </span>
         </motion.h1>
         <motion.div
           initial={{ opacity: 0, scaleX: 0 }}
@@ -683,11 +679,10 @@ export default function FacilitiesPage() {
           setSelectedServices(prev =>
             prev.includes(serviceName) ? prev : [...prev, serviceName]
           );
-          setSelectedParameters(prev => {
-            const existing = prev[serviceName] ?? [];
-            const merged = Array.from(new Set([...existing, ...params]));
-            return { ...prev, [serviceName]: merged };
-          });
+          setSelectedParameters(prev => ({
+            ...prev,
+            [serviceName]: params
+          }));
           setSelectionSaved(false);
         }}
       />
@@ -720,47 +715,25 @@ export default function FacilitiesPage() {
                 className="text-[10px] sm:text-[11px] text-white/50 hover:text-red-400 font-bold transition-colors shrink-0 cursor-pointer"
               >✕ Clear</button>
 
-              {selectionSaved ? (
-                /* — Saved state: show confirmation + Go to Form */
-                <>
-                  <span className="text-[10px] sm:text-[11px] font-bold text-emerald-400 flex items-center gap-1 shrink-0">
-                    <span>✓</span> Saved
-                  </span>
-                  <button
-                    type="button"
-                    onClick={() => {
-                      const serviceNames = selectedServices.join(", ");
-                      const allParams = Object.entries(selectedParameters)
-                        .flatMap(([svc, params]) =>
-                          params.length > 0 ? params.map(p => `[${svc}] ${p}`) : [`[${svc}] All parameters`]
-                        );
-                      const query = new URLSearchParams();
-                      query.set("service", serviceNames);
-                      query.set("parameters", allParams.join("||"));
-                      router.push(`/?${query.toString()}#contact`);
-                    }}
-                    className="px-3.5 py-2 sm:px-5 sm:py-2.5 bg-emerald-500 hover:bg-emerald-600 text-white font-black uppercase tracking-[1px] text-[11px] sm:text-[12px] rounded-lg sm:rounded-xl hover:shadow-[0_4px_20px_rgba(16,185,129,0.4)] transition-all shrink-0 cursor-pointer"
-                  >
-                    Go to Form →
-                  </button>
-                  <button
-                    type="button"
-                    onClick={() => setSelectionSaved(false)}
-                    className="text-[10px] sm:text-[11px] text-white/40 hover:text-white/70 font-semibold transition-colors shrink-0 cursor-pointer"
-                  >+ Add more</button>
-                </>
-              ) : (
-                /* — Normal state: Save to Form button */
-                <button
-                  type="button"
-                  onClick={() => {
-                    setSelectionSaved(true);
-                  }}
-                  className="px-4 py-2 sm:px-6 sm:py-2.5 bg-gradient-to-r from-[#FF6700] to-[#ff8c3a] hover:from-[#e65c00] hover:to-[#ff7a22] text-white font-black uppercase tracking-[1px] text-[11px] sm:text-[12px] rounded-lg sm:rounded-xl hover:shadow-[0_4px_20px_rgba(255,103,0,0.5)] transition-all shrink-0 cursor-pointer"
-                >
-                  Save to Form →
-                </button>
-              )}
+              <button
+                type="button"
+                onClick={() => {
+                  const serviceNames = selectedServices.join(", ");
+                  const allParams = Object.entries(selectedParameters)
+                    .flatMap(([svc, params]) =>
+                      params.length > 0 ? params.map(p => `[${svc}] ${p}`) : []
+                    );
+                  const query = new URLSearchParams();
+                  query.set("service", serviceNames);
+                  query.set("parameters", allParams.join("||"));
+                  setSelectedServices([]);
+                  setSelectedParameters({});
+                  router.push(`/?${query.toString()}#contact`);
+                }}
+                className="px-4 py-2 sm:px-6 sm:py-2.5 bg-gradient-to-r from-[#FF6700] to-[#ff8c3a] hover:from-[#e65c00] hover:to-[#ff7a22] text-white font-black uppercase tracking-[1px] text-[11px] sm:text-[12px] rounded-lg sm:rounded-xl hover:shadow-[0_4px_20px_rgba(255,103,0,0.5)] transition-all shrink-0 cursor-pointer"
+              >
+                Go to Enquiry Form →
+              </button>
             </div>
           </div>
         </div>
