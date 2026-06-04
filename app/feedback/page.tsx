@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { motion } from "motion/react";
 import {
   Star,
@@ -58,6 +58,8 @@ export default function FeedbackPage() {
     confirmed: false,
   });
   const [submitted, setSubmitted] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const formRef = useRef<HTMLFormElement>(null);
 
   // Auto-populate today's date
   useEffect(() => {
@@ -76,61 +78,68 @@ export default function FeedbackPage() {
   const handleRating = (subject: string, value: number) =>
     setRatings((r) => ({ ...r, [subject]: value }));
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    setSubmitted(true);
-    window.scrollTo({ top: 0, behavior: "smooth" });
+    setIsSubmitting(true);
+    
+    const formElement = e.currentTarget;
+    const formData = new FormData(formElement);
+    
+    const name = form.name || 'Client';
+    const date = form.date || new Date().toISOString().split("T")[0];
+    
+    // Add formsubmit config dynamically
+    formData.append('_subject', `Feedback from ${name} on ${date}`);
+    formData.append('_captcha', 'false');
+    formData.append('_template', 'table');
+    formData.append('_cc', 'info@omegalabtesting.com');
+    
+    // Add Ratings dynamically
+    Object.entries(ratings).forEach(([subject, value]) => {
+      formData.append(`Rating - ${subject}`, value ? value.toString() : 'Not Rated');
+    });
+
+    try {
+      const response = await fetch("https://formsubmit.co/ajax/omegalabinfo98@gmail.com", {
+        method: "POST",
+        body: formData,
+        headers: {
+          'Accept': 'application/json'
+        }
+      });
+      
+      if (response.ok) {
+        setSubmitted(true);
+        formRef.current?.reset();
+        
+        setForm({
+          name: "",
+          address: "",
+          pinCode: "",
+          mobile: "",
+          email: "",
+          reasons: "",
+          remarks: "",
+          date: new Date().toISOString().split("T")[0],
+          confirmed: false,
+        });
+        setRatings(Object.fromEntries(RATING_SUBJECTS.map((s) => [s, null])));
+        
+        window.scrollTo({ top: 0, behavior: "smooth" });
+        setTimeout(() => setSubmitted(false), 5000);
+      } else {
+        alert("Failed to submit feedback. Please try again.");
+      }
+    } catch (error) {
+      console.error("Submission error:", error);
+      alert("An error occurred. Please try again.");
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const selectedColor = (val: number | null) =>
     val ? RATING_COLORS[val] : "#1E1B5C";
-
-  // ── Success Screen ──────────────────────────────────────────────────────────
-  if (submitted) {
-    return (
-      <div className="w-full min-h-screen bg-[#EFF6FF] flex items-center justify-center px-4 font-montserrat">
-        <motion.div
-          initial={{ opacity: 0, scale: 0.85 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 0.5 }}
-          className="bg-white rounded-3xl shadow-2xl border-t-4 border-[#22c55e] p-10 md:p-16 max-w-lg w-full text-center"
-        >
-          <div className="w-20 h-20 rounded-full bg-[#22c55e]/10 flex items-center justify-center mx-auto mb-6">
-            <CheckCircle2 size={44} className="text-[#22c55e]" />
-          </div>
-          <h2 className="text-[#1E1B5C] font-oswald font-black text-3xl uppercase mb-3">
-            Thank You!
-          </h2>
-          <p className="text-slate-500 text-[15px] leading-relaxed mb-8">
-            Your feedback has been recorded. We sincerely appreciate your time
-            and will use your input to continue improving our services.
-          </p>
-          <button
-            onClick={() => {
-              setSubmitted(false);
-              setForm({
-                name: "",
-                address: "",
-                pinCode: "",
-                mobile: "",
-                email: "",
-                reasons: "",
-                remarks: "",
-                date: new Date().toISOString().split("T")[0],
-                confirmed: false,
-              });
-              setRatings(
-                Object.fromEntries(RATING_SUBJECTS.map((s) => [s, null]))
-              );
-            }}
-            className="bg-[#FF6700] hover:bg-[#e65c00] text-white font-bold px-8 py-3 rounded-xl uppercase tracking-wider text-sm transition-colors"
-          >
-            Submit Another Response
-          </button>
-        </motion.div>
-      </div>
-    );
-  }
 
   // ── Main Form ───────────────────────────────────────────────────────────────
   return (
@@ -199,7 +208,40 @@ export default function FeedbackPage() {
 
       {/* Form Card */}
       <div className="max-w-[900px] mx-auto px-4 md:px-8 mt-[-60px] relative z-30">
-        <form onSubmit={handleSubmit}>
+        <form ref={formRef} onSubmit={handleSubmit}>
+
+          {submitted && (
+            <>
+              <style>{`
+                @keyframes toastProgress {
+                  0% { width: 100%; }
+                  100% { width: 0%; }
+                }
+                @keyframes slideInRight {
+                  0% { transform: translateX(100%); opacity: 0; }
+                  100% { transform: translateX(0); opacity: 1; }
+                }
+                .animate-toast {
+                  animation: slideInRight 0.3s ease-out forwards;
+                }
+                .animate-progress {
+                  animation: toastProgress 5s linear forwards;
+                }
+              `}</style>
+              <div className="fixed top-24 right-6 z-[9999] bg-white border-l-4 border-green-500 rounded-lg shadow-[0_8px_30px_rgba(0,0,0,0.12)] flex flex-col overflow-hidden animate-toast max-w-[320px]">
+                <div className="p-4 flex items-start gap-3">
+                  <CheckCircle2 className="text-green-500 shrink-0 mt-0.5" size={20} />
+                  <div className="flex flex-col">
+                    <span className="font-bold text-slate-800 text-[14px]">Feedback Sent!</span>
+                    <span className="text-slate-600 text-[12px] leading-snug mt-0.5">Thank you for your valuable feedback.</span>
+                  </div>
+                </div>
+                <div className="h-[3px] bg-slate-100 w-full">
+                  <div className="h-full bg-green-500 animate-progress" />
+                </div>
+              </div>
+            </>
+          )}
 
           {/* ── Section 1: Customer Information ──────────────────────────── */}
           <motion.div
@@ -533,10 +575,11 @@ export default function FeedbackPage() {
           >
             <button
               type="submit"
-              className="inline-flex items-center gap-3 bg-gradient-to-r from-[#FF6700] to-[#ff8c3a] hover:from-[#e65c00] hover:to-[#ff7a22] text-white font-black text-[14px] uppercase tracking-widest px-12 py-5 rounded-2xl shadow-xl hover:shadow-[#FF6700]/40 hover:shadow-2xl transition-all duration-300 hover:-translate-y-0.5"
+              disabled={isSubmitting}
+              className="inline-flex items-center gap-3 bg-gradient-to-r from-[#FF6700] to-[#ff8c3a] hover:from-[#e65c00] hover:to-[#ff7a22] text-white font-black text-[14px] uppercase tracking-widest px-12 py-5 rounded-2xl shadow-xl hover:shadow-[#FF6700]/40 hover:shadow-2xl transition-all duration-300 hover:-translate-y-0.5 disabled:opacity-70 disabled:cursor-not-allowed group"
             >
               <Send size={18} />
-              Submit Feedback
+              {isSubmitting ? 'Submitting...' : 'Submit Feedback'}
             </button>
           </motion.div>
 
