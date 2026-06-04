@@ -1037,7 +1037,7 @@ export default function HomeSections() {
               {
                 icon: "✉️",
                 title: "Email",
-                lines: ["omegalabinfo98@gmail.com"],
+                lines: ["info@omegalabtesting.com", "omegalabinfo98@gmail.com"],
               },
               {
                 icon: "🕐",

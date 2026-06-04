@@ -336,6 +336,27 @@ export default function Footer() {
               </h4>
 
               <a
+                href="mailto:info@omegalabtesting.com"
+                className="flex items-start gap-4 group"
+              >
+                <div className="w-10 h-10 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center shrink-0 group-hover:bg-gradient-to-br group-hover:from-[#FF6700] group-hover:to-orange-500 group-hover:border-transparent transition-all duration-300 shadow-sm relative overflow-hidden">
+                  <Mail
+                    size={18}
+                    className="text-[#FF6700] group-hover:text-white transition-colors relative z-10"
+                  />
+                  <div className="absolute inset-0 bg-[#FF6700] scale-0 group-hover:scale-150 rounded-xl transition-transform duration-500 ease-out z-0"></div>
+                </div>
+                <div className="flex flex-col pt-0.5">
+                  <span className="text-white/40 text-[10px] font-bold uppercase tracking-widest mb-1">
+                    Official Email
+                  </span>
+                  <span className="text-white/90 text-[13px] font-medium group-hover:text-[#FF6700] transition-colors">
+                    info@omegalabtesting.com
+                  </span>
+                </div>
+              </a>
+
+              <a
                 href="mailto:omegalabinfo98@gmail.com"
                 className="flex items-start gap-4 group"
               >
@@ -438,6 +459,11 @@ export default function Footer() {
             © {new Date().getFullYear()} Omegalab Testing Services. All Rights
             Reserved.
           </p>
+          <div className="flex items-center gap-4 text-white/40 text-[12px] font-medium tracking-wide">
+            <Link href="/privacy-policy" className="hover:text-white transition-colors">Privacy Policy</Link>
+            <span className="w-1 h-1 bg-white/20 rounded-full"></span>
+            <Link href="/terms-and-conditions" className="hover:text-white transition-colors">Terms & Conditions</Link>
+          </div>
           <div className="flex items-center gap-1.5 text-white/40 text-[12px] font-medium tracking-wider">
             <span>CRAFTED BY</span>
             <a
