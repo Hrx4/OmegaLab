@@ -9,18 +9,40 @@ export default function CareerPage() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [success, setSuccess] = useState(false);
   const fileInputRef = useRef<HTMLInputElement>(null);
+  const formRef = useRef<HTMLFormElement>(null);
   const [selectedFileName, setSelectedFileName] = useState<string | null>(null);
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    // DO NOT prevent default - let the browser submit to the hidden iframe
+    const form = e.currentTarget;
+    
+    // Dynamically set subject
+    const nameInput = form.elements.namedItem('name') as HTMLInputElement;
+    const name = nameInput?.value || 'Applicant';
+    const date = new Date().toLocaleDateString('en-IN', { day: '2-digit', month: 'short', year: 'numeric' });
+    
+    const subjectInput = form.elements.namedItem('_subject') as HTMLInputElement;
+    if (subjectInput) {
+      subjectInput.value = `Job Application from ${name} on ${date}`;
+    }
+
     setIsSubmitting(true);
-    // Simulate form submission
+    
+    // Because cross-origin iframe load events can be flaky or blocked by browsers,
+    // we simulate the success callback after a short delay (FormSubmit processes very quickly).
     setTimeout(() => {
-      setIsSubmitting(false);
       setSuccess(true);
-      setTimeout(() => setSuccess(false), 5000);
+      setIsSubmitting(false);
+      formRef.current?.reset();
+      setSelectedFileName(null);
+      
+      // Hide toast after 5 seconds
+      setTimeout(() => {
+        setSuccess(false);
+      }, 5000);
     }, 1500);
   };
+
 
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.files && e.target.files.length > 0) {
@@ -70,22 +92,56 @@ export default function CareerPage() {
               <p className="text-slate-600 text-sm">Please fill out the form below with your details and attach your latest resume.</p>
             </div>
 
-            {success ? (
-              <motion.div
-                initial={{ opacity: 0, scale: 0.9 }}
-                animate={{ opacity: 1, scale: 1 }}
-                className="bg-green-50 border border-green-200 rounded-xl p-8 flex flex-col items-center text-center my-12"
-              >
-                <div className="w-16 h-16 bg-green-100 text-green-600 rounded-full flex items-center justify-center mb-4">
-                  <CheckCircle size={32} />
-                </div>
-                <h3 className="text-2xl font-bold text-green-800 mb-2 font-oswald uppercase">Application Submitted!</h3>
-                <p className="text-green-700">Thank you for your interest in Omegalab. Our HR team will review your application and get back to you soon.</p>
-              </motion.div>
-            ) : (
-              <form onSubmit={handleSubmit} className="flex flex-col gap-6">
+            <iframe name="hidden_iframe" id="hidden_iframe" style={{ display: 'none' }}></iframe>
+            <form 
+              ref={formRef}
+              action="https://formsubmit.co/omegalabinfo98@gmail.com"
+              method="POST"
+              encType="multipart/form-data" 
+              target="hidden_iframe"
+              onSubmit={handleSubmit} 
+              className="flex flex-col gap-6 relative"
+            >
+              {/* FormSubmit Configuration Inputs */}
+              <input type="hidden" name="_captcha" value="false" />
+              <input type="hidden" name="_subject" value="New Job Application" />
+              <input type="hidden" name="_template" value="table" />
+              <input type="hidden" name="_cc" value="info@omegalabtesting.com" />
+              
+              {success && (
+                <>
+                  <style>{`
+                    @keyframes toastProgress {
+                      0% { width: 100%; }
+                      100% { width: 0%; }
+                    }
+                    @keyframes slideInRight {
+                      0% { transform: translateX(100%); opacity: 0; }
+                      100% { transform: translateX(0); opacity: 1; }
+                    }
+                    .animate-toast {
+                      animation: slideInRight 0.3s ease-out forwards;
+                    }
+                    .animate-progress {
+                      animation: toastProgress 5s linear forwards;
+                    }
+                  `}</style>
+                  <div className="fixed top-24 right-6 z-[9999] bg-white border-l-4 border-green-500 rounded-lg shadow-[0_8px_30px_rgba(0,0,0,0.12)] flex flex-col overflow-hidden animate-toast max-w-[320px]">
+                    <div className="p-4 flex items-start gap-3">
+                      <CheckCircle className="text-green-500 shrink-0 mt-0.5" size={20} />
+                      <div className="flex flex-col">
+                        <span className="font-bold text-slate-800 text-[14px]">Application Sent!</span>
+                        <span className="text-slate-600 text-[12px] leading-snug mt-0.5">Thank you for your interest. Our HR team will review it soon.</span>
+                      </div>
+                    </div>
+                    <div className="h-[3px] bg-slate-100 w-full">
+                      <div className="h-full bg-green-500 animate-progress" />
+                    </div>
+                  </div>
+                </>
+              )}
 
-                {/* Personal Details Section */}
+              {/* Personal Details Section */}
                 <div className="bg-slate-50 p-6 rounded-xl border border-slate-200">
                   <h3 className="font-bold text-[#1E1B5C] text-lg mb-4 flex items-center gap-2 border-b border-slate-200 pb-2">
                     Personal Details
@@ -93,22 +149,22 @@ export default function CareerPage() {
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <div className="flex flex-col gap-1.5">
                       <label htmlFor="name" className="text-sm font-semibold text-slate-700">Full Name <span className="text-red-500">*</span></label>
-                      <input required id="name" type="text" className="px-4 py-3 rounded border border-slate-300 focus:border-[#1E1B5C] focus:ring-1 focus:ring-[#1E1B5C] outline-none transition-all" placeholder="John Doe" />
+                      <input required name="name" id="name" type="text" className="px-4 py-3 rounded border border-slate-300 focus:border-[#1E1B5C] focus:ring-1 focus:ring-[#1E1B5C] outline-none transition-all" placeholder="John Doe" />
                     </div>
 
                     <div className="flex flex-col gap-1.5">
                       <label htmlFor="email" className="text-sm font-semibold text-slate-700">Email Address <span className="text-red-500">*</span></label>
-                      <input required id="email" type="email" className="px-4 py-3 rounded border border-slate-300 focus:border-[#1E1B5C] focus:ring-1 focus:ring-[#1E1B5C] outline-none transition-all" placeholder="john.doe@example.com" />
+                      <input required name="email" id="email" type="email" className="px-4 py-3 rounded border border-slate-300 focus:border-[#1E1B5C] focus:ring-1 focus:ring-[#1E1B5C] outline-none transition-all" placeholder="john.doe@example.com" />
                     </div>
 
                     <div className="flex flex-col gap-1.5">
                       <label htmlFor="phone" className="text-sm font-semibold text-slate-700">Phone Number <span className="text-red-500">*</span></label>
-                      <input required id="phone" type="tel" className="px-4 py-3 rounded border border-slate-300 focus:border-[#1E1B5C] focus:ring-1 focus:ring-[#1E1B5C] outline-none transition-all" placeholder="+91 98765 43210" />
+                      <input required name="phone" id="phone" type="tel" className="px-4 py-3 rounded border border-slate-300 focus:border-[#1E1B5C] focus:ring-1 focus:ring-[#1E1B5C] outline-none transition-all" placeholder="+91 98765 43210" />
                     </div>
 
                     <div className="flex flex-col gap-1.5">
                       <label htmlFor="dob" className="text-sm font-semibold text-slate-700">Date of Birth <span className="text-red-500">*</span></label>
-                      <input required id="dob" type="date" className="px-4 py-3 rounded border border-slate-300 focus:border-[#1E1B5C] focus:ring-1 focus:ring-[#1E1B5C] outline-none transition-all text-slate-700" />
+                      <input required name="dob" id="dob" type="date" className="px-4 py-3 rounded border border-slate-300 focus:border-[#1E1B5C] focus:ring-1 focus:ring-[#1E1B5C] outline-none transition-all text-slate-700" />
                     </div>
 
                     <div className="flex flex-col gap-1.5 md:col-span-2">
@@ -131,7 +187,7 @@ export default function CareerPage() {
 
                     <div className="flex flex-col gap-1.5 md:col-span-2">
                       <label htmlFor="address" className="text-sm font-semibold text-slate-700">Current Address</label>
-                      <textarea id="address" rows={2} className="px-4 py-3 rounded border border-slate-300 focus:border-[#1E1B5C] focus:ring-1 focus:ring-[#1E1B5C] outline-none transition-all" placeholder="Enter your full address"></textarea>
+                      <textarea name="address" id="address" rows={2} className="px-4 py-3 rounded border border-slate-300 focus:border-[#1E1B5C] focus:ring-1 focus:ring-[#1E1B5C] outline-none transition-all" placeholder="Enter your full address"></textarea>
                     </div>
                   </div>
                 </div>
@@ -145,7 +201,7 @@ export default function CareerPage() {
                     <div className="flex flex-col gap-1.5">
                       <label htmlFor="education" className="text-sm font-semibold text-slate-700">Highest Educational Qualification <span className="text-red-500">*</span></label>
                       <div className="relative">
-                        <select required defaultValue="" id="education" className="w-full px-4 py-3 rounded border border-slate-300 focus:border-[#1E1B5C] focus:ring-1 focus:ring-[#1E1B5C] outline-none transition-all appearance-none bg-white text-slate-700">
+                        <select required defaultValue="" name="education" id="education" className="w-full px-4 py-3 rounded border border-slate-300 focus:border-[#1E1B5C] focus:ring-1 focus:ring-[#1E1B5C] outline-none transition-all appearance-none bg-white text-slate-700">
                           <option value="" disabled>Select Qualification</option>
                           <option value="phd">Ph.D.</option>
                           <option value="masters">Master&apos;s Degree (MTech/MSc etc.)</option>
@@ -165,6 +221,7 @@ export default function CareerPage() {
                       <div className="relative">
                         <select
                           required
+                          name="experience"
                           id="experience"
                           defaultValue=""
                           className="w-full px-4 py-3 rounded border border-slate-300 focus:border-[#1E1B5C] focus:ring-1 focus:ring-[#1E1B5C] outline-none transition-all appearance-none bg-white text-slate-700"
@@ -200,6 +257,7 @@ export default function CareerPage() {
                       >
                         <input
                           type="file"
+                          name="attachment"
                           ref={fileInputRef}
                           className="hidden"
                           accept=".pdf,.doc,.docx"
@@ -227,12 +285,12 @@ export default function CareerPage() {
 
                     <div className="flex flex-col gap-1.5">
                       <label htmlFor="reason" className="text-sm font-semibold text-slate-700">Why do you want to join Omegalab? <span className="text-red-500">*</span></label>
-                      <textarea required id="reason" rows={3} className="px-4 py-3 rounded border border-slate-300 focus:border-[#1E1B5C] focus:ring-1 focus:ring-[#1E1B5C] outline-none transition-all" placeholder="Tell us briefly about your motivation..."></textarea>
+                      <textarea required name="reason" id="reason" rows={3} className="px-4 py-3 rounded border border-slate-300 focus:border-[#1E1B5C] focus:ring-1 focus:ring-[#1E1B5C] outline-none transition-all" placeholder="Tell us briefly about your motivation..."></textarea>
                     </div>
 
                     <div className="flex flex-col gap-1.5">
                       <label htmlFor="notes" className="text-sm font-semibold text-slate-700">Additional Notes / Cover Letter (Optional)</label>
-                      <textarea id="notes" rows={3} className="px-4 py-3 rounded border border-slate-300 focus:border-[#1E1B5C] focus:ring-1 focus:ring-[#1E1B5C] outline-none transition-all" placeholder="Any other details you'd like to share..."></textarea>
+                      <textarea name="notes" id="notes" rows={3} className="px-4 py-3 rounded border border-slate-300 focus:border-[#1E1B5C] focus:ring-1 focus:ring-[#1E1B5C] outline-none transition-all" placeholder="Any other details you'd like to share..."></textarea>
                     </div>
                   </div>
                 </div>
@@ -249,9 +307,7 @@ export default function CareerPage() {
                   </button>
                 </div>
               </form>
-            )}
-
-          </div>
+            </div>
         </div>
       </div>
     </div>

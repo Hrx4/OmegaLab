@@ -88,7 +88,51 @@ export default function HomeSections() {
   const [selectedServices, setSelectedServices] = useState<string[]>([]);
   const [selectedParameters, setSelectedParameters] = useState<Record<string, string[]>>({});
   const [selectionSaved, setSelectionSaved] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitSuccess, setSubmitSuccess] = useState(false);
   const searchParams = useSearchParams();
+
+  const handleContactSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    setIsSubmitting(true);
+    
+    const form = e.currentTarget;
+    const formData = new FormData(form);
+    
+    const name = formData.get('full_name') || 'Client';
+    const org = formData.get('organization') || 'Individual';
+    const date = new Date().toLocaleDateString('en-IN', { day: '2-digit', month: 'short', year: 'numeric' });
+    
+    formData.append('_subject', `Enquiry from ${name} (${org}) on ${date}`);
+    formData.append('_captcha', 'false');
+    formData.append('_template', 'table');
+    formData.append('_cc', 'info@omegalabtesting.com');
+
+    try {
+      const response = await fetch("https://formsubmit.co/ajax/omegalabinfo98@gmail.com", {
+        method: "POST",
+        body: formData,
+        headers: {
+          'Accept': 'application/json'
+        }
+      });
+      
+      if (response.ok) {
+        setSubmitSuccess(true);
+        form.reset();
+        // Clear selected parameters from the form view as well
+        setEnquiryService("");
+        setEnquiryParams([]);
+        setTimeout(() => setSubmitSuccess(false), 5000);
+      } else {
+        alert("Failed to submit enquiry. Please try again.");
+      }
+    } catch (error) {
+      alert("An error occurred. Please try again.");
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
 
   // Safety limits to prevent oversized URL payloads causing UI issues
   const MAX_SERVICE_LEN = 300;
@@ -1035,7 +1079,41 @@ export default function HomeSections() {
               Submit Your Enquiry
             </h3>
             {/* formsubmit.co / Resend ready — all fields have name attributes */}
-            <form className="flex flex-col gap-4 font-montserrat">
+            <form onSubmit={handleContactSubmit} className="flex flex-col gap-4 font-montserrat relative">
+              
+              {submitSuccess && (
+                <>
+                  <style>{`
+                    @keyframes toastProgress {
+                      0% { width: 100%; }
+                      100% { width: 0%; }
+                    }
+                    @keyframes slideInRight {
+                      0% { transform: translateX(100%); opacity: 0; }
+                      100% { transform: translateX(0); opacity: 1; }
+                    }
+                    .animate-toast {
+                      animation: slideInRight 0.3s ease-out forwards;
+                    }
+                    .animate-progress {
+                      animation: toastProgress 5s linear forwards;
+                    }
+                  `}</style>
+                  <div className="fixed top-24 right-6 z-[9999] bg-white border-l-4 border-green-500 rounded-lg shadow-[0_8px_30px_rgba(0,0,0,0.12)] flex flex-col overflow-hidden animate-toast max-w-[320px]">
+                    <div className="p-4 flex items-start gap-3">
+                      <CheckCircle2 className="text-green-500 shrink-0 mt-0.5" size={20} />
+                      <div className="flex flex-col">
+                        <span className="font-bold text-slate-800 text-[14px]">Success!</span>
+                        <span className="text-slate-600 text-[12px] leading-snug mt-0.5">Your enquiry has been submitted. We'll be in touch shortly.</span>
+                      </div>
+                    </div>
+                    <div className="h-[3px] bg-slate-100 w-full">
+                      <div className="h-full bg-green-500 animate-progress" />
+                    </div>
+                  </div>
+                </>
+              )}
+
               <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
                 <input
                   type="text"
@@ -1308,20 +1386,21 @@ export default function HomeSections() {
               </div>
               <div className="flex gap-4 mb-2">
                 <label className="flex items-center gap-1 text-[12px] text-[#1E1B5C] font-semibold cursor-pointer">
-                  <input type="checkbox" className="accent-[#FF6700]" /> Urgent
+                  <input type="checkbox" name="preferences[]" value="Urgent Testing" className="accent-[#FF6700]" /> Urgent
                   Testing
                 </label>
                 <label className="flex items-center gap-1 text-[12px] text-[#1E1B5C] font-semibold cursor-pointer">
-                  <input type="checkbox" className="accent-[#FF6700]" /> Sample
+                  <input type="checkbox" name="preferences[]" value="Sample Pickup" className="accent-[#FF6700]" /> Sample
                   Pickup
                 </label>
               </div>
 
               <button
                 type="submit"
-                className="w-full py-4 bg-[#FF6700] text-white font-extrabold uppercase tracking-[1px] text-[14px] rounded-lg hover:bg-[#e65c00] hover:-translate-y-[2px] hover:shadow-[0_8px_24px_rgba(255,103,0,0.35)] transition-all"
+                disabled={isSubmitting}
+                className="w-full py-4 bg-[#FF6700] text-white font-extrabold uppercase tracking-[1px] text-[14px] rounded-lg hover:bg-[#e65c00] hover:-translate-y-[2px] hover:shadow-[0_8px_24px_rgba(255,103,0,0.35)] transition-all disabled:opacity-70 disabled:cursor-not-allowed"
               >
-                SUBMIT ENQUIRY →
+                {isSubmitting ? 'SUBMITTING ENQUIRY...' : 'SUBMIT ENQUIRY →'}
               </button>
             </form>
           </div>
