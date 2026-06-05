@@ -232,23 +232,16 @@ export default function Navbar() {
         {/* Main Logo & Info Bar */}
         <div className="bg-white py-4 md:py-6 px-4 md:px-8 flex items-center relative">
           <div className="flex flex-1 items-center gap-4 lg:gap-6 mr-4 lg:mr-10">
-            <Link href="/" className="mb-5 flex items-center gap-3 min-w-0 cursor-pointer">
-              <div className="w-[40px] h-[40px] md:w-[55px] md:h-[55px] xl:w-[88px] xl:h-[88px] bg-white rounded-2xl shadow-lg shrink-0 overflow-hidden flex items-center justify-center">
+            <Link href="/" className="flex items-center min-w-0 cursor-pointer">
+              <div className="relative w-[300px] h-[75px] md:w-[440px] md:h-[110px] xl:w-[600px] xl:h-[150px] shrink-0">
                 <Image
-                  src={LOGO}
+                  src="https://res.cloudinary.com/de4cnpfm1/image/upload/v1780675152/fulllogo_kvp35z.png"
                   alt="Omega Lab Logo"
-                  width={56}
-                  height={56}
-                  className="object-contain w-[30px] h-[30px] md:w-[44px] md:h-[44px] xl:w-[56px] xl:h-[56px]"
+                  fill
+                  className="object-contain object-left"
+                  priority
+                  unoptimized
                 />
-              </div>
-              <div className="min-w-0 leading-tight overflow-hidden">
-                <div className="text-[20px] sm:text-[40px] font-extrabold tracking-tight text-[#2E1271] break-words sm:truncate">
-                  OMEGA<span className="text-[#63B7F6]">LAB</span>
-                </div>
-                <div className="text-[12px] sm:text-[22px] uppercase tracking-wide text-[#2E1271] break-words font-extrabold font-century-gothic">
-                  Testing Services Private Limited
-                </div>
               </div>
             </Link>
           </div>

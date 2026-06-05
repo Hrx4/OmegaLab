@@ -1,6 +1,6 @@
 [
   {
-    "year": "2011",
+    "year": "1999",
     "title": "Foundation of Omegalab",
     "description": "Established with a bold vision to provide accurate, unbiased, and reliable testing and calibration services to the industry.",
     "points": [
@@ -12,61 +12,81 @@
     "theme": "blue"
   },
   {
-    "year": "2013",
-    "title": "National Recognition",
-    "description": "Secured Position No. 18 globally in the CRM Preparation Programme. The only participating laboratory from West Bengal.",
+    "year": "2007",
+    "title": "Metal Testing",
+    "description": "Metal (Mechanical & Chemical Testing setup installed)",
     "points": [
-      "Enlisted in CRM Preparation Programme",
-      "Secured Position No. 18 globally",
-      "Only selected lab from West Bengal"
+      "Mechanical testing setup installed",
+      "Chemical testing setup installed"
+    ],
+    "icon": "Star",
+    "theme": "orange"
+  },
+  {
+    "year": "2012",
+    "title": "NABL Accreditation",
+    "description": "Received first NABL accreditation in the field of metal (Chem & Mech)",
+    "points": [
+      "First NABL accreditation received",
+      "Field of metal (Chem & Mech)"
     ],
     "icon": "Award",
-    "theme": "orange"
+    "theme": "blue"
   },
   {
     "year": "2016",
-    "title": "NABL Accreditation",
-    "description": "Earned the prestigious NABL accreditation adhering strictly to the ISO/IEC 17025:2017 international testing standards.",
+    "title": "Scope Expansion",
+    "description": "Building Material, Soil & Rock testing Facility add in the accreditation scope (NABL).",
     "points": [
-      "Earned NABL accreditation",
-      "ISO/IEC 17025:2017 compliant",
-      "Ensured international testing standards"
+      "Building Material testing added",
+      "Soil & Rock testing added",
+      "Accreditation scope (NABL) expanded"
     ],
     "icon": "CheckCircle",
-    "theme": "blue"
-  },
-  {
-    "year": "2019",
-    "title": "Eastern India Expansion",
-    "description": "Successfully expanded our state-of-the-art testing facilities across Eastern India, opening new branches in Siliguri and Ranchi.",
-    "points": [
-      "Expanded facilities across Eastern India",
-      "Opened new Siliguri & Ranchi branches",
-      "Upgraded analytical infrastructure"
-    ],
-    "icon": "MapPin",
     "theme": "orange"
   },
   {
-    "year": "2023",
-    "title": "10M+ Samples Tested",
-    "description": "Crossed a remarkable milestone of over 10 million samples tested, delivering uncompromising accuracy to our clients.",
+    "year": "2018",
+    "title": "Infrastructure Growth",
+    "description": "New building (Kolkata Lab-2) added under NABL accreditation with a huge expansion in lab area.",
     "points": [
-      "10 Million+ samples tested",
-      "Delivered uncompromising accuracy",
-      "Increased testing capability & speed"
+      "New building Kolkata Lab-2 added",
+      "Huge expansion in lab area",
+      "NABL accredited expansion"
     ],
-    "icon": "Star",
+    "icon": "MapPin",
     "theme": "blue"
   },
   {
-    "year": "2025",
-    "title": "Industry Leadership",
-    "description": "Acknowledged as a premier testing laboratory trusted by over 1000+ top enterprises and government defense organizations.",
+    "year": "2022",
+    "title": "New Testing Scope",
+    "description": "“Plastic & textile” testing added under accreditation scope (NABL).",
     "points": [
-      "Trusted by 1000+ top enterprises",
-      "Partnered with defense organizations",
-      "Acknowledged as premier testing lab"
+      "Plastic & textile testing added",
+      "NABL accreditation scope"
+    ],
+    "icon": "Star",
+    "theme": "orange"
+  },
+  {
+    "year": "2025",
+    "title": "Regional Expansion",
+    "description": "Two new lab one in “Siliguri” and another in “Ranchi” got their first NABL accreditation.",
+    "points": [
+      "Siliguri lab first NABL accreditation",
+      "Ranchi lab first NABL accreditation"
+    ],
+    "icon": "MapPin",
+    "theme": "blue"
+  },
+  {
+    "year": "2026",
+    "title": "Odisha & New Building",
+    "description": "Added one more new lab in Odisha near Bhubeneswer. Total 5 labs under NABL accredited in eastern India. New Building added for expansion of the laboratory.",
+    "points": [
+      "New lab in Odisha near Bhubaneswar",
+      "Total 5 NABL labs in Eastern India",
+      "New Building added for expansion"
     ],
     "icon": "Crown",
     "theme": "orange"

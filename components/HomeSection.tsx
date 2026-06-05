@@ -201,6 +201,11 @@ export default function HomeSections() {
       label: "Years of Service",
       isText: false,
       textValue: "",
+      colorClass: "text-[#63B7F6]",
+      hoverColorClass: "group-hover:bg-[#63B7F6]",
+      dividerClass: "bg-[#63B7F6]/30 group-hover:bg-[#63B7F6]/70",
+      dotClass: "bg-[#63B7F6]/40 group-hover:bg-[#63B7F6]",
+      radialGlow: "radial-gradient(ellipse at center, rgba(99,183,246,0.12) 0%, transparent 70%)",
     },
     {
       value: 900,
@@ -208,6 +213,11 @@ export default function HomeSections() {
       label: "Accredited Test Parameters",
       isText: false,
       textValue: "",
+      colorClass: "text-[#63B7F6]",
+      hoverColorClass: "group-hover:bg-[#63B7F6]",
+      dividerClass: "bg-[#63B7F6]/30 group-hover:bg-[#63B7F6]/70",
+      dotClass: "bg-[#63B7F6]/40 group-hover:bg-[#63B7F6]",
+      radialGlow: "radial-gradient(ellipse at center, rgba(99,183,246,0.12) 0%, transparent 70%)",
     },
     {
       value: 5,
@@ -215,6 +225,11 @@ export default function HomeSections() {
       label: "Accredited Labs",
       isText: false,
       textValue: "",
+      colorClass: "text-[#63B7F6]",
+      hoverColorClass: "group-hover:bg-[#63B7F6]",
+      dividerClass: "bg-[#63B7F6]/30 group-hover:bg-[#63B7F6]/70",
+      dotClass: "bg-[#63B7F6]/40 group-hover:bg-[#63B7F6]",
+      radialGlow: "radial-gradient(ellipse at center, rgba(99,183,246,0.12) 0%, transparent 70%)",
     },
     {
       value: 120,
@@ -222,6 +237,11 @@ export default function HomeSections() {
       label: "Team Members",
       isText: false,
       textValue: "",
+      colorClass: "text-[#63B7F6]",
+      hoverColorClass: "group-hover:bg-[#63B7F6]",
+      dividerClass: "bg-[#63B7F6]/30 group-hover:bg-[#63B7F6]/70",
+      dotClass: "bg-[#63B7F6]/40 group-hover:bg-[#63B7F6]",
+      radialGlow: "radial-gradient(ellipse at center, rgba(99,183,246,0.12) 0%, transparent 70%)",
     },
     {
       value: 0,
@@ -229,6 +249,23 @@ export default function HomeSections() {
       label: "Supported System",
       isText: true,
       textValue: "LIMS",
+      colorClass: "text-[#63B7F6]",
+      hoverColorClass: "group-hover:bg-[#63B7F6]",
+      dividerClass: "bg-[#63B7F6]/30 group-hover:bg-[#63B7F6]/70",
+      dotClass: "bg-[#63B7F6]/40 group-hover:bg-[#63B7F6]",
+      radialGlow: "radial-gradient(ellipse at center, rgba(99,183,246,0.12) 0%, transparent 70%)",
+    },
+    {
+      value: 70,
+      suffix: "+",
+      label: "Successful PT Performed in every 2 years",
+      isText: false,
+      textValue: "",
+      colorClass: "text-[#63B7F6]",
+      hoverColorClass: "group-hover:bg-[#63B7F6]",
+      dividerClass: "bg-[#63B7F6]/30 group-hover:bg-[#63B7F6]/70",
+      dotClass: "bg-[#63B7F6]/40 group-hover:bg-[#63B7F6]",
+      radialGlow: "radial-gradient(ellipse at center, rgba(99,183,246,0.12) 0%, transparent 70%)",
     },
   ];
 
@@ -284,12 +321,11 @@ export default function HomeSections() {
       <HeroSlider />
 
       {/* 2. Stats Section */}
-      <section className="relative bg-[#0e0b30] overflow-hidden" ref={ref}>
-        {/* Ambient animated glow blobs — same as footer */}
+      <section className="relative overflow-hidden bg-gradient-to-r from-[#050618] via-[#090b2c] to-[#1e1a5f]" ref={ref}>
+        {/* Ambient animated glow blobs */}
         <div className="absolute inset-0 overflow-hidden pointer-events-none z-0">
-          <div className="absolute -top-[30%] -right-[10%] w-[45%] h-[150%] rounded-full bg-[#1E1B5C]/70 blur-[120px]" />
-          <div className="absolute top-[50%] -left-[10%] w-[35%] h-[200%] rounded-full bg-[#FF6700]/8 blur-[100px]" />
-          <div className="absolute bottom-[10%] right-[25%] w-[18%] h-[200%] rounded-full bg-[#1E1B5C]/50 blur-[80px]" />
+          <div className="absolute top-[50%] -left-[10%] w-[45%] h-[150%] rounded-full bg-[#1E1B5C]/30 blur-[120px]" />
+          <div className="absolute bottom-[10%] -right-[10%] w-[45%] h-[150%] rounded-full bg-[#63B7F6]/10 blur-[120px]" />
         </div>
 
         {/* SVG cross/dot pattern — identical to footer */}
@@ -305,22 +341,19 @@ export default function HomeSections() {
         <div className="absolute top-0 left-0 right-0 h-[4px] bg-[#FF6700] z-10" />
 
         <div className="relative z-10 max-w-7xl mx-auto px-6 lg:px-8 py-12 md:py-16">
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-px bg-white/[0.06] rounded-2xl overflow-hidden border border-white/[0.08] shadow-[0_0_60px_rgba(0,0,0,0.4)]">
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-px bg-white/[0.06] rounded-2xl overflow-hidden border border-white/[0.08] shadow-[0_0_60px_rgba(0,0,0,0.4)]">
             {stats.map((item, index) => (
               <div
                 key={index}
                 className="relative flex flex-col items-center justify-center py-10 px-6 bg-[#0e0b30] hover:bg-white/[0.04] transition-all duration-300 group cursor-default"
               >
-                {/* Subtle orange glow on hover */}
+                {/* Subtle custom color glow on hover */}
                 <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none rounded-sm"
-                  style={{ background: "radial-gradient(ellipse at center, rgba(255,103,0,0.07) 0%, transparent 70%)" }}
+                  style={{ background: item.radialGlow }}
                 />
 
-                {/* Orange accent dot top */}
-                <div className="absolute top-5 left-1/2 -translate-x-1/2 w-1.5 h-1.5 rounded-full bg-[#FF6700]/40 group-hover:bg-[#FF6700] transition-colors duration-300" />
-
                 {/* Number / Text */}
-                <div className="text-[42px] md:text-[54px] font-black text-[#FF6700] font-oswald leading-none tabular-nums tracking-tight mb-1 group-hover:scale-105 transition-transform duration-300 origin-bottom">
+                <div className={`text-[42px] md:text-[54px] font-black ${item.colorClass} font-oswald leading-none tabular-nums tracking-tight mb-2 group-hover:scale-105 transition-transform duration-300 origin-bottom`}>
                   {item.isText ? (
                     <span className="text-[30px] md:text-[40px]">{item.textValue}</span>
                   ) : (
@@ -342,9 +375,6 @@ export default function HomeSections() {
                     )
                   )}
                 </div>
-
-                {/* Thin divider line */}
-                <div className="w-8 h-[2px] bg-[#FF6700]/30 group-hover:bg-[#FF6700]/70 group-hover:w-12 transition-all duration-300 rounded-full mb-3" />
 
                 {/* Label */}
                 <div className="text-[10px] md:text-[11px] uppercase tracking-[2px] text-white/45 group-hover:text-white/70 font-bold text-center leading-snug transition-colors duration-300">
@@ -368,9 +398,9 @@ export default function HomeSections() {
           <div className="w-[60px] h-[4px] bg-[#FF6700] mx-auto mt-3 rounded-full" />
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-[1fr_1.3fr] gap-10 md:gap-16 items-start">
-          <div className="relative">
-            <div className="w-full aspect-[4/4.5] md:aspect-square rounded-2xl bg-slate-300 overflow-hidden relative shadow-lg">
+        <div className="grid grid-cols-1 lg:grid-cols-[1fr_1.3fr] gap-6 lg:gap-12 items-stretch">
+          <div className="relative lg:h-full">
+            <div className="w-full h-full min-h-[350px] lg:min-h-0 rounded-2xl bg-slate-300 overflow-hidden relative shadow-lg aspect-[4/4.5] sm:aspect-square lg:aspect-auto">
               <Image
                 src={ABOUT_DATA.ceoImage}
                 alt={ABOUT_DATA.ceoImageAlt}
@@ -1033,21 +1063,21 @@ export default function HomeSections() {
                   "Kolkata, West Bengal, India — 14,000 sq.ft. Central Lab",
                 ],
               },
-              { icon: "📞", title: "Phone", lines: ["+91-033 2497 1903"] },
+              { icon: "📞", title: "Phone", lines: ["+91-033 2497 1903", "+91 8062180808"] },
               {
                 icon: "✉️",
                 title: "Email",
-                lines: ["info@omegalabtesting.com", "omegalabinfo98@gmail.com"],
+                lines: ["Omegalabinfo98@gmail.com", "info@omegalabtesting.com"],
               },
               {
                 icon: "🕐",
                 title: "Working Hours",
-                lines: ["Mon–Sat: 9:00 AM – 6:00 PM"],
+                lines: ["Mon – Fri: 9.30 AM to 6.30 PM", "Sat: 9.30 AM to 2.00 PM"],
               },
               {
                 icon: "🏛️",
                 title: "Accreditation",
-                lines: ["NABL Accredited · ISO/IEC 17025:2017"],
+                lines: ["NABL Accredited laboratory", "ISO/IEC 17025: 2017 compliance"],
               },
             ].map((info, idx) => (
               <div
@@ -1263,22 +1293,6 @@ export default function HomeSections() {
                 value={enquiryParams.join(', ')}
               />
 
-              {/* Manual / Additional Parameters Field */}
-              <div className="flex flex-col gap-1.5">
-                <label className="flex items-center gap-2 text-[11px] font-bold uppercase tracking-[0.8px] text-[#1E1B5C]/60">
-                  <span className="w-3 h-[2px] bg-[#FF6700] rounded-full inline-block" />
-                  Additional / Custom Test Parameters
-                  <span className="normal-case tracking-normal font-medium text-[#1E1B5C]/40">(optional — type manually)</span>
-                </label>
-                <textarea
-                  name="custom_parameters"
-                  rows={3}
-                  maxLength={2000}
-                  placeholder={`e.g. Tensile Strength, Compressive Strength, pH Value\nList any specific parameters or tests you require that are not in the selection above.`}
-                  className="w-full px-4 py-3 rounded-lg border-2 border-[#1E1B5C]/10 bg-[#EFF6FF] text-[13px] focus:outline-none focus:border-[#FF6700] transition-colors text-[#1E1B5C] resize-y min-h-[80px] placeholder-[#1E1B5C]/30"
-                />
-              </div>
-
               <div className="flex flex-col gap-2">
                 <label className="text-[11px] font-bold text-[#1E1B5C]/50 uppercase tracking-[0.5px]">
                   Services / Materials Required (Select multiple if needed)
@@ -1361,6 +1375,22 @@ export default function HomeSections() {
                   />{" "}
                   NDT
                 </label>
+              </div>
+
+              {/* Manual / Additional Parameters Field */}
+              <div className="flex flex-col gap-1.5">
+                <label className="flex items-center gap-2 text-[11px] font-bold uppercase tracking-[0.8px] text-[#1E1B5C]/60">
+                  <span className="w-3 h-[2px] bg-[#FF6700] rounded-full inline-block" />
+                  Additional / Custom Test Parameters
+                  <span className="normal-case tracking-normal font-medium text-[#1E1B5C]/40">(optional — type manually)</span>
+                </label>
+                <textarea
+                  name="custom_parameters"
+                  rows={3}
+                  maxLength={2000}
+                  placeholder={`e.g. Tensile Strength, Compressive Strength, pH Value\nList any specific parameters or tests you require that are not in the selection above.`}
+                  className="w-full px-4 py-3 rounded-lg border-2 border-[#1E1B5C]/10 bg-[#EFF6FF] text-[13px] focus:outline-none focus:border-[#FF6700] transition-colors text-[#1E1B5C] resize-y min-h-[80px] placeholder-[#1E1B5C]/30"
+                />
               </div>
 
               <div className="text-[12px] text-[#1E1B5C]/60 font-semibold px-4 py-3 rounded-lg border-2 border-[#1E1B5C]/10 bg-[#EFF6FF] select-none flex items-center justify-between">
