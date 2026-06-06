@@ -17,6 +17,39 @@ const ABOUT_DATA = {
     "Mr. A.K. Das - CEO and Founder of Omegalab Testing Services Pvt Ltd",
 };
 
+const NABL_BADGES = [
+  {
+    id: "TC-11935",
+    branch: "Kolkata-1",
+    url: "https://res.cloudinary.com/de4cnpfm1/image/upload/v1778245989/TC11935_tsqh9z.webp",
+    link: "https://nablwp.qci.org.in/CertificateScopenew?x=eOcz5t8vhPRBC9udGS4tiw==&src=P",
+  },
+  {
+    id: "TC-13401",
+    branch: "Kolkata-2",
+    url: "https://res.cloudinary.com/de4cnpfm1/image/upload/v1778245987/TC13401_axis5q.webp",
+    link: "https://nablwp.qci.org.in/CertificateScopenew?x=eOcz5t8vhPRBC9udGS4tiw==&src=P",
+  },
+  {
+    id: "TC-15509",
+    branch: "Siliguri",
+    url: "https://res.cloudinary.com/de4cnpfm1/image/upload/v1780202025/ChatGPT_Image_May_31_2026_09_55_06_AM_ddjfjc.jpg",
+    link: "https://nablwp.qci.org.in/CertificateScopenew?x=j6k9iq1uw4Bg9VLeGZxZMg==&src=P",
+  },
+  {
+    id: "TC-16480",
+    branch: "Ranchi",
+    url: "https://res.cloudinary.com/de4cnpfm1/image/upload/v1778245989/TC16480_kmsows.webp",
+    link: "https://nablwp.qci.org.in/CertificateScopenew?x=wsIgkGUfG5PjBiZbOfxOtQ==&src=P",
+  },
+  {
+    id: "TC-17671",
+    branch: "Odisha",
+    url: "https://res.cloudinary.com/de4cnpfm1/image/upload/v1778245989/TC17671_ghwfuo.webp",
+    link: "https://nablwp.qci.org.in/CertificateScopenew?x=BLtvn2Aigjq6fokVy2tlWQ==&src=P",
+  },
+];
+
 const INDIAN_STATES = [
   "Andhra Pradesh",
   "Arunachal Pradesh",
@@ -320,6 +353,42 @@ export default function HomeSections() {
       {/* 1. Hero Section */}
       <HeroSlider />
 
+      {/* NABL Badges for Mobile View (hidden on desktop) */}
+      <div className="block lg:hidden w-full bg-slate-50 py-6 border-b border-slate-100">
+        <div className="px-4 text-center">
+          <span className="text-[10px] font-bold uppercase tracking-widest text-[#FF6700] block mb-3 font-sans">
+            Our NABL Accredited Branches
+          </span>
+          <div className="flex flex-wrap justify-center gap-x-5 gap-y-3 px-2">
+            {NABL_BADGES.map((badge) => (
+              <div key={badge.id} className="flex flex-col items-center gap-1.5 shrink-0">
+                <a
+                  href={badge.link}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-[68px] h-[88px] bg-white rounded-full flex flex-col items-center justify-center shadow-md border border-slate-100 relative overflow-hidden active:scale-95 transition-transform"
+                >
+                  <div className="text-[5px] font-bold text-black uppercase text-center flex flex-col items-center mt-[2px]">
+                    <div className="flex items-center justify-center mb-0.5 relative w-[60px] h-[60px]">
+                      <Image
+                        src={badge.url}
+                        alt={`NABL ${badge.id}`}
+                        fill
+                        className="object-contain"
+                        unoptimized
+                      />
+                    </div>
+                  </div>
+                </a>
+                <span className="text-[#1E1B5C] text-[9px] font-extrabold tracking-wide uppercase text-center font-sans">
+                  {badge.branch}
+                </span>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+
       {/* 2. Stats Section */}
       <section className="relative overflow-hidden bg-gradient-to-r from-[#050618] via-[#090b2c] to-[#1e1a5f]" ref={ref}>
         {/* Ambient animated glow blobs */}
@@ -341,7 +410,7 @@ export default function HomeSections() {
         <div className="absolute top-0 left-0 right-0 h-[4px] bg-[#FF6700] z-10" />
 
         <div className="relative z-10 max-w-7xl mx-auto px-6 lg:px-8 py-12 md:py-16">
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-px bg-white/[0.06] rounded-2xl overflow-hidden border border-white/[0.08] shadow-[0_0_60px_rgba(0,0,0,0.4)]">
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-px bg-[#221e54] rounded-2xl overflow-hidden border border-[#221e54] shadow-[0_0_60px_rgba(0,0,0,0.4)]">
             {stats.map((item, index) => (
               <div
                 key={index}
