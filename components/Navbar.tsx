@@ -46,7 +46,7 @@ const ICONS = {
 };
 
 const LOGO =
-  "https://res.cloudinary.com/de4cnpfm1/image/upload/v1778247941/LOGO-_OCS_eamyrc.jpg";
+  "https://res.cloudinary.com/de4cnpfm1/image/upload/v1781108347/TM_-_LOGO_eooaf9.jpg";
 
 const NAV_ITEMS = [
   { name: "HOME", path: "/" },

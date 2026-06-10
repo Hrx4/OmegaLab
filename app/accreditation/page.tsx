@@ -151,6 +151,7 @@ export default function AccreditationPage() {
                       src={BIG_BADGES[currentSlide].image}
                       alt={`NABL Accreditation ${BIG_BADGES[currentSlide].tc}`}
                       fill
+                      sizes="(max-width: 768px) 100vw, 400px"
                       className="object-contain scale-90"
                     />
                   </motion.div>
@@ -229,7 +230,7 @@ export default function AccreditationPage() {
                         alt={`NABL Logo ${lab.cert}`}
                         width={90}
                         height={90}
-                        className="object-contain"
+                        className="object-contain w-auto h-auto max-h-full"
                       />
                     </div>
 
@@ -240,7 +241,7 @@ export default function AccreditationPage() {
                         alt={`QR Code ${lab.name}`}
                         width={90}
                         height={90}
-                        className="object-contain rounded-xl"
+                        className="object-contain rounded-xl w-auto h-auto max-h-full"
                       />
                     </div>
                   </div>
@@ -269,6 +270,7 @@ export default function AccreditationPage() {
                       src={lab.certImage}
                       alt={`${lab.name} Certificate`}
                       fill
+                      sizes="(max-width: 768px) 100vw, 33vw"
                       className="object-contain p-2 transition-transform duration-700 ease-out group-hover/image:scale-[1.03]"
                       unoptimized
                     />

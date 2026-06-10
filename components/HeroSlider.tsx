@@ -40,6 +40,7 @@ export default function HeroSlider() {
               className="object-cover"
               unoptimized
               referrerPolicy="no-referrer"
+              priority={index === 0}
             />
           </div>
           {/* Dark Overlay for Text Contrast */}

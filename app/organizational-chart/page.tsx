@@ -97,148 +97,153 @@ export default function OrganizationalChartPage() {
       <div className="max-w-[1300px] mx-auto px-4 md:px-12 mt-[-60px] relative z-30">
 
         {/* Root Node */}
-        <div className="flex flex-col items-center">
-          <motion.div
-            initial={{ opacity: 0, scale: 0.85 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.6 }}
-            className="bg-white rounded-3xl border-2 border-[#1E1B5C] shadow-2xl px-10 py-7 flex items-center gap-5 relative z-10"
-            style={{ boxShadow: "0 20px 60px rgba(30,27,92,0.15)" }}
-          >
-            <div className="w-14 h-14 rounded-2xl bg-[#1E1B5C] flex items-center justify-center shrink-0">
-              <Building2 size={28} className="text-white" />
-            </div>
-            <div>
-              <div className="text-[10px] font-bold uppercase tracking-widest text-slate-400 mb-1">Head Office</div>
-              <div className="text-[#1E1B5C] font-oswald font-black text-2xl md:text-3xl uppercase tracking-tight">
-                OMEGALAB
-              </div>
-              <div className="text-[#FF6700] text-[12px] font-bold uppercase tracking-wider">
-                Testing Services Private Limited
-              </div>
-              <div className="text-slate-500 text-[10px] font-semibold mt-2 uppercase max-w-[280px] leading-tight">
-                (Registered Office - 256A M.G. Road, Thakurpukur, Kolkata-700063)
-              </div>
-            </div>
-          </motion.div>
-
-          {/* Vertical stem down from root */}
-          <motion.div
-            initial={{ scaleY: 0 }}
-            animate={{ scaleY: 1 }}
-            transition={{ duration: 0.4, delay: 0.5 }}
-            style={{ transformOrigin: "top" }}
-            className="w-0.5 h-12 bg-gradient-to-b from-[#1E1B5C] to-[#1E1B5C]/40"
-          />
-
-          {/* Horizontal bar spanning all 5 branches */}
-          <div className="relative w-full flex justify-center">
+          <div className="flex flex-col items-center w-full">
             <motion.div
-              initial={{ scaleX: 0 }}
-              animate={{ scaleX: 1 }}
-              transition={{ duration: 0.5, delay: 0.7 }}
-              style={{ transformOrigin: "center" }}
-              className="absolute top-0 left-[12.5%] right-[12.5%] md:left-[10%] md:right-[10%] h-0.5 bg-gradient-to-r from-[#1E1B5C]/20 via-[#1E1B5C] to-[#1E1B5C]/20"
+              initial={{ opacity: 0, scale: 0.85 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.6 }}
+              className="bg-white rounded-3xl border-2 border-[#1E1B5C] shadow-2xl px-6 md:px-10 py-5 md:py-7 flex flex-col sm:flex-row items-center gap-4 sm:gap-5 relative z-10 w-full max-w-xl md:max-w-none md:w-auto text-center sm:text-left"
+              style={{ boxShadow: "0 20px 60px rgba(30,27,92,0.15)" }}
+            >
+              <div className="w-14 h-14 rounded-2xl bg-[#1E1B5C] flex items-center justify-center shrink-0 mx-auto sm:mx-0">
+                <Building2 size={28} className="text-white" />
+              </div>
+              <div>
+                <div className="text-[10px] font-bold uppercase tracking-widest text-slate-400 mb-1">Head Office</div>
+                <div className="text-[#1E1B5C] font-oswald font-black text-2xl md:text-3xl uppercase tracking-tight">
+                  OMEGALAB
+                </div>
+                <div className="text-[#FF6700] text-[12px] font-bold uppercase tracking-wider">
+                  Testing Services Private Limited
+                </div>
+                <div className="text-slate-500 text-[10px] font-semibold mt-2 uppercase max-w-[280px] leading-tight mx-auto sm:mx-0">
+                  (Registered Office - 256A M.G. Road, Thakurpukur, Kolkata-700063)
+                </div>
+              </div>
+            </motion.div>
+
+            {/* Vertical stem — desktop only */}
+            <motion.div
+              initial={{ scaleY: 0 }}
+              animate={{ scaleY: 1 }}
+              transition={{ duration: 0.4, delay: 0.5 }}
+              style={{ transformOrigin: "top" }}
+              className="hidden lg:block w-0.5 h-12 bg-gradient-to-b from-[#1E1B5C] to-[#1E1B5C]/40"
             />
 
-            {/* 5 vertical stems down to each branch card */}
-            <div className="w-full grid grid-cols-2 md:grid-cols-5 gap-0">
+            {/* Horizontal bar + vertical stems — desktop only */}
+            <div className="hidden lg:flex relative w-full justify-center">
+              <motion.div
+                initial={{ scaleX: 0 }}
+                animate={{ scaleX: 1 }}
+                transition={{ duration: 0.5, delay: 0.7 }}
+                style={{ transformOrigin: "center" }}
+                className="absolute top-0 left-[10%] right-[10%] h-0.5 bg-gradient-to-r from-[#1E1B5C]/20 via-[#1E1B5C] to-[#1E1B5C]/20"
+              />
+              <div className="w-full grid grid-cols-5 gap-0">
+                {BRANCHES.map((branch, idx) => (
+                  <div key={branch.name} className="flex flex-col items-center">
+                    <motion.div
+                      initial={{ scaleY: 0 }}
+                      animate={{ scaleY: 1 }}
+                      transition={{ duration: 0.4, delay: 0.9 + idx * 0.1 }}
+                      style={{ transformOrigin: "top", backgroundColor: branch.color }}
+                      className="w-0.5 h-10 rounded-full"
+                    />
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* Mobile: small divider arrow */}
+            <div className="flex lg:hidden flex-col items-center my-4 gap-1">
+              <div className="w-0.5 h-8 bg-[#1E1B5C]/30 rounded-full" />
+              <div className="text-[10px] font-bold uppercase tracking-widest text-slate-400">Branch Offices</div>
+              <div className="w-0.5 h-4 bg-[#1E1B5C]/30 rounded-full" />
+            </div>
+
+            {/* Branch Cards */}
+            <div className="w-full grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-5 mt-0">
               {BRANCHES.map((branch, idx) => (
-                <div key={branch.name} className="flex flex-col items-center">
-                  <motion.div
-                    initial={{ scaleY: 0 }}
-                    animate={{ scaleY: 1 }}
-                    transition={{ duration: 0.4, delay: 0.9 + idx * 0.1 }}
-                    style={{ transformOrigin: "top", backgroundColor: branch.color }}
-                    className="w-0.5 h-10 rounded-full"
-                  />
-                </div>
+                <motion.div
+                  key={branch.name}
+                  initial={{ opacity: 0, y: 40 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.55, delay: 1.0 + idx * 0.12, ease: "easeOut" }}
+                  className="bg-white rounded-3xl border border-slate-100 shadow-lg hover:shadow-2xl hover:-translate-y-2 transition-all duration-300 overflow-hidden group"
+                  style={{ boxShadow: `0 8px 30px ${branch.glowColor}` }}
+                >
+                  {/* Accent bar */}
+                  <div className="h-1.5 w-full" style={{ backgroundColor: branch.color }} />
+
+                  <div className="p-6 flex flex-col h-full">
+                    {/* Icon + Name */}
+                    <div className="flex items-start gap-3 mb-4">
+                      <div
+                        className="w-11 h-11 rounded-xl flex items-center justify-center shrink-0"
+                        style={{ backgroundColor: branch.color + "18" }}
+                      >
+                        <MapPin size={20} style={{ color: branch.color }} />
+                      </div>
+                      <div>
+                        <h3
+                          className="font-oswald font-black text-xl uppercase tracking-tight leading-tight"
+                          style={{ color: branch.color }}
+                        >
+                          {branch.name}
+                        </h3>
+                        <span className="text-[11px] text-slate-400 font-semibold uppercase tracking-wider">
+                          {branch.state}
+                        </span>
+                      </div>
+                    </div>
+
+                    {/* NABL code */}
+                    <div
+                      className="text-[10px] font-bold uppercase tracking-wider px-3 py-1.5 rounded-full inline-flex items-center gap-1.5 mb-4 w-fit"
+                      style={{
+                        backgroundColor: branch.color + "12",
+                        color: branch.color,
+                        border: `1px solid ${branch.color}30`,
+                      }}
+                    >
+                      ● NABL {branch.nablCode}
+                    </div>
+
+                    {/* Details */}
+                    <ul className="space-y-2 mb-6 flex-1">
+                      {branch.details.map((d, i) => (
+                        <li key={i} className="flex items-start gap-2 text-[13px] text-slate-500">
+                          <span
+                            className="w-1.5 h-1.5 rounded-full mt-1.5 shrink-0"
+                            style={{ backgroundColor: branch.color }}
+                          />
+                          {d}
+                        </li>
+                      ))}
+                    </ul>
+
+                    {/* CTA */}
+                    <a
+                      href={branch.pdfUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="mt-auto flex items-center justify-center gap-2 w-full py-3 rounded-xl font-bold text-[12px] uppercase tracking-wider transition-all duration-300 group-hover:brightness-110"
+                      style={{
+                        backgroundColor: branch.color,
+                        color: "#fff",
+                        boxShadow: `0 6px 20px ${branch.glowColor}`,
+                      }}
+                    >
+                      <FileText size={15} />
+                      View Org Chart
+                      <ExternalLink size={12} className="opacity-70" />
+                    </a>
+                  </div>
+                </motion.div>
               ))}
             </div>
           </div>
-
-          {/* Branch Cards */}
-          <div className="w-full grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-5 mt-0">
-            {BRANCHES.map((branch, idx) => (
-              <motion.div
-                key={branch.name}
-                initial={{ opacity: 0, y: 40 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.55, delay: 1.0 + idx * 0.12, ease: "easeOut" }}
-                className="bg-white rounded-3xl border border-slate-100 shadow-lg hover:shadow-2xl hover:-translate-y-2 transition-all duration-300 overflow-hidden group"
-                style={{ boxShadow: `0 8px 30px ${branch.glowColor}` }}
-              >
-                {/* Accent bar */}
-                <div className="h-1.5 w-full" style={{ backgroundColor: branch.color }} />
-
-                <div className="p-6 flex flex-col h-full">
-                  {/* Icon + Name */}
-                  <div className="flex items-start gap-3 mb-4">
-                    <div
-                      className="w-11 h-11 rounded-xl flex items-center justify-center shrink-0"
-                      style={{ backgroundColor: branch.color + "18" }}
-                    >
-                      <MapPin size={20} style={{ color: branch.color }} />
-                    </div>
-                    <div>
-                      <h3
-                        className="font-oswald font-black text-xl uppercase tracking-tight leading-tight"
-                        style={{ color: branch.color }}
-                      >
-                        {branch.name}
-                      </h3>
-                      <span className="text-[11px] text-slate-400 font-semibold uppercase tracking-wider">
-                        {branch.state}
-                      </span>
-                    </div>
-                  </div>
-
-                  {/* NABL code */}
-                  <div
-                    className="text-[10px] font-bold uppercase tracking-wider px-3 py-1.5 rounded-full inline-flex items-center gap-1.5 mb-4 w-fit"
-                    style={{
-                      backgroundColor: branch.color + "12",
-                      color: branch.color,
-                      border: `1px solid ${branch.color}30`,
-                    }}
-                  >
-                    ● NABL {branch.nablCode}
-                  </div>
-
-                  {/* Details */}
-                  <ul className="space-y-2 mb-6 flex-1">
-                    {branch.details.map((d, i) => (
-                      <li key={i} className="flex items-start gap-2 text-[13px] text-slate-500">
-                        <span
-                          className="w-1.5 h-1.5 rounded-full mt-1.5 shrink-0"
-                          style={{ backgroundColor: branch.color }}
-                        />
-                        {d}
-                      </li>
-                    ))}
-                  </ul>
-
-                  {/* CTA */}
-                  <a
-                    href={branch.pdfUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="mt-auto flex items-center justify-center gap-2 w-full py-3 rounded-xl font-bold text-[12px] uppercase tracking-wider transition-all duration-300 group-hover:brightness-110"
-                    style={{
-                      backgroundColor: branch.color,
-                      color: "#fff",
-                      boxShadow: `0 6px 20px ${branch.glowColor}`,
-                    }}
-                  >
-                    <FileText size={15} />
-                    View Org Chart
-                    <ExternalLink size={12} className="opacity-70" />
-                  </a>
-                </div>
-              </motion.div>
-            ))}
-          </div>
-        </div>
 
         {/* Footer note */}
         <motion.p
