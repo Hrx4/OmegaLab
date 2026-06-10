@@ -1,0 +1,85 @@
+[
+  {
+    "id": 1,
+    "name": "Rail & Metro Projects",
+    "iconName": "Train",
+    "description": "NABL accredited mechanical & chemical material testing services for major railway tracks, metro stations, and transport infrastructure projects.",
+    "images": [
+      "https://res.cloudinary.com/de4cnpfm1/image/upload/v1781079563/railmetro1_esjtkv.jpg",
+      "https://res.cloudinary.com/de4cnpfm1/image/upload/v1781079565/railmetro2_k5w2nu.jpg"
+    ]
+  },
+  {
+    "id": 2,
+    "name": "Airport Project",
+    "iconName": "Plane",
+    "description": "Runway concrete quality evaluation, terminal building structures, and structural integrity mapping for international & domestic airports.",
+    "images": [
+      "https://res.cloudinary.com/de4cnpfm1/image/upload/v1781079564/airport_xgipgf.jpg"
+    ]
+  },
+  {
+    "id": 3,
+    "name": "Tunnel Projects",
+    "iconName": "FolderKanban",
+    "description": "Quality assurance, soil compaction, non-destructive testing (NDT), and concrete strength testing for high-altitude & underground tunnel networks.",
+    "images": []
+  },
+  {
+    "id": 4,
+    "name": "Bridge Project",
+    "iconName": "Columns",
+    "description": "Load testing, structural steel inspection, ultrasonic testing on welds, and concrete durability assessment for flyovers & major river bridges.",
+    "images": [
+      "https://res.cloudinary.com/de4cnpfm1/image/upload/v1781079563/bridge_qqxbag.jpg",
+      "https://res.cloudinary.com/de4cnpfm1/image/upload/v1781079564/bridge2_aepm6i.jpg"
+    ]
+  },
+  {
+    "id": 5,
+    "name": "Road & Highway Projects",
+    "iconName": "Milestone",
+    "description": "Moorum testing, GSB & WMM evaluation, bituminous membrane testing, and soil bearing capacity measurements for major national highway networks.",
+    "images": []
+  },
+  {
+    "id": 6,
+    "name": "Power Plant & Power Station Projects",
+    "iconName": "Zap",
+    "description": "Thermal power infrastructure testing, turbine foundation concrete evaluation, and specialized alloy/chemical composition testing.",
+    "images": [
+      "https://res.cloudinary.com/de4cnpfm1/image/upload/v1781079565/powerplant_lkmmke.jpg"
+    ]
+  },
+  {
+    "id": 7,
+    "name": "Housing Project",
+    "iconName": "Home",
+    "description": "Mass housing infrastructure quality evaluation, brick, cement, sand, and water quality testing for housing boards & private developments.",
+    "images": []
+  },
+  {
+    "id": 8,
+    "name": "Building Projects",
+    "iconName": "Building2",
+    "description": "Commercial complexes, high-rise skyscrapers structural concrete, reinforcements, and load-bearing materials quality certifications.",
+    "images": []
+  },
+  {
+    "id": 9,
+    "name": "Research & Development (R&D) Projects",
+    "iconName": "FlaskConical",
+    "description": "Specialized material analysis, testing of new polymer combinations, steel splicing slips, and concrete durability enhancements.",
+    "images": []
+  },
+  {
+    "id": 10,
+    "name": "Others Activity",
+    "iconName": "Briefcase",
+    "description": "Third-party inspection audits, site laboratory setups, customized chemical tests, and NDT audits for municipal corporations.",
+    "images": [
+      "https://res.cloudinary.com/de4cnpfm1/image/upload/v1781079563/other_gvzmgt.jpg",
+      "https://res.cloudinary.com/de4cnpfm1/image/upload/v1781079565/other2_f4jotf.jpg"
+    ]
+  }
+]

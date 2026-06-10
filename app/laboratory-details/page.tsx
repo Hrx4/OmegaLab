@@ -31,40 +31,40 @@ const MILESTONES: MilestoneData[] = milestonesData as MilestoneData[];
 
 const highlights = [
   {
-    icon: Building2,
-    label: "Incorporated",
-    value: "20.06.2023",
-    sub: "Under Companies Act 2013",
-  },
-  {
     icon: CreditCard,
-    label: "CIN",
+    label: "CIN (CORPORATE IDENTITY NUMBER)",
     value: "U71200WB2023PTC262957",
-    sub: "Corporate Identity Number",
+    sub: "Incorporated on 20.06.2023 under Companies Act, 2013",
   },
   {
     icon: CreditCard,
-    label: "PAN",
+    label: "PAN (PERMANENT ACCOUNT NUMBER)",
     value: "AAECO0911B",
     sub: "Permanent Account Number",
   },
   {
     icon: CreditCard,
-    label: "TAN",
+    label: "TAN (TAX DEDUCTION AND COLLECTION ACCOUNT NUMBER)",
     value: "CALO06226D",
     sub: "Tax Deduction & Collection Account No.",
   },
   {
     icon: ShieldCheck,
-    label: "MSME Registered",
-    value: "E.S.I. Insured",
-    sub: "Industrial Testing & Analytical Laboratory",
+    label: "UDYAM REG. NO.",
+    value: "UDYAM-WB-100080645",
+    sub: "MSME REGISTERED COMPANY",
   },
   {
-    icon: BadgeCheck,
-    label: "Accredited Labs",
-    value: "5 Locations",
-    sub: "NABL Accredited Across Eastern India",
+    icon: Building2,
+    label: "ESI CODE NO.",
+    value: "41001080680000999",
+    sub: "ESI insured company",
+  },
+  {
+    icon: Building2,
+    label: "EPF CODE NO.",
+    value: "WBCAL2968088000",
+    sub: "EPF insured company",
   },
 ];
 
@@ -386,20 +386,20 @@ export default function LaboratoryDetailsPage() {
             {/* Spine row */}
             <div className="relative grid grid-cols-8 gap-0 h-16 my-1">
               {/* Animated horizontal line */}
-              <div className="absolute top-1/2 left-4 right-4 h-[3px] bg-slate-100 -translate-y-1/2 rounded-full overflow-hidden">
+              <div className="absolute top-1/2 left-8 right-8 h-[4px] bg-slate-200 -translate-y-1/2 rounded-full overflow-hidden z-0">
                 <motion.div
-                  initial={{ scaleX: 0 }}
-                  whileInView={{ scaleX: 1 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 1.2, ease: "easeInOut", delay: 0.2 }}
-                  className="absolute inset-0 bg-gradient-to-r from-sky-300 via-slate-300 to-orange-300 origin-left rounded-full"
+                  initial={{ width: "0%" }}
+                  whileInView={{ width: "100%" }}
+                  viewport={{ once: true, margin: "-50px" }}
+                  transition={{ duration: 1.5, ease: "easeInOut", delay: 0.2 }}
+                  className="absolute inset-y-0 left-0 bg-gradient-to-r from-sky-400 via-slate-300 to-orange-400 rounded-full"
                 />
               </div>
               {MILESTONES.map((milestone, idx) => {
                 const isBlue = milestone.theme === "blue";
                 const stepNumber = String(idx + 1).padStart(2, '0');
                 return (
-                  <div key={idx} className="relative flex flex-col items-center justify-center h-full">
+                  <div key={idx} className="relative flex flex-col items-center justify-center h-full z-10">
                     {/* Vertical tick up (even) */}
                     {idx % 2 === 0 && (
                       <motion.div

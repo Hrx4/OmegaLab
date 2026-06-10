@@ -92,6 +92,7 @@ const INDIAN_STATES = [
 
 
 import materials from "../data/materials.json";
+import branchesData from "../data/branches.json";
 import TestingModal, { type MaterialItem } from "./TestingModal";
 
 const filters = [
@@ -127,6 +128,11 @@ export default function HomeSections() {
 
   const handleContactSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    if (enquiryParams.length === 0) {
+      alert("Please select at least one test parameter before submitting.");
+      document.getElementById('testing-services-section')?.scrollIntoView({ behavior: 'smooth' });
+      return;
+    }
     setIsSubmitting(true);
     
     const form = e.currentTarget;
@@ -199,7 +205,7 @@ export default function HomeSections() {
       }
 
       setTimeout(() => {
-        document.getElementById("contact")?.scrollIntoView({ behavior: "smooth", block: "start" });
+        document.getElementById("enquiry")?.scrollIntoView({ behavior: "smooth", block: "start" });
       }, 300);
     }
   }, [searchParams, MAX_SERVICE_LEN, MAX_PARAM_LEN, MAX_PARAM_COUNT]);
@@ -650,7 +656,7 @@ export default function HomeSections() {
       <IndiaBranchMap />
 
       {/* 6. Testing Services */}
-      <section className="py-12 md:py-20 px-4 md:px-12 max-w-[1300px] mx-auto w-full">
+      <section id="testing-services-section" className="py-12 md:py-20 px-4 md:px-12 max-w-[1300px] mx-auto w-full">
         <div className="text-center mb-8 md:mb-12">
           <h2 className="text-[24px] md:text-[38px] font-black text-[#1E1B5C] mb-2 font-oswald tracking-tight flex items-center justify-center gap-2 relative group">
             Testing Services
@@ -1109,12 +1115,12 @@ export default function HomeSections() {
 
       {/* 9. Contact form section */}
       <section
-        id="contact"
+        id="enquiry"
         className="py-12 md:py-20 px-4 md:px-12 max-w-[1300px] mx-auto w-full"
       >
         <div className="text-center mb-10 md:mb-16">
           <h2 className="text-[24px] md:text-[38px] font-black text-[#1E1B5C] mb-2 font-oswald tracking-tight">
-            Contact & Enquiry
+            Enquiry Now
           </h2>
           <p className="text-[13px] md:text-[16px] text-[#1E1B5C]/50 max-w-2xl mx-auto">
             Get in touch for testing requirements, quotes, or lab visits
@@ -1262,14 +1268,15 @@ export default function HomeSections() {
               </div>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
                 <select 
-                  name="country" 
-                  autoComplete="country-name" 
+                  name="branch" 
                   className="w-full px-4 py-3 rounded-lg border-2 border-[#1E1B5C]/10 bg-[#EFF6FF] text-[13px] focus:outline-none focus:border-[#FF6700] text-[#1E1B5C]"
                   defaultValue=""
                   required
                 >
-                  <option value="">Select Country *</option>
-                  <option value="India">India</option>
+                  <option value="" disabled>Select Branch *</option>
+                  {branchesData.map((branch) => (
+                    <option key={branch.id} value={branch.name}>{branch.name}</option>
+                  ))}
                 </select>
                 <select 
                   name="state" 
@@ -1362,104 +1369,24 @@ export default function HomeSections() {
                 value={enquiryParams.join(', ')}
               />
 
-              <div className="flex flex-col gap-2">
-                <label className="text-[11px] font-bold text-[#1E1B5C]/50 uppercase tracking-[0.5px]">
-                  Services / Materials Required (Select multiple if needed)
-                </label>
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-4 gap-y-2 bg-[#EFF6FF] p-4 rounded-lg border-2 border-[#1E1B5C]/10">
-                  {[
-                    "Mechanical Testing",
-                    "Chemical Testing",
-                    "NDT Services",
-                    "Cement & Concrete Testing",
-                    "Steel & Metal Testing",
-                    "Geotextile Testing",
-                    "Water Testing",
-                    "Coal Testing",
-                    "Pipe Testing"
-                  ].map((service) => (
-                    <label key={service} className="flex items-center gap-2 text-[12px] text-[#1E1B5C] font-semibold cursor-pointer select-none">
-                      <input
-                        type="checkbox"
-                        name="services_required[]"
-                        value={service}
-                        className="accent-[#FF6700] rounded"
-                      />
-                      {service}
-                    </label>
-                  ))}
-                  <label className="flex items-center gap-2 text-[12px] text-[#1E1B5C] font-semibold cursor-pointer select-none">
-                    <input
-                      type="checkbox"
-                      name="services_required[]"
-                      value="Other"
-                      onChange={(e) => setShowOtherService(e.target.checked)}
-                      className="accent-[#FF6700] rounded"
-                    />
-                    Other / Custom Testing
-                  </label>
-                </div>
-              </div>
 
-              {showOtherService && (
-                <div className="flex flex-col gap-1.5 animate-fadeIn">
-                  <input
-                    type="text"
-                    name="custom_service_details"
-                    placeholder="Specify other service / material required *"
-                    required={showOtherService}
-                    className="w-full px-4 py-3 rounded-lg border-2 border-[#1E1B5C]/10 bg-[#EFF6FF] text-[13px] focus:outline-none focus:border-[#FF6700] transition-colors text-[#1E1B5C]"
-                  />
-                </div>
-              )}
-
-              <div className="text-[11px] font-bold text-[#1E1B5C]/50 uppercase tracking-[0.5px]">
-                Preferred Testing Type (Select all that apply)
-              </div>
-              <div className="flex gap-4">
-                <label className="flex items-center gap-1.5 text-[12px] text-[#1E1B5C] font-semibold cursor-pointer">
-                  <input
-                    type="checkbox"
-                    name="testingType[]"
-                    value="Mechanical"
-                    className="accent-[#FF6700] rounded"
-                  />{" "}
-                  Mechanical
-                </label>
-                <label className="flex items-center gap-1.5 text-[12px] text-[#1E1B5C] font-semibold cursor-pointer">
-                  <input
-                    type="checkbox"
-                    name="testingType[]"
-                    value="Chemical"
-                    className="accent-[#FF6700] rounded"
-                  />{" "}
-                  Chemical
-                </label>
-                <label className="flex items-center gap-1.5 text-[12px] text-[#1E1B5C] font-semibold cursor-pointer">
-                  <input
-                    type="checkbox"
-                    name="testingType[]"
-                    value="NDT"
-                    className="accent-[#FF6700] rounded"
-                  />{" "}
-                  NDT
-                </label>
-              </div>
 
               {/* Manual / Additional Parameters Field */}
-              <div className="flex flex-col gap-1.5">
+              <div className="flex flex-col gap-1.5 items-start">
                 <label className="flex items-center gap-2 text-[11px] font-bold uppercase tracking-[0.8px] text-[#1E1B5C]/60">
                   <span className="w-3 h-[2px] bg-[#FF6700] rounded-full inline-block" />
-                  Additional / Custom Test Parameters
-                  <span className="normal-case tracking-normal font-medium text-[#1E1B5C]/40">(optional — type manually)</span>
+                  Test parameters
                 </label>
-                <textarea
-                  name="custom_parameters"
-                  rows={3}
-                  maxLength={2000}
-                  placeholder={`e.g. Tensile Strength, Compressive Strength, pH Value\nList any specific parameters or tests you require that are not in the selection above.`}
-                  className="w-full px-4 py-3 rounded-lg border-2 border-[#1E1B5C]/10 bg-[#EFF6FF] text-[13px] focus:outline-none focus:border-[#FF6700] transition-colors text-[#1E1B5C] resize-y min-h-[80px] placeholder-[#1E1B5C]/30"
-                />
+                <button
+                  type="button"
+                  onClick={() => document.getElementById('testing-services-section')?.scrollIntoView({ behavior: 'smooth' })}
+                  className="px-6 py-3 bg-[#EFF6FF] border-2 border-[#FF6700] text-[#FF6700] font-bold uppercase tracking-[1px] text-[12px] rounded-lg hover:bg-[#FF6700] hover:text-white transition-all flex items-center gap-2 mt-1"
+                >
+                  Select Parameters From List ↑
+                </button>
+                {enquiryParams.length === 0 && (
+                  <span className="text-red-500 text-[11px] font-semibold mt-1">* Please select at least one parameter</span>
+                )}
               </div>
 
               <div className="text-[12px] text-[#1E1B5C]/60 font-semibold px-4 py-3 rounded-lg border-2 border-[#1E1B5C]/10 bg-[#EFF6FF] select-none flex items-center justify-between">
@@ -1545,7 +1472,7 @@ export default function HomeSections() {
                   setEnquiryParams(allParams);
                   setSelectedServices([]);
                   setSelectedParameters({});
-                  document.getElementById("contact")?.scrollIntoView({ behavior: "smooth", block: "start" });
+                  document.getElementById("enquiry")?.scrollIntoView({ behavior: "smooth", block: "start" });
                 }}
                 className="px-6 py-2.5 bg-gradient-to-r from-[#FF6700] to-[#ff8c3a] hover:from-[#e65c00] hover:to-[#ff7a22] text-white font-black uppercase tracking-[1px] text-[12px] rounded-xl hover:shadow-[0_4px_20px_rgba(255,103,0,0.5)] transition-all shrink-0 cursor-pointer"
               >

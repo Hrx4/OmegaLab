@@ -139,7 +139,7 @@ export default function InfrastructurePage() {
             </p>
 
             <div className="mt-auto">
-              <Link href="#contact" className="inline-flex items-center gap-2 bg-[#1E1B5C] text-white font-bold px-8 py-4 rounded uppercase text-sm tracking-wider hover:bg-slate-800 transition-colors shadow-lg group">
+              <Link href="/#enquiry" className="inline-flex items-center gap-2 bg-[#1E1B5C] text-white font-bold px-8 py-4 rounded uppercase text-sm tracking-wider hover:bg-slate-800 transition-colors shadow-lg group">
                 Inquire About Testing <CheckCircle size={18} className="group-hover:text-[#FF6700] transition-colors" />
               </Link>
             </div>

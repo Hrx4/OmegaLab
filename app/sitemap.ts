@@ -17,7 +17,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     // Core pages
     { route: "/accreditation", priority: 0.9, changeFrequency: "monthly" as const },
     { route: "/facilities", priority: 0.9, changeFrequency: "monthly" as const },
-    { route: "/profiles", priority: 0.8, changeFrequency: "monthly" as const },
+    { route: "/projects-approvals", priority: 0.8, changeFrequency: "monthly" as const },
 
     // Infrastructure
     { route: "/infrastructure/mechanical", priority: 0.8, changeFrequency: "monthly" as const },

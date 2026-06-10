@@ -5,6 +5,7 @@ import { Phone, Mail, Menu, X, ChevronDown } from "lucide-react";
 import Image from "next/image";
 import { useState, useEffect } from "react";
 import branchesData from "../data/branches.json";
+import ContactModal from "./ContactModal";
 
 const ICONS = {
   Facebook: (
@@ -62,7 +63,7 @@ const NAV_ITEMS = [
   },
   { name: "ACCREDIATION", path: "/accreditation" },
   { name: "FACILITIES", path: "/facilities" },
-  { name: "PROFILES", path: "/profiles" },
+  { name: "PROJECTS & APPROVAL", path: "/projects-approvals" },
   {
     name: "INFRASTRUCTURE",
     path: "#",
@@ -89,7 +90,14 @@ const NAV_ITEMS = [
   },
   { name: "LAB TOUR", path: "/lab-tour" },
   { name: "OUR CLIENTS", path: "/our-clients" },
-  { name: "CONTACT US", path: "/#contact" },
+  {
+    name: "GET IN TOUCH",
+    path: "#",
+    dropdown: [
+      { name: "Enquiry", path: "/#enquiry" },
+      { name: "Contact Us", path: "/#footer" },
+    ],
+  },
   { name: "CAREER", path: "/career" },
 ];
 const NABL_BADGES = [
@@ -127,6 +135,7 @@ const NABL_BADGES = [
 export default function Navbar() {
   const [openMobileMenu, setOpenMobileMenu] = useState<string | null>(null);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [isContactModalOpen, setIsContactModalOpen] = useState(false);
 
   // Close mobile menu when screen resizes to desktop
   useEffect(() => {
@@ -187,12 +196,12 @@ export default function Navbar() {
                   <span className="text-white/80 group-hover:text-white font-medium transition-colors">omegalabinfo98@gmail.com</span>
                 </a>
 
-                <Link
-                  href="/#contact"
-                  className="bg-gradient-to-r from-[#FF6700] to-[#ff8c3a] hover:from-[#e65c00] hover:to-[#ff7a22] text-white font-bold h-8 px-5 rounded-full flex items-center justify-center uppercase text-[10px] tracking-wider transition-all duration-300 hover:shadow-[0_0_12px_rgba(255,103,0,0.4)]"
+                <button
+                  onClick={() => setIsContactModalOpen(true)}
+                  className="cursor-pointer bg-gradient-to-r from-[#FF6700] to-[#ff8c3a] hover:from-[#e65c00] hover:to-[#ff7a22] text-white font-bold h-8 px-5 rounded-full flex items-center justify-center uppercase text-[10px] tracking-wider transition-all duration-300 hover:shadow-[0_0_12px_rgba(255,103,0,0.4)]"
                 >
                   Contact Us
-                </Link>
+                </button>
               </div>
             </div>
 
@@ -232,16 +241,23 @@ export default function Navbar() {
         {/* Main Logo & Info Bar */}
         <div className="bg-white py-4 md:py-6 px-4 md:px-8 flex items-center relative">
           <div className="flex flex-1 items-center gap-4 lg:gap-6 mr-4 lg:mr-10">
-            <Link href="/" className="flex items-center min-w-0 cursor-pointer">
-              <div className="relative w-[300px] h-[75px] md:w-[440px] md:h-[110px] xl:w-[600px] xl:h-[150px] shrink-0">
+            <Link href="/" className="mb-5 flex items-center gap-4 min-w-0 cursor-pointer">
+              <div className="w-[50px] h-[50px] md:w-[70px] md:h-[70px] xl:w-[100px] xl:h-[100px] bg-white rounded-2xl shadow-lg shrink-0 overflow-hidden flex items-center justify-center">
                 <Image
-                  src="https://res.cloudinary.com/de4cnpfm1/image/upload/v1780675152/fulllogo_kvp35z.png"
+                  src={LOGO}
                   alt="Omega Lab Logo"
-                  fill
-                  className="object-contain object-left"
-                  priority
-                  unoptimized
+                  width={80}
+                  height={80}
+                  className="object-contain w-[36px] h-[36px] md:w-[50px] md:h-[50px] xl:w-[72px] xl:h-[72px]"
                 />
+              </div>
+              <div className="min-w-0 leading-tight overflow-hidden">
+                <div className="text-[24px] sm:text-[46px] font-extrabold tracking-tight text-[#2E1271] break-words sm:truncate">
+                  OMEGA<span className="text-[#63B7F6]">LAB</span>
+                </div>
+                <div className="text-[14px] sm:text-[25px] uppercase tracking-wide text-[#2E1271] break-words font-extrabold font-century-gothic">
+                  Testing Services Private Limited
+                </div>
               </div>
             </Link>
           </div>
@@ -309,13 +325,23 @@ export default function Navbar() {
 
                       <div className="absolute top-full left-0 bg-[#1E1B5C] shadow-xl border-t-[3px] border-[#FF6700] min-w-[250px] opacity-0 invisible group-hover:opacity-100 group-hover:visible group-focus-within:opacity-100 group-focus-within:visible transition-all duration-200 py-3 rounded-b-md z-50">
                         {item.dropdown.map((subItem) => (
-                          <Link
-                            key={subItem.name}
-                            href={subItem.path}
-                            className="block px-5 py-2.5 text-white/70 hover:text-white hover:bg-white/5 uppercase text-[12px] font-bold tracking-wide transition-all border-b border-white/5 last:border-0"
-                          >
-                            {subItem.name}
-                          </Link>
+                          subItem.name === "Contact Us" ? (
+                            <button
+                              key={subItem.name}
+                              onClick={() => setIsContactModalOpen(true)}
+                              className="w-full text-left block px-5 py-2.5 text-white/70 hover:text-white hover:bg-white/5 uppercase text-[12px] font-bold tracking-wide transition-all border-b border-white/5 last:border-0"
+                            >
+                              {subItem.name}
+                            </button>
+                          ) : (
+                            <Link
+                              key={subItem.name}
+                              href={subItem.path}
+                              className="block px-5 py-2.5 text-white/70 hover:text-white hover:bg-white/5 uppercase text-[12px] font-bold tracking-wide transition-all border-b border-white/5 last:border-0"
+                            >
+                              {subItem.name}
+                            </Link>
+                          )
                         ))}
                       </div>
                     </>
@@ -369,14 +395,27 @@ export default function Navbar() {
                       >
                         <div className="p-2 py-3 flex flex-col">
                           {item.dropdown.map((subItem) => (
-                            <Link
-                              key={subItem.name}
-                              href={subItem.path}
-                              className="text-white/70 hover:text-white hover:bg-white/10 pl-8 pr-4 py-3 text-[11px] uppercase font-semibold block transition-colors border-b border-white/5 last:border-0"
-                              onClick={() => setIsMobileMenuOpen(false)}
-                            >
-                              {subItem.name}
-                            </Link>
+                            subItem.name === "Contact Us" ? (
+                              <button
+                                key={subItem.name}
+                                onClick={() => {
+                                  setIsMobileMenuOpen(false);
+                                  setIsContactModalOpen(true);
+                                }}
+                                className="w-full text-left text-white/70 hover:text-white hover:bg-white/10 pl-8 pr-4 py-3 text-[11px] uppercase font-semibold block transition-colors border-b border-white/5 last:border-0"
+                              >
+                                {subItem.name}
+                              </button>
+                            ) : (
+                              <Link
+                                key={subItem.name}
+                                href={subItem.path}
+                                className="text-white/70 hover:text-white hover:bg-white/10 pl-8 pr-4 py-3 text-[11px] uppercase font-semibold block transition-colors border-b border-white/5 last:border-0"
+                                onClick={() => setIsMobileMenuOpen(false)}
+                              >
+                                {subItem.name}
+                              </Link>
+                            )
                           ))}
                         </div>
                       </div>
@@ -396,6 +435,12 @@ export default function Navbar() {
           </div>
         </div>
       </div>
+      
+      {/* Contact Modal */}
+      <ContactModal 
+        isOpen={isContactModalOpen} 
+        onClose={() => setIsContactModalOpen(false)} 
+      />
     </>
   );
 }

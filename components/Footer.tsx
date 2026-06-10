@@ -106,7 +106,7 @@ export default function Footer() {
   }, []);
 
   return (
-    <footer className="relative mt-0 bg-[#0e0b30] font-montserrat overflow-hidden">
+    <footer id="footer" className="relative mt-0 bg-[#0e0b30] font-montserrat overflow-hidden">
       {/* Abstract Animated Ambient Light Background */}
       <div className="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none z-[-1]">
         <motion.div
@@ -254,7 +254,7 @@ export default function Footer() {
                 { name: "About Us", path: "/laboratory-details" },
                 { name: "Accreditation", path: "/accreditation" },
                 { name: "Facilities", path: "/facilities" },
-                { name: "Profiles", path: "/profiles" },
+                { name: "Projects & Approvals", path: "/projects-approvals" },
                 { name: "Infrastructure", path: "/infrastructure/mechanical" },
                 { name: "Our Branch", path: "/our-branch/kolkata-1" },
                 { name: "Lab Tour", path: "/lab-tour" },
