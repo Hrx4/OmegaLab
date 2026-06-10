@@ -120,10 +120,14 @@ function FacilityImageSlider({ images, title }: { images: string[]; title: strin
 // ── Filter definitions ──────────────────────────────────────────────────────
 const TC11935_FILTERS = ["All", "Metals & Steel", "Geotextiles", "Plastic", "Building Material"];
 const TC13401_FILTERS = ["All", "Cement & Concrete", "Water", "NDT Services"];
+const TC17671_FILTERS = ["All", "Cement & Concrete", "Metals & Steel", "Water"];
+const TC15509_FILTERS = ["All", "Cement & Concrete"];
 
 // ── NABL Certificate segments ────────────────────────────────────────────────
 const TC11935_CERT = "TC-11935";
 const TC13401_CERT = "TC-13401";
+const TC17671_CERT = "TC-17671";
+const TC15509_CERT = "TC-15509";
 
 // Split materials by cert (items with "/ " belong to both but we show them in each)
 const tc11935Items = materials.filter((m) =>
@@ -131,6 +135,12 @@ const tc11935Items = materials.filter((m) =>
 );
 const tc13401Items = materials.filter((m) =>
   m.nablCert?.includes("TC-13401")
+);
+const tc17671Items = materials.filter((m) =>
+  m.nablCert?.includes("TC-17671")
+);
+const tc15509Items = materials.filter((m) =>
+  m.nablCert?.includes("TC-15509")
 );
 
 // ── Card Component ───────────────────────────────────────────────────────────
@@ -444,6 +454,8 @@ export default function FacilitiesPage() {
           {[
             { label: "Kolkata 1 - Metals & NDT Lab", href: "#tc11935" },
             { label: "Kolkata 2 - Construction & Water Lab", href: "#tc13401" },
+            { label: "Siliguri - Building & Construction Lab", href: "#tc15509" },
+            { label: "Odisha - Chemical, Mechanical & Water Lab", href: "#tc17671" },
           ].map((link) => (
             <a
               key={link.href}
@@ -454,7 +466,7 @@ export default function FacilitiesPage() {
             </a>
           ))}
           <Link
-            href="/#contact"
+            href="/#enquiry"
             className="px-5 py-2 rounded-full bg-[#FF6700] border-2 border-[#FF6700] text-[12px] font-bold text-white hover:bg-[#e65c00] transition-colors"
           >
             Enquire Now →
@@ -511,6 +523,55 @@ export default function FacilitiesPage() {
             }}
           />
         </div>
+
+        <div id="tc15509" className="mt-16">
+          <CertSection
+            certNo={TC15509_CERT}
+            facilityLabel="Building & Construction Material Testing Services"
+            description="Comprehensive testing for concrete, cement, bricks, tiles, putty, fly ash, and aggregate materials."
+            filters={TC15509_FILTERS}
+            items={tc15509Items}
+            color="from-[#FF6700] via-[#ff8c3a] to-[#1E1B5C]"
+            onSelect={setSelectedMaterial}
+            facilityType="Permanent & Site Facility"
+            labName="Siliguri"
+            selectedServices={selectedServices}
+            onToggleService={(svcName) => {
+              setSelectedServices(prev =>
+                prev.includes(svcName) ? prev.filter(n => n !== svcName) : [...prev, svcName]
+              );
+              if (!selectedParameters[svcName]) {
+                setSelectedParameters(prev => ({ ...prev, [svcName]: [] }));
+              }
+              setSelectionSaved(false);
+            }}
+          />
+        </div>
+
+        <div id="tc17671" className="mt-16">
+          <CertSection
+            certNo={TC17671_CERT}
+            facilityLabel="Chemical, Mechanical & Construction Material Testing Services"
+            description="Comprehensive testing for metals, concrete, brick, tiles, soil, rock, bentonite, and water quality parameters."
+            filters={TC17671_FILTERS}
+            items={tc17671Items}
+            color="from-[#1E1B5C] via-[#2d2890] to-[#FF6700]"
+            onSelect={setSelectedMaterial}
+            facilityType="Permanent & Site Facility"
+            labName="Odisha"
+            selectedServices={selectedServices}
+            onToggleService={(svcName) => {
+              setSelectedServices(prev =>
+                prev.includes(svcName) ? prev.filter(n => n !== svcName) : [...prev, svcName]
+              );
+              if (!selectedParameters[svcName]) {
+                setSelectedParameters(prev => ({ ...prev, [svcName]: [] }));
+              }
+              setSelectionSaved(false);
+            }}
+          />
+        </div>
+
 
         {/* Selected Parameters Panel */}
         {selectedServices.length > 0 && (
@@ -728,7 +789,7 @@ export default function FacilitiesPage() {
                   query.set("parameters", allParams.join("||"));
                   setSelectedServices([]);
                   setSelectedParameters({});
-                  router.push(`/?${query.toString()}#contact`);
+                  router.push(`/?${query.toString()}#enquiry`);
                 }}
                 className="px-4 py-2 sm:px-6 sm:py-2.5 bg-gradient-to-r from-[#FF6700] to-[#ff8c3a] hover:from-[#e65c00] hover:to-[#ff7a22] text-white font-black uppercase tracking-[1px] text-[11px] sm:text-[12px] rounded-lg sm:rounded-xl hover:shadow-[0_4px_20px_rgba(255,103,0,0.5)] transition-all shrink-0 cursor-pointer"
               >

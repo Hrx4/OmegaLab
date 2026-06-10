@@ -17,6 +17,39 @@ const ABOUT_DATA = {
     "Mr. A.K. Das - CEO and Founder of Omegalab Testing Services Pvt Ltd",
 };
 
+const NABL_BADGES = [
+  {
+    id: "TC-11935",
+    branch: "Kolkata-1",
+    url: "https://res.cloudinary.com/de4cnpfm1/image/upload/v1778245989/TC11935_tsqh9z.webp",
+    link: "https://nablwp.qci.org.in/CertificateScopenew?x=eOcz5t8vhPRBC9udGS4tiw==&src=P",
+  },
+  {
+    id: "TC-13401",
+    branch: "Kolkata-2",
+    url: "https://res.cloudinary.com/de4cnpfm1/image/upload/v1778245987/TC13401_axis5q.webp",
+    link: "https://nablwp.qci.org.in/CertificateScopenew?x=eOcz5t8vhPRBC9udGS4tiw==&src=P",
+  },
+  {
+    id: "TC-15509",
+    branch: "Siliguri",
+    url: "https://res.cloudinary.com/de4cnpfm1/image/upload/v1780202025/ChatGPT_Image_May_31_2026_09_55_06_AM_ddjfjc.jpg",
+    link: "https://nablwp.qci.org.in/CertificateScopenew?x=j6k9iq1uw4Bg9VLeGZxZMg==&src=P",
+  },
+  {
+    id: "TC-16480",
+    branch: "Ranchi",
+    url: "https://res.cloudinary.com/de4cnpfm1/image/upload/v1778245989/TC16480_kmsows.webp",
+    link: "https://nablwp.qci.org.in/CertificateScopenew?x=wsIgkGUfG5PjBiZbOfxOtQ==&src=P",
+  },
+  {
+    id: "TC-17671",
+    branch: "Odisha",
+    url: "https://res.cloudinary.com/de4cnpfm1/image/upload/v1778245989/TC17671_ghwfuo.webp",
+    link: "https://nablwp.qci.org.in/CertificateScopenew?x=BLtvn2Aigjq6fokVy2tlWQ==&src=P",
+  },
+];
+
 const INDIAN_STATES = [
   "Andhra Pradesh",
   "Arunachal Pradesh",
@@ -59,6 +92,7 @@ const INDIAN_STATES = [
 
 
 import materials from "../data/materials.json";
+import branchesData from "../data/branches.json";
 import TestingModal, { type MaterialItem } from "./TestingModal";
 
 const filters = [
@@ -94,6 +128,11 @@ export default function HomeSections() {
 
   const handleContactSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    if (enquiryParams.length === 0) {
+      alert("Please select at least one test parameter before submitting.");
+      document.getElementById('testing-services-section')?.scrollIntoView({ behavior: 'smooth' });
+      return;
+    }
     setIsSubmitting(true);
     
     const form = e.currentTarget;
@@ -166,7 +205,7 @@ export default function HomeSections() {
       }
 
       setTimeout(() => {
-        document.getElementById("contact")?.scrollIntoView({ behavior: "smooth", block: "start" });
+        document.getElementById("enquiry")?.scrollIntoView({ behavior: "smooth", block: "start" });
       }, 300);
     }
   }, [searchParams, MAX_SERVICE_LEN, MAX_PARAM_LEN, MAX_PARAM_COUNT]);
@@ -201,6 +240,11 @@ export default function HomeSections() {
       label: "Years of Service",
       isText: false,
       textValue: "",
+      colorClass: "text-[#63B7F6]",
+      hoverColorClass: "group-hover:bg-[#63B7F6]",
+      dividerClass: "bg-[#63B7F6]/30 group-hover:bg-[#63B7F6]/70",
+      dotClass: "bg-[#63B7F6]/40 group-hover:bg-[#63B7F6]",
+      radialGlow: "radial-gradient(ellipse at center, rgba(99,183,246,0.12) 0%, transparent 70%)",
     },
     {
       value: 900,
@@ -208,6 +252,11 @@ export default function HomeSections() {
       label: "Accredited Test Parameters",
       isText: false,
       textValue: "",
+      colorClass: "text-[#63B7F6]",
+      hoverColorClass: "group-hover:bg-[#63B7F6]",
+      dividerClass: "bg-[#63B7F6]/30 group-hover:bg-[#63B7F6]/70",
+      dotClass: "bg-[#63B7F6]/40 group-hover:bg-[#63B7F6]",
+      radialGlow: "radial-gradient(ellipse at center, rgba(99,183,246,0.12) 0%, transparent 70%)",
     },
     {
       value: 5,
@@ -215,6 +264,11 @@ export default function HomeSections() {
       label: "Accredited Labs",
       isText: false,
       textValue: "",
+      colorClass: "text-[#63B7F6]",
+      hoverColorClass: "group-hover:bg-[#63B7F6]",
+      dividerClass: "bg-[#63B7F6]/30 group-hover:bg-[#63B7F6]/70",
+      dotClass: "bg-[#63B7F6]/40 group-hover:bg-[#63B7F6]",
+      radialGlow: "radial-gradient(ellipse at center, rgba(99,183,246,0.12) 0%, transparent 70%)",
     },
     {
       value: 120,
@@ -222,6 +276,11 @@ export default function HomeSections() {
       label: "Team Members",
       isText: false,
       textValue: "",
+      colorClass: "text-[#63B7F6]",
+      hoverColorClass: "group-hover:bg-[#63B7F6]",
+      dividerClass: "bg-[#63B7F6]/30 group-hover:bg-[#63B7F6]/70",
+      dotClass: "bg-[#63B7F6]/40 group-hover:bg-[#63B7F6]",
+      radialGlow: "radial-gradient(ellipse at center, rgba(99,183,246,0.12) 0%, transparent 70%)",
     },
     {
       value: 0,
@@ -229,6 +288,23 @@ export default function HomeSections() {
       label: "Supported System",
       isText: true,
       textValue: "LIMS",
+      colorClass: "text-[#63B7F6]",
+      hoverColorClass: "group-hover:bg-[#63B7F6]",
+      dividerClass: "bg-[#63B7F6]/30 group-hover:bg-[#63B7F6]/70",
+      dotClass: "bg-[#63B7F6]/40 group-hover:bg-[#63B7F6]",
+      radialGlow: "radial-gradient(ellipse at center, rgba(99,183,246,0.12) 0%, transparent 70%)",
+    },
+    {
+      value: 70,
+      suffix: "+",
+      label: "Successful PT Performed in every 2 years",
+      isText: false,
+      textValue: "",
+      colorClass: "text-[#63B7F6]",
+      hoverColorClass: "group-hover:bg-[#63B7F6]",
+      dividerClass: "bg-[#63B7F6]/30 group-hover:bg-[#63B7F6]/70",
+      dotClass: "bg-[#63B7F6]/40 group-hover:bg-[#63B7F6]",
+      radialGlow: "radial-gradient(ellipse at center, rgba(99,183,246,0.12) 0%, transparent 70%)",
     },
   ];
 
@@ -283,13 +359,48 @@ export default function HomeSections() {
       {/* 1. Hero Section */}
       <HeroSlider />
 
+      {/* NABL Badges for Mobile View (hidden on desktop) */}
+      <div className="block lg:hidden w-full bg-slate-50 py-6 border-b border-slate-100">
+        <div className="px-4 text-center">
+          <span className="text-[10px] font-bold uppercase tracking-widest text-[#FF6700] block mb-3 font-sans">
+            Our NABL Accredited Branches
+          </span>
+          <div className="flex flex-wrap justify-center gap-x-5 gap-y-3 px-2">
+            {NABL_BADGES.map((badge) => (
+              <div key={badge.id} className="flex flex-col items-center gap-1.5 shrink-0">
+                <a
+                  href={badge.link}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-[68px] h-[88px] bg-white rounded-full flex flex-col items-center justify-center shadow-md border border-slate-100 relative overflow-hidden active:scale-95 transition-transform"
+                >
+                  <div className="text-[5px] font-bold text-black uppercase text-center flex flex-col items-center mt-[2px]">
+                    <div className="flex items-center justify-center mb-0.5 relative w-[60px] h-[60px]">
+                      <Image
+                        src={badge.url}
+                        alt={`NABL ${badge.id}`}
+                        fill
+                        className="object-contain"
+                        unoptimized
+                      />
+                    </div>
+                  </div>
+                </a>
+                <span className="text-[#1E1B5C] text-[9px] font-extrabold tracking-wide uppercase text-center font-sans">
+                  {badge.branch}
+                </span>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+
       {/* 2. Stats Section */}
-      <section className="relative bg-[#0e0b30] overflow-hidden" ref={ref}>
-        {/* Ambient animated glow blobs — same as footer */}
+      <section className="relative overflow-hidden bg-gradient-to-r from-[#050618] via-[#090b2c] to-[#1e1a5f]" ref={ref}>
+        {/* Ambient animated glow blobs */}
         <div className="absolute inset-0 overflow-hidden pointer-events-none z-0">
-          <div className="absolute -top-[30%] -right-[10%] w-[45%] h-[150%] rounded-full bg-[#1E1B5C]/70 blur-[120px]" />
-          <div className="absolute top-[50%] -left-[10%] w-[35%] h-[200%] rounded-full bg-[#FF6700]/8 blur-[100px]" />
-          <div className="absolute bottom-[10%] right-[25%] w-[18%] h-[200%] rounded-full bg-[#1E1B5C]/50 blur-[80px]" />
+          <div className="absolute top-[50%] -left-[10%] w-[45%] h-[150%] rounded-full bg-[#1E1B5C]/30 blur-[120px]" />
+          <div className="absolute bottom-[10%] -right-[10%] w-[45%] h-[150%] rounded-full bg-[#63B7F6]/10 blur-[120px]" />
         </div>
 
         {/* SVG cross/dot pattern — identical to footer */}
@@ -305,22 +416,19 @@ export default function HomeSections() {
         <div className="absolute top-0 left-0 right-0 h-[4px] bg-[#FF6700] z-10" />
 
         <div className="relative z-10 max-w-7xl mx-auto px-6 lg:px-8 py-12 md:py-16">
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-px bg-white/[0.06] rounded-2xl overflow-hidden border border-white/[0.08] shadow-[0_0_60px_rgba(0,0,0,0.4)]">
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-px bg-[#221e54] rounded-2xl overflow-hidden border border-[#221e54] shadow-[0_0_60px_rgba(0,0,0,0.4)]">
             {stats.map((item, index) => (
               <div
                 key={index}
                 className="relative flex flex-col items-center justify-center py-10 px-6 bg-[#0e0b30] hover:bg-white/[0.04] transition-all duration-300 group cursor-default"
               >
-                {/* Subtle orange glow on hover */}
+                {/* Subtle custom color glow on hover */}
                 <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none rounded-sm"
-                  style={{ background: "radial-gradient(ellipse at center, rgba(255,103,0,0.07) 0%, transparent 70%)" }}
+                  style={{ background: item.radialGlow }}
                 />
 
-                {/* Orange accent dot top */}
-                <div className="absolute top-5 left-1/2 -translate-x-1/2 w-1.5 h-1.5 rounded-full bg-[#FF6700]/40 group-hover:bg-[#FF6700] transition-colors duration-300" />
-
                 {/* Number / Text */}
-                <div className="text-[42px] md:text-[54px] font-black text-[#FF6700] font-oswald leading-none tabular-nums tracking-tight mb-1 group-hover:scale-105 transition-transform duration-300 origin-bottom">
+                <div className={`text-[42px] md:text-[54px] font-black ${item.colorClass} font-oswald leading-none tabular-nums tracking-tight mb-2 group-hover:scale-105 transition-transform duration-300 origin-bottom`}>
                   {item.isText ? (
                     <span className="text-[30px] md:text-[40px]">{item.textValue}</span>
                   ) : (
@@ -342,9 +450,6 @@ export default function HomeSections() {
                     )
                   )}
                 </div>
-
-                {/* Thin divider line */}
-                <div className="w-8 h-[2px] bg-[#FF6700]/30 group-hover:bg-[#FF6700]/70 group-hover:w-12 transition-all duration-300 rounded-full mb-3" />
 
                 {/* Label */}
                 <div className="text-[10px] md:text-[11px] uppercase tracking-[2px] text-white/45 group-hover:text-white/70 font-bold text-center leading-snug transition-colors duration-300">
@@ -368,9 +473,9 @@ export default function HomeSections() {
           <div className="w-[60px] h-[4px] bg-[#FF6700] mx-auto mt-3 rounded-full" />
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-[1fr_1.3fr] gap-10 md:gap-16 items-start">
-          <div className="relative">
-            <div className="w-full aspect-[4/4.5] md:aspect-square rounded-2xl bg-slate-300 overflow-hidden relative shadow-lg">
+        <div className="grid grid-cols-1 lg:grid-cols-[1fr_1.3fr] gap-6 lg:gap-12 items-stretch">
+          <div className="relative lg:h-full">
+            <div className="w-full h-full min-h-[350px] lg:min-h-0 rounded-2xl bg-slate-300 overflow-hidden relative shadow-lg aspect-[4/4.5] sm:aspect-square lg:aspect-auto">
               <Image
                 src={ABOUT_DATA.ceoImage}
                 alt={ABOUT_DATA.ceoImageAlt}
@@ -551,7 +656,7 @@ export default function HomeSections() {
       <IndiaBranchMap />
 
       {/* 6. Testing Services */}
-      <section className="py-12 md:py-20 px-4 md:px-12 max-w-[1300px] mx-auto w-full">
+      <section id="testing-services-section" className="py-12 md:py-20 px-4 md:px-12 max-w-[1300px] mx-auto w-full">
         <div className="text-center mb-8 md:mb-12">
           <h2 className="text-[24px] md:text-[38px] font-black text-[#1E1B5C] mb-2 font-oswald tracking-tight flex items-center justify-center gap-2 relative group">
             Testing Services
@@ -1010,12 +1115,12 @@ export default function HomeSections() {
 
       {/* 9. Contact form section */}
       <section
-        id="contact"
+        id="enquiry"
         className="py-12 md:py-20 px-4 md:px-12 max-w-[1300px] mx-auto w-full"
       >
         <div className="text-center mb-10 md:mb-16">
           <h2 className="text-[24px] md:text-[38px] font-black text-[#1E1B5C] mb-2 font-oswald tracking-tight">
-            Contact & Enquiry
+            Enquiry Now
           </h2>
           <p className="text-[13px] md:text-[16px] text-[#1E1B5C]/50 max-w-2xl mx-auto">
             Get in touch for testing requirements, quotes, or lab visits
@@ -1033,21 +1138,21 @@ export default function HomeSections() {
                   "Kolkata, West Bengal, India — 14,000 sq.ft. Central Lab",
                 ],
               },
-              { icon: "📞", title: "Phone", lines: ["+91-033 2497 1903"] },
+              { icon: "📞", title: "Phone", lines: ["+91-033 2497 1903", "+91 8062180808"] },
               {
                 icon: "✉️",
                 title: "Email",
-                lines: ["omegalabinfo98@gmail.com"],
+                lines: ["Omegalabinfo98@gmail.com", "info@omegalabtesting.com"],
               },
               {
                 icon: "🕐",
                 title: "Working Hours",
-                lines: ["Mon–Sat: 9:00 AM – 6:00 PM"],
+                lines: ["Mon – Fri: 9.30 AM to 6.30 PM", "Sat: 9.30 AM to 2.00 PM"],
               },
               {
                 icon: "🏛️",
                 title: "Accreditation",
-                lines: ["NABL Accredited · ISO/IEC 17025:2017"],
+                lines: ["NABL Accredited laboratory", "ISO/IEC 17025: 2017 compliance"],
               },
             ].map((info, idx) => (
               <div
@@ -1163,14 +1268,15 @@ export default function HomeSections() {
               </div>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
                 <select 
-                  name="country" 
-                  autoComplete="country-name" 
+                  name="branch" 
                   className="w-full px-4 py-3 rounded-lg border-2 border-[#1E1B5C]/10 bg-[#EFF6FF] text-[13px] focus:outline-none focus:border-[#FF6700] text-[#1E1B5C]"
                   defaultValue=""
                   required
                 >
-                  <option value="">Select Country *</option>
-                  <option value="India">India</option>
+                  <option value="" disabled>Select Branch *</option>
+                  {branchesData.map((branch) => (
+                    <option key={branch.id} value={branch.name}>{branch.name}</option>
+                  ))}
                 </select>
                 <select 
                   name="state" 
@@ -1263,104 +1369,24 @@ export default function HomeSections() {
                 value={enquiryParams.join(', ')}
               />
 
+
+
               {/* Manual / Additional Parameters Field */}
-              <div className="flex flex-col gap-1.5">
+              <div className="flex flex-col gap-1.5 items-start">
                 <label className="flex items-center gap-2 text-[11px] font-bold uppercase tracking-[0.8px] text-[#1E1B5C]/60">
                   <span className="w-3 h-[2px] bg-[#FF6700] rounded-full inline-block" />
-                  Additional / Custom Test Parameters
-                  <span className="normal-case tracking-normal font-medium text-[#1E1B5C]/40">(optional — type manually)</span>
+                  Test parameters
                 </label>
-                <textarea
-                  name="custom_parameters"
-                  rows={3}
-                  maxLength={2000}
-                  placeholder={`e.g. Tensile Strength, Compressive Strength, pH Value\nList any specific parameters or tests you require that are not in the selection above.`}
-                  className="w-full px-4 py-3 rounded-lg border-2 border-[#1E1B5C]/10 bg-[#EFF6FF] text-[13px] focus:outline-none focus:border-[#FF6700] transition-colors text-[#1E1B5C] resize-y min-h-[80px] placeholder-[#1E1B5C]/30"
-                />
-              </div>
-
-              <div className="flex flex-col gap-2">
-                <label className="text-[11px] font-bold text-[#1E1B5C]/50 uppercase tracking-[0.5px]">
-                  Services / Materials Required (Select multiple if needed)
-                </label>
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-4 gap-y-2 bg-[#EFF6FF] p-4 rounded-lg border-2 border-[#1E1B5C]/10">
-                  {[
-                    "Mechanical Testing",
-                    "Chemical Testing",
-                    "NDT Services",
-                    "Cement & Concrete Testing",
-                    "Steel & Metal Testing",
-                    "Geotextile Testing",
-                    "Water Testing",
-                    "Coal Testing",
-                    "Pipe Testing"
-                  ].map((service) => (
-                    <label key={service} className="flex items-center gap-2 text-[12px] text-[#1E1B5C] font-semibold cursor-pointer select-none">
-                      <input
-                        type="checkbox"
-                        name="services_required[]"
-                        value={service}
-                        className="accent-[#FF6700] rounded"
-                      />
-                      {service}
-                    </label>
-                  ))}
-                  <label className="flex items-center gap-2 text-[12px] text-[#1E1B5C] font-semibold cursor-pointer select-none">
-                    <input
-                      type="checkbox"
-                      name="services_required[]"
-                      value="Other"
-                      onChange={(e) => setShowOtherService(e.target.checked)}
-                      className="accent-[#FF6700] rounded"
-                    />
-                    Other / Custom Testing
-                  </label>
-                </div>
-              </div>
-
-              {showOtherService && (
-                <div className="flex flex-col gap-1.5 animate-fadeIn">
-                  <input
-                    type="text"
-                    name="custom_service_details"
-                    placeholder="Specify other service / material required *"
-                    required={showOtherService}
-                    className="w-full px-4 py-3 rounded-lg border-2 border-[#1E1B5C]/10 bg-[#EFF6FF] text-[13px] focus:outline-none focus:border-[#FF6700] transition-colors text-[#1E1B5C]"
-                  />
-                </div>
-              )}
-
-              <div className="text-[11px] font-bold text-[#1E1B5C]/50 uppercase tracking-[0.5px]">
-                Preferred Testing Type (Select all that apply)
-              </div>
-              <div className="flex gap-4">
-                <label className="flex items-center gap-1.5 text-[12px] text-[#1E1B5C] font-semibold cursor-pointer">
-                  <input
-                    type="checkbox"
-                    name="testingType[]"
-                    value="Mechanical"
-                    className="accent-[#FF6700] rounded"
-                  />{" "}
-                  Mechanical
-                </label>
-                <label className="flex items-center gap-1.5 text-[12px] text-[#1E1B5C] font-semibold cursor-pointer">
-                  <input
-                    type="checkbox"
-                    name="testingType[]"
-                    value="Chemical"
-                    className="accent-[#FF6700] rounded"
-                  />{" "}
-                  Chemical
-                </label>
-                <label className="flex items-center gap-1.5 text-[12px] text-[#1E1B5C] font-semibold cursor-pointer">
-                  <input
-                    type="checkbox"
-                    name="testingType[]"
-                    value="NDT"
-                    className="accent-[#FF6700] rounded"
-                  />{" "}
-                  NDT
-                </label>
+                <button
+                  type="button"
+                  onClick={() => document.getElementById('testing-services-section')?.scrollIntoView({ behavior: 'smooth' })}
+                  className="px-6 py-3 bg-[#EFF6FF] border-2 border-[#FF6700] text-[#FF6700] font-bold uppercase tracking-[1px] text-[12px] rounded-lg hover:bg-[#FF6700] hover:text-white transition-all flex items-center gap-2 mt-1"
+                >
+                  Select Parameters From List ↑
+                </button>
+                {enquiryParams.length === 0 && (
+                  <span className="text-red-500 text-[11px] font-semibold mt-1">* Please select at least one parameter</span>
+                )}
               </div>
 
               <div className="text-[12px] text-[#1E1B5C]/60 font-semibold px-4 py-3 rounded-lg border-2 border-[#1E1B5C]/10 bg-[#EFF6FF] select-none flex items-center justify-between">
@@ -1446,7 +1472,7 @@ export default function HomeSections() {
                   setEnquiryParams(allParams);
                   setSelectedServices([]);
                   setSelectedParameters({});
-                  document.getElementById("contact")?.scrollIntoView({ behavior: "smooth", block: "start" });
+                  document.getElementById("enquiry")?.scrollIntoView({ behavior: "smooth", block: "start" });
                 }}
                 className="px-6 py-2.5 bg-gradient-to-r from-[#FF6700] to-[#ff8c3a] hover:from-[#e65c00] hover:to-[#ff7a22] text-white font-black uppercase tracking-[1px] text-[12px] rounded-xl hover:shadow-[0_4px_20px_rgba(255,103,0,0.5)] transition-all shrink-0 cursor-pointer"
               >

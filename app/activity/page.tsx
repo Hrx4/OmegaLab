@@ -1,58 +1,46 @@
 "use client";
 
 import { motion } from "motion/react";
-import { Activity, FlaskConical, Microscope, Wrench, TestTube2, Award, ArrowRight } from "lucide-react";
-import Link from "next/link";
+import { Activity } from "lucide-react";
+import Image from "next/image";
 
-const activities = [
+const GALLERY_ITEMS = [
   {
-    icon: FlaskConical,
-    title: "Chemical Testing",
-    color: "#1E1B5C",
-    description:
-      "Comprehensive chemical analysis of raw materials, finished products, soils, water, and industrial samples using advanced spectrometric and wet chemical methods aligned with IS, ASTM, BS, and ISO standards.",
-    tags: ["Elemental Analysis", "Soil & Water", "Industrial Materials", "Fertilizer Testing"],
+    title: "Technical Training Session",
+    category: "Training",
+    image: "https://images.unsplash.com/photo-1524178232363-1fb2b075b655?auto=format&fit=crop&w=800&q=80",
+    gridClass: "md:col-span-2 md:row-span-2 h-[320px] md:h-[460px]"
   },
   {
-    icon: Wrench,
-    title: "Mechanical Testing",
-    color: "#FF6700",
-    description:
-      "Complete mechanical property evaluation of ferrous and non-ferrous metals, polymers, and composites including tensile, impact, hardness, bend, and fatigue testing per national and international standards.",
-    tags: ["Tensile Strength", "Impact Testing", "Hardness", "Fatigue & Bend"],
+    title: "Internal Quality Audit",
+    category: "Internal Audit",
+    image: "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&w=800&q=80",
+    gridClass: "col-span-1 h-[220px]"
   },
   {
-    icon: Microscope,
-    title: "Non-Destructive Testing (NDT)",
-    color: "#22c55e",
-    description:
-      "Advanced NDT services for in-service and pre-service inspection of components using Ultrasonic Testing (UT), Magnetic Particle Testing (MPT), Dye Penetrant Testing (DPT), and Radiographic Testing (RT).",
-    tags: ["Ultrasonic (UT)", "Magnetic Particle (MPT)", "Dye Penetrant (DPT)", "Radiographic (RT)"],
+    title: "Modern Chemical Laboratory",
+    category: "Laboratory Analysis",
+    image: "https://images.unsplash.com/photo-1582719508461-905c673771fd?auto=format&fit=crop&w=800&q=80",
+    gridClass: "col-span-1 md:row-span-2 h-[320px] md:h-[460px]"
   },
   {
-    icon: TestTube2,
-    title: "Civil & Construction Materials",
-    color: "#a855f7",
-    description:
-      "Extensive testing of construction materials including cement, concrete, aggregates, bricks, bitumen, steel reinforcement bars, and geotextiles to ensure compliance with BIS and IRC specifications.",
-    tags: ["Cement & Concrete", "Aggregate Tests", "Steel Rebar", "Bitumen & Geotextiles"],
+    title: "Accreditation Compliance Review",
+    category: "Audit & Documentation",
+    image: "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&w=800&q=80",
+    gridClass: "md:col-span-2 h-[220px]"
   },
   {
-    icon: Activity,
-    title: "Proficiency Testing & IQC",
-    color: "#0ea5e9",
-    description:
-      "Regular participation in NABL-approved Proficiency Testing Programmes (PTP) and Internal Quality Control (IQC) checks to validate the accuracy and consistency of our laboratory results.",
-    tags: ["PTP Participation", "IQC Checks", "Measurement Audits", "Calibration Verification"],
+    title: "Precision Equipment Calibration",
+    category: "Calibration",
+    image: "https://images.unsplash.com/photo-1581092160607-ee22621dd758?auto=format&fit=crop&w=800&q=80",
+    gridClass: "col-span-1 h-[220px]"
   },
   {
-    icon: Award,
-    title: "NABL Accreditation Activities",
-    color: "#FF6700",
-    description:
-      "Ongoing work to expand our NABL accreditation scope — adding more testing parameters, new materials, and new laboratory locations across the Eastern and North Eastern zones of India.",
-    tags: ["Scope Expansion", "New Parameters", "Eastern Zone Labs", "ISO/IEC 17025"],
-  },
+    title: "On-site Field Sample Collection",
+    category: "Field Testing",
+    image: "https://images.unsplash.com/photo-1504307651254-35680f356dfd?auto=format&fit=crop&w=800&q=80",
+    gridClass: "md:col-span-2 h-[220px]"
+  }
 ];
 
 export default function ActivityPage() {
@@ -86,52 +74,47 @@ export default function ActivityPage() {
             transition={{ duration: 0.6, delay: 0.2 }}
             className="text-white/70 text-sm md:text-base max-w-2xl"
           >
-            A comprehensive overview of our testing, quality, and accreditation activities across Eastern India.
+            A visual overview of our continuous training, rigorous audits, laboratory testing, and compliance activities.
           </motion.p>
         </div>
       </div>
 
-      <div className="max-w-[1300px] mx-auto px-4 md:px-12 mt-[-60px] relative z-30 space-y-8">
-
-        {/* Activities Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {activities.map((act, idx) => (
+      <div className="max-w-[1300px] mx-auto px-4 md:px-12 mt-[-60px] relative z-30">
+        
+        {/* Bento Grid Gallery */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          {GALLERY_ITEMS.map((item, idx) => (
             <motion.div
               key={idx}
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: idx * 0.08 }}
-              className="bg-white rounded-3xl border border-slate-100 shadow-lg hover:shadow-2xl hover:-translate-y-1.5 transition-all duration-300 group overflow-hidden"
+              transition={{ duration: 0.6, delay: idx * 0.08 }}
+              className={`relative rounded-3xl overflow-hidden shadow-lg border border-slate-100 hover:shadow-2xl hover:-translate-y-1.5 transition-all duration-500 group ${item.gridClass}`}
             >
-              <div className="h-1.5 w-full" style={{ backgroundColor: act.color }} />
-              <div className="p-7">
-                <div
-                  className="w-12 h-12 rounded-2xl flex items-center justify-center mb-5 transition-colors"
-                  style={{ backgroundColor: act.color + "18" }}
-                >
-                  <act.icon size={24} style={{ color: act.color }} />
-                </div>
-                <h3 className="text-[#1E1B5C] font-oswald font-black text-xl uppercase tracking-tight mb-3 group-hover:text-[#FF6700] transition-colors duration-300">
-                  {act.title}
-                </h3>
-                <p className="text-slate-500 text-[13px] leading-[1.8] mb-5">
-                  {act.description}
-                </p>
-                <div className="flex flex-wrap gap-2">
-                  {act.tags.map((tag, i) => (
-                    <span
-                      key={i}
-                      className="text-[10px] font-bold uppercase tracking-wider px-2.5 py-1 rounded-full border"
-                      style={{
-                        color: act.color,
-                        borderColor: act.color + "40",
-                        backgroundColor: act.color + "0d",
-                      }}
-                    >
-                      {tag}
-                    </span>
-                  ))}
+              {/* Image background */}
+              <div className="absolute inset-0 z-0">
+                <Image
+                  src={item.image}
+                  alt={item.title}
+                  fill
+                  className="object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
+                  unoptimized
+                />
+              </div>
+
+              {/* Gradient overlay */}
+              <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/45 to-transparent z-10" />
+
+              {/* Text / Category pill content */}
+              <div className="absolute inset-0 z-20 flex flex-col justify-end p-6">
+                <div>
+                  <span className="inline-block text-[10px] font-bold uppercase tracking-wider text-white bg-[#FF6700] px-3 py-1 rounded-full mb-3 shadow-[0_2px_10px_rgba(255,103,0,0.3)]">
+                    {item.category}
+                  </span>
+                  <h3 className="text-white font-oswald font-black text-lg md:text-xl uppercase tracking-tight leading-snug drop-shadow-md">
+                    {item.title}
+                  </h3>
                 </div>
               </div>
             </motion.div>

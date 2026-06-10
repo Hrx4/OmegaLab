@@ -106,9 +106,9 @@ export default function TestingModal({ material, onClose, onAddToSelection }: Pr
     params.set('parameters', Array.from(selectedParams).join('||'));
     onClose();
     setTimeout(() => {
-      router.push(`/?${params.toString()}#contact`);
+      router.push(`/?${params.toString()}#enquiry`);
       setTimeout(() => {
-        document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        document.getElementById('enquiry')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
       }, 200);
     }, 150);
   };

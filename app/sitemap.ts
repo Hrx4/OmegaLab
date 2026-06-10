@@ -17,7 +17,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     // Core pages
     { route: "/accreditation", priority: 0.9, changeFrequency: "monthly" as const },
     { route: "/facilities", priority: 0.9, changeFrequency: "monthly" as const },
-    { route: "/profiles", priority: 0.8, changeFrequency: "monthly" as const },
+    { route: "/projects-approvals", priority: 0.8, changeFrequency: "monthly" as const },
 
     // Infrastructure
     { route: "/infrastructure/mechanical", priority: 0.8, changeFrequency: "monthly" as const },
@@ -32,6 +32,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { route: "/career", priority: 0.7, changeFrequency: "monthly" as const },
     { route: "/feedback", priority: 0.5, changeFrequency: "monthly" as const },
     { route: "/our-branch/sample-collection-center", priority: 0.8, changeFrequency: "monthly" as const },
+    { route: "/privacy-policy", priority: 0.3, changeFrequency: "monthly" as const },
+    { route: "/terms-and-conditions", priority: 0.3, changeFrequency: "monthly" as const },
   ].map(({ route, priority, changeFrequency }) => ({
     url: `${baseUrl}${route}`,
     lastModified: new Date(),

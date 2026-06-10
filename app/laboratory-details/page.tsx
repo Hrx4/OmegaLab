@@ -31,40 +31,40 @@ const MILESTONES: MilestoneData[] = milestonesData as MilestoneData[];
 
 const highlights = [
   {
-    icon: Building2,
-    label: "Incorporated",
-    value: "20.06.2023",
-    sub: "Under Companies Act 2013",
-  },
-  {
     icon: CreditCard,
-    label: "CIN",
+    label: "CIN (CORPORATE IDENTITY NUMBER)",
     value: "U71200WB2023PTC262957",
-    sub: "Corporate Identity Number",
+    sub: "Incorporated on 20.06.2023 under Companies Act, 2013",
   },
   {
     icon: CreditCard,
-    label: "PAN",
+    label: "PAN (PERMANENT ACCOUNT NUMBER)",
     value: "AAECO0911B",
     sub: "Permanent Account Number",
   },
   {
     icon: CreditCard,
-    label: "TAN",
+    label: "TAN (TAX DEDUCTION AND COLLECTION ACCOUNT NUMBER)",
     value: "CALO06226D",
     sub: "Tax Deduction & Collection Account No.",
   },
   {
     icon: ShieldCheck,
-    label: "MSME Registered",
-    value: "E.S.I. Insured",
-    sub: "Industrial Testing & Analytical Laboratory",
+    label: "UDYAM REG. NO.",
+    value: "UDYAM-WB-100080645",
+    sub: "MSME REGISTERED COMPANY",
   },
   {
-    icon: BadgeCheck,
-    label: "Accredited Labs",
-    value: "5 Locations",
-    sub: "NABL Accredited Across Eastern India",
+    icon: Building2,
+    label: "ESI CODE NO.",
+    value: "41001080680000999",
+    sub: "ESI insured company",
+  },
+  {
+    icon: Building2,
+    label: "EPF CODE NO.",
+    value: "WBCAL2968088000",
+    sub: "EPF insured company",
   },
 ];
 
@@ -112,7 +112,7 @@ export default function LaboratoryDetailsPage() {
         <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-[#FF6700]/10 rounded-full blur-[100px] pointer-events-none" />
         <div className="absolute bottom-0 left-[-80px] w-64 h-64 bg-white/5 rounded-full blur-[60px] pointer-events-none" />
 
-        <div className="max-w-[1300px] mx-auto flex flex-col items-center relative z-20 text-center">
+        <div className="max-w-[1450px] mx-auto flex flex-col items-center relative z-20 text-center">
           <motion.div
             initial={{ opacity: 0, scale: 0.8 }}
             animate={{ opacity: 1, scale: 1 }}
@@ -140,7 +140,7 @@ export default function LaboratoryDetailsPage() {
         </div>
       </div>
 
-      <div className="max-w-[1300px] mx-auto px-4 md:px-12 mt-[-60px] relative z-30">
+      <div className="max-w-[1450px] mx-auto px-4 md:px-12 mt-[-60px] relative z-30">
 
         {/* Intro Card */}
         <motion.div
@@ -304,7 +304,7 @@ export default function LaboratoryDetailsPage() {
         </motion.div>
 
         {/* Animated Timeline Section */}
-        <div className="max-w-[1200px] mx-auto mt-20 mb-10 relative">
+        <div className="max-w-full mx-auto mt-20 mb-10 relative">
           <div className="text-center mb-14 relative z-10">
             <motion.h2
               initial={{ opacity: 0, y: 20 }}
@@ -336,7 +336,7 @@ export default function LaboratoryDetailsPage() {
           <div className="hidden lg:block">
 
             {/* Top row — even cards (0, 2, 4) */}
-            <div className="grid grid-cols-6 gap-0">
+            <div className="grid grid-cols-8 gap-0">
               {MILESTONES.map((milestone, idx) => {
                 const IconComp = ICON_MAP[milestone.icon];
                 const isBlue = milestone.theme === "blue";
@@ -348,17 +348,17 @@ export default function LaboratoryDetailsPage() {
                     whileInView={{ opacity: 1, y: 0, scale: 1 }}
                     viewport={{ once: true, margin: "-60px" }}
                     transition={{ duration: 0.55, delay: idx * 0.1, ease: [0.22, 1, 0.36, 1] }}
-                    className="relative mx-2 rounded-2xl border border-slate-100 bg-white shadow-md p-4 pt-8 text-left group hover:shadow-xl hover:-translate-y-1 transition-all duration-300"
+                    className="relative mx-1 rounded-xl border border-slate-100 bg-white shadow-sm p-3 pt-6 pb-4 text-left group hover:shadow-lg hover:-translate-y-1 transition-all duration-300"
                   >
                     {/* Header pill */}
-                    <div className="absolute -top-4 left-4 px-3 py-1 rounded-full flex items-center gap-1.5 text-white shadow-md text-[9px] font-bold uppercase tracking-wider font-oswald bg-gradient-to-r from-sky-400 to-[#1E1B5C]">
-                      <div className="w-5 h-5 rounded-full bg-white text-[#1E1B5C] flex items-center justify-center shrink-0">
-                        <IconComp size={10} />
+                    <div className="absolute -top-3.5 left-2 px-2.5 py-0.5 rounded-full flex items-center gap-1 text-white shadow-sm text-[8px] font-bold uppercase tracking-wider font-oswald bg-gradient-to-r from-sky-400 to-[#1E1B5C] max-w-[95%]">
+                      <div className="w-4 h-4 rounded-full bg-white text-[#1E1B5C] flex items-center justify-center shrink-0">
+                        <IconComp size={9} />
                       </div>
-                      {milestone.title}
+                      <span>{milestone.title}</span>
                     </div>
-                    <div className="font-black text-2xl font-oswald text-sky-500 mb-2">{milestone.year}</div>
-                    <ul className="space-y-1 text-[11px] text-slate-500 list-disc pl-3">
+                    <div className="font-black text-xl font-oswald text-sky-500 mb-1">{milestone.year}</div>
+                    <ul className="space-y-1 text-[10px] text-slate-500 list-disc pl-3">
                       {milestone.points.map((p, i) => (
                         <motion.li
                           key={i}
@@ -366,7 +366,7 @@ export default function LaboratoryDetailsPage() {
                           whileInView={{ opacity: 1, x: 0 }}
                           viewport={{ once: true }}
                           transition={{ duration: 0.35, delay: idx * 0.1 + i * 0.08 + 0.25 }}
-                          className="leading-tight"
+                          className="leading-snug"
                         >{p}</motion.li>
                       ))}
                     </ul>
@@ -376,7 +376,7 @@ export default function LaboratoryDetailsPage() {
                       whileInView={{ scaleX: 1 }}
                       viewport={{ once: true }}
                       transition={{ duration: 0.5, delay: idx * 0.1 + 0.4 }}
-                      className="absolute bottom-0 left-4 right-4 h-[3px] bg-gradient-to-r from-sky-400 to-[#1E1B5C] rounded-full origin-left"
+                      className="absolute bottom-0 left-3 right-3 h-[2px] bg-gradient-to-r from-sky-400 to-[#1E1B5C] rounded-full origin-left"
                     />
                   </motion.div>
                 );
@@ -384,22 +384,22 @@ export default function LaboratoryDetailsPage() {
             </div>
 
             {/* Spine row */}
-            <div className="relative grid grid-cols-6 gap-0 h-16 my-1">
+            <div className="relative grid grid-cols-8 gap-0 h-16 my-1">
               {/* Animated horizontal line */}
-              <div className="absolute top-1/2 left-4 right-4 h-[3px] bg-slate-100 -translate-y-1/2 rounded-full overflow-hidden">
+              <div className="absolute top-1/2 left-8 right-8 h-[4px] bg-slate-200 -translate-y-1/2 rounded-full overflow-hidden z-0">
                 <motion.div
-                  initial={{ scaleX: 0 }}
-                  whileInView={{ scaleX: 1 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 1.2, ease: "easeInOut", delay: 0.2 }}
-                  className="absolute inset-0 bg-gradient-to-r from-sky-300 via-slate-300 to-orange-300 origin-left rounded-full"
+                  initial={{ width: "0%" }}
+                  whileInView={{ width: "100%" }}
+                  viewport={{ once: true, margin: "-50px" }}
+                  transition={{ duration: 1.5, ease: "easeInOut", delay: 0.2 }}
+                  className="absolute inset-y-0 left-0 bg-gradient-to-r from-sky-400 via-slate-300 to-orange-400 rounded-full"
                 />
               </div>
               {MILESTONES.map((milestone, idx) => {
                 const isBlue = milestone.theme === "blue";
                 const stepNumber = String(idx + 1).padStart(2, '0');
                 return (
-                  <div key={idx} className="relative flex flex-col items-center justify-center h-full">
+                  <div key={idx} className="relative flex flex-col items-center justify-center h-full z-10">
                     {/* Vertical tick up (even) */}
                     {idx % 2 === 0 && (
                       <motion.div
@@ -446,7 +446,7 @@ export default function LaboratoryDetailsPage() {
             </div>
 
             {/* Bottom row — odd cards (1, 3, 5) */}
-            <div className="grid grid-cols-6 gap-0">
+            <div className="grid grid-cols-8 gap-0">
               {MILESTONES.map((milestone, idx) => {
                 const IconComp = ICON_MAP[milestone.icon];
                 if (idx % 2 !== 1) return <div key={idx} />;
@@ -457,7 +457,7 @@ export default function LaboratoryDetailsPage() {
                     whileInView={{ opacity: 1, y: 0, scale: 1 }}
                     viewport={{ once: true, margin: "-60px" }}
                     transition={{ duration: 0.55, delay: idx * 0.1, ease: [0.22, 1, 0.36, 1] }}
-                    className="relative mx-2 rounded-2xl border border-slate-100 bg-white shadow-md p-4 pb-8 text-left group hover:shadow-xl hover:translate-y-1 transition-all duration-300"
+                    className="relative mx-1 rounded-xl border border-slate-100 bg-white shadow-sm p-3 pb-6 pt-4 text-left group hover:shadow-lg hover:translate-y-1 transition-all duration-300"
                   >
                     {/* Top accent bar */}
                     <motion.div
@@ -465,10 +465,10 @@ export default function LaboratoryDetailsPage() {
                       whileInView={{ scaleX: 1 }}
                       viewport={{ once: true }}
                       transition={{ duration: 0.5, delay: idx * 0.1 + 0.4 }}
-                      className="absolute top-0 left-4 right-4 h-[3px] bg-gradient-to-r from-[#FF6700] to-red-500 rounded-full origin-left"
+                      className="absolute top-0 left-3 right-3 h-[2px] bg-gradient-to-r from-[#FF6700] to-red-500 rounded-full origin-left"
                     />
-                    <div className="font-black text-2xl font-oswald text-[#FF6700] mb-2">{milestone.year}</div>
-                    <ul className="space-y-1 text-[11px] text-slate-500 list-disc pl-3">
+                    <div className="font-black text-xl font-oswald text-[#FF6700] mb-1">{milestone.year}</div>
+                    <ul className="space-y-1 text-[10px] text-slate-500 list-disc pl-3">
                       {milestone.points.map((p, i) => (
                         <motion.li
                           key={i}
@@ -476,16 +476,16 @@ export default function LaboratoryDetailsPage() {
                           whileInView={{ opacity: 1, x: 0 }}
                           viewport={{ once: true }}
                           transition={{ duration: 0.35, delay: idx * 0.1 + i * 0.08 + 0.25 }}
-                          className="leading-tight"
+                          className="leading-snug"
                         >{p}</motion.li>
                       ))}
                     </ul>
                     {/* Bottom pill */}
-                    <div className="absolute -bottom-4 left-4 px-3 py-1 rounded-full flex items-center gap-1.5 text-white shadow-md text-[9px] font-bold uppercase tracking-wider font-oswald bg-gradient-to-r from-[#FF6700] to-red-500">
-                      <div className="w-5 h-5 rounded-full bg-white text-[#FF6700] flex items-center justify-center shrink-0">
-                        <IconComp size={10} />
+                    <div className="absolute -bottom-3.5 left-2 px-2.5 py-0.5 rounded-full flex items-center gap-1 text-white shadow-md text-[8px] font-bold uppercase tracking-wider font-oswald bg-gradient-to-r from-[#FF6700] to-red-500 max-w-[95%]">
+                      <div className="w-4 h-4 rounded-full bg-white text-[#FF6700] flex items-center justify-center shrink-0">
+                        <IconComp size={9} />
                       </div>
-                      {milestone.title}
+                      <span>{milestone.title}</span>
                     </div>
                   </motion.div>
                 );

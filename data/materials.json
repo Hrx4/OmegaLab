@@ -978,5 +978,862 @@
       "Colour Contrast Penetrant Test",
       "Fluorescent Penetrant Test"
     ]
+  },
+  {
+    "icon": "⛰️",
+    "name": "Stones & Rock (Odisha)",
+    "category": ["Cement & Concrete"],
+    "nablCert": "TC-17671",
+    "testType": "Mechanical",
+    "parameters": [
+      "Scratch Hardness",
+      "Apparent Porosity",
+      "Apparent specific gravity",
+      "True Porosity",
+      "True Specific gravity",
+      "Uni-Axial Compressive Strength",
+      "Water absorption"
+    ]
+  },
+  {
+    "icon": "🧪",
+    "name": "Bentonite (Odisha)",
+    "category": ["Cement & Concrete"],
+    "nablCert": "TC-17671",
+    "testType": "Mechanical & Chemical",
+    "parameters": [
+      "Gel formation index",
+      "Specific gravity",
+      "Bulk Density (Compacted & Loose)",
+      "Liquid Limit",
+      "Free Swell Index",
+      "Density of Bentonite Suspension",
+      "Marsh Cone Viscosity of Bentonite Suspension",
+      "Sand Content",
+      "Fineness",
+      "Moisture Content",
+      "Swelling Power",
+      "Silt Content",
+      "pH Value",
+      "Matter soluble in water"
+    ]
+  },
+  {
+    "icon": "🌍",
+    "name": "Clays & Soils / Silver sand / Moorum / Pond Ash / Bottom Ash / Fly Ash (Odisha)",
+    "category": ["Cement & Concrete"],
+    "nablCert": "TC-17671",
+    "testType": "Mechanical & Chemical",
+    "parameters": [
+      "Hydrometer Analysis",
+      "California Bearing Ratio (CBR)",
+      "Free Swell index",
+      "Heavy Compaction Test – MDD & OMC",
+      "Light Compaction Test – MDD & OMC",
+      "Liquid limit",
+      "Plastic Limit",
+      "Plasticity index",
+      "Sieve analysis",
+      "Specific Gravity",
+      "Water content / Moisture Content",
+      "Co-efficient of Curvature (Cc)",
+      "Co-efficient of Uniformity (Cu)",
+      "Direct Shear test (Angle of Internal Friction & Cohesion)",
+      "Organic Matter",
+      "pH Value",
+      "Soluble Sulphate (2:1 Water-solid ratio)",
+      "Sulphate",
+      "Total Soluble Sulphate",
+      "Water soluble chloride"
+    ]
+  },
+  {
+    "icon": "🛣️",
+    "name": "Blanketing Material / GSB / WMM / WBM / CTSB / CTB / Screening (Odisha)",
+    "category": ["Cement & Concrete"],
+    "nablCert": "TC-17671",
+    "testType": "Mechanical & Chemical",
+    "parameters": [
+      "California Bearing Ratio (CBR)",
+      "Heavy Compaction Test – MDD & OMC",
+      "Co-efficient of Curvature (Cc)",
+      "Co-efficient of Uniformity (Cu)",
+      "Liquid limit",
+      "Plastic Limit",
+      "Plasticity index",
+      "Sieve analysis (0.075 mm to 40 mm)",
+      "Aggregate Abrasion value by Los Angeles Machine",
+      "Water Absorption",
+      "Aggregate Impact Value",
+      "Organic Matter",
+      "pH Value",
+      "Soluble Sulphate (as SO3 & as SO4) (2:1 Water-solid ratio)",
+      "Sulphate (acid soluble, as SO3)",
+      "Total Soluble Sulphate",
+      "Water soluble chloride"
+    ]
+  },
+  {
+    "icon": "⏳",
+    "name": "Fine Aggregates / Manufactured & Crushed Sand / Dust (Odisha)",
+    "category": ["Cement & Concrete"],
+    "nablCert": "TC-17671",
+    "testType": "Mechanical",
+    "parameters": [
+      "Bulk Density (Compacted & Loose)",
+      "Deleterious content (Clay Lumps, Coal Lignite, Clay, Fine silt & Fine dust, & Material finer than 75 micron)",
+      "Sieve analysis (10 mm to 0.150 mm)",
+      "Fineness Modulus",
+      "Soundness by MgSO4",
+      "Soundness by Na2SO4",
+      "Specific Gravity",
+      "Water Absorption"
+    ]
+  },
+  {
+    "icon": "🏜️",
+    "name": "Quartz Sand & Bedding Sand (Odisha)",
+    "category": ["Cement & Concrete"],
+    "nablCert": "TC-17671",
+    "testType": "Mechanical",
+    "parameters": [
+      "Sieve analysis",
+      "Specific Gravity",
+      "Water absorption",
+      "Natural Moisture content / Moisture content",
+      "Soundness by Na2SO4",
+      "Soundness by MgSO4"
+    ]
+  },
+  {
+    "icon": "🌋",
+    "name": "LD Slag (Odisha)",
+    "category": ["Cement & Concrete"],
+    "nablCert": "TC-17671",
+    "testType": "Mechanical",
+    "parameters": [
+      "Aggregate Abrasion value by Los Angeles Machine",
+      "Aggregate Impact Value",
+      "Crushing Value",
+      "Bulk Density (Compacted, Loose)"
+    ]
+  },
+  {
+    "icon": "🪨",
+    "name": "Ballast (Odisha)",
+    "category": ["Cement & Concrete"],
+    "nablCert": "TC-17671",
+    "testType": "Mechanical",
+    "parameters": [
+      "Aggregate Abrasion value by Los Angeles Machine",
+      "Aggregate Impact Value",
+      "Sieve analysis (20 mm to 65 mm)",
+      "Water Absorption"
+    ]
+  },
+  {
+    "icon": "🧱",
+    "name": "Hardened Concrete (Odisha)",
+    "category": ["Cement & Concrete"],
+    "nablCert": "TC-17671",
+    "testType": "Mechanical",
+    "parameters": [
+      "Compressive strength (Core)",
+      "Compressive strength (Cube)",
+      "Flexural Strength",
+      "Splitting Tensile Strength",
+      "Water absorption",
+      "Depth of Water Penetration Under Pressure (permeability)"
+    ]
+  },
+  {
+    "icon": "🧫",
+    "name": "Concrete Admixture (Odisha)",
+    "category": ["Cement & Concrete"],
+    "nablCert": "TC-17671",
+    "testType": "Chemical",
+    "parameters": [
+      "Ash Content",
+      "pH value",
+      "Relative Density",
+      "Specific Gravity",
+      "Dry Material Content",
+      "Chloride Content"
+    ]
+  },
+  {
+    "icon": "🔲",
+    "name": "Concrete Paving Block / Paver Block / Grass Paver (Odisha)",
+    "category": ["Cement & Concrete"],
+    "nablCert": "TC-17671",
+    "testType": "Mechanical",
+    "parameters": [
+      "Abrasion resistance",
+      "Compressive Strength",
+      "Dimension – Width, Thickness, Length",
+      "Splitting Tensile Strength",
+      "Water Absorption"
+    ]
+  },
+  {
+    "icon": "🧱",
+    "name": "Bricks – Burnt Clay, Fly Ash, PFA Lime / Cement Bricks (Odisha)",
+    "category": ["Cement & Concrete"],
+    "nablCert": "TC-17671",
+    "testType": "Mechanical",
+    "parameters": [
+      "Compressive strength",
+      "Efflorescence",
+      "Water absorption",
+      "Dimension - Width, Height, Length"
+    ]
+  },
+  {
+    "icon": "🔲",
+    "name": "Tiles – Ceramic, Vitrified & Acid Resisting (Odisha)",
+    "category": ["Cement & Concrete"],
+    "nablCert": "TC-17671",
+    "testType": "Mechanical & Chemical",
+    "parameters": [
+      "Determination of acid resistance",
+      "Determination of Chemical resistance",
+      "Stain Test",
+      "Breaking strength",
+      "Modulus of rupture",
+      "Water Absorption",
+      "Scratch Hardness"
+    ]
+  },
+  {
+    "icon": "🖌️",
+    "name": "Putty (Odisha)",
+    "category": ["Cement & Concrete"],
+    "nablCert": "TC-17671",
+    "testType": "Mechanical",
+    "parameters": [
+      "Compressive strength",
+      "Final Setting Time",
+      "Initial Setting Time"
+    ]
+  },
+  {
+    "icon": "🏗️",
+    "name": "Hydraulic Cement OPC / PPC / PSC / PCC (Odisha)",
+    "category": ["Cement & Concrete"],
+    "nablCert": "TC-17671",
+    "testType": "Mechanical",
+    "parameters": [
+      "Normal Consistency",
+      "Compressive strength",
+      "Density",
+      "Final Setting Time",
+      "Initial Setting Time",
+      "Fineness By Blain apparatus",
+      "Fineness by Dry Sieving",
+      "Specific Gravity",
+      "Soundness by Autoclave Expansion",
+      "Soundness by La-Chatelier"
+    ]
+  },
+  {
+    "icon": "💨",
+    "name": "Fly Ash (Odisha)",
+    "category": ["Cement & Concrete"],
+    "nablCert": "TC-17671",
+    "testType": "Mechanical",
+    "parameters": [
+      "Compressive strength",
+      "Fineness By Blain apparatus",
+      "Fineness by wet sieving (45micron)",
+      "Soundness by Autoclave Expansion",
+      "Lime Reactivity",
+      "Specific Gravity"
+    ]
+  },
+  {
+    "icon": "💎",
+    "name": "Micro Silica / Silica Fume (Odisha)",
+    "category": ["Cement & Concrete"],
+    "nablCert": "TC-17671",
+    "testType": "Mechanical",
+    "parameters": [
+      "Compressive strength",
+      "Specific Gravity",
+      "Over size % retain on 45 Micron IS Sieve"
+    ]
+  },
+  {
+    "icon": "🥇",
+    "name": "Copper & Copper Alloys (Odisha)",
+    "category": ["Metals & Steel"],
+    "nablCert": "TC-17671",
+    "testType": "Mechanical",
+    "parameters": [
+      "Tensile test",
+      "% elongation",
+      "Dimension check"
+    ]
+  },
+  {
+    "icon": "🥈",
+    "name": "Aluminium & Aluminium Alloys (Odisha)",
+    "category": ["Metals & Steel"],
+    "nablCert": "TC-17671",
+    "testType": "Mechanical & Chemical",
+    "parameters": [
+      "Dimension check",
+      "Tensile Strength",
+      "% Elongation",
+      "0.2% Proof Stress",
+      "Rockwell Hardness (HRC & HRB)",
+      "Iron",
+      "Chromium",
+      "Copper",
+      "Magnesium",
+      "Manganese",
+      "Nickel",
+      "Silicon",
+      "Titanium",
+      "Zinc"
+    ]
+  },
+  {
+    "icon": "⚗️",
+    "name": "Carbon Steel – Low/Medium/Plain/High Carbon Steel (Odisha)",
+    "category": ["Metals & Steel"],
+    "nablCert": "TC-17671",
+    "testType": "Chemical",
+    "parameters": [
+      "Nitrogen",
+      "Aluminium",
+      "Carbon",
+      "Phosphorus",
+      "Sulphur",
+      "Silicon",
+      "Carbon Equivalent",
+      "Chromium",
+      "Cobalt",
+      "Copper",
+      "Manganese",
+      "Molybdenum",
+      "Nickel",
+      "Vanadium"
+    ]
+  },
+  {
+    "icon": "🔬",
+    "name": "High Alloy Steel / Stainless Steel (Odisha)",
+    "category": ["Metals & Steel"],
+    "nablCert": "TC-17671",
+    "testType": "Chemical",
+    "parameters": [
+      "Carbon",
+      "Phosphorus",
+      "Silicon",
+      "Sulphur",
+      "Chromium",
+      "Copper",
+      "Manganese",
+      "Molybdenum",
+      "Nickel",
+      "Nitrogen"
+    ]
+  },
+  {
+    "icon": "⚙️",
+    "name": "Ferrous Metal & Alloy Products (Odisha)",
+    "category": ["Metals & Steel"],
+    "nablCert": "TC-17671",
+    "testType": "Mechanical & Chemical",
+    "parameters": [
+      "Coating thickness",
+      "Dimension- (depth), (Length), (width) (Diameter), (Thickness)",
+      "Hardness Test (HRBW)",
+      "Hardness Test (HRC)",
+      "Impact TEST - CHARPY (V Notch)",
+      "Mass per unit area",
+      "Tensile, elongation, 0.2% proof stress/Yield stress",
+      "Nitrogen",
+      "Aluminium",
+      "Carbon",
+      "Phosphorus",
+      "Sulphur",
+      "Silicon",
+      "Carbon Equivalent",
+      "Chromium",
+      "Cobalt",
+      "Copper",
+      "Manganese",
+      "Molybdenum",
+      "Nickel",
+      "Vanadium"
+    ]
+  },
+  {
+    "icon": "🔩",
+    "name": "Fasteners – Nut, Bolt, Screw, Stud (Odisha)",
+    "category": ["Metals & Steel"],
+    "nablCert": "TC-17671",
+    "testType": "Mechanical & Chemical",
+    "parameters": [
+      "Coating thickness",
+      "Ultimate Tensile Strength",
+      "Ultimate Tensile Load",
+      "0.2 % Proof Stress/ Yield Stress",
+      "Shear Strength",
+      "%Elongation",
+      "%Reduction in Area",
+      "Proof Load Test (For Nut)",
+      "Proof Load Test (For Bolt)",
+      "Hardness (HRBW & HRC)",
+      "Hardness (HRBW & HRC) for washer",
+      "Nitrogen",
+      "Aluminium",
+      "Carbon",
+      "Phosphorus",
+      "Sulphur",
+      "Silicon",
+      "Carbon Equivalent",
+      "Chromium",
+      "Cobalt",
+      "Copper",
+      "Manganese",
+      "Molybdenum",
+      "Nickel",
+      "Vanadium"
+    ]
+  },
+  {
+    "icon": "🔵",
+    "name": "Ferrous Pipes & Tubes (Odisha)",
+    "category": ["Metals & Steel"],
+    "nablCert": "TC-17671",
+    "testType": "Mechanical & Chemical",
+    "parameters": [
+      "Coating thickness",
+      "Ultimate Tensile Load",
+      "0.2 % Proof Stress/ Yield Bend Test",
+      "%Elongation",
+      "Flattening test",
+      "Dimension (Outside Diameter)",
+      "Dimension(Thickness)",
+      "Mass",
+      "Hardness (HRBW & HRC)",
+      "Nitrogen",
+      "Aluminium",
+      "Carbon",
+      "Phosphorus",
+      "Sulphur",
+      "Silicon",
+      "Carbon Equivalent",
+      "Chromium",
+      "Cobalt",
+      "Copper",
+      "Manganese",
+      "Molybdenum",
+      "Nickel",
+      "Vanadium"
+    ]
+  },
+  {
+    "icon": "🏗️",
+    "name": "Structural Steel – Channel, Beams, Plate & Hollow Section (Odisha)",
+    "category": ["Metals & Steel"],
+    "nablCert": "TC-17671",
+    "testType": "Mechanical & Chemical",
+    "parameters": [
+      "Coating thickness",
+      "Dimension –(depth, Length, width, Thickness, Diameter, side width)",
+      "Tensile Strength",
+      "%Elongation",
+      "Reduction in Area",
+      "Yield Stress",
+      "Mass per unit Weight",
+      "Bend test",
+      "Hardness (HRBW & HRC)",
+      "Nitrogen",
+      "Aluminium",
+      "Carbon",
+      "Phosphorus",
+      "Sulphur",
+      "Silicon",
+      "Carbon Equivalent",
+      "Chromium",
+      "Cobalt",
+      "Copper",
+      "Manganese",
+      "Molybdenum",
+      "Nickel",
+      "Vanadium"
+    ]
+  },
+  {
+    "icon": "🔗",
+    "name": "Reinforced Couplers for Splicing of Bars (Odisha)",
+    "category": ["Metals & Steel"],
+    "nablCert": "TC-17671",
+    "testType": "Mechanical & Chemical",
+    "parameters": [
+      "Location of Failure",
+      "Slip across the mechanical splice",
+      "Static Tensile Strength",
+      "Total % Elongation",
+      "Hardness (HRBW & HRC)",
+      "Nitrogen",
+      "Aluminium",
+      "Carbon",
+      "Phosphorus",
+      "Sulphur",
+      "Silicon",
+      "Carbon Equivalent",
+      "Chromium",
+      "Cobalt",
+      "Copper",
+      "Manganese",
+      "Molybdenum",
+      "Nickel",
+      "Vanadium"
+    ]
+  },
+  {
+    "icon": "🪢",
+    "name": "Pre-stressing Strand / HT Strand (Odisha)",
+    "category": ["Metals & Steel"],
+    "nablCert": "TC-17671",
+    "testType": "Mechanical & Chemical",
+    "parameters": [
+      "Mass Per Meter",
+      "Tensile Strength",
+      "Total Elongation %",
+      "0.2 % Proof Load",
+      "Breaking Load",
+      "Dimension : Diameter, Length of Lay, Nominal Area",
+      "Percentage Difference in Diameter of Center wire and Surroundings Wires",
+      "Nitrogen",
+      "Aluminium",
+      "Carbon",
+      "Phosphorus",
+      "Sulphur",
+      "Silicon",
+      "Carbon Equivalent",
+      "Chromium",
+      "Cobalt",
+      "Copper",
+      "Manganese",
+      "Molybdenum",
+      "Nickel",
+      "Vanadium"
+    ]
+  },
+  {
+    "icon": "🔩",
+    "name": "Reinforcement Steel / TMT Bars / Rebar (Odisha)",
+    "category": ["Metals & Steel"],
+    "nablCert": "TC-17671",
+    "testType": "Mechanical & Chemical",
+    "parameters": [
+      "Weight per Meter",
+      "Tensile Strength",
+      "0.2% Proof Stress/Yield strength",
+      "% Elongation",
+      "Total Elongation",
+      "Bend Test",
+      "Re-bend Test",
+      "TS/YS",
+      "Mean area rib per unit length",
+      "Hardness (HRBW & HRC)",
+      "Nitrogen",
+      "Aluminium",
+      "Carbon",
+      "Phosphorus",
+      "Sulphur",
+      "Silicon",
+      "Carbon Equivalent",
+      "Chromium",
+      "Cobalt",
+      "Copper",
+      "Manganese",
+      "Molybdenum",
+      "Nickel",
+      "Vanadium"
+    ]
+  },
+  {
+    "icon": "⚙️",
+    "name": "Ferrous Welded Coupons (Odisha)",
+    "category": ["Metals & Steel"],
+    "nablCert": "TC-17671",
+    "testType": "Mechanical & Chemical",
+    "parameters": [
+      "All Weld Tensile Strength Butt Weld",
+      "All Weld Tensile Test (% Elongation)",
+      "All Weld Tensile Test (% Reduction Area)",
+      "All Weld Tensile Test (0.2% Proof Stress)",
+      "All Weld Tensile Test (Tensile Strength)",
+      "All Weld Tensile Test (Yield Strength)",
+      "Hardness Test (HRBW)",
+      "Transverse Tensile Strength on Butt Weld Joint",
+      "Transverse Tensile Strength",
+      "Bend (Root Bend, Face Bend, Side Bend)",
+      "Hardness Test (HRC)",
+      "Impact Test - Charpy (V Notch)",
+      "Impact TEST -Test Specimen Location, Notch orientation and examination",
+      "Longitudinal Bend (Root Bend, Face Bend,Side Bend)",
+      "Longitudinal Root and Face Bend on Butt Weld",
+      "Tensile Strength",
+      "Transverse Bend (Root Bend, Face Bend,Side Bend)",
+      "Nitrogen",
+      "Aluminium",
+      "Carbon",
+      "Phosphorus",
+      "Sulphur",
+      "Silicon",
+      "Carbon Equivalent",
+      "Chromium",
+      "Cobalt",
+      "Copper",
+      "Manganese",
+      "Molybdenum",
+      "Nickel",
+      "Vanadium"
+    ]
+  },
+  {
+    "icon": "🔊",
+    "name": "Non-Ferrous Welded Coupons (Odisha)",
+    "category": ["Metals & Steel"],
+    "nablCert": "TC-17671",
+    "testType": "Mechanical & Chemical",
+    "parameters": [
+      "All Weld Tensile Strength Butt Weld",
+      "All Weld Tensile Test (% Elongation)",
+      "All Weld Tensile Test (% Reduction Area)",
+      "All Weld Tensile Test (0.2% Proof Stress)",
+      "All Weld Tensile Test (Tensile Strength)",
+      "All Weld Tensile Test (Yield Strength)",
+      "Hardness Test (HRBW)",
+      "Transverse Tensile Strength on Butt Weld Joint",
+      "Transverse Tensile Strength",
+      "Nitrogen",
+      "Aluminium",
+      "Carbon",
+      "Phosphorus",
+      "Sulphur",
+      "Silicon",
+      "Carbon Equivalent",
+      "Chromium",
+      "Cobalt",
+      "Copper",
+      "Manganese",
+      "Molybdenum",
+      "Nickel",
+      "Vanadium"
+    ]
+  },
+  {
+    "icon": "🚰",
+    "name": "Borewell Water / Construction Water (Odisha)",
+    "category": ["Water"],
+    "nablCert": "TC-17671",
+    "testType": "Chemical",
+    "parameters": [
+      "Acidity",
+      "Alkalinity",
+      "Chloride",
+      "Filterable Residue (TDS)",
+      "Non Filterable Residue (TSS)",
+      "pH value",
+      "Sulphates",
+      "Total Inorganic Solids",
+      "Total organic Solids",
+      "Iron"
+    ]
+  },
+  {
+    "icon": "🔵",
+    "name": "MS Conduit (Odisha)",
+    "category": ["Metals & Steel"],
+    "nablCert": "TC-17671",
+    "testType": "Mechanical",
+    "parameters": [
+      "Compression Test",
+      "Construction of pipe",
+      "Marking of pipes",
+      "Uniformity of wall Thickness",
+      "Bending test",
+      "Collapse test",
+      "Impact test"
+    ]
+  },
+  {
+    "icon": "🛣️",
+    "name": "Blanketing Material / GSB / WMM / WBM / CTSB / CTB / Screening (Siliguri)",
+    "category": ["Cement & Concrete"],
+    "nablCert": "TC-15509",
+    "testType": "Mechanical",
+    "parameters": [
+      "Heavy Compaction Test – MDD & OMC",
+      "Liquid limit",
+      "Plastic Limit",
+      "Plasticity index",
+      "Sieve analysis (0.075 mm to 40 mm)",
+      "Water Absorption",
+      "Aggregate Impact Value"
+    ]
+  },
+  {
+    "icon": "⏳",
+    "name": "Fine Aggregates / Manufactured & Crushed Sand / Dust (Siliguri)",
+    "category": ["Cement & Concrete"],
+    "nablCert": "TC-15509",
+    "testType": "Mechanical",
+    "parameters": [
+      "Bulk Density (Compacted & Loose)",
+      "Deleterious content (Material finer than 75 micron)",
+      "Sieve analysis",
+      "Fineness Modulus",
+      "Specific Gravity",
+      "Water Absorption"
+    ]
+  },
+  {
+    "icon": "🏜️",
+    "name": "Quartz Sand & Bedding Sand (Siliguri)",
+    "category": ["Cement & Concrete"],
+    "nablCert": "TC-15509",
+    "testType": "Mechanical",
+    "parameters": [
+      "Sieve analysis",
+      "Specific Gravity",
+      "Water absorption",
+      "Natural Moisture content / Moisture content"
+    ]
+  },
+  {
+    "icon": "🪨",
+    "name": "Ballast (Siliguri)",
+    "category": ["Cement & Concrete"],
+    "nablCert": "TC-15509",
+    "testType": "Mechanical",
+    "parameters": [
+      "Aggregate Impact Value",
+      "Sieve analysis",
+      "Water Absorption"
+    ]
+  },
+  {
+    "icon": "🧱",
+    "name": "Hardened Concrete (Siliguri)",
+    "category": ["Cement & Concrete"],
+    "nablCert": "TC-15509",
+    "testType": "Mechanical",
+    "parameters": [
+      "Compressive strength (Core)",
+      "Compressive strength (Cube)",
+      "Flexural Strength",
+      "Water absorption"
+    ]
+  },
+  {
+    "icon": "⛓️",
+    "name": "Steel Fibre Reinforced Concrete / Poly-Fiber Reinforced Shotcrete (Siliguri)",
+    "category": ["Cement & Concrete"],
+    "nablCert": "TC-15509",
+    "testType": "Mechanical",
+    "parameters": [
+      "Energy Absorption",
+      "Crack Mouth Opening Displacement (CMOD)"
+    ]
+  },
+  {
+    "icon": "🧫",
+    "name": "Concrete Admixture (Siliguri)",
+    "category": ["Cement & Concrete"],
+    "nablCert": "TC-15509",
+    "testType": "Chemical",
+    "parameters": [
+      "Specific Gravity"
+    ]
+  },
+  {
+    "icon": "🔲",
+    "name": "Concrete Paving Block / Paver Block / Grass Paver (Siliguri)",
+    "category": ["Cement & Concrete"],
+    "nablCert": "TC-15509",
+    "testType": "Mechanical",
+    "parameters": [
+      "Compressive Strength",
+      "Dimension - Width, Thickness, Length",
+      "Water Absorption"
+    ]
+  },
+  {
+    "icon": "🧱",
+    "name": "Bricks – Clay / Fly Ash / PFA Lime / PFA Cement Bricks (Siliguri)",
+    "category": ["Cement & Concrete"],
+    "nablCert": "TC-15509",
+    "testType": "Mechanical",
+    "parameters": [
+      "Compressive strength",
+      "Efflorescence",
+      "Water absorption",
+      "Dimension - Width, Height, Length"
+    ]
+  },
+  {
+    "icon": "🖌️",
+    "name": "Putty (Siliguri)",
+    "category": ["Cement & Concrete"],
+    "nablCert": "TC-15509",
+    "testType": "Mechanical",
+    "parameters": [
+      "Compressive strength",
+      "Final Setting Time",
+      "Initial Setting Time"
+    ]
+  },
+  {
+    "icon": "🧱",
+    "name": "Hydraulic Cement OPC / PPC / PSC / PCC (Siliguri)",
+    "category": ["Cement & Concrete"],
+    "nablCert": "TC-15509",
+    "testType": "Mechanical",
+    "parameters": [
+      "Normal Consistency",
+      "Compressive strength",
+      "Density",
+      "Final Setting Time",
+      "Initial Setting Time",
+      "Fineness By Blain apparatus",
+      "Fineness by Dry Sieving",
+      "Specific Gravity",
+      "Soundness by La-Chatelier"
+    ]
+  },
+  {
+    "icon": "💨",
+    "name": "Fly Ash (Siliguri)",
+    "category": ["Cement & Concrete"],
+    "nablCert": "TC-15509",
+    "testType": "Mechanical",
+    "parameters": [
+      "Compressive strength",
+      "Fineness By Blain apparatus",
+      "Fineness by wet sieving (45micron)",
+      "Lime Reactivity",
+      "Specific Gravity"
+    ]
+  },
+  {
+    "icon": "💎",
+    "name": "Micro Silica / Silica Fume (Siliguri)",
+    "category": ["Cement & Concrete"],
+    "nablCert": "TC-15509",
+    "testType": "Mechanical",
+    "parameters": [
+      "Compressive strength",
+      "Specific Gravity",
+      "Over size % retain on 45 Micron IS Sieve"
+    ]
   }
 ]
