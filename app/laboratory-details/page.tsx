@@ -247,17 +247,20 @@ export default function LaboratoryDetailsPage() {
               {
                 title: "FINANCIAL GROWTH MILESTONE OF LAST 10 YEARS",
                 description: "Breaking the 100M barrier.",
-                icon: TrendingUp
+                icon: TrendingUp,
+                image: "https://res.cloudinary.com/de4cnpfm1/image/upload/v1781160214/financialgrowth_tfkr1h.jpg"
               },
               {
                 title: "CUSTOMER SATISFACTION",
                 description: "Maintaining >95% CSI & long term client loyalty.",
-                icon: HeartHandshake
+                icon: HeartHandshake,
+                image: "https://res.cloudinary.com/de4cnpfm1/image/upload/v1781160212/customer_satisfaction_yvmjyq.png"
               },
               {
                 title: "LIMS SYSTEM",
                 description: "Implemented Laboratory Information Management System (LIMS) to speed up the work.",
-                icon: ServerCog
+                icon: ServerCog,
+                image: "https://res.cloudinary.com/de4cnpfm1/image/upload/v1781251290/lims_zyabwd.png"
               },
               {
                 title: "COMPLIANCE",
@@ -283,18 +286,30 @@ export default function LaboratoryDetailsPage() {
               const isEven = idx % 2 === 0;
               const IconComp = item.icon;
               return (
-                <div key={idx} className={`flex flex-col ${isEven ? 'lg:flex-row' : 'lg:flex-row-reverse'} gap-8 lg:gap-16 items-center`}>
-                  {/* Image Placeholder */}
-                  <div className="w-full lg:w-1/2">
-                    <div className="w-full aspect-[16/9] md:aspect-[4/3] rounded-3xl bg-gradient-to-br from-slate-50 to-slate-200 flex flex-col items-center justify-center border-2 border-dashed border-slate-300 text-slate-400 relative overflow-hidden group shadow-inner">
-                      <ImageIcon size={48} className="mb-4 opacity-20 group-hover:scale-110 transition-transform duration-500 text-[#1E1B5C]" />
-                      <span className="font-bold uppercase tracking-wider text-xs md:text-sm z-10 text-[#1E1B5C]/40">Photograph Space for</span>
-                      <span className="font-black text-center px-4 mt-1 uppercase tracking-tight text-[10px] md:text-xs text-[#FF6700]/60 line-clamp-2">{item.title}</span>
-                    </div>
+                <div key={idx} className={`flex flex-col ${isEven ? 'lg:flex-row' : 'lg:flex-row-reverse'} gap-8 lg:gap-12 items-center justify-between`}>
+                  {/* Image/Placeholder */}
+                  <div className="w-full lg:w-[38%] max-w-md">
+                    {item.image ? (
+                      <div className="w-full aspect-[4/3] rounded-3xl overflow-hidden relative shadow-md border border-slate-100 bg-slate-50">
+                        <Image
+                          src={item.image}
+                          alt={item.title}
+                          fill
+                          className="object-contain p-2"
+                          sizes="(max-width: 1024px) 100vw, 38vw"
+                        />
+                      </div>
+                    ) : (
+                      <div className="w-full aspect-[4/3] rounded-3xl bg-gradient-to-br from-slate-50 to-slate-200 flex flex-col items-center justify-center border-2 border-dashed border-slate-300 text-slate-400 relative overflow-hidden shadow-inner">
+                        <ImageIcon size={48} className="mb-4 opacity-20 text-[#1E1B5C]" />
+                        <span className="font-bold uppercase tracking-wider text-xs md:text-sm z-10 text-[#1E1B5C]/40">Photograph Space for</span>
+                        <span className="font-black text-center px-4 mt-1 uppercase tracking-tight text-[10px] md:text-xs text-[#FF6700]/60 line-clamp-2">{item.title}</span>
+                      </div>
+                    )}
                   </div>
 
                   {/* Text Content */}
-                  <div className="w-full lg:w-1/2 flex flex-col gap-4 text-center lg:text-left items-center lg:items-start">
+                  <div className="w-full lg:w-[58%] flex flex-col gap-4 text-center lg:text-left items-center lg:items-start">
                     <div className="w-16 h-16 rounded-2xl bg-[#EFF6FF] text-[#1E1B5C] flex items-center justify-center mb-2 shadow-sm border border-slate-100">
                       <IconComp size={32} />
                     </div>

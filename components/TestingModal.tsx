@@ -20,6 +20,18 @@ type Props = {
   onAddToSelection?: (serviceName: string, params: string[]) => void;
 };
 
+const getBranchName = (tc: string) => {
+  const mapping: Record<string, string> = {
+    'TC-11935': 'Kolkata Lab - 1',
+    'TC-13401': 'Kolkata Lab - 2',
+    'TC-15509': 'Siliguri Lab',
+    'TC-16480': 'Ranchi Lab',
+    'TC-17671': 'Odisha Lab',
+    'NABL Accredited': 'Kolkata Lab - 2',
+  };
+  return mapping[tc] || tc;
+};
+
 export default function TestingModal({ material, onClose, onAddToSelection }: Props) {
   const router = useRouter();
   const [selectedParams, setSelectedParams] = useState<Set<string>>(new Set());
@@ -157,7 +169,7 @@ export default function TestingModal({ material, onClose, onAddToSelection }: Pr
                       <div className="flex flex-wrap items-center gap-2 mt-1.5">
                         {material.nablCert && (
                           <span className="inline-flex items-center gap-1 text-[10px] font-bold uppercase tracking-wide px-2.5 py-0.5 rounded-full bg-[#FF6700]/20 text-[#FF6700] border border-[#FF6700]/30">
-                            🏅 NABL {material.nablCert}
+                            🏅 {getBranchName(material.nablCert)}
                           </span>
                         )}
                         {material.testType && (

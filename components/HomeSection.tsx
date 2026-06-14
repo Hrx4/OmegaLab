@@ -95,6 +95,18 @@ import materials from "../data/materials.json";
 import branchesData from "../data/branches.json";
 import TestingModal, { type MaterialItem } from "./TestingModal";
 
+export const getBranchName = (tc: string) => {
+  const mapping: Record<string, string> = {
+    'TC-11935': 'Kolkata Lab - 1',
+    'TC-13401': 'Kolkata Lab - 2',
+    'TC-15509': 'Siliguri Lab',
+    'TC-16480': 'Ranchi Lab',
+    'TC-17671': 'Odisha Lab',
+    'NABL Accredited': 'Kolkata Lab - 2',
+  };
+  return mapping[tc] || tc;
+};
+
 const filters = [
   "All Materials",
   "Metal & Alloys",
@@ -730,7 +742,7 @@ export default function HomeSections() {
                             </span>
                             {m.nablCert && (
                               <span className="text-[9px] font-bold text-[#FF6700] bg-[#FF6700]/10 px-2 py-0.5 rounded-full shrink-0">
-                                {m.nablCert}
+                                {getBranchName(m.nablCert)}
                               </span>
                             )}
                           </div>
@@ -799,7 +811,7 @@ export default function HomeSections() {
                       {svc.name}
                     </div>
                     {svc.nablCert && (
-                      <div className="text-[10px] text-[#FF6700] font-semibold mt-0.5 truncate">{svc.nablCert}</div>
+                      <div className="text-[10px] text-[#FF6700] font-semibold mt-0.5 truncate">{getBranchName(svc.nablCert)}</div>
                     )}
                   </div>
                 </div>
