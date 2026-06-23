@@ -95,6 +95,18 @@ import materials from "../data/materials.json";
 import branchesData from "../data/branches.json";
 import TestingModal, { type MaterialItem } from "./TestingModal";
 
+export const getBranchName = (tc: string) => {
+  const mapping: Record<string, string> = {
+    'TC-11935': 'Kolkata Lab - 1',
+    'TC-13401': 'Kolkata Lab - 2',
+    'TC-15509': 'Siliguri Lab',
+    'TC-16480': 'Ranchi Lab',
+    'TC-17671': 'Odisha Lab',
+    'NABL Accredited': 'Kolkata Lab - 2',
+  };
+  return mapping[tc] || tc;
+};
+
 const filters = [
   "All Materials",
   "Metal & Alloys",
@@ -365,28 +377,29 @@ export default function HomeSections() {
           <span className="text-[10px] font-bold uppercase tracking-widest text-[#FF6700] block mb-3 font-sans">
             Our NABL Accredited Branches
           </span>
-          <div className="flex flex-wrap justify-center gap-x-5 gap-y-3 px-2">
+          <div className="flex flex-wrap justify-center gap-x-3 sm:gap-x-5 gap-y-3 px-2">
             {NABL_BADGES.map((badge) => (
               <div key={badge.id} className="flex flex-col items-center gap-1.5 shrink-0">
                 <a
                   href={badge.link}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="w-[68px] h-[88px] bg-white rounded-full flex flex-col items-center justify-center shadow-md border border-slate-100 relative overflow-hidden active:scale-95 transition-transform"
+                  className="w-[56px] h-[74px] sm:w-[68px] sm:h-[88px] bg-white rounded-full flex flex-col items-center justify-center shadow-md border border-slate-100 relative overflow-hidden active:scale-95 transition-transform"
                 >
                   <div className="text-[5px] font-bold text-black uppercase text-center flex flex-col items-center mt-[2px]">
-                    <div className="flex items-center justify-center mb-0.5 relative w-[60px] h-[60px]">
+                    <div className="flex items-center justify-center mb-0.5 relative w-[48px] h-[48px] sm:w-[60px] sm:h-[60px]">
                       <Image
                         src={badge.url}
                         alt={`NABL ${badge.id}`}
                         fill
+                        sizes="(max-width: 768px) 150px, 150px"
                         className="object-contain"
                         unoptimized
                       />
                     </div>
                   </div>
                 </a>
-                <span className="text-[#1E1B5C] text-[9px] font-extrabold tracking-wide uppercase text-center font-sans">
+                <span className="text-[#1E1B5C] text-[8px] sm:text-[9px] font-extrabold tracking-wide uppercase text-center font-sans">
                   {badge.branch}
                 </span>
               </div>
@@ -729,7 +742,7 @@ export default function HomeSections() {
                             </span>
                             {m.nablCert && (
                               <span className="text-[9px] font-bold text-[#FF6700] bg-[#FF6700]/10 px-2 py-0.5 rounded-full shrink-0">
-                                {m.nablCert}
+                                {getBranchName(m.nablCert)}
                               </span>
                             )}
                           </div>
@@ -798,7 +811,7 @@ export default function HomeSections() {
                       {svc.name}
                     </div>
                     {svc.nablCert && (
-                      <div className="text-[10px] text-[#FF6700] font-semibold mt-0.5 truncate">{svc.nablCert}</div>
+                      <div className="text-[10px] text-[#FF6700] font-semibold mt-0.5 truncate">{getBranchName(svc.nablCert)}</div>
                     )}
                   </div>
                 </div>
@@ -1274,9 +1287,13 @@ export default function HomeSections() {
                   required
                 >
                   <option value="" disabled>Select Branch *</option>
-                  {branchesData.map((branch) => (
-                    <option key={branch.id} value={branch.name}>{branch.name}</option>
-                  ))}
+                  {branchesData
+                    .filter((branch) => branch.id !== "sample-collection-center")
+                    .map((branch) => (
+                      <option key={branch.id} value={branch.name}>
+                        {branch.name}
+                      </option>
+                    ))}
                 </select>
                 <select 
                   name="state" 
@@ -1387,6 +1404,20 @@ export default function HomeSections() {
                 {enquiryParams.length === 0 && (
                   <span className="text-red-500 text-[11px] font-semibold mt-1">* Please select at least one parameter</span>
                 )}
+              </div>
+
+              {/* Additional / Custom Parameters Field */}
+              <div className="flex flex-col gap-1.5 items-start mt-2">
+                <label className="flex items-center gap-2 text-[11px] font-bold uppercase tracking-[0.8px] text-[#1E1B5C]/60">
+                  <span className="w-3 h-[2px] bg-[#FF6700] rounded-full inline-block" />
+                  Additional / Custom Parameters <span className="lowercase font-medium">(optional)</span>
+                </label>
+                <textarea
+                  name="additional_parameters"
+                  placeholder="Enter any custom or additional parameters here..."
+                  rows={2}
+                  className="w-full px-4 py-3 rounded-lg border-2 border-[#1E1B5C]/10 bg-[#EFF6FF] text-[13px] focus:outline-none focus:border-[#FF6700] transition-colors text-[#1E1B5C] resize-y min-h-[60px]"
+                />
               </div>
 
               <div className="text-[12px] text-[#1E1B5C]/60 font-semibold px-4 py-3 rounded-lg border-2 border-[#1E1B5C]/10 bg-[#EFF6FF] select-none flex items-center justify-between">

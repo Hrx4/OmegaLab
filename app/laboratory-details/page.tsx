@@ -3,7 +3,7 @@
 import { useState, useEffect, useRef } from "react";
 import Image from "next/image";
 import { motion, useScroll, useTransform } from "motion/react";
-import { FlaskConical, Building2, ShieldCheck, CreditCard, BadgeCheck, MapPin, Award, Target, CheckCircle, Star, Crown, LucideIcon } from "lucide-react";
+import { FlaskConical, Building2, ShieldCheck, CreditCard, BadgeCheck, MapPin, Award, Target, CheckCircle, Star, Crown, LucideIcon, TrendingUp, HeartHandshake, ServerCog, MonitorCog, Eye, Image as ImageIcon } from "lucide-react";
 import milestonesData from "@/data/milestones.json";
 
 type MilestoneIcon = "Target" | "Award" | "CheckCircle" | "MapPin" | "Star" | "Crown";
@@ -225,7 +225,7 @@ export default function LaboratoryDetailsPage() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="bg-white rounded-3xl shadow-xl border-t-4 border-[#FF6700] p-8 md:p-12"
+          className="bg-white rounded-3xl shadow-xl border-t-4 border-[#FF6700] p-6 md:p-12 mb-20"
         >
           <div className="flex items-center gap-3 mb-8">
             <div className="w-10 h-10 rounded-xl bg-[#FF6700]/10 flex items-center justify-center shrink-0">
@@ -236,75 +236,99 @@ export default function LaboratoryDetailsPage() {
             </h2>
           </div>
 
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 items-start">
-            {/* Text Content */}
-            <div className="flex flex-col gap-5 text-slate-600 leading-[1.8] text-[15px] md:text-[16px]">
-              <p className="font-semibold text-[#1E1B5C]">
-                We always embrace transformation as a necessary weapon to turning challenges into opportunities for innovation. Using history to show that advancements in one generation build the foundation for the next. Focusing on build a strong, passionate team and well build infrastructure to serve the nation.
-              </p>
-              <p>
-                In 2013, OmegaLab Testing Services Private Limited achieved a significant milestone by participating in the <strong>Certified Reference Material (CRM)</strong> Preparation Programme conducted by the National Metallurgical Laboratory (CSIR-NML), Jamshedpur.
-              </p>
-              <p>
-                OmegaLab was proudly enlisted among <strong>21 selected laboratories across India,</strong> securing <strong>Position No. 18</strong> in this nationally recognized program. Notably, OmegaLab stands as the only laboratory from West Bengal to be included in the CRM certification list—an acknowledgment of our <strong>accuracy, consistency, and technical excellence in testing.</strong>
-              </p>
-              <p>
-                This achievement reinforces our commitment to maintaining the highest standards of <strong>quality and reliability</strong> in every service we deliver.
-              </p>
-            </div>
+          <div className="mb-16 bg-slate-50 border border-slate-100 p-6 md:p-8 rounded-2xl">
+            <p className="font-semibold text-[#1E1B5C] text-[16px] md:text-[18px] italic leading-relaxed text-center md:text-left">
+              We believe that, &ldquo;The achievements of an organization are the results of the combined efforts of each individuals&rdquo;. Successful execution of strategic goals, reflects its operational efficiency.
+            </p>
+          </div>
 
-            {/* Image Slider */}
-            <div className="relative rounded-2xl overflow-hidden shadow-2xl h-[300px] md:h-[400px] group border-4 border-white bg-slate-900 w-full">
-              {TEAM_IMAGES.map((img, idx) => (
-                <div 
-                  key={idx} 
-                  className={`absolute inset-0 transition-opacity duration-1000 ${idx === currentSlide ? 'opacity-100 z-10' : 'opacity-0 z-0'}`}
-                >
-                  <Image
-                    src={img}
-                    alt={`Team Achievement ${idx + 1}`}
-                    fill
-                    className="object-cover group-hover:scale-105 transition-transform duration-700"
-                    unoptimized
-                  />
+          <div className="flex flex-col gap-16 md:gap-24">
+            {[
+              {
+                title: "FINANCIAL GROWTH MILESTONE OF LAST 10 YEARS",
+                description: "Breaking the 100M barrier.",
+                icon: TrendingUp,
+                image: "https://res.cloudinary.com/de4cnpfm1/image/upload/v1781160214/financialgrowth_tfkr1h.jpg"
+              },
+              {
+                title: "CUSTOMER SATISFACTION",
+                description: "Maintaining >95% CSI & long term client loyalty.",
+                icon: HeartHandshake,
+                image: "https://res.cloudinary.com/de4cnpfm1/image/upload/v1781160212/customer_satisfaction_yvmjyq.png"
+              },
+              {
+                title: "LIMS SYSTEM",
+                description: "Implemented Laboratory Information Management System (LIMS) to speed up the work.",
+                icon: ServerCog,
+                image: "https://res.cloudinary.com/de4cnpfm1/image/upload/v1781251290/lims_zyabwd.png"
+              },
+              {
+                title: "COMPLIANCE",
+                description: "Following the implemented system as per ISO/IEC 17025: 2017 & transforming the framework as per the market requirement.",
+                icon: ShieldCheck
+              },
+              {
+                title: "Using software based equipment",
+                description: "Laboratory have different software based equipment including Spectrophotometer, CMOD, CTM, UTM etc.",
+                icon: MonitorCog
+              },
+              {
+                title: "Achieved multiple approvals & Recommendation from different Government & Private sector",
+                description: "Laboratory works for different sectors.",
+                icon: Award
+              },
+              {
+                title: "Witness Facility",
+                description: "“Allowing Laboratory test witness program as required by client.” / “Provide Test witness facility for both permanent facility and site facility”",
+                icon: Eye
+              }
+            ].map((item, idx) => {
+              const isEven = idx % 2 === 0;
+              const IconComp = item.icon;
+              return (
+                <div key={idx} className={`flex flex-col ${isEven ? 'lg:flex-row' : 'lg:flex-row-reverse'} gap-8 lg:gap-12 items-center justify-between`}>
+                  {/* Image/Placeholder */}
+                  <div className="w-full lg:w-[38%] max-w-md">
+                    {item.image ? (
+                      <div className="w-full aspect-[4/3] rounded-3xl overflow-hidden relative shadow-md border border-slate-100 bg-slate-50">
+                        <Image
+                          src={item.image}
+                          alt={item.title}
+                          fill
+                          className="object-contain p-2"
+                          sizes="(max-width: 1024px) 100vw, 38vw"
+                        />
+                      </div>
+                    ) : (
+                      <div className="w-full aspect-[4/3] rounded-3xl bg-gradient-to-br from-slate-50 to-slate-200 flex flex-col items-center justify-center border-2 border-dashed border-slate-300 text-slate-400 relative overflow-hidden shadow-inner">
+                        <ImageIcon size={48} className="mb-4 opacity-20 text-[#1E1B5C]" />
+                        <span className="font-bold uppercase tracking-wider text-xs md:text-sm z-10 text-[#1E1B5C]/40">Photograph Space for</span>
+                        <span className="font-black text-center px-4 mt-1 uppercase tracking-tight text-[10px] md:text-xs text-[#FF6700]/60 line-clamp-2">{item.title}</span>
+                      </div>
+                    )}
+                  </div>
+
+                  {/* Text Content */}
+                  <div className="w-full lg:w-[58%] flex flex-col gap-4 text-center lg:text-left items-center lg:items-start">
+                    <div className="w-16 h-16 rounded-2xl bg-[#EFF6FF] text-[#1E1B5C] flex items-center justify-center mb-2 shadow-sm border border-slate-100">
+                      <IconComp size={32} />
+                    </div>
+                    <h3 className="font-black text-2xl md:text-3xl text-[#1E1B5C] font-oswald uppercase tracking-tight leading-tight">
+                      {item.title}
+                    </h3>
+                    <div className="w-12 h-1.5 bg-[#FF6700] rounded-full my-2" />
+                    <p className="text-slate-500 text-[15px] md:text-[17px] leading-relaxed">
+                      {item.description}
+                    </p>
+                  </div>
                 </div>
-              ))}
-
-              {/* Slider Controls */}
-              <button 
-                onClick={prevSlide}
-                className="absolute left-4 top-1/2 -translate-y-1/2 w-10 h-10 bg-black/40 text-white rounded-full flex items-center justify-center hover:bg-[#FF6700] transition-colors z-20 backdrop-blur-sm"
-              >
-                ❮
-              </button>
-              <button 
-                onClick={nextSlide}
-                className="absolute right-4 top-1/2 -translate-y-1/2 w-10 h-10 bg-black/40 text-white rounded-full flex items-center justify-center hover:bg-[#FF6700] transition-colors z-20 backdrop-blur-sm"
-              >
-                ❯
-              </button>
-
-              {/* Caption overlay */}
-              <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-[#1E1B5C]/90 via-[#1E1B5C]/50 to-transparent pt-16 pb-6 text-center z-20">
-                <p className="text-white font-bold mb-3 uppercase tracking-wider text-sm font-oswald drop-shadow-md">
-                  Omegalab: where quality meets reliability
-                </p>
-                <div className="flex justify-center gap-2">
-                  {TEAM_IMAGES.map((_, idx) => (
-                    <div 
-                      key={idx}
-                      onClick={() => setCurrentSlide(idx)}
-                      className={`w-2.5 h-2.5 rounded-full cursor-pointer transition-colors ${idx === currentSlide ? 'bg-[#FF6700]' : 'border-2 border-white/70 hover:bg-white/50'}`}
-                    />
-                  ))}
-                </div>
-              </div>
-            </div>
+              );
+            })}
           </div>
         </motion.div>
 
         {/* Animated Timeline Section */}
-        <div className="max-w-full mx-auto mt-20 mb-10 relative">
+        <div className="max-w-full mx-auto mt-20 mb-10 relative" ref={containerRef}>
           <div className="text-center mb-14 relative z-10">
             <motion.h2
               initial={{ opacity: 0, y: 20 }}
@@ -494,7 +518,7 @@ export default function LaboratoryDetailsPage() {
           </div>
 
           {/* ─── MOBILE / TABLET VERTICAL TIMELINE ─── */}
-          <div className="lg:hidden relative" ref={containerRef}>
+          <div className="lg:hidden relative">
             {/* Animated vertical line */}
             <div className="absolute left-[20px] md:left-1/2 md:-translate-x-1/2 top-0 bottom-0 w-1 bg-slate-200 rounded-full">
               <motion.div

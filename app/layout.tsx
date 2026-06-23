@@ -75,7 +75,7 @@ export const metadata: Metadata = {
     type: "website",
     images: [
       {
-        url: "https://res.cloudinary.com/de4cnpfm1/image/upload/v1778247941/LOGO-_OCS_eamyrc.jpg",
+        url: "https://res.cloudinary.com/de4cnpfm1/image/upload/v1781108347/TM_-_LOGO_eooaf9.jpg",
         width: 800,
         height: 800,
         alt: "OmegaLab Testing Services Logo",
@@ -88,10 +88,12 @@ export const metadata: Metadata = {
     description:
       "Pioneer in material testing with NABL accredited laboratories across Eastern India.",
     images: [
-      "https://res.cloudinary.com/de4cnpfm1/image/upload/v1778247941/LOGO-_OCS_eamyrc.jpg",
+      "https://res.cloudinary.com/de4cnpfm1/image/upload/v1781108347/TM_-_LOGO_eooaf9.jpg",
     ],
   },
 };
+
+import CookieConsent from "@/components/CookieConsent";
 
 export default function RootLayout({
   children,
@@ -107,6 +109,7 @@ export default function RootLayout({
         <Navbar></Navbar>
         {children}
         <Footer></Footer>
+        <CookieConsent />
         <ScrollToTop />
       </body>
     </html>
