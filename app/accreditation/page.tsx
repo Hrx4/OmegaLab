@@ -35,8 +35,8 @@ const LAB_DATA = [
     certImage: "https://res.cloudinary.com/de4cnpfm1/image/upload/v1778247810/KOLKATA2_wsg4cn.jpg",
     qrImage: "https://res.cloudinary.com/de4cnpfm1/image/upload/v1779278316/KOLKATA2QR_sbz3l7.jpg",
     scopeText: "Access the complete scope of our NABL accreditation, including detailed parameters, testing methods, and applicable standards.",
-    pdfLink: "https://nablwp.qci.org.in/CertificateScopenew?x=eOcz5t8vhPRBC9udGS4tiw==&src=P",
-    directPdfLink: "https://nabl7t.s3.ap-south-1.amazonaws.com/NablCertificate/Scope-128039-TC-11935-1770380307.pdf"
+    pdfLink: "https://nablwp.qci.org.in/CertificateScopenew?x=DeJ1LQUam/f8LCftuQrgsw==&src=P",
+    directPdfLink: "https://nabl7t.s3.ap-south-1.amazonaws.com/NablCertificate/Scope-259631-TC-13401-1775295806.pdf"
   },
   {
     id: "siliguri",

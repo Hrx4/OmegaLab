@@ -176,7 +176,7 @@ function MaterialCard({
           <div className={`text-[13px] font-bold leading-snug ${
             isSelected ? "text-[#FF6700]" : "text-[#1E1B5C]"
           }`}>
-            {svc.name}
+            {svc.name.replace(/\s*\((Siliguri|Odisha|Odissa)\)\s*/gi, '')}
           </div>
           {svc.testType && (
             <div className="text-[10px] text-slate-400 font-semibold mt-0.5 truncate">{svc.testType}</div>
@@ -419,7 +419,7 @@ export default function FacilitiesPage() {
                       <div className="flex-1 min-w-0">
                         <div className="flex items-center justify-between gap-2">
                           <span className="font-bold text-[13px] text-[#1E1B5C] group-hover:text-[#FF6700] transition-colors truncate">
-                            {m.name}
+                            {m.name.replace(/\s*\((Siliguri|Odisha|Odissa)\)\s*/gi, '')}
                           </span>
                         </div>
                         {matchedParams.length > 0 ? (
@@ -598,7 +598,7 @@ export default function FacilitiesPage() {
                     <div className="flex items-center justify-between mb-3">
                       <div className="flex items-center gap-2">
                         <span className="text-[18px]">{svcData?.icon}</span>
-                        <span className="text-[13px] font-black text-[#1E1B5C]">{svcName}</span>
+                        <span className="text-[13px] font-black text-[#1E1B5C]">{svcName.replace(/\s*\((Siliguri|Odisha|Odissa)\)\s*/gi, '')}</span>
                         {chosenParams.length > 0 && (
                           <span className="text-[10px] font-bold text-white bg-[#FF6700] px-2 py-0.5 rounded-full">{chosenParams.length} selected</span>
                         )}
