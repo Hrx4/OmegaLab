@@ -28,7 +28,7 @@ const NABL_BADGES = [
     id: "TC-13401",
     branch: "Kolkata-2",
     url: "https://res.cloudinary.com/de4cnpfm1/image/upload/v1778245987/TC13401_axis5q.webp",
-    link: "https://nablwp.qci.org.in/CertificateScopenew?x=eOcz5t8vhPRBC9udGS4tiw==&src=P",
+    link: "https://nablwp.qci.org.in/CertificateScopenew?x=DeJ1LQUam/f8LCftuQrgsw==&src=P",
   },
   {
     id: "TC-15509",
@@ -140,11 +140,6 @@ export default function HomeSections() {
 
   const handleContactSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    if (enquiryParams.length === 0) {
-      alert("Please select at least one test parameter before submitting.");
-      document.getElementById('testing-services-section')?.scrollIntoView({ behavior: 'smooth' });
-      return;
-    }
     setIsSubmitting(true);
     
     const form = e.currentTarget;
@@ -738,7 +733,7 @@ export default function HomeSections() {
                         <div className="flex-1 min-w-0">
                           <div className="flex items-center justify-between gap-2">
                             <span className="font-bold text-[13px] text-[#1E1B5C] group-hover:text-[#FF6700] transition-colors truncate">
-                              {m.name}
+                              {m.name.replace(/\s*\((Siliguri|Odisha|Odissa)\)\s*/gi, '')}
                             </span>
                             {m.nablCert && (
                               <span className="text-[9px] font-bold text-[#FF6700] bg-[#FF6700]/10 px-2 py-0.5 rounded-full shrink-0">
@@ -808,7 +803,7 @@ export default function HomeSections() {
                     <div className={`text-[13px] font-bold leading-snug ${
                       isSelected ? "text-[#FF6700]" : "text-[#1E1B5C]"
                     }`}>
-                      {svc.name}
+                      {svc.name.replace(/\s*\((Siliguri|Odisha|Odissa)\)\s*/gi, '')}
                     </div>
                     {svc.nablCert && (
                       <div className="text-[10px] text-[#FF6700] font-semibold mt-0.5 truncate">{getBranchName(svc.nablCert)}</div>
@@ -888,7 +883,7 @@ export default function HomeSections() {
                     <div className="flex items-center justify-between mb-3">
                       <div className="flex items-center gap-2">
                         <span className="text-[18px]">{svcData?.icon}</span>
-                        <span className="text-[13px] font-black text-[#1E1B5C]">{svcName}</span>
+                        <span className="text-[13px] font-black text-[#1E1B5C]">{svcName.replace(/\s*\((Siliguri|Odisha|Odissa)\)\s*/gi, '')}</span>
                         {chosenParams.length > 0 && (
                           <span className="text-[10px] font-bold text-white bg-[#FF6700] px-2 py-0.5 rounded-full">{chosenParams.length} selected</span>
                         )}
@@ -1392,7 +1387,7 @@ export default function HomeSections() {
               <div className="flex flex-col gap-1.5 items-start">
                 <label className="flex items-center gap-2 text-[11px] font-bold uppercase tracking-[0.8px] text-[#1E1B5C]/60">
                   <span className="w-3 h-[2px] bg-[#FF6700] rounded-full inline-block" />
-                  Test parameters
+                  Test parameters <span className="lowercase font-medium">(optional)</span>
                 </label>
                 <button
                   type="button"
@@ -1401,9 +1396,6 @@ export default function HomeSections() {
                 >
                   Select Parameters From List ↑
                 </button>
-                {enquiryParams.length === 0 && (
-                  <span className="text-red-500 text-[11px] font-semibold mt-1">* Please select at least one parameter</span>
-                )}
               </div>
 
               {/* Additional / Custom Parameters Field */}

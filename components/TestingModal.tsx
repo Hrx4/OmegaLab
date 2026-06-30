@@ -164,7 +164,7 @@ export default function TestingModal({ material, onClose, onAddToSelection }: Pr
                     </div>
                     <div>
                       <h2 className="text-white font-black text-[18px] md:text-[22px] font-oswald leading-tight">
-                        {material.name}
+                        {material.name.replace(/\s*\((Siliguri|Odisha|Odissa)\)\s*/gi, '')}
                       </h2>
                       <div className="flex flex-wrap items-center gap-2 mt-1.5">
                         {material.nablCert && (

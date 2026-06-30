@@ -69,7 +69,7 @@ const NABL_BADGES = [
   {
     id: "TC-13401",
     url: "https://res.cloudinary.com/de4cnpfm1/image/upload/v1778245987/TC13401_axis5q.webp",
-    link: "https://nablwp.qci.org.in/CertificateScopenew?x=eOcz5t8vhPRBC9udGS4tiw==&src=P",
+    link: "https://nablwp.qci.org.in/CertificateScopenew?x=DeJ1LQUam/f8LCftuQrgsw==&src=P",
   },
   {
     id: "TC-15509",
